@@ -9,7 +9,7 @@ from pathlib import Path
 import openpyxl
 import requests
 
-URL = "https://www.bcb.gob.bo/webdocs/sector_monetario/Indicadores%20Monetarios/Credito%20al%20sector%20publico.xlsx"
+URL = "https://www.bcb.gob.bo/webdocs/sector_monetario/Cr%C3%A9ditos%20y%20Dep%C3%B3sitos/BCB/3.%20Financiamiento%20neto%20al%20Sector%20P%C3%BAblico.xlsx"
 OUT_DIR = Path(__file__).resolve().parent.parent / "data"
 XLSX_PATH = Path(__file__).resolve().parent / "bcb_raw" / "financiamiento_spnf.xlsx"
 
