@@ -1,0 +1,2710 @@
+{
+  "metadata": {
+    "titulo": "Emisión Monetaria",
+    "subtitulo": "Destino del medio circulante: billetes en poder del público y caja del sistema financiero",
+    "fuente": "Banco Central de Bolivia (BCB)",
+    "unidad": "Millones de Bs",
+    "frecuencia": "Mensual",
+    "ultimo_dato": "2026-03",
+    "primer_dato": "1987-12",
+    "observaciones": 449,
+    "ultima_emision_mm": 100365.19,
+    "var_12m_pct": 20.4
+  },
+  "series": [
+    {
+      "date": "1987-12",
+      "emision": 414.14,
+      "caja_sf": 16.64,
+      "billetes": 397.5
+    },
+    {
+      "date": "1988-12",
+      "emision": 541.93,
+      "caja_sf": 15.85,
+      "billetes": 526.08
+    },
+    {
+      "date": "1989-01",
+      "emision": 440.59,
+      "caja_sf": 17.82,
+      "billetes": 422.77
+    },
+    {
+      "date": "1989-02",
+      "emision": 440.58,
+      "caja_sf": 19.49,
+      "billetes": 421.09
+    },
+    {
+      "date": "1989-03",
+      "emision": 456.84,
+      "caja_sf": 19.76,
+      "billetes": 437.08
+    },
+    {
+      "date": "1989-04",
+      "emision": 475.4,
+      "caja_sf": 15.9,
+      "billetes": 459.5
+    },
+    {
+      "date": "1989-05",
+      "emision": 451.25,
+      "caja_sf": 18.72,
+      "billetes": 432.52
+    },
+    {
+      "date": "1989-06",
+      "emision": 463.72,
+      "caja_sf": 13.35,
+      "billetes": 450.38
+    },
+    {
+      "date": "1989-07",
+      "emision": 462.79,
+      "caja_sf": 23.45,
+      "billetes": 439.34
+    },
+    {
+      "date": "1989-08",
+      "emision": 432.61,
+      "caja_sf": 16.34,
+      "billetes": 416.26
+    },
+    {
+      "date": "1989-09",
+      "emision": 440.67,
+      "caja_sf": 13.57,
+      "billetes": 427.11
+    },
+    {
+      "date": "1989-10",
+      "emision": 444.05,
+      "caja_sf": 15.24,
+      "billetes": 428.81
+    },
+    {
+      "date": "1989-11",
+      "emision": 446.41,
+      "caja_sf": 16.18,
+      "billetes": 430.23
+    },
+    {
+      "date": "1989-12",
+      "emision": 530.45,
+      "caja_sf": 30.15,
+      "billetes": 500.3
+    },
+    {
+      "date": "1990-01",
+      "emision": 435.75,
+      "caja_sf": 18.45,
+      "billetes": 417.29
+    },
+    {
+      "date": "1990-02",
+      "emision": 470.78,
+      "caja_sf": 23.56,
+      "billetes": 447.21
+    },
+    {
+      "date": "1990-03",
+      "emision": 448.97,
+      "caja_sf": 14.45,
+      "billetes": 434.52
+    },
+    {
+      "date": "1990-04",
+      "emision": 468.25,
+      "caja_sf": 21.6,
+      "billetes": 446.64
+    },
+    {
+      "date": "1990-05",
+      "emision": 475.98,
+      "caja_sf": 18.9,
+      "billetes": 457.08
+    },
+    {
+      "date": "1990-06",
+      "emision": 502.56,
+      "caja_sf": 17.88,
+      "billetes": 484.68
+    },
+    {
+      "date": "1990-07",
+      "emision": 509.01,
+      "caja_sf": 17.69,
+      "billetes": 491.31
+    },
+    {
+      "date": "1990-08",
+      "emision": 531.29,
+      "caja_sf": 15.99,
+      "billetes": 515.3
+    },
+    {
+      "date": "1990-09",
+      "emision": 522.98,
+      "caja_sf": 18.8,
+      "billetes": 504.18
+    },
+    {
+      "date": "1990-10",
+      "emision": 521.26,
+      "caja_sf": 21.47,
+      "billetes": 500.94
+    },
+    {
+      "date": "1990-11",
+      "emision": 548.56,
+      "caja_sf": 17.94,
+      "billetes": 529.48
+    },
+    {
+      "date": "1990-12",
+      "emision": 668.12,
+      "caja_sf": 29.28,
+      "billetes": 638.84
+    },
+    {
+      "date": "1991-01",
+      "emision": 517.0,
+      "caja_sf": 20.76,
+      "billetes": 496.24
+    },
+    {
+      "date": "1991-02",
+      "emision": 545.01,
+      "caja_sf": 25.18,
+      "billetes": 519.83
+    },
+    {
+      "date": "1991-03",
+      "emision": 589.68,
+      "caja_sf": 17.64,
+      "billetes": 572.04
+    },
+    {
+      "date": "1991-04",
+      "emision": 597.72,
+      "caja_sf": 19.68,
+      "billetes": 578.04
+    },
+    {
+      "date": "1991-05",
+      "emision": 637.36,
+      "caja_sf": 26.24,
+      "billetes": 611.12
+    },
+    {
+      "date": "1991-06",
+      "emision": 655.33,
+      "caja_sf": 20.77,
+      "billetes": 634.56
+    },
+    {
+      "date": "1991-07",
+      "emision": 655.1,
+      "caja_sf": 23.54,
+      "billetes": 631.55
+    },
+    {
+      "date": "1991-08",
+      "emision": 684.96,
+      "caja_sf": 23.52,
+      "billetes": 661.45
+    },
+    {
+      "date": "1991-09",
+      "emision": 659.11,
+      "caja_sf": 27.45,
+      "billetes": 631.66
+    },
+    {
+      "date": "1991-10",
+      "emision": 685.68,
+      "caja_sf": 22.54,
+      "billetes": 663.14
+    },
+    {
+      "date": "1991-11",
+      "emision": 676.88,
+      "caja_sf": 22.02,
+      "billetes": 654.86
+    },
+    {
+      "date": "1991-12",
+      "emision": 775.43,
+      "caja_sf": 21.72,
+      "billetes": 753.71
+    },
+    {
+      "date": "1992-01",
+      "emision": 663.53,
+      "caja_sf": 23.76,
+      "billetes": 639.77
+    },
+    {
+      "date": "1992-02",
+      "emision": 724.71,
+      "caja_sf": 24.18,
+      "billetes": 700.52
+    },
+    {
+      "date": "1992-03",
+      "emision": 666.56,
+      "caja_sf": 30.35,
+      "billetes": 636.22
+    },
+    {
+      "date": "1992-04",
+      "emision": 749.66,
+      "caja_sf": 23.61,
+      "billetes": 726.04
+    },
+    {
+      "date": "1992-05",
+      "emision": 749.66,
+      "caja_sf": 29.22,
+      "billetes": 720.43
+    },
+    {
+      "date": "1992-06",
+      "emision": 763.4,
+      "caja_sf": 31.55,
+      "billetes": 731.84
+    },
+    {
+      "date": "1992-07",
+      "emision": 826.49,
+      "caja_sf": 30.87,
+      "billetes": 795.62
+    },
+    {
+      "date": "1992-08",
+      "emision": 802.65,
+      "caja_sf": 38.49,
+      "billetes": 764.16
+    },
+    {
+      "date": "1992-09",
+      "emision": 744.13,
+      "caja_sf": 33.4,
+      "billetes": 710.74
+    },
+    {
+      "date": "1992-10",
+      "emision": 824.93,
+      "caja_sf": 41.95,
+      "billetes": 782.98
+    },
+    {
+      "date": "1992-11",
+      "emision": 779.39,
+      "caja_sf": 46.85,
+      "billetes": 732.55
+    },
+    {
+      "date": "1992-12",
+      "emision": 931.2,
+      "caja_sf": 44.21,
+      "billetes": 886.99
+    },
+    {
+      "date": "1993-01",
+      "emision": 833.61,
+      "caja_sf": 36.48,
+      "billetes": 797.13
+    },
+    {
+      "date": "1993-02",
+      "emision": 869.75,
+      "caja_sf": 52.41,
+      "billetes": 817.34
+    },
+    {
+      "date": "1993-03",
+      "emision": 867.27,
+      "caja_sf": 56.7,
+      "billetes": 810.58
+    },
+    {
+      "date": "1993-04",
+      "emision": 921.13,
+      "caja_sf": 68.69,
+      "billetes": 852.44
+    },
+    {
+      "date": "1993-05",
+      "emision": 956.27,
+      "caja_sf": 89.53,
+      "billetes": 866.74
+    },
+    {
+      "date": "1993-06",
+      "emision": 928.78,
+      "caja_sf": 78.64,
+      "billetes": 850.14
+    },
+    {
+      "date": "1993-07",
+      "emision": 967.41,
+      "caja_sf": 80.44,
+      "billetes": 886.98
+    },
+    {
+      "date": "1993-08",
+      "emision": 935.63,
+      "caja_sf": 103.79,
+      "billetes": 831.84
+    },
+    {
+      "date": "1993-09",
+      "emision": 904.62,
+      "caja_sf": 82.94,
+      "billetes": 821.68
+    },
+    {
+      "date": "1993-10",
+      "emision": 956.27,
+      "caja_sf": 68.14,
+      "billetes": 888.14
+    },
+    {
+      "date": "1993-11",
+      "emision": 940.72,
+      "caja_sf": 78.85,
+      "billetes": 861.87
+    },
+    {
+      "date": "1993-12",
+      "emision": 1050.91,
+      "caja_sf": 17.31,
+      "billetes": 1033.6
+    },
+    {
+      "date": "1994-01",
+      "emision": 889.3,
+      "caja_sf": 14.8,
+      "billetes": 874.5
+    },
+    {
+      "date": "1994-02",
+      "emision": 887.98,
+      "caja_sf": 15.04,
+      "billetes": 872.94
+    },
+    {
+      "date": "1994-03",
+      "emision": 959.89,
+      "caja_sf": 14.54,
+      "billetes": 945.34
+    },
+    {
+      "date": "1994-04",
+      "emision": 968.23,
+      "caja_sf": 12.94,
+      "billetes": 955.29
+    },
+    {
+      "date": "1994-05",
+      "emision": 962.47,
+      "caja_sf": 10.48,
+      "billetes": 951.98
+    },
+    {
+      "date": "1994-06",
+      "emision": 998.09,
+      "caja_sf": 14.37,
+      "billetes": 983.72
+    },
+    {
+      "date": "1994-07",
+      "emision": 1101.78,
+      "caja_sf": 13.99,
+      "billetes": 1087.79
+    },
+    {
+      "date": "1994-08",
+      "emision": 1099.95,
+      "caja_sf": 17.59,
+      "billetes": 1082.36
+    },
+    {
+      "date": "1994-09",
+      "emision": 1163.65,
+      "caja_sf": 14.02,
+      "billetes": 1149.63
+    },
+    {
+      "date": "1994-10",
+      "emision": 1177.51,
+      "caja_sf": 13.33,
+      "billetes": 1164.18
+    },
+    {
+      "date": "1994-11",
+      "emision": 1202.7,
+      "caja_sf": 36.35,
+      "billetes": 1166.35
+    },
+    {
+      "date": "1994-12",
+      "emision": 1436.46,
+      "caja_sf": 30.47,
+      "billetes": 1405.99
+    },
+    {
+      "date": "1995-01",
+      "emision": 1204.41,
+      "caja_sf": 18.64,
+      "billetes": 1185.78
+    },
+    {
+      "date": "1995-02",
+      "emision": 1260.04,
+      "caja_sf": 21.87,
+      "billetes": 1238.17
+    },
+    {
+      "date": "1995-03",
+      "emision": 1227.04,
+      "caja_sf": 14.34,
+      "billetes": 1212.7
+    },
+    {
+      "date": "1995-04",
+      "emision": 1274.71,
+      "caja_sf": 15.55,
+      "billetes": 1259.15
+    },
+    {
+      "date": "1995-05",
+      "emision": 1302.27,
+      "caja_sf": 23.26,
+      "billetes": 1279.01
+    },
+    {
+      "date": "1995-06",
+      "emision": 1399.98,
+      "caja_sf": 21.73,
+      "billetes": 1378.25
+    },
+    {
+      "date": "1995-07",
+      "emision": 1369.89,
+      "caja_sf": 28.43,
+      "billetes": 1341.46
+    },
+    {
+      "date": "1995-08",
+      "emision": 1387.57,
+      "caja_sf": 25.53,
+      "billetes": 1362.04
+    },
+    {
+      "date": "1995-09",
+      "emision": 1408.98,
+      "caja_sf": 30.18,
+      "billetes": 1378.8
+    },
+    {
+      "date": "1995-10",
+      "emision": 1421.35,
+      "caja_sf": 32.8,
+      "billetes": 1388.56
+    },
+    {
+      "date": "1995-11",
+      "emision": 1435.23,
+      "caja_sf": 32.07,
+      "billetes": 1403.16
+    },
+    {
+      "date": "1995-12",
+      "emision": 1734.94,
+      "caja_sf": 40.96,
+      "billetes": 1693.99
+    },
+    {
+      "date": "1996-01",
+      "emision": 1378.57,
+      "caja_sf": 34.15,
+      "billetes": 1344.42
+    },
+    {
+      "date": "1996-02",
+      "emision": 1351.67,
+      "caja_sf": 32.31,
+      "billetes": 1319.36
+    },
+    {
+      "date": "1996-03",
+      "emision": 1351.61,
+      "caja_sf": 29.36,
+      "billetes": 1322.24
+    },
+    {
+      "date": "1996-04",
+      "emision": 1403.43,
+      "caja_sf": 29.93,
+      "billetes": 1373.5
+    },
+    {
+      "date": "1996-05",
+      "emision": 1461.78,
+      "caja_sf": 40.93,
+      "billetes": 1420.84
+    },
+    {
+      "date": "1996-06",
+      "emision": 1504.94,
+      "caja_sf": 40.91,
+      "billetes": 1464.02
+    },
+    {
+      "date": "1996-07",
+      "emision": 1499.17,
+      "caja_sf": 42.16,
+      "billetes": 1457.01
+    },
+    {
+      "date": "1996-08",
+      "emision": 1542.13,
+      "caja_sf": 47.65,
+      "billetes": 1494.48
+    },
+    {
+      "date": "1996-09",
+      "emision": 1526.66,
+      "caja_sf": 59.23,
+      "billetes": 1467.44
+    },
+    {
+      "date": "1996-10",
+      "emision": 1523.7,
+      "caja_sf": 42.0,
+      "billetes": 1481.7
+    },
+    {
+      "date": "1996-11",
+      "emision": 1557.32,
+      "caja_sf": 62.26,
+      "billetes": 1495.06
+    },
+    {
+      "date": "1996-12",
+      "emision": 1882.78,
+      "caja_sf": 87.08,
+      "billetes": 1795.7
+    },
+    {
+      "date": "1997-01",
+      "emision": 1602.62,
+      "caja_sf": 66.72,
+      "billetes": 1535.91
+    },
+    {
+      "date": "1997-02",
+      "emision": 1579.15,
+      "caja_sf": 60.04,
+      "billetes": 1519.11
+    },
+    {
+      "date": "1997-03",
+      "emision": 1583.52,
+      "caja_sf": 71.31,
+      "billetes": 1512.21
+    },
+    {
+      "date": "1997-04",
+      "emision": 1645.69,
+      "caja_sf": 56.27,
+      "billetes": 1589.42
+    },
+    {
+      "date": "1997-05",
+      "emision": 1791.44,
+      "caja_sf": 78.33,
+      "billetes": 1713.1
+    },
+    {
+      "date": "1997-06",
+      "emision": 1879.37,
+      "caja_sf": 77.79,
+      "billetes": 1801.58
+    },
+    {
+      "date": "1997-07",
+      "emision": 1859.75,
+      "caja_sf": 86.2,
+      "billetes": 1773.55
+    },
+    {
+      "date": "1997-08",
+      "emision": 1838.06,
+      "caja_sf": 86.06,
+      "billetes": 1752.0
+    },
+    {
+      "date": "1997-09",
+      "emision": 1788.22,
+      "caja_sf": 79.65,
+      "billetes": 1708.57
+    },
+    {
+      "date": "1997-10",
+      "emision": 1899.64,
+      "caja_sf": 70.0,
+      "billetes": 1829.64
+    },
+    {
+      "date": "1997-11",
+      "emision": 1838.49,
+      "caja_sf": 82.39,
+      "billetes": 1756.1
+    },
+    {
+      "date": "1997-12",
+      "emision": 2157.15,
+      "caja_sf": 106.9,
+      "billetes": 2050.24
+    },
+    {
+      "date": "1998-01",
+      "emision": 1895.42,
+      "caja_sf": 82.62,
+      "billetes": 1812.8
+    },
+    {
+      "date": "1998-02",
+      "emision": 1923.05,
+      "caja_sf": 90.3,
+      "billetes": 1832.75
+    },
+    {
+      "date": "1998-03",
+      "emision": 1788.75,
+      "caja_sf": 77.99,
+      "billetes": 1710.77
+    },
+    {
+      "date": "1998-04",
+      "emision": 1930.91,
+      "caja_sf": 84.68,
+      "billetes": 1846.23
+    },
+    {
+      "date": "1998-05",
+      "emision": 2014.81,
+      "caja_sf": 215.63,
+      "billetes": 1799.18
+    },
+    {
+      "date": "1998-06",
+      "emision": 2037.61,
+      "caja_sf": 192.8,
+      "billetes": 1844.81
+    },
+    {
+      "date": "1998-07",
+      "emision": 2153.18,
+      "caja_sf": 243.07,
+      "billetes": 1910.12
+    },
+    {
+      "date": "1998-08",
+      "emision": 2112.68,
+      "caja_sf": 223.78,
+      "billetes": 1888.9
+    },
+    {
+      "date": "1998-09",
+      "emision": 2059.3,
+      "caja_sf": 211.79,
+      "billetes": 1847.51
+    },
+    {
+      "date": "1998-10",
+      "emision": 2177.28,
+      "caja_sf": 249.92,
+      "billetes": 1927.36
+    },
+    {
+      "date": "1998-11",
+      "emision": 2075.69,
+      "caja_sf": 224.88,
+      "billetes": 1850.81
+    },
+    {
+      "date": "1998-12",
+      "emision": 2418.57,
+      "caja_sf": 235.41,
+      "billetes": 2183.16
+    },
+    {
+      "date": "1999-01",
+      "emision": 2060.52,
+      "caja_sf": 198.97,
+      "billetes": 1861.55
+    },
+    {
+      "date": "1999-02",
+      "emision": 2026.41,
+      "caja_sf": 214.16,
+      "billetes": 1812.25
+    },
+    {
+      "date": "1999-03",
+      "emision": 1988.25,
+      "caja_sf": 213.86,
+      "billetes": 1774.4
+    },
+    {
+      "date": "1999-04",
+      "emision": 2028.3,
+      "caja_sf": 200.05,
+      "billetes": 1828.25
+    },
+    {
+      "date": "1999-05",
+      "emision": 2031.92,
+      "caja_sf": 261.2,
+      "billetes": 1770.72
+    },
+    {
+      "date": "1999-06",
+      "emision": 1971.38,
+      "caja_sf": 204.51,
+      "billetes": 1766.86
+    },
+    {
+      "date": "1999-07",
+      "emision": 2002.03,
+      "caja_sf": 212.08,
+      "billetes": 1789.95
+    },
+    {
+      "date": "1999-08",
+      "emision": 1911.33,
+      "caja_sf": 214.11,
+      "billetes": 1697.23
+    },
+    {
+      "date": "1999-09",
+      "emision": 1909.51,
+      "caja_sf": 192.13,
+      "billetes": 1717.37
+    },
+    {
+      "date": "1999-10",
+      "emision": 1979.69,
+      "caja_sf": 198.69,
+      "billetes": 1781.0
+    },
+    {
+      "date": "1999-11",
+      "emision": 1944.67,
+      "caja_sf": 214.05,
+      "billetes": 1730.62
+    },
+    {
+      "date": "1999-12",
+      "emision": 2419.18,
+      "caja_sf": 261.36,
+      "billetes": 2157.81
+    },
+    {
+      "date": "2000-01",
+      "emision": 2004.8,
+      "caja_sf": 224.97,
+      "billetes": 1779.84
+    },
+    {
+      "date": "2000-02",
+      "emision": 1898.3,
+      "caja_sf": 211.5,
+      "billetes": 1686.81
+    },
+    {
+      "date": "2000-03",
+      "emision": 1899.61,
+      "caja_sf": 221.91,
+      "billetes": 1677.7
+    },
+    {
+      "date": "2000-04",
+      "emision": 1948.22,
+      "caja_sf": 175.08,
+      "billetes": 1773.14
+    },
+    {
+      "date": "2000-05",
+      "emision": 1876.38,
+      "caja_sf": 182.93,
+      "billetes": 1693.45
+    },
+    {
+      "date": "2000-06",
+      "emision": 1938.66,
+      "caja_sf": 166.82,
+      "billetes": 1771.84
+    },
+    {
+      "date": "2000-07",
+      "emision": 1933.66,
+      "caja_sf": 211.55,
+      "billetes": 1722.11
+    },
+    {
+      "date": "2000-08",
+      "emision": 1891.48,
+      "caja_sf": 199.46,
+      "billetes": 1692.01
+    },
+    {
+      "date": "2000-09",
+      "emision": 1964.22,
+      "caja_sf": 220.04,
+      "billetes": 1744.18
+    },
+    {
+      "date": "2000-10",
+      "emision": 1987.74,
+      "caja_sf": 211.62,
+      "billetes": 1776.12
+    },
+    {
+      "date": "2000-11",
+      "emision": 1901.57,
+      "caja_sf": 191.72,
+      "billetes": 1709.85
+    },
+    {
+      "date": "2000-12",
+      "emision": 2424.16,
+      "caja_sf": 248.88,
+      "billetes": 2175.28
+    },
+    {
+      "date": "2001-01",
+      "emision": 2059.41,
+      "caja_sf": 229.79,
+      "billetes": 1829.62
+    },
+    {
+      "date": "2001-02",
+      "emision": 2073.51,
+      "caja_sf": 234.48,
+      "billetes": 1839.04
+    },
+    {
+      "date": "2001-03",
+      "emision": 1938.0,
+      "caja_sf": 173.48,
+      "billetes": 1764.52
+    },
+    {
+      "date": "2001-04",
+      "emision": 2022.51,
+      "caja_sf": 230.02,
+      "billetes": 1792.49
+    },
+    {
+      "date": "2001-05",
+      "emision": 1979.23,
+      "caja_sf": 197.86,
+      "billetes": 1781.37
+    },
+    {
+      "date": "2001-06",
+      "emision": 2097.48,
+      "caja_sf": 195.97,
+      "billetes": 1901.51
+    },
+    {
+      "date": "2001-07",
+      "emision": 2121.46,
+      "caja_sf": 258.15,
+      "billetes": 1863.31
+    },
+    {
+      "date": "2001-08",
+      "emision": 2130.46,
+      "caja_sf": 271.31,
+      "billetes": 1859.15
+    },
+    {
+      "date": "2001-09",
+      "emision": 2103.39,
+      "caja_sf": 232.22,
+      "billetes": 1871.17
+    },
+    {
+      "date": "2001-10",
+      "emision": 2130.94,
+      "caja_sf": 237.3,
+      "billetes": 1893.64
+    },
+    {
+      "date": "2001-11",
+      "emision": 2084.83,
+      "caja_sf": 196.27,
+      "billetes": 1888.55
+    },
+    {
+      "date": "2001-12",
+      "emision": 2700.24,
+      "caja_sf": 303.88,
+      "billetes": 2396.36
+    },
+    {
+      "date": "2002-01",
+      "emision": 2175.36,
+      "caja_sf": 217.14,
+      "billetes": 1958.22
+    },
+    {
+      "date": "2002-02",
+      "emision": 2191.29,
+      "caja_sf": 239.03,
+      "billetes": 1952.26
+    },
+    {
+      "date": "2002-03",
+      "emision": 2171.26,
+      "caja_sf": 215.11,
+      "billetes": 1956.15
+    },
+    {
+      "date": "2002-04",
+      "emision": 2126.79,
+      "caja_sf": 208.43,
+      "billetes": 1918.36
+    },
+    {
+      "date": "2002-05",
+      "emision": 2292.93,
+      "caja_sf": 237.6,
+      "billetes": 2055.32
+    },
+    {
+      "date": "2002-06",
+      "emision": 2293.39,
+      "caja_sf": 252.79,
+      "billetes": 2040.6
+    },
+    {
+      "date": "2002-07",
+      "emision": 2305.19,
+      "caja_sf": 218.5,
+      "billetes": 2086.68
+    },
+    {
+      "date": "2002-08",
+      "emision": 2261.74,
+      "caja_sf": 177.68,
+      "billetes": 2084.06
+    },
+    {
+      "date": "2002-09",
+      "emision": 2309.29,
+      "caja_sf": 221.2,
+      "billetes": 2088.09
+    },
+    {
+      "date": "2002-10",
+      "emision": 2212.15,
+      "caja_sf": 223.03,
+      "billetes": 1989.12
+    },
+    {
+      "date": "2002-11",
+      "emision": 2350.05,
+      "caja_sf": 194.43,
+      "billetes": 2155.61
+    },
+    {
+      "date": "2002-12",
+      "emision": 3037.42,
+      "caja_sf": 359.55,
+      "billetes": 2677.87
+    },
+    {
+      "date": "2003-01",
+      "emision": 2522.88,
+      "caja_sf": 228.27,
+      "billetes": 2294.6
+    },
+    {
+      "date": "2003-02",
+      "emision": 2597.04,
+      "caja_sf": 246.07,
+      "billetes": 2350.98
+    },
+    {
+      "date": "2003-03",
+      "emision": 2443.96,
+      "caja_sf": 272.92,
+      "billetes": 2171.03
+    },
+    {
+      "date": "2003-04",
+      "emision": 2510.7,
+      "caja_sf": 222.44,
+      "billetes": 2288.26
+    },
+    {
+      "date": "2003-05",
+      "emision": 2563.89,
+      "caja_sf": 218.8,
+      "billetes": 2345.09
+    },
+    {
+      "date": "2003-06",
+      "emision": 2658.65,
+      "caja_sf": 269.51,
+      "billetes": 2389.15
+    },
+    {
+      "date": "2003-07",
+      "emision": 2713.21,
+      "caja_sf": 263.98,
+      "billetes": 2449.23
+    },
+    {
+      "date": "2003-08",
+      "emision": 2739.07,
+      "caja_sf": 269.84,
+      "billetes": 2469.23
+    },
+    {
+      "date": "2003-09",
+      "emision": 2749.37,
+      "caja_sf": 298.38,
+      "billetes": 2450.99
+    },
+    {
+      "date": "2003-10",
+      "emision": 2882.27,
+      "caja_sf": 258.54,
+      "billetes": 2623.74
+    },
+    {
+      "date": "2003-11",
+      "emision": 2908.99,
+      "caja_sf": 262.7,
+      "billetes": 2646.3
+    },
+    {
+      "date": "2003-12",
+      "emision": 3524.68,
+      "caja_sf": 331.64,
+      "billetes": 3193.04
+    },
+    {
+      "date": "2004-01",
+      "emision": 2966.55,
+      "caja_sf": 276.36,
+      "billetes": 2690.19
+    },
+    {
+      "date": "2004-02",
+      "emision": 3000.85,
+      "caja_sf": 298.61,
+      "billetes": 2702.24
+    },
+    {
+      "date": "2004-03",
+      "emision": 2785.73,
+      "caja_sf": 291.35,
+      "billetes": 2494.38
+    },
+    {
+      "date": "2004-04",
+      "emision": 2941.9,
+      "caja_sf": 269.52,
+      "billetes": 2672.38
+    },
+    {
+      "date": "2004-05",
+      "emision": 2924.53,
+      "caja_sf": 317.18,
+      "billetes": 2607.35
+    },
+    {
+      "date": "2004-06",
+      "emision": 3072.1,
+      "caja_sf": 295.03,
+      "billetes": 2777.06
+    },
+    {
+      "date": "2004-07",
+      "emision": 3289.36,
+      "caja_sf": 319.81,
+      "billetes": 2969.55
+    },
+    {
+      "date": "2004-08",
+      "emision": 3294.92,
+      "caja_sf": 341.36,
+      "billetes": 2953.56
+    },
+    {
+      "date": "2004-09",
+      "emision": 3338.11,
+      "caja_sf": 342.16,
+      "billetes": 2995.94
+    },
+    {
+      "date": "2004-10",
+      "emision": 3431.97,
+      "caja_sf": 313.61,
+      "billetes": 3118.36
+    },
+    {
+      "date": "2004-11",
+      "emision": 3492.41,
+      "caja_sf": 382.47,
+      "billetes": 3109.94
+    },
+    {
+      "date": "2004-12",
+      "emision": 4282.95,
+      "caja_sf": 417.57,
+      "billetes": 3865.38
+    },
+    {
+      "date": "2005-01",
+      "emision": 3751.69,
+      "caja_sf": 431.17,
+      "billetes": 3320.52
+    },
+    {
+      "date": "2005-02",
+      "emision": 3692.72,
+      "caja_sf": 420.51,
+      "billetes": 3272.21
+    },
+    {
+      "date": "2005-03",
+      "emision": 3571.87,
+      "caja_sf": 357.19,
+      "billetes": 3214.68
+    },
+    {
+      "date": "2005-04",
+      "emision": 3898.22,
+      "caja_sf": 341.76,
+      "billetes": 3556.46
+    },
+    {
+      "date": "2005-05",
+      "emision": 3913.73,
+      "caja_sf": 361.29,
+      "billetes": 3552.43
+    },
+    {
+      "date": "2005-06",
+      "emision": 4044.46,
+      "caja_sf": 374.43,
+      "billetes": 3670.03
+    },
+    {
+      "date": "2005-07",
+      "emision": 4165.15,
+      "caja_sf": 316.29,
+      "billetes": 3848.86
+    },
+    {
+      "date": "2005-08",
+      "emision": 4365.18,
+      "caja_sf": 333.93,
+      "billetes": 4031.25
+    },
+    {
+      "date": "2005-09",
+      "emision": 4577.93,
+      "caja_sf": 322.81,
+      "billetes": 4255.12
+    },
+    {
+      "date": "2005-10",
+      "emision": 4767.23,
+      "caja_sf": 361.21,
+      "billetes": 4406.01
+    },
+    {
+      "date": "2005-11",
+      "emision": 4888.49,
+      "caja_sf": 383.86,
+      "billetes": 4504.63
+    },
+    {
+      "date": "2005-12",
+      "emision": 6179.51,
+      "caja_sf": 585.31,
+      "billetes": 5594.2
+    },
+    {
+      "date": "2006-01",
+      "emision": 5649.94,
+      "caja_sf": 563.21,
+      "billetes": 5086.73
+    },
+    {
+      "date": "2006-02",
+      "emision": 5668.06,
+      "caja_sf": 547.22,
+      "billetes": 5120.84
+    },
+    {
+      "date": "2006-03",
+      "emision": 5497.84,
+      "caja_sf": 488.72,
+      "billetes": 5009.12
+    },
+    {
+      "date": "2006-04",
+      "emision": 5795.83,
+      "caja_sf": 515.93,
+      "billetes": 5279.91
+    },
+    {
+      "date": "2006-05",
+      "emision": 6033.95,
+      "caja_sf": 579.74,
+      "billetes": 5454.21
+    },
+    {
+      "date": "2006-06",
+      "emision": 6392.12,
+      "caja_sf": 566.47,
+      "billetes": 5825.66
+    },
+    {
+      "date": "2006-07",
+      "emision": 6677.42,
+      "caja_sf": 599.11,
+      "billetes": 6078.31
+    },
+    {
+      "date": "2006-08",
+      "emision": 6718.05,
+      "caja_sf": 572.81,
+      "billetes": 6145.24
+    },
+    {
+      "date": "2006-09",
+      "emision": 6997.97,
+      "caja_sf": 659.85,
+      "billetes": 6338.12
+    },
+    {
+      "date": "2006-10",
+      "emision": 7066.03,
+      "caja_sf": 612.28,
+      "billetes": 6453.75
+    },
+    {
+      "date": "2006-11",
+      "emision": 7434.55,
+      "caja_sf": 691.08,
+      "billetes": 6743.47
+    },
+    {
+      "date": "2006-12",
+      "emision": 8773.57,
+      "caja_sf": 761.54,
+      "billetes": 8012.03
+    },
+    {
+      "date": "2007-01",
+      "emision": 8152.46,
+      "caja_sf": 703.24,
+      "billetes": 7449.22
+    },
+    {
+      "date": "2007-02",
+      "emision": 8231.97,
+      "caja_sf": 717.26,
+      "billetes": 7514.71
+    },
+    {
+      "date": "2007-03",
+      "emision": 8398.99,
+      "caja_sf": 652.27,
+      "billetes": 7746.72
+    },
+    {
+      "date": "2007-04",
+      "emision": 8795.36,
+      "caja_sf": 722.29,
+      "billetes": 8073.06
+    },
+    {
+      "date": "2007-05",
+      "emision": 8986.33,
+      "caja_sf": 704.61,
+      "billetes": 8281.72
+    },
+    {
+      "date": "2007-06",
+      "emision": 9410.21,
+      "caja_sf": 671.93,
+      "billetes": 8738.27
+    },
+    {
+      "date": "2007-07",
+      "emision": 9924.41,
+      "caja_sf": 664.19,
+      "billetes": 9260.22
+    },
+    {
+      "date": "2007-08",
+      "emision": 10731.63,
+      "caja_sf": 759.72,
+      "billetes": 9971.91
+    },
+    {
+      "date": "2007-09",
+      "emision": 11244.4,
+      "caja_sf": 794.53,
+      "billetes": 10449.87
+    },
+    {
+      "date": "2007-10",
+      "emision": 11473.61,
+      "caja_sf": 824.27,
+      "billetes": 10649.34
+    },
+    {
+      "date": "2007-11",
+      "emision": 12175.98,
+      "caja_sf": 852.81,
+      "billetes": 11323.18
+    },
+    {
+      "date": "2007-12",
+      "emision": 14102.85,
+      "caja_sf": 985.39,
+      "billetes": 13117.46
+    },
+    {
+      "date": "2008-01",
+      "emision": 13495.39,
+      "caja_sf": 979.1,
+      "billetes": 12516.29
+    },
+    {
+      "date": "2008-02",
+      "emision": 13541.98,
+      "caja_sf": 898.39,
+      "billetes": 12643.59
+    },
+    {
+      "date": "2008-03",
+      "emision": 13607.38,
+      "caja_sf": 927.35,
+      "billetes": 12680.02
+    },
+    {
+      "date": "2008-04",
+      "emision": 14337.37,
+      "caja_sf": 954.34,
+      "billetes": 13383.02
+    },
+    {
+      "date": "2008-05",
+      "emision": 14988.32,
+      "caja_sf": 924.72,
+      "billetes": 14063.6
+    },
+    {
+      "date": "2008-06",
+      "emision": 15488.21,
+      "caja_sf": 966.36,
+      "billetes": 14521.85
+    },
+    {
+      "date": "2008-07",
+      "emision": 15967.2,
+      "caja_sf": 957.8,
+      "billetes": 15009.41
+    },
+    {
+      "date": "2008-08",
+      "emision": 16409.84,
+      "caja_sf": 1012.65,
+      "billetes": 15397.19
+    },
+    {
+      "date": "2008-09",
+      "emision": 16672.08,
+      "caja_sf": 1157.44,
+      "billetes": 15514.64
+    },
+    {
+      "date": "2008-10",
+      "emision": 16082.54,
+      "caja_sf": 1114.9,
+      "billetes": 14967.64
+    },
+    {
+      "date": "2008-11",
+      "emision": 15870.4,
+      "caja_sf": 1108.0,
+      "billetes": 14762.39
+    },
+    {
+      "date": "2008-12",
+      "emision": 17043.32,
+      "caja_sf": 1235.89,
+      "billetes": 15807.42
+    },
+    {
+      "date": "2009-01",
+      "emision": 15808.65,
+      "caja_sf": 1159.69,
+      "billetes": 14648.96
+    },
+    {
+      "date": "2009-02",
+      "emision": 15391.41,
+      "caja_sf": 1202.53,
+      "billetes": 14188.88
+    },
+    {
+      "date": "2009-03",
+      "emision": 14840.81,
+      "caja_sf": 1127.1,
+      "billetes": 13713.71
+    },
+    {
+      "date": "2009-04",
+      "emision": 14840.59,
+      "caja_sf": 1145.06,
+      "billetes": 13695.53
+    },
+    {
+      "date": "2009-05",
+      "emision": 14944.72,
+      "caja_sf": 1089.89,
+      "billetes": 13854.83
+    },
+    {
+      "date": "2009-06",
+      "emision": 15350.32,
+      "caja_sf": 1320.6,
+      "billetes": 14029.72
+    },
+    {
+      "date": "2009-07",
+      "emision": 15416.74,
+      "caja_sf": 1304.11,
+      "billetes": 14112.63
+    },
+    {
+      "date": "2009-08",
+      "emision": 15516.48,
+      "caja_sf": 1330.72,
+      "billetes": 14185.76
+    },
+    {
+      "date": "2009-09",
+      "emision": 15664.6,
+      "caja_sf": 1343.53,
+      "billetes": 14321.08
+    },
+    {
+      "date": "2009-10",
+      "emision": 16338.61,
+      "caja_sf": 1387.72,
+      "billetes": 14950.89
+    },
+    {
+      "date": "2009-11",
+      "emision": 17061.99,
+      "caja_sf": 1905.75,
+      "billetes": 15156.24
+    },
+    {
+      "date": "2009-12",
+      "emision": 18892.39,
+      "caja_sf": 1812.86,
+      "billetes": 17079.54
+    },
+    {
+      "date": "2010-01",
+      "emision": 18257.13,
+      "caja_sf": 1863.62,
+      "billetes": 16393.51
+    },
+    {
+      "date": "2010-02",
+      "emision": 17954.21,
+      "caja_sf": 1821.21,
+      "billetes": 16133.0
+    },
+    {
+      "date": "2010-03",
+      "emision": 17884.95,
+      "caja_sf": 1802.73,
+      "billetes": 16082.23
+    },
+    {
+      "date": "2010-04",
+      "emision": 18102.75,
+      "caja_sf": 1738.62,
+      "billetes": 16364.13
+    },
+    {
+      "date": "2010-05",
+      "emision": 18598.36,
+      "caja_sf": 1941.22,
+      "billetes": 16657.15
+    },
+    {
+      "date": "2010-06",
+      "emision": 19111.73,
+      "caja_sf": 2263.7,
+      "billetes": 16848.03
+    },
+    {
+      "date": "2010-07",
+      "emision": 19273.53,
+      "caja_sf": 2144.76,
+      "billetes": 17128.77
+    },
+    {
+      "date": "2010-08",
+      "emision": 19243.65,
+      "caja_sf": 2211.13,
+      "billetes": 17032.52
+    },
+    {
+      "date": "2010-09",
+      "emision": 19374.37,
+      "caja_sf": 2224.02,
+      "billetes": 17150.35
+    },
+    {
+      "date": "2010-10",
+      "emision": 19720.61,
+      "caja_sf": 2130.98,
+      "billetes": 17589.63
+    },
+    {
+      "date": "2010-11",
+      "emision": 20284.4,
+      "caja_sf": 2041.24,
+      "billetes": 18243.16
+    },
+    {
+      "date": "2010-12",
+      "emision": 24585.62,
+      "caja_sf": 2100.84,
+      "billetes": 22484.78
+    },
+    {
+      "date": "2011-01",
+      "emision": 23610.75,
+      "caja_sf": 2373.36,
+      "billetes": 21237.39
+    },
+    {
+      "date": "2011-02",
+      "emision": 23358.6,
+      "caja_sf": 2431.79,
+      "billetes": 20926.81
+    },
+    {
+      "date": "2011-03",
+      "emision": 23139.32,
+      "caja_sf": 2422.39,
+      "billetes": 20716.93
+    },
+    {
+      "date": "2011-04",
+      "emision": 23402.08,
+      "caja_sf": 2229.42,
+      "billetes": 21172.66
+    },
+    {
+      "date": "2011-05",
+      "emision": 23750.03,
+      "caja_sf": 2270.66,
+      "billetes": 21479.38
+    },
+    {
+      "date": "2011-06",
+      "emision": 24643.47,
+      "caja_sf": 2403.71,
+      "billetes": 22239.76
+    },
+    {
+      "date": "2011-07",
+      "emision": 25057.12,
+      "caja_sf": 2375.75,
+      "billetes": 22681.37
+    },
+    {
+      "date": "2011-08",
+      "emision": 25377.25,
+      "caja_sf": 2462.81,
+      "billetes": 22914.44
+    },
+    {
+      "date": "2011-09",
+      "emision": 25704.85,
+      "caja_sf": 2512.6,
+      "billetes": 23192.25
+    },
+    {
+      "date": "2011-10",
+      "emision": 26070.21,
+      "caja_sf": 2645.53,
+      "billetes": 23424.68
+    },
+    {
+      "date": "2011-11",
+      "emision": 26355.47,
+      "caja_sf": 2883.41,
+      "billetes": 23472.05
+    },
+    {
+      "date": "2011-12",
+      "emision": 28585.09,
+      "caja_sf": 2771.46,
+      "billetes": 25813.63
+    },
+    {
+      "date": "2012-01",
+      "emision": 27904.26,
+      "caja_sf": 3001.18,
+      "billetes": 24903.08
+    },
+    {
+      "date": "2012-02",
+      "emision": 27651.92,
+      "caja_sf": 3026.56,
+      "billetes": 24625.37
+    },
+    {
+      "date": "2012-03",
+      "emision": 27218.26,
+      "caja_sf": 2677.75,
+      "billetes": 24540.51
+    },
+    {
+      "date": "2012-04",
+      "emision": 27420.76,
+      "caja_sf": 2699.57,
+      "billetes": 24721.19
+    },
+    {
+      "date": "2012-05",
+      "emision": 27520.16,
+      "caja_sf": 2848.0,
+      "billetes": 24672.15
+    },
+    {
+      "date": "2012-06",
+      "emision": 28361.01,
+      "caja_sf": 3124.25,
+      "billetes": 25236.77
+    },
+    {
+      "date": "2012-07",
+      "emision": 28505.5,
+      "caja_sf": 3150.44,
+      "billetes": 25355.07
+    },
+    {
+      "date": "2012-08",
+      "emision": 28584.62,
+      "caja_sf": 3158.32,
+      "billetes": 25426.3
+    },
+    {
+      "date": "2012-09",
+      "emision": 29033.31,
+      "caja_sf": 3135.68,
+      "billetes": 25897.63
+    },
+    {
+      "date": "2012-10",
+      "emision": 29535.5,
+      "caja_sf": 3220.64,
+      "billetes": 26314.86
+    },
+    {
+      "date": "2012-11",
+      "emision": 30131.99,
+      "caja_sf": 3617.89,
+      "billetes": 26514.1
+    },
+    {
+      "date": "2012-12",
+      "emision": 32665.09,
+      "caja_sf": 3360.36,
+      "billetes": 29304.72
+    },
+    {
+      "date": "2013-01",
+      "emision": 31825.35,
+      "caja_sf": 3813.07,
+      "billetes": 28012.28
+    },
+    {
+      "date": "2013-02",
+      "emision": 31105.86,
+      "caja_sf": 3799.78,
+      "billetes": 27306.08
+    },
+    {
+      "date": "2013-03",
+      "emision": 30802.19,
+      "caja_sf": 3573.39,
+      "billetes": 27228.8
+    },
+    {
+      "date": "2013-04",
+      "emision": 30829.35,
+      "caja_sf": 3511.53,
+      "billetes": 27317.81
+    },
+    {
+      "date": "2013-05",
+      "emision": 31213.3,
+      "caja_sf": 3654.02,
+      "billetes": 27559.29
+    },
+    {
+      "date": "2013-06",
+      "emision": 31641.17,
+      "caja_sf": 3634.51,
+      "billetes": 28006.66
+    },
+    {
+      "date": "2013-07",
+      "emision": 31888.06,
+      "caja_sf": 3767.94,
+      "billetes": 28120.13
+    },
+    {
+      "date": "2013-08",
+      "emision": 31958.47,
+      "caja_sf": 3764.64,
+      "billetes": 28193.83
+    },
+    {
+      "date": "2013-09",
+      "emision": 32333.09,
+      "caja_sf": 3931.43,
+      "billetes": 28401.66
+    },
+    {
+      "date": "2013-10",
+      "emision": 32726.85,
+      "caja_sf": 3882.92,
+      "billetes": 28843.93
+    },
+    {
+      "date": "2013-11",
+      "emision": 33376.52,
+      "caja_sf": 4170.0,
+      "billetes": 29206.52
+    },
+    {
+      "date": "2013-12",
+      "emision": 37001.01,
+      "caja_sf": 4284.61,
+      "billetes": 32716.4
+    },
+    {
+      "date": "2014-01",
+      "emision": 35908.59,
+      "caja_sf": 4719.95,
+      "billetes": 31188.64
+    },
+    {
+      "date": "2014-02",
+      "emision": 35170.47,
+      "caja_sf": 4335.26,
+      "billetes": 30835.22
+    },
+    {
+      "date": "2014-03",
+      "emision": 34508.93,
+      "caja_sf": 4279.55,
+      "billetes": 30229.38
+    },
+    {
+      "date": "2014-04",
+      "emision": 34555.72,
+      "caja_sf": 4241.14,
+      "billetes": 30314.58
+    },
+    {
+      "date": "2014-05",
+      "emision": 34634.11,
+      "caja_sf": 4083.25,
+      "billetes": 30550.86
+    },
+    {
+      "date": "2014-06",
+      "emision": 35280.66,
+      "caja_sf": 4263.66,
+      "billetes": 31017.0
+    },
+    {
+      "date": "2014-07",
+      "emision": 35344.69,
+      "caja_sf": 4336.51,
+      "billetes": 31008.18
+    },
+    {
+      "date": "2014-08",
+      "emision": 35635.03,
+      "caja_sf": 4341.83,
+      "billetes": 31293.2
+    },
+    {
+      "date": "2014-09",
+      "emision": 36020.3,
+      "caja_sf": 4632.3,
+      "billetes": 31388.0
+    },
+    {
+      "date": "2014-10",
+      "emision": 36636.92,
+      "caja_sf": 4701.33,
+      "billetes": 31935.59
+    },
+    {
+      "date": "2014-11",
+      "emision": 37663.86,
+      "caja_sf": 5381.09,
+      "billetes": 32282.78
+    },
+    {
+      "date": "2014-12",
+      "emision": 41371.52,
+      "caja_sf": 4700.92,
+      "billetes": 36670.6
+    },
+    {
+      "date": "2015-01",
+      "emision": 40506.03,
+      "caja_sf": 5594.88,
+      "billetes": 34911.16
+    },
+    {
+      "date": "2015-02",
+      "emision": 39262.99,
+      "caja_sf": 5423.81,
+      "billetes": 33839.19
+    },
+    {
+      "date": "2015-03",
+      "emision": 38283.97,
+      "caja_sf": 5139.14,
+      "billetes": 33144.83
+    },
+    {
+      "date": "2015-04",
+      "emision": 37850.32,
+      "caja_sf": 4910.82,
+      "billetes": 32939.51
+    },
+    {
+      "date": "2015-05",
+      "emision": 38148.54,
+      "caja_sf": 4713.87,
+      "billetes": 33434.67
+    },
+    {
+      "date": "2015-06",
+      "emision": 38359.65,
+      "caja_sf": 4961.34,
+      "billetes": 33398.3
+    },
+    {
+      "date": "2015-07",
+      "emision": 38372.52,
+      "caja_sf": 5148.21,
+      "billetes": 33224.32
+    },
+    {
+      "date": "2015-08",
+      "emision": 38105.4,
+      "caja_sf": 5116.84,
+      "billetes": 32988.56
+    },
+    {
+      "date": "2015-09",
+      "emision": 37894.32,
+      "caja_sf": 5206.29,
+      "billetes": 32688.03
+    },
+    {
+      "date": "2015-10",
+      "emision": 38141.61,
+      "caja_sf": 4924.52,
+      "billetes": 33217.1
+    },
+    {
+      "date": "2015-11",
+      "emision": 38648.38,
+      "caja_sf": 5628.58,
+      "billetes": 33019.8
+    },
+    {
+      "date": "2015-12",
+      "emision": 42923.04,
+      "caja_sf": 5742.47,
+      "billetes": 37180.57
+    },
+    {
+      "date": "2016-01",
+      "emision": 41389.47,
+      "caja_sf": 5812.36,
+      "billetes": 35577.11
+    },
+    {
+      "date": "2016-02",
+      "emision": 40258.31,
+      "caja_sf": 5840.14,
+      "billetes": 34418.17
+    },
+    {
+      "date": "2016-03",
+      "emision": 39151.19,
+      "caja_sf": 5585.09,
+      "billetes": 33566.1
+    },
+    {
+      "date": "2016-04",
+      "emision": 39269.47,
+      "caja_sf": 5451.85,
+      "billetes": 33817.62
+    },
+    {
+      "date": "2016-05",
+      "emision": 39189.59,
+      "caja_sf": 5773.18,
+      "billetes": 33416.42
+    },
+    {
+      "date": "2016-06",
+      "emision": 39483.08,
+      "caja_sf": 5900.27,
+      "billetes": 33582.81
+    },
+    {
+      "date": "2016-07",
+      "emision": 39461.47,
+      "caja_sf": 5627.1,
+      "billetes": 33834.37
+    },
+    {
+      "date": "2016-08",
+      "emision": 39435.99,
+      "caja_sf": 5974.21,
+      "billetes": 33461.77
+    },
+    {
+      "date": "2016-09",
+      "emision": 39426.34,
+      "caja_sf": 5907.91,
+      "billetes": 33518.42
+    },
+    {
+      "date": "2016-10",
+      "emision": 40028.21,
+      "caja_sf": 6058.2,
+      "billetes": 33970.0
+    },
+    {
+      "date": "2016-11",
+      "emision": 40347.94,
+      "caja_sf": 6503.91,
+      "billetes": 33844.04
+    },
+    {
+      "date": "2016-12",
+      "emision": 43144.73,
+      "caja_sf": 6124.64,
+      "billetes": 37020.09
+    },
+    {
+      "date": "2017-01",
+      "emision": 42253.19,
+      "caja_sf": 6849.8,
+      "billetes": 35403.39
+    },
+    {
+      "date": "2017-02",
+      "emision": 41712.53,
+      "caja_sf": 6583.15,
+      "billetes": 35129.38
+    },
+    {
+      "date": "2017-03",
+      "emision": 40597.35,
+      "caja_sf": 6531.9,
+      "billetes": 34065.44
+    },
+    {
+      "date": "2017-04",
+      "emision": 40315.36,
+      "caja_sf": 5875.82,
+      "billetes": 34439.53
+    },
+    {
+      "date": "2017-05",
+      "emision": 39678.11,
+      "caja_sf": 5590.11,
+      "billetes": 34088.0
+    },
+    {
+      "date": "2017-06",
+      "emision": 40427.89,
+      "caja_sf": 5775.09,
+      "billetes": 34652.79
+    },
+    {
+      "date": "2017-07",
+      "emision": 40745.92,
+      "caja_sf": 5922.74,
+      "billetes": 34823.18
+    },
+    {
+      "date": "2017-08",
+      "emision": 40841.31,
+      "caja_sf": 6175.94,
+      "billetes": 34665.36
+    },
+    {
+      "date": "2017-09",
+      "emision": 41251.78,
+      "caja_sf": 6017.7,
+      "billetes": 35234.08
+    },
+    {
+      "date": "2017-10",
+      "emision": 41934.23,
+      "caja_sf": 6153.34,
+      "billetes": 35780.89
+    },
+    {
+      "date": "2017-11",
+      "emision": 42588.51,
+      "caja_sf": 6342.25,
+      "billetes": 36246.26
+    },
+    {
+      "date": "2017-12",
+      "emision": 46334.52,
+      "caja_sf": 5963.7,
+      "billetes": 40370.82
+    },
+    {
+      "date": "2018-01",
+      "emision": 45478.96,
+      "caja_sf": 6821.49,
+      "billetes": 38657.47
+    },
+    {
+      "date": "2018-02",
+      "emision": 44614.19,
+      "caja_sf": 6976.63,
+      "billetes": 37637.56
+    },
+    {
+      "date": "2018-03",
+      "emision": 43772.79,
+      "caja_sf": 6254.23,
+      "billetes": 37518.56
+    },
+    {
+      "date": "2018-04",
+      "emision": 43622.96,
+      "caja_sf": 6290.78,
+      "billetes": 37332.19
+    },
+    {
+      "date": "2018-05",
+      "emision": 43719.85,
+      "caja_sf": 6288.77,
+      "billetes": 37431.09
+    },
+    {
+      "date": "2018-06",
+      "emision": 44396.37,
+      "caja_sf": 6491.13,
+      "billetes": 37905.24
+    },
+    {
+      "date": "2018-07",
+      "emision": 44722.61,
+      "caja_sf": 6877.86,
+      "billetes": 37844.75
+    },
+    {
+      "date": "2018-08",
+      "emision": 44662.52,
+      "caja_sf": 7013.28,
+      "billetes": 37649.23
+    },
+    {
+      "date": "2018-09",
+      "emision": 44793.7,
+      "caja_sf": 6985.26,
+      "billetes": 37808.44
+    },
+    {
+      "date": "2018-10",
+      "emision": 45220.71,
+      "caja_sf": 7108.73,
+      "billetes": 38111.98
+    },
+    {
+      "date": "2018-11",
+      "emision": 45616.49,
+      "caja_sf": 7763.88,
+      "billetes": 37852.62
+    },
+    {
+      "date": "2018-12",
+      "emision": 48953.07,
+      "caja_sf": 6914.62,
+      "billetes": 42038.44
+    },
+    {
+      "date": "2019-01",
+      "emision": 48417.27,
+      "caja_sf": 7976.15,
+      "billetes": 40441.12
+    },
+    {
+      "date": "2019-02",
+      "emision": 47390.79,
+      "caja_sf": 7824.66,
+      "billetes": 39566.13
+    },
+    {
+      "date": "2019-03",
+      "emision": 46760.51,
+      "caja_sf": 7582.77,
+      "billetes": 39177.74
+    },
+    {
+      "date": "2019-04",
+      "emision": 46591.52,
+      "caja_sf": 7807.7,
+      "billetes": 38783.82
+    },
+    {
+      "date": "2019-05",
+      "emision": 46064.5,
+      "caja_sf": 7510.1,
+      "billetes": 38554.4
+    },
+    {
+      "date": "2019-06",
+      "emision": 46642.85,
+      "caja_sf": 7614.07,
+      "billetes": 39028.78
+    },
+    {
+      "date": "2019-07",
+      "emision": 46613.53,
+      "caja_sf": 7505.27,
+      "billetes": 39108.26
+    },
+    {
+      "date": "2019-08",
+      "emision": 46837.49,
+      "caja_sf": 7529.96,
+      "billetes": 39307.53
+    },
+    {
+      "date": "2019-09",
+      "emision": 47014.45,
+      "caja_sf": 7689.01,
+      "billetes": 39325.44
+    },
+    {
+      "date": "2019-10",
+      "emision": 47729.36,
+      "caja_sf": 7777.92,
+      "billetes": 39951.45
+    },
+    {
+      "date": "2019-11",
+      "emision": 48523.32,
+      "caja_sf": 8155.61,
+      "billetes": 40367.71
+    },
+    {
+      "date": "2019-12",
+      "emision": 49176.9,
+      "caja_sf": 7527.17,
+      "billetes": 41649.73
+    },
+    {
+      "date": "2020-01",
+      "emision": 46991.45,
+      "caja_sf": 7942.75,
+      "billetes": 39048.7
+    },
+    {
+      "date": "2020-02",
+      "emision": 45814.18,
+      "caja_sf": 7724.04,
+      "billetes": 38090.14
+    },
+    {
+      "date": "2020-03",
+      "emision": 46372.72,
+      "caja_sf": 8119.12,
+      "billetes": 38253.6
+    },
+    {
+      "date": "2020-04",
+      "emision": 48607.25,
+      "caja_sf": 7898.54,
+      "billetes": 40708.7
+    },
+    {
+      "date": "2020-05",
+      "emision": 50584.4,
+      "caja_sf": 7204.75,
+      "billetes": 43379.65
+    },
+    {
+      "date": "2020-06",
+      "emision": 52231.72,
+      "caja_sf": 7806.53,
+      "billetes": 44425.19
+    },
+    {
+      "date": "2020-07",
+      "emision": 52386.53,
+      "caja_sf": 7996.68,
+      "billetes": 44389.85
+    },
+    {
+      "date": "2020-08",
+      "emision": 52744.2,
+      "caja_sf": 8096.02,
+      "billetes": 44648.18
+    },
+    {
+      "date": "2020-09",
+      "emision": 52000.71,
+      "caja_sf": 8074.22,
+      "billetes": 43926.49
+    },
+    {
+      "date": "2020-10",
+      "emision": 51945.92,
+      "caja_sf": 8337.89,
+      "billetes": 43608.04
+    },
+    {
+      "date": "2020-11",
+      "emision": 51160.37,
+      "caja_sf": 8278.11,
+      "billetes": 42882.26
+    },
+    {
+      "date": "2020-12",
+      "emision": 53616.43,
+      "caja_sf": 6827.45,
+      "billetes": 46788.98
+    },
+    {
+      "date": "2021-01",
+      "emision": 53479.83,
+      "caja_sf": 7693.16,
+      "billetes": 45786.66
+    },
+    {
+      "date": "2021-02",
+      "emision": 52061.95,
+      "caja_sf": 7725.25,
+      "billetes": 44336.71
+    },
+    {
+      "date": "2021-03",
+      "emision": 50457.67,
+      "caja_sf": 7098.17,
+      "billetes": 43359.49
+    },
+    {
+      "date": "2021-04",
+      "emision": 50282.48,
+      "caja_sf": 6895.18,
+      "billetes": 43387.3
+    },
+    {
+      "date": "2021-05",
+      "emision": 50164.94,
+      "caja_sf": 6882.59,
+      "billetes": 43282.35
+    },
+    {
+      "date": "2021-06",
+      "emision": 50670.79,
+      "caja_sf": 7256.41,
+      "billetes": 43414.38
+    },
+    {
+      "date": "2021-07",
+      "emision": 50531.94,
+      "caja_sf": 6963.84,
+      "billetes": 43568.1
+    },
+    {
+      "date": "2021-08",
+      "emision": 50544.75,
+      "caja_sf": 7256.94,
+      "billetes": 43287.81
+    },
+    {
+      "date": "2021-09",
+      "emision": 50483.72,
+      "caja_sf": 7126.45,
+      "billetes": 43357.27
+    },
+    {
+      "date": "2021-10",
+      "emision": 50883.25,
+      "caja_sf": 6567.8,
+      "billetes": 44315.45
+    },
+    {
+      "date": "2021-11",
+      "emision": 52605.01,
+      "caja_sf": 7162.11,
+      "billetes": 45442.89
+    },
+    {
+      "date": "2021-12",
+      "emision": 56118.62,
+      "caja_sf": 6927.26,
+      "billetes": 49191.36
+    },
+    {
+      "date": "2022-01",
+      "emision": 55460.02,
+      "caja_sf": 7548.14,
+      "billetes": 47911.88
+    },
+    {
+      "date": "2022-02",
+      "emision": 54620.39,
+      "caja_sf": 7278.85,
+      "billetes": 47341.54
+    },
+    {
+      "date": "2022-03",
+      "emision": 53458.47,
+      "caja_sf": 7304.37,
+      "billetes": 46154.1
+    },
+    {
+      "date": "2022-04",
+      "emision": 53486.16,
+      "caja_sf": 6928.5,
+      "billetes": 46557.66
+    },
+    {
+      "date": "2022-05",
+      "emision": 53006.24,
+      "caja_sf": 6952.76,
+      "billetes": 46053.48
+    },
+    {
+      "date": "2022-06",
+      "emision": 53123.47,
+      "caja_sf": 7157.98,
+      "billetes": 45965.49
+    },
+    {
+      "date": "2022-07",
+      "emision": 52872.97,
+      "caja_sf": 6853.66,
+      "billetes": 46019.31
+    },
+    {
+      "date": "2022-08",
+      "emision": 52602.89,
+      "caja_sf": 7180.34,
+      "billetes": 45422.55
+    },
+    {
+      "date": "2022-09",
+      "emision": 52556.55,
+      "caja_sf": 7387.96,
+      "billetes": 45168.59
+    },
+    {
+      "date": "2022-10",
+      "emision": 52714.7,
+      "caja_sf": 7261.7,
+      "billetes": 45453.0
+    },
+    {
+      "date": "2022-11",
+      "emision": 53778.98,
+      "caja_sf": 7711.8,
+      "billetes": 46067.17
+    },
+    {
+      "date": "2022-12",
+      "emision": 56713.83,
+      "caja_sf": 7282.98,
+      "billetes": 49430.86
+    },
+    {
+      "date": "2023-01",
+      "emision": 56290.4,
+      "caja_sf": 7931.91,
+      "billetes": 48358.5
+    },
+    {
+      "date": "2023-02",
+      "emision": 56129.04,
+      "caja_sf": 8158.98,
+      "billetes": 47970.07
+    },
+    {
+      "date": "2023-03",
+      "emision": 57638.69,
+      "caja_sf": 8086.63,
+      "billetes": 49552.07
+    },
+    {
+      "date": "2023-04",
+      "emision": 59380.95,
+      "caja_sf": 7568.9,
+      "billetes": 51812.04
+    },
+    {
+      "date": "2023-05",
+      "emision": 62008.68,
+      "caja_sf": 9729.09,
+      "billetes": 52279.59
+    },
+    {
+      "date": "2023-06",
+      "emision": 61797.19,
+      "caja_sf": 9012.16,
+      "billetes": 52785.03
+    },
+    {
+      "date": "2023-07",
+      "emision": 61570.43,
+      "caja_sf": 8303.59,
+      "billetes": 53266.84
+    },
+    {
+      "date": "2023-08",
+      "emision": 61240.58,
+      "caja_sf": 8368.44,
+      "billetes": 52872.14
+    },
+    {
+      "date": "2023-09",
+      "emision": 61310.79,
+      "caja_sf": 8198.43,
+      "billetes": 53112.36
+    },
+    {
+      "date": "2023-10",
+      "emision": 61956.25,
+      "caja_sf": 8250.28,
+      "billetes": 53705.97
+    },
+    {
+      "date": "2023-11",
+      "emision": 62783.76,
+      "caja_sf": 8511.44,
+      "billetes": 54272.32
+    },
+    {
+      "date": "2023-12",
+      "emision": 66977.37,
+      "caja_sf": 8257.33,
+      "billetes": 58720.05
+    },
+    {
+      "date": "2024-01",
+      "emision": 66639.54,
+      "caja_sf": 8930.54,
+      "billetes": 57708.99
+    },
+    {
+      "date": "2024-02",
+      "emision": 66283.44,
+      "caja_sf": 9149.35,
+      "billetes": 57134.09
+    },
+    {
+      "date": "2024-03",
+      "emision": 65890.88,
+      "caja_sf": 8957.08,
+      "billetes": 56933.79
+    },
+    {
+      "date": "2024-04",
+      "emision": 65915.76,
+      "caja_sf": 8331.38,
+      "billetes": 57584.38
+    },
+    {
+      "date": "2024-05",
+      "emision": 67108.57,
+      "caja_sf": 8549.07,
+      "billetes": 58559.5
+    },
+    {
+      "date": "2024-06",
+      "emision": 69113.25,
+      "caja_sf": 8837.35,
+      "billetes": 60275.9
+    },
+    {
+      "date": "2024-07",
+      "emision": 70247.59,
+      "caja_sf": 8969.69,
+      "billetes": 61277.89
+    },
+    {
+      "date": "2024-08",
+      "emision": 70943.9,
+      "caja_sf": 9016.72,
+      "billetes": 61927.18
+    },
+    {
+      "date": "2024-09",
+      "emision": 72586.86,
+      "caja_sf": 9249.59,
+      "billetes": 63337.27
+    },
+    {
+      "date": "2024-10",
+      "emision": 74087.58,
+      "caja_sf": 9080.95,
+      "billetes": 65006.63
+    },
+    {
+      "date": "2024-11",
+      "emision": 76475.05,
+      "caja_sf": 9848.27,
+      "billetes": 66626.78
+    },
+    {
+      "date": "2024-12",
+      "emision": 80310.46,
+      "caja_sf": 8764.38,
+      "billetes": 71546.08
+    },
+    {
+      "date": "2025-01",
+      "emision": 81302.94,
+      "caja_sf": 10233.26,
+      "billetes": 71069.67
+    },
+    {
+      "date": "2025-02",
+      "emision": 81985.82,
+      "caja_sf": 10549.63,
+      "billetes": 71436.19
+    },
+    {
+      "date": "2025-03",
+      "emision": 83356.82,
+      "caja_sf": 9954.05,
+      "billetes": 73402.77
+    },
+    {
+      "date": "2025-04",
+      "emision": 85500.17,
+      "caja_sf": 9623.72,
+      "billetes": 75876.46
+    },
+    {
+      "date": "2025-05",
+      "emision": 88456.41,
+      "caja_sf": 9831.61,
+      "billetes": 78624.8
+    },
+    {
+      "date": "2025-06",
+      "emision": 93005.43,
+      "caja_sf": 11666.23,
+      "billetes": 81339.19
+    },
+    {
+      "date": "2025-07",
+      "emision": 94993.25,
+      "caja_sf": 12091.88,
+      "billetes": 82901.37
+    },
+    {
+      "date": "2025-08",
+      "emision": 96280.73,
+      "caja_sf": 12507.97,
+      "billetes": 83772.76
+    },
+    {
+      "date": "2025-09",
+      "emision": 97836.94,
+      "caja_sf": 12797.16,
+      "billetes": 85039.78
+    },
+    {
+      "date": "2025-10",
+      "emision": 100418.46,
+      "caja_sf": 12757.8,
+      "billetes": 87660.66
+    },
+    {
+      "date": "2025-11",
+      "emision": 100489.82,
+      "caja_sf": 12488.88,
+      "billetes": 88000.94
+    },
+    {
+      "date": "2025-12",
+      "emision": 103287.4,
+      "caja_sf": 12254.76,
+      "billetes": 91032.64
+    },
+    {
+      "date": "2026-01",
+      "emision": 102421.59,
+      "caja_sf": 13002.87,
+      "billetes": 89418.71
+    },
+    {
+      "date": "2026-02",
+      "emision": 102136.78,
+      "caja_sf": 13556.76,
+      "billetes": 88580.03
+    },
+    {
+      "date": "2026-03",
+      "emision": 100365.19,
+      "caja_sf": 14078.67,
+      "billetes": 86286.52
+    }
+  ]
+}

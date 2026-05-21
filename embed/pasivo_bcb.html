@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Pasivo del BCB · Populi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root{--populi:#8B1A1A;--populi-light:#C00000;--cream:#F5EFE0;--brown-dark:#3D2B1F;--navy:#0D1B2A;--navy-light:#1A2940;--slate:#475569;--slate-light:#64748B;--warm-white:#FAF8F3;--light-gray:#F1EDE5;--border:#E2DDD3;--dark-border:#2A3A50;--bg:var(--warm-white);--card:#FFFFFF;--text:var(--brown-dark);--muted:var(--slate-light);--accent:#7C3AED;--radius:12px}
+    [data-theme="dark"]{--bg:#080808;--card:#141414;--text:#E2E8F0;--muted:#64748B;--border:#2A3A50;--light-gray:#1A1A1A;--cream:#1A2940}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px 16px}
+    .sec-hd{margin-bottom:16px}.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:1.55rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px;line-height:1.15}[data-theme="dark"] .sec-title{color:#fff}.accent-bar{width:4px;height:26px;background:var(--accent);border-radius:2px;flex-shrink:0}.sec-sub{font-size:.78rem;color:var(--muted);padding-left:14px;margin-top:2px}[data-theme="dark"] .sec-sub{color:rgba(255,255,255,.4)}
+    .hz-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:14px;flex-wrap:wrap}.hz-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.hz-grp{display:flex;gap:0;background:var(--light-gray);border-radius:8px;padding:2px;border:1px solid var(--border)}[data-theme="dark"] .hz-grp{background:#1A1A1A;border-color:var(--dark-border)}.hz-btn{padding:5px 14px;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}.hz-btn:hover{color:var(--text)}.hz-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(124,58,237,.25)}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}@media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}.kpi{background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}[data-theme="dark"] .kpi{background:#141414;border-color:var(--dark-border)}.kpi-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}[data-theme="dark"] .kpi-lbl{color:rgba(255,255,255,.4)}.kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}.kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}.kpi-d.up{background:rgba(199,30,29,.08);color:#C71E1D}.kpi-d.down{background:rgba(5,150,105,.08);color:#059669}.kpi-d.flat{background:rgba(100,116,139,.08);color:#64748B}[data-theme="dark"] .kpi-d.up{background:rgba(199,30,29,.15)}[data-theme="dark"] .kpi-d.down{background:rgba(5,150,105,.15)}
+    .main-grid{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:540px;gap:16px}@media(max-width:900px){.main-grid{grid-template-columns:1fr;grid-template-rows:480px auto}}@media(min-width:1100px){.main-grid{grid-template-rows:580px}}
+    .chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;height:100%;overflow:hidden}[data-theme="dark"] .chart-card{background:#141414;border-color:var(--dark-border)}.chart-ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.tog-grp{display:flex;gap:6px;flex-wrap:wrap}.pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border:1.5px solid;border-radius:8px;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;transition:all .2s}.pill:hover{transform:translateY(-1px)}.lp{width:16px;height:0;border-top:2.5px solid;border-radius:1px}.lp.dashed{border-top-style:dashed}#chart{flex:1;min-height:0}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:100%}[data-theme="dark"] .panel{background:#141414;border-color:var(--dark-border)}.panel-hd{background:#4C1D95;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .panel-hd{background:#2E1065}.panel-hd-t{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8)}.panel-hd-d{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:600;color:#C4B5FD;background:rgba(196,181,253,.15);padding:2px 8px;border-radius:5px}.panel-body{padding:14px;flex:1;overflow-y:auto}.pb{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}[data-theme="dark"] .pb{border-color:var(--dark-border)}.pb:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.pb-lbl{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;padding:2px 9px 2px 6px;border-radius:4px;border-left:3px solid}.pb-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:3px}.pb-desc{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .pb-desc{color:rgba(255,255,255,.45)}.pb-desc strong{color:var(--navy)}[data-theme="dark"] .pb-desc strong{color:#E2E8F0}.ctx{background:var(--cream);border-radius:6px;padding:8px 10px;border-left:3px solid var(--accent);margin-top:6px}[data-theme="dark"] .ctx{background:var(--navy-light)}.ctx p{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .ctx p{color:#94A3B8}.ctx p strong{color:var(--navy)}[data-theme="dark"] .ctx p strong{color:#E2E8F0}
+    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px}.edu{background:var(--cream);border-radius:8px;padding:10px 12px;border-left:3px solid var(--accent);cursor:pointer;transition:all .2s}[data-theme="dark"] .edu{background:var(--navy-light)}.edu:hover{transform:translateY(-1px)}.edu-t{font-size:.7rem;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .edu-t{color:#E2E8F0}.edu-t svg{width:14px;height:14px;transition:transform .2s;color:var(--muted)}.edu.open .edu-t svg{transform:rotate(180deg)}.edu-body{display:none;font-size:.68rem;line-height:1.6;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}[data-theme="dark"] .edu-body{color:#94A3B8;border-color:var(--dark-border)}.edu.open .edu-body{display:block}
+    .source{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 2px}.source-txt{font-size:.6rem;color:var(--muted)}.source-txt a{color:var(--populi);font-weight:600;text-decoration:none}.source-txt a:hover{text-decoration:underline}
+    .loading{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:12px;color:var(--muted)}.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app">
+    <div class="loading" id="loader"><div class="spinner"></div><span style="font-size:.8rem">Cargando balance pasivo BCB...</span></div>
+  </div>
+  <script>
+    var DATA_URL='../data/pasivo_bcb.json';
+    var COLORS={emision:'#D97706',dep_bancarios:'#2563EB',dep_sp_total:'#059669',oblig_ext_cp:'#C71E1D',otras_ctas:'#8B5CF6',capital:'#64748B'};
+    var DATA,chart,curIdx;
+    var activeKeys=new Set(['emision','dep_bancarios','dep_sp_total','oblig_ext_cp','otras_ctas','capital']);
+    var curRange='desde2010';
+
+    function fmt(v){return v!=null?(Math.abs(v)>=1000?Math.round(v).toLocaleString('es-BO'):v.toFixed(1)):'—'}
+    function fmtShort(v){var abs=Math.abs(v);var s=v<0?'-':'';return abs>=1e6?s+(abs/1e6).toFixed(1)+'T':abs>=1000?s+Math.round(abs/1000).toLocaleString('es-BO')+'k':s+abs.toFixed(0)}
+    function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
+    function labelDate(d){var p=d.split('-');var ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return ms[+p[1]-1]+' '+p[0]}
+
+    async function init(){var r=await fetch(DATA_URL);DATA=await r.json();document.getElementById('loader').style.display='none';curIdx=DATA.series.length-1;render()}
+
+    function getStartIdx(){
+      var S=DATA.series;if(curRange==='todo')return 0;var cut;
+      if(curRange==='5a'){var ly=parseInt(S[S.length-1].date.split('-')[0]);cut=(ly-5)+'-01'}
+      else if(curRange==='desde2010')cut='2010-01';
+      else if(curRange==='desde2000')cut='2000-01';
+      else return 0;
+      for(var i=0;i<S.length;i++){if(S[i].date>=cut)return i}return 0;
+    }
+
+    function render(){
+      var app=document.getElementById('app');var S=DATA.series;var m=DATA.metadata;var last=S[S.length-1];var updTxt=labelDate(m.ultimo_dato);
+      var total=last.emision+last.dep_bancarios+last.dep_sp_total+last.oblig_ext_cp+(last.otras_ctas||0)+(last.capital||0)+(last.oblig_ext_mlp||0)+(last.dep_oi||0);
+      var pctEm=total>0?(last.emision/total*100).toFixed(1):'—';
+      var pctDB=total>0?(last.dep_bancarios/total*100).toFixed(1):'—';
+      app.innerHTML=
+        '<div class="sec-hd"><div class="sec-title"><span class="accent-bar"></span>Pasivo del Banco Central</div><div class="sec-sub">Obligaciones del BCB: emisión, depósitos bancarios, depósitos del sector público</div></div>'+
+        '<div class="hz-bar"><span class="hz-lbl">Rango:</span><div class="hz-grp"><button class="hz-btn range-btn'+(curRange==='5a'?' active':'')+'" onclick="setRange(\'5a\')">5A</button><button class="hz-btn range-btn'+(curRange==='desde2010'?' active':'')+'" onclick="setRange(\'desde2010\')">Desde 2010</button><button class="hz-btn range-btn'+(curRange==='desde2000'?' active':'')+'" onclick="setRange(\'desde2000\')">Desde 2000</button><button class="hz-btn range-btn'+(curRange==='todo'?' active':'')+'" onclick="setRange(\'todo\')">Todo</button></div></div>'+
+        '<div class="kpi-grid">'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#D97706"></div><div class="kpi-lbl">Emisión</div><div class="kpi-val" style="color:#D97706">'+fmt(last.emision)+' MM</div><div class="kpi-d flat">'+pctEm+'% del pasivo</div></div>'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#2563EB"></div><div class="kpi-lbl">Dep. Bancarios</div><div class="kpi-val" style="color:#2563EB">'+fmt(last.dep_bancarios)+' MM</div><div class="kpi-d flat">'+pctDB+'% del pasivo</div></div>'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#059669"></div><div class="kpi-lbl">Dep. Sector Público</div><div class="kpi-val" style="color:#059669">'+fmt(last.dep_sp_total)+' MM</div><div class="kpi-d flat">GC + SS + GL + EP</div></div>'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#C71E1D"></div><div class="kpi-lbl">Oblig. Externas CP</div><div class="kpi-val" style="color:#C71E1D">'+fmt(last.oblig_ext_cp)+' MM</div><div class="kpi-d flat">FMI + Organismos</div></div>'+
+        '</div>'+
+        '<div class="main-grid"><div class="chart-card"><div class="chart-ctrl"><div class="tog-grp" id="toggles"></div></div><div id="chart"></div></div>'+
+        '<div class="panel"><div class="panel-hd"><span class="panel-hd-t">Composición del pasivo</span><span class="panel-hd-d" id="panel-date">'+updTxt+'</span></div><div class="panel-body" id="panel-body"></div></div></div>'+
+        '<div class="edu-grid">'+
+          eduBox('¿Qué es el pasivo del BCB?','El pasivo del banco central muestra <strong>de dónde proviene el dinero</strong>: la emisión (billetes), los depósitos que bancos y el gobierno mantienen en el BCB, y las obligaciones con el exterior. Pasivo total = Activo total.')+
+          eduBox('Emisión vs Depósitos','La <strong>emisión</strong> es el componente más visible: los billetes y monedas en circulación. Los <strong>depósitos bancarios</strong> son las reservas obligatorias (encaje) y voluntarias que los bancos mantienen en el BCB. Ambos forman la <strong>base monetaria</strong>.')+
+          eduBox('Depósitos del sector público','Cuando el gobierno deposita ingresos en el BCB (impuestos, regalías), esos depósitos <strong>contraen la base monetaria</strong>. Cuando los retira para gastar, la <strong>expanden</strong>. Es un canal directo de transmisión fiscal-monetaria.')+
+        '</div>'+
+        '<div class="source"><span class="source-txt">Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: '+updTxt+'</span></div>';
+      buildToggles();chart=echarts.init(document.getElementById('chart'));rebuildChart();updatePanel(curIdx);
+      chart.on('click',function(p){if(p.dataIndex!==undefined)updatePanel(getStartIdx()+p.dataIndex)});
+      window.addEventListener('resize',function(){chart.resize()});
+    }
+
+    function eduBox(t,b){return '<div class="edu" onclick="this.classList.toggle(\'open\')"><div class="edu-t">'+t+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="edu-body">'+b+'</div></div>'}
+    function setRange(r){if(curRange===r)return;curRange=r;var rs=['5a','desde2010','desde2000','todo'];document.querySelectorAll('.range-btn').forEach(function(b,i){b.classList.toggle('active',rs[i]===r)});rebuildChart()}
+
+    function buildToggles(){
+      var tg=document.getElementById('toggles');
+      [{key:'emision',label:'Emisión',c:COLORS.emision},{key:'dep_bancarios',label:'Dep. Bancarios',c:COLORS.dep_bancarios},{key:'dep_sp_total',label:'Dep. Sector Público',c:COLORS.dep_sp_total},{key:'oblig_ext_cp',label:'Oblig. Externas',c:COLORS.oblig_ext_cp},{key:'otras_ctas',label:'Otras Cuentas',c:COLORS.otras_ctas},{key:'capital',label:'Capital',c:COLORS.capital}].forEach(function(s){
+        var btn=document.createElement('button');btn.className='pill';btn.dataset.key=s.key;
+        btn.innerHTML='<span style="width:10px;height:10px;border-radius:2px;background:#fff;display:inline-block"></span>'+s.label;
+        btn.addEventListener('click',function(){toggleKey(s.key)});tg.appendChild(btn);
+      });syncPills();
+    }
+    function toggleKey(k){if(activeKeys.has(k)){if(activeKeys.size===1)return;activeKeys.delete(k)}else activeKeys.add(k);syncPills();rebuildChart()}
+    function syncPills(){document.querySelectorAll('.pill').forEach(function(btn){var k=btn.dataset.key;var c=COLORS[k];var on=activeKeys.has(k);btn.style.backgroundColor=on?c:'transparent';btn.style.color=on?'#fff':c;btn.style.borderColor=c;var sq=btn.querySelector('span');if(sq)sq.style.background=on?'#fff':c})}
+
+    function rebuildChart(){
+      var si=getStartIdx();var S=DATA.series.slice(si);var d=dk();
+      var labels=S.map(function(x){return labelDate(x.date)});var series=[];
+      var stackOrder=[{key:'capital',name:'Capital y Reservas'},{key:'otras_ctas',name:'Otras Cuentas'},{key:'oblig_ext_cp',name:'Oblig. Externas CP'},{key:'dep_sp_total',name:'Dep. Sector Público'},{key:'dep_bancarios',name:'Dep. Bancarios'},{key:'emision',name:'Emisión'}];
+      stackOrder.forEach(function(it){
+        if(!activeKeys.has(it.key))return;
+        var op=d?0.75:0.85;
+        series.push({name:it.name,type:'line',stack:'total',data:S.map(function(x){return x[it.key]||0}),symbol:'none',lineStyle:{width:1,color:COLORS[it.key]},itemStyle:{color:COLORS[it.key]},areaStyle:{opacity:op},emphasis:{focus:'series'},connectNulls:true});
+      });
+      chart.setOption({grid:{left:70,right:20,top:20,bottom:40},
+        xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#94A3B8',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},
+        yAxis:{type:'value',axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#94A3B8',formatter:function(v){return fmtShort(v)+' MM'}}},
+        tooltip:{trigger:'axis',backgroundColor:'rgba(0,18,25,.96)',borderColor:d?'#2A3A50':'#1A2940',borderWidth:1,padding:14,extraCssText:'border-radius:10px;',textStyle:{fontFamily:'Inter',fontSize:12,color:'#fff'},
+          formatter:function(params){if(!params.length)return'';var si2=getStartIdx();var idx=params[0].dataIndex;var pt=DATA.series[si2+idx];var total=pt.emision+(pt.dep_bancarios||0)+(pt.dep_sp_total||0)+(pt.oblig_ext_cp||0)+(pt.oblig_ext_mlp||0)+(pt.otras_ctas||0)+(pt.capital||0)+(pt.dep_oi||0);var html='<div style="font-weight:700;margin-bottom:6px;color:#C4B5FD">'+params[0].axisValue+'</div>';html+='<div style="font-size:10px;color:#94A3B8;margin-bottom:4px">Total Pasivo: '+fmt(total)+' MM Bs</div>';params.slice().reverse().forEach(function(p){if(p.value!=null){var pct=total>0?(p.value/total*100).toFixed(1):'—';html+='<div style=\"display:flex;align-items:center;gap:6px;margin-top:4px\"><span style=\"width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block\"></span><span style=\"font-size:11px\">'+p.seriesName+':</span><span style=\"font-family:JetBrains Mono;font-weight:700;color:'+p.color+'\">'+fmt(p.value)+' MM</span><span style=\"font-size:10px;color:#94A3B8\">('+pct+'%)</span></div>'}});return html}},
+        series:series
+      },true);
+    }
+
+    function updatePanel(idx){
+      curIdx=idx;var S=DATA.series;var d=S[idx];
+      document.getElementById('panel-date').textContent=labelDate(d.date);
+      var total=d.emision+d.dep_bancarios+d.dep_sp_total+(d.oblig_ext_cp||0)+(d.oblig_ext_mlp||0)+(d.otras_ctas||0)+(d.capital||0)+(d.dep_oi||0);
+      function pct(v){return total>0?((v||0)/total*100).toFixed(1):'0'}
+      var html='';
+      [{k:'emision',n:'Emisión',c:COLORS.emision},{k:'dep_bancarios',n:'Depósitos Bancarios',c:COLORS.dep_bancarios},{k:'dep_sp_total',n:'Depósitos Sector Público',c:COLORS.dep_sp_total},{k:'oblig_ext_cp',n:'Obligaciones Externas CP',c:COLORS.oblig_ext_cp},{k:'otras_ctas',n:'Otras Cuentas Pasivo',c:COLORS.otras_ctas},{k:'capital',n:'Capital y Reservas',c:COLORS.capital}].forEach(function(s){
+        html+='<div class="pb"><div class="pb-lbl" style="color:'+s.c+';background:'+s.c+'14;border-left-color:'+s.c+'">'+s.n+'</div><div class="pb-val" style="color:'+s.c+'">'+fmt(d[s.k])+' MM Bs</div><p class="pb-desc"><strong>'+pct(d[s.k])+'%</strong> del pasivo total</p></div>';
+      });
+      var analysis;
+      var ratioEm=total>0?(d.emision/total*100):0;
+      if(ratioEm>50)analysis='La emisión representa <strong>'+ratioEm.toFixed(1)+'%</strong> del pasivo — estructura <strong>concentrada</strong> en billetes. Los depósitos bancarios y del sector público complementan.';
+      else analysis='Estructura del pasivo con emisión en <strong>'+ratioEm.toFixed(1)+'%</strong> y depósitos bancarios en <strong>'+pct(d.dep_bancarios)+'%</strong>. Los depósitos del sector público (<strong>'+pct(d.dep_sp_total)+'%</strong>) reflejan la posición fiscal del gobierno en el BCB.';
+      html+='<div class="ctx"><p>'+analysis+'</p></div>';
+      document.getElementById('panel-body').innerHTML=html;
+    }
+
+    window.addEventListener('message',function(e){if(e.data&&e.data.theme){document.documentElement.setAttribute('data-theme',e.data.theme);if(chart)rebuildChart()}});
+    init();
+  </script>
+</body>
+</html>

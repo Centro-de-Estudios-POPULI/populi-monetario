@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Agregados Monetarios · Populi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root{--populi:#8B1A1A;--cream:#F5EFE0;--brown-dark:#3D2B1F;--navy:#0D1B2A;--navy-light:#1A2940;--slate:#475569;--slate-light:#64748B;--warm-white:#FAF8F3;--light-gray:#F1EDE5;--border:#E2DDD3;--dark-border:#2A3A50;--bg:var(--warm-white);--card:#FFFFFF;--text:var(--brown-dark);--muted:var(--slate-light);--accent:#D97706;--c1:#8B5CF6;--c2:#2563EB;--c3:#059669;--c4:#D97706;--radius:12px}
+    [data-theme="dark"]{--bg:#080808;--card:#141414;--text:#E2E8F0;--muted:#64748B;--border:#2A3A50;--light-gray:#1A1A1A;--cream:#1A2940}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}.wrap{max-width:1200px;margin:0 auto;padding:20px 16px}
+    .sec-hd{margin-bottom:16px}.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:1.55rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px;line-height:1.15}[data-theme="dark"] .sec-title{color:#fff}.accent-bar{width:4px;height:26px;background:var(--accent);border-radius:2px;flex-shrink:0}.sec-sub{font-size:.78rem;color:var(--muted);padding-left:14px;margin-top:2px}[data-theme="dark"] .sec-sub{color:rgba(255,255,255,.4)}
+    .hz-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:14px;flex-wrap:wrap}.hz-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.hz-grp{display:flex;gap:0;background:var(--light-gray);border-radius:8px;padding:2px;border:1px solid var(--border)}[data-theme="dark"] .hz-grp{background:#1A1A1A;border-color:var(--dark-border)}.hz-btn{padding:5px 14px;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}.hz-btn:hover{color:var(--text)}.hz-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(217,119,6,.25)}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}@media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}.kpi{background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}[data-theme="dark"] .kpi{background:#141414;border-color:var(--dark-border)}.kpi-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}[data-theme="dark"] .kpi-lbl{color:rgba(255,255,255,.4)}.kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}.kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}.kpi-d.up{background:rgba(199,30,29,.08);color:#C71E1D}.kpi-d.down{background:rgba(5,150,105,.08);color:#059669}.kpi-d.flat{background:rgba(100,116,139,.08);color:#64748B}[data-theme="dark"] .kpi-d.up{background:rgba(199,30,29,.15)}[data-theme="dark"] .kpi-d.down{background:rgba(5,150,105,.15)}
+    .main-grid{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:540px;gap:16px}@media(max-width:900px){.main-grid{grid-template-columns:1fr;grid-template-rows:480px auto}}@media(min-width:1100px){.main-grid{grid-template-rows:580px}}
+    .chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;height:100%;overflow:hidden}[data-theme="dark"] .chart-card{background:#141414;border-color:var(--dark-border)}.chart-ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.tog-grp{display:flex;gap:6px;flex-wrap:wrap}.pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border:1.5px solid;border-radius:8px;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;transition:all .2s}.pill:hover{transform:translateY(-1px)}.lp{width:16px;height:0;border-top:2.5px solid;border-radius:1px}#chart{flex:1;min-height:0}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:100%}[data-theme="dark"] .panel{background:#141414;border-color:var(--dark-border)}.panel-hd{background:#78350F;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .panel-hd{background:#2A1A0A}.panel-hd-t{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8)}.panel-hd-d{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:600;color:var(--accent);background:rgba(217,119,6,.15);padding:2px 8px;border-radius:5px}.panel-body{padding:14px;flex:1;overflow-y:auto}.pb{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}[data-theme="dark"] .pb{border-color:var(--dark-border)}.pb:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.pb-lbl{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;padding:2px 9px 2px 6px;border-radius:4px;border-left:3px solid}.pb-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:3px}.pb-desc{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .pb-desc{color:rgba(255,255,255,.45)}.pb-desc strong{color:var(--navy)}[data-theme="dark"] .pb-desc strong{color:#E2E8F0}.ctx{background:var(--cream);border-radius:6px;padding:8px 10px;border-left:3px solid var(--accent);margin-top:6px}[data-theme="dark"] .ctx{background:var(--navy-light)}.ctx p{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .ctx p{color:#94A3B8}.ctx p strong{color:var(--navy)}[data-theme="dark"] .ctx p strong{color:#E2E8F0}
+    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px}.edu{background:var(--cream);border-radius:8px;padding:10px 12px;border-left:3px solid var(--accent);cursor:pointer;transition:all .2s}[data-theme="dark"] .edu{background:var(--navy-light)}.edu:hover{transform:translateY(-1px)}.edu-t{font-size:.7rem;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .edu-t{color:#E2E8F0}.edu-t svg{width:14px;height:14px;transition:transform .2s;color:var(--muted)}.edu.open .edu-t svg{transform:rotate(180deg)}.edu-body{display:none;font-size:.68rem;line-height:1.6;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}[data-theme="dark"] .edu-body{color:#94A3B8;border-color:var(--dark-border)}.edu.open .edu-body{display:block}
+    .source{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 2px}.source-txt{font-size:.6rem;color:var(--muted)}.source-txt a{color:var(--populi);font-weight:600;text-decoration:none}.source-txt a:hover{text-decoration:underline}
+    .loading{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:12px;color:var(--muted)}.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app"><div class="loading" id="loader"><div class="spinner"></div><span style="font-size:.8rem">Cargando agregados monetarios...</span></div></div>
+  <script>
+    var DATA_URL='../data/agregados_monetarios.json';
+    var COLORS={m1:'#8B5CF6',m2:'#2563EB',m3:'#059669',m4:'#D97706'};
+    var NAMES={m1:'M1',m2:'M2',m3:'M3',m4:'M4'};
+    var DATA,GROWTH,chart,curIdx;
+    var activeKeys=new Set(['m1','m2','m3','m4']);
+    var curRange='desde2010';
+
+    function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
+    function labelDate(d){var p=d.split('-');var ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return ms[+p[1]-1]+' '+p[0]}
+
+    function computeGrowth(){
+      var S=DATA.series; GROWTH=[];
+      for(var i=12;i<S.length;i++){
+        var cur=S[i],prev=S[i-12];
+        var g={date:cur.date};
+        ['m1','m2','m3','m4'].forEach(function(k){
+          g[k]=prev[k]>0?Math.round((cur[k]/prev[k]-1)*1000)/10:null;
+        });
+        GROWTH.push(g);
+      }
+    }
+
+    async function init(){var r=await fetch(DATA_URL);DATA=await r.json();computeGrowth();document.getElementById('loader').style.display='none';curIdx=GROWTH.length-1;render()}
+
+    function getStartIdx(){
+      var S=GROWTH;if(curRange==='todo')return 0;var cut;
+      if(curRange==='5a'){var ly=parseInt(S[S.length-1].date.split('-')[0]);cut=(ly-5)+'-01'}
+      else if(curRange==='desde2010')cut='2010-01';else if(curRange==='desde2000')cut='2000-01';else return 0;
+      for(var i=0;i<S.length;i++){if(S[i].date>=cut)return i}return 0;
+    }
+
+    function render(){
+      var app=document.getElementById('app');var last=GROWTH[GROWTH.length-1];var m=DATA.metadata;var updTxt=labelDate(m.ultimo_dato);
+      function kpi(label,val,color){var cls=val>10?'up':val>0?'flat':'down';return '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:'+color+'"></div><div class="kpi-lbl">'+label+'</div><div class="kpi-val" style="color:'+color+'">'+(val>0?'+':'')+val.toFixed(1)+'%</div><div class="kpi-d '+cls+'">'+(val>10?'Expansión alta':val>0?'Crecimiento moderado':'Contracción')+'</div></div>'}
+      app.innerHTML=
+        '<div class="sec-hd"><div class="sec-title"><span class="accent-bar"></span>Agregados Monetarios</div><div class="sec-sub">Tasa de crecimiento interanual (12 meses) de M1, M2, M3 y M4</div></div>'+
+        '<div class="hz-bar"><span class="hz-lbl">Rango:</span><div class="hz-grp"><button class="hz-btn range-btn'+(curRange==='5a'?' active':'')+'" onclick="setRange(\'5a\')">5A</button><button class="hz-btn range-btn'+(curRange==='desde2010'?' active':'')+'" onclick="setRange(\'desde2010\')">Desde 2010</button><button class="hz-btn range-btn'+(curRange==='desde2000'?' active':'')+'" onclick="setRange(\'desde2000\')">Desde 2000</button><button class="hz-btn range-btn'+(curRange==='todo'?' active':'')+'" onclick="setRange(\'todo\')">Todo</button></div></div>'+
+        '<div class="kpi-grid">'+kpi('Crec. M4 (12m)',last.m4,COLORS.m4)+kpi('Crec. M3 (12m)',last.m3,COLORS.m3)+kpi('Crec. M2 (12m)',last.m2,COLORS.m2)+kpi('Crec. M1 (12m)',last.m1,COLORS.m1)+'</div>'+
+        '<div class="main-grid"><div class="chart-card"><div class="chart-ctrl"><div class="tog-grp" id="toggles"></div></div><div id="chart"></div></div>'+
+        '<div class="panel"><div class="panel-hd"><span class="panel-hd-t">Lectura del indicador</span><span class="panel-hd-d" id="panel-date">'+updTxt+'</span></div><div class="panel-body" id="panel-body"></div></div></div>'+
+        '<div class="edu-grid">'+
+          eduBox('¿Qué son los agregados monetarios?','Los <strong>agregados monetarios</strong> miden la cantidad total de dinero en la economía: <strong>M1</strong> = billetes + depósitos vista; <strong>M2</strong> = M1 + ahorro MN; <strong>M3</strong> = M2 + plazo fijo MN; <strong>M4</strong> = M3 + depósitos ME. La tasa de crecimiento muestra cuánto aumenta la liquidez.')+
+          eduBox('¿Por qué importa el crecimiento?','Si los agregados crecen más rápido que el PIB nominal, el exceso de liquidez genera presión inflacionaria. Tasas superiores al 15-20% son señal de expansión monetaria agresiva.')+
+          eduBox('M1 vs M4: señal de confianza','Cuando M1 crece más rápido que M4, la gente prefiere liquidez inmediata (señal de incertidumbre). Cuando M4 crece más, los depósitos a plazo y en ME aumentan (mayor confianza o dolarización).')+
+        '</div>'+
+        '<div class="source"><span class="source-txt">Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: '+updTxt+'</span></div>';
+      buildToggles();chart=echarts.init(document.getElementById('chart'));rebuildChart();updatePanel(curIdx);
+      chart.on('click',function(p){if(p.dataIndex!==undefined)updatePanel(getStartIdx()+p.dataIndex)});
+      window.addEventListener('resize',function(){chart.resize()});
+    }
+
+    function eduBox(t,b){return '<div class="edu" onclick="this.classList.toggle(\'open\')"><div class="edu-t">'+t+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="edu-body">'+b+'</div></div>'}
+    function setRange(r){if(curRange===r)return;curRange=r;var rs=['5a','desde2010','desde2000','todo'];document.querySelectorAll('.range-btn').forEach(function(b,i){b.classList.toggle('active',rs[i]===r)});rebuildChart()}
+
+    function buildToggles(){
+      var tg=document.getElementById('toggles');
+      [{key:'m4',label:'M4',c:COLORS.m4},{key:'m3',label:'M3',c:COLORS.m3},{key:'m2',label:'M2',c:COLORS.m2},{key:'m1',label:'M1',c:COLORS.m1}].forEach(function(s){
+        var btn=document.createElement('button');btn.className='pill';btn.dataset.key=s.key;
+        btn.innerHTML='<span class="lp" style="border-color:#fff"></span>'+s.label;
+        btn.addEventListener('click',function(){toggleKey(s.key)});tg.appendChild(btn);
+      });syncPills();
+    }
+    function toggleKey(k){if(activeKeys.has(k)){if(activeKeys.size===1)return;activeKeys.delete(k)}else activeKeys.add(k);syncPills();rebuildChart()}
+    function syncPills(){document.querySelectorAll('.pill').forEach(function(btn){var k=btn.dataset.key;var c=COLORS[k];var on=activeKeys.has(k);btn.style.backgroundColor=on?c:'transparent';btn.style.color=on?'#fff':c;btn.style.borderColor=c;var lp=btn.querySelector('.lp');if(lp)lp.style.borderColor=on?'#fff':c})}
+
+    function rebuildChart(){
+      var si=getStartIdx();var S=GROWTH.slice(si);var d=dk();
+      var labels=S.map(function(x){return labelDate(x.date)});var series=[];
+      var keys=['m4','m3','m2','m1'];var widths=[2.5,2,1.8,1.5];
+      keys.forEach(function(k,i){
+        if(!activeKeys.has(k))return;
+        series.push({name:NAMES[k],type:'line',data:S.map(function(x){return x[k]}),symbol:'none',lineStyle:{width:widths[i]},itemStyle:{color:COLORS[k]},connectNulls:true,
+          markPoint:{data:[{coord:[S.length-1,S[S.length-1][k]]}],symbol:'circle',symbolSize:5,itemStyle:{color:COLORS[k],borderColor:d?'#141414':'#fff',borderWidth:2},label:{show:false}}
+        });
+      });
+      series.push({type:'line',markLine:{silent:true,symbol:'none',lineStyle:{color:d?'#374151':'#CBD5E1',type:'dashed',width:1},data:[{yAxis:0}]},data:[]});
+      chart.setOption({grid:{left:55,right:20,top:20,bottom:40},
+        xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#94A3B8',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},
+        yAxis:{type:'value',axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#94A3B8',formatter:function(v){return v.toFixed(0)+'%'}}},
+        tooltip:{trigger:'axis',backgroundColor:'rgba(0,18,25,.96)',borderColor:d?'#2A3A50':'#1A2940',borderWidth:1,padding:14,extraCssText:'border-radius:10px;',textStyle:{fontFamily:'Inter',fontSize:12,color:'#fff'},
+          formatter:function(params){if(!params.length)return'';var html='<div style="font-weight:700;margin-bottom:6px;color:#E9D8A6">'+params[0].axisValue+'</div>';params.forEach(function(p){if(p.value!=null&&p.seriesName)html+='<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block"></span><span style="font-size:11px">'+p.seriesName+':</span><span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">'+(p.value>0?'+':'')+p.value.toFixed(1)+'%</span></div>'});return html}},
+        series:series
+      },true);
+    }
+
+    function updatePanel(idx){
+      curIdx=idx;var d=GROWTH[idx];document.getElementById('panel-date').textContent=labelDate(d.date);
+      var html='';
+      [{k:'m4',n:'M4 (Liquidez Total)',c:COLORS.m4},{k:'m3',n:'M3',c:COLORS.m3},{k:'m2',n:'M2',c:COLORS.m2},{k:'m1',n:'M1 (Medio Circulante)',c:COLORS.m1}].forEach(function(s){
+        var v=d[s.k];var sign=v>0?'+':'';
+        html+='<div class="pb"><div class="pb-lbl" style="color:'+s.c+';background:'+s.c+'14;border-left-color:'+s.c+'">'+s.n+'</div><div class="pb-val" style="color:'+s.c+'">'+sign+(v!=null?v.toFixed(1):'—')+'%</div><p class="pb-desc">Crecimiento interanual (12 meses)</p></div>';
+      });
+      var g=d.m4;var analysis;
+      if(g>20)analysis='M4 crece <strong>'+g.toFixed(1)+'%</strong> — <strong>expansión acelerada</strong> de la liquidez, muy por encima del crecimiento económico. Presión inflacionaria significativa.';
+      else if(g>10)analysis='M4 crece <strong>'+g.toFixed(1)+'%</strong> — ritmo <strong>elevado</strong>. La liquidez se expande más rápido que lo que absorbe la actividad económica.';
+      else if(g>0)analysis='M4 crece <strong>'+g.toFixed(1)+'%</strong> — ritmo <strong>moderado</strong>, potencialmente consistente con el crecimiento nominal de la economía.';
+      else analysis='M4 se <strong>contrae '+Math.abs(g).toFixed(1)+'%</strong>. La liquidez disminuye — restricción monetaria o caída de depósitos.';
+      html+='<div class="ctx"><p>'+analysis+'</p></div>';
+      document.getElementById('panel-body').innerHTML=html;
+    }
+
+    window.addEventListener('message',function(e){if(e.data&&e.data.theme){document.documentElement.setAttribute('data-theme',e.data.theme);if(chart)rebuildChart()}});
+    init();
+  </script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sector Monetario · Populi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --populi:#8B1A1A; --accent:#D97706;
+      --bg:#FAF8F3; --card:#FFFFFF; --text:#3D2B1F; --muted:#64748B;
+      --navy:#0D1B2A; --border:#E2DDD3;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+
+    .hero{background:linear-gradient(135deg,#700200 0%,#0D1B2A 100%);color:white;padding:48px 24px;text-align:center}
+    .hero h1{font-family:'Playfair Display',Georgia,serif;font-size:2.2rem;font-weight:700;margin-bottom:8px}
+    .hero p{font-size:1rem;opacity:0.8;max-width:700px;margin:0 auto}
+    .hero .badge{display:inline-block;background:rgba(217,119,6,0.2);border:1px solid rgba(217,119,6,0.4);color:#FBBF24;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:16px;font-family:'JetBrains Mono',monospace}
+
+    .wrap{max-width:1200px;margin:0 auto;padding:32px 16px}
+
+    .nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px}
+    .nav a{display:inline-block;padding:8px 16px;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:0.85rem;font-weight:500;transition:all 0.2s}
+    .nav a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+
+    .grid{display:grid;grid-template-columns:1fr;gap:24px}
+
+    .embed-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.2s}
+    .embed-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.08)}
+    .embed-card iframe{width:100%;border:none;min-height:850px;display:block}
+
+    .footer{text-align:center;padding:32px 16px;font-size:0.8rem;color:var(--muted);border-top:1px solid var(--border);margin-top:48px}
+    .footer a{color:var(--populi);text-decoration:none;font-weight:600}
+    .footer a:hover{text-decoration:underline}
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <span class="badge">BCB &middot; Actualización automática</span>
+    <h1>Sector Monetario de Bolivia</h1>
+    <p>Emisión monetaria, agregados M1&ndash;M4, reservas internacionales, monetización de deuda y balance del Banco Central de Bolivia.</p>
+  </div>
+
+  <div class="wrap">
+    <nav class="nav">
+      <a href="#emision">Emisión Monetaria</a>
+      <a href="#agregados">Agregados Monetarios</a>
+      <a href="#reservas">Reservas RIN</a>
+      <a href="#monetizacion">Monetización Deuda</a>
+      <a href="#pasivo">Pasivo BCB</a>
+      <a href="#activo">Activo BCB</a>
+    </nav>
+
+    <div class="grid">
+      <div class="embed-card" id="emision">
+        <iframe src="embed/emision_monetaria.html" loading="lazy" title="Emisión Monetaria"></iframe>
+      </div>
+      <div class="embed-card" id="agregados">
+        <iframe src="embed/agregados_monetarios.html" loading="lazy" title="Agregados Monetarios"></iframe>
+      </div>
+      <div class="embed-card" id="reservas">
+        <iframe src="embed/reservas_rin.html" loading="lazy" title="Reservas Internacionales"></iframe>
+      </div>
+      <div class="embed-card" id="monetizacion">
+        <iframe src="embed/monetizacion_deuda.html" loading="lazy" title="Monetización de Deuda"></iframe>
+      </div>
+      <div class="embed-card" id="pasivo">
+        <iframe src="embed/pasivo_bcb.html" loading="lazy" title="Pasivo del BCB"></iframe>
+      </div>
+      <div class="embed-card" id="activo">
+        <iframe src="embed/activo_bcb.html" loading="lazy" title="Activo del BCB"></iframe>
+      </div>
+    </div>
+  </div>
+
+  <div class="footer">
+    Fuente: <a href="https://www.bcb.gob.bo" target="_blank">Banco Central de Bolivia</a> &middot;
+    Elaboración: <a href="https://populi.org.bo" target="_blank">Centro de Estudios POPULI</a>
+  </div>
+</body>
+</html>

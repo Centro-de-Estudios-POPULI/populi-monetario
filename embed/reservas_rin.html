@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Reservas Internacionales · Populi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root{--populi:#8B1A1A;--populi-light:#C00000;--cream:#F5EFE0;--brown-dark:#3D2B1F;--navy:#0D1B2A;--navy-light:#1A2940;--slate:#475569;--slate-light:#64748B;--warm-white:#FAF8F3;--light-gray:#F1EDE5;--border:#E2DDD3;--dark-border:#2A3A50;--bg:var(--warm-white);--card:#FFFFFF;--text:var(--brown-dark);--muted:var(--slate-light);--accent:#059669;--radius:12px}
+    [data-theme="dark"]{--bg:#080808;--card:#141414;--text:#E2E8F0;--muted:#64748B;--border:#2A3A50;--light-gray:#1A1A1A;--cream:#1A2940}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px 16px}
+    .sec-hd{margin-bottom:16px}.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:1.55rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px;line-height:1.15}[data-theme="dark"] .sec-title{color:#fff}.accent-bar{width:4px;height:26px;background:var(--accent);border-radius:2px;flex-shrink:0}.sec-sub{font-size:.78rem;color:var(--muted);padding-left:14px;margin-top:2px}[data-theme="dark"] .sec-sub{color:rgba(255,255,255,.4)}
+    .hz-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:14px;flex-wrap:wrap}.hz-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.hz-grp{display:flex;gap:0;background:var(--light-gray);border-radius:8px;padding:2px;border:1px solid var(--border)}[data-theme="dark"] .hz-grp{background:#1A1A1A;border-color:var(--dark-border)}.hz-btn{padding:5px 14px;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}.hz-btn:hover{color:var(--text)}.hz-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(5,150,105,.25)}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}@media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}.kpi{background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}[data-theme="dark"] .kpi{background:#141414;border-color:var(--dark-border)}.kpi-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}[data-theme="dark"] .kpi-lbl{color:rgba(255,255,255,.4)}.kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}.kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}.kpi-d.up{background:rgba(5,150,105,.08);color:#059669}.kpi-d.down{background:rgba(199,30,29,.08);color:#C71E1D}.kpi-d.flat{background:rgba(100,116,139,.08);color:#64748B}[data-theme="dark"] .kpi-d.up{background:rgba(5,150,105,.15)}[data-theme="dark"] .kpi-d.down{background:rgba(199,30,29,.15)}
+    .main-grid{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:540px;gap:16px}@media(max-width:900px){.main-grid{grid-template-columns:1fr;grid-template-rows:480px auto}}@media(min-width:1100px){.main-grid{grid-template-rows:580px}}
+    .chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;height:100%;overflow:hidden}[data-theme="dark"] .chart-card{background:#141414;border-color:var(--dark-border)}.chart-ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.tog-grp{display:flex;gap:6px;flex-wrap:wrap}.pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border:1.5px solid;border-radius:8px;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;transition:all .2s}.pill:hover{transform:translateY(-1px)}.lp{width:16px;height:0;border-top:2.5px solid;border-radius:1px}.lp.dashed{border-top-style:dashed}#chart{flex:1;min-height:0}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:100%}[data-theme="dark"] .panel{background:#141414;border-color:var(--dark-border)}.panel-hd{background:#064E3B;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .panel-hd{background:#022C22}.panel-hd-t{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8)}.panel-hd-d{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:600;color:#34D399;background:rgba(52,211,153,.15);padding:2px 8px;border-radius:5px}.panel-body{padding:14px;flex:1;overflow-y:auto}.pb{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}[data-theme="dark"] .pb{border-color:var(--dark-border)}.pb:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.pb-lbl{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;padding:2px 9px 2px 6px;border-radius:4px;border-left:3px solid}.pb-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:3px}.pb-desc{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .pb-desc{color:rgba(255,255,255,.45)}.pb-desc strong{color:var(--navy)}[data-theme="dark"] .pb-desc strong{color:#E2E8F0}.ctx{background:var(--cream);border-radius:6px;padding:8px 10px;border-left:3px solid var(--accent);margin-top:6px}[data-theme="dark"] .ctx{background:var(--navy-light)}.ctx p{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .ctx p{color:#94A3B8}.ctx p strong{color:var(--navy)}[data-theme="dark"] .ctx p strong{color:#E2E8F0}
+    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px}.edu{background:var(--cream);border-radius:8px;padding:10px 12px;border-left:3px solid var(--accent);cursor:pointer;transition:all .2s}[data-theme="dark"] .edu{background:var(--navy-light)}.edu:hover{transform:translateY(-1px)}.edu-t{font-size:.7rem;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .edu-t{color:#E2E8F0}.edu-t svg{width:14px;height:14px;transition:transform .2s;color:var(--muted)}.edu.open .edu-t svg{transform:rotate(180deg)}.edu-body{display:none;font-size:.68rem;line-height:1.6;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}[data-theme="dark"] .edu-body{color:#94A3B8;border-color:var(--dark-border)}.edu.open .edu-body{display:block}
+    .source{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 2px}.source-txt{font-size:.6rem;color:var(--muted)}.source-txt a{color:var(--populi);font-weight:600;text-decoration:none}.source-txt a:hover{text-decoration:underline}
+    .loading{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:12px;color:var(--muted)}.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app">
+    <div class="loading" id="loader"><div class="spinner"></div><span style="font-size:.8rem">Cargando reservas internacionales...</span></div>
+  </div>
+  <script>
+    var DATA_URL='../data/reservas_rin.json';
+    var COLORS={rin:'#059669',oro:'#D97706',divisas:'#2563EB',deg:'#8B5CF6',fmi:'#64748B'};
+    var DATA,chart,curIdx;
+    var activeKeys=new Set(['rin','oro','divisas']);
+    var curRange='desde2010';
+
+    function fmt(v){return v!=null?(v>=1000?Math.round(v).toLocaleString('es-BO'):v.toFixed(1)):'—'}
+    function fmtShort(v){return v>=1e4?(v/1000).toFixed(1)+'k':v>=1000?Math.round(v).toLocaleString('es-BO'):v.toFixed(0)}
+    function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
+    function labelDate(d){if(d.indexOf('-S')>0){var p=d.split('-');return 'S'+p[2].replace('S','')+'·'+['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'][+p[1]-1]+' '+p[0]}var p=d.split('-');var ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return ms[+p[1]-1]+' '+p[0]}
+
+    async function init(){var r=await fetch(DATA_URL);DATA=await r.json();document.getElementById('loader').style.display='none';curIdx=DATA.series.length-1;render()}
+
+    function getStartIdx(){
+      var S=DATA.series;if(curRange==='todo')return 0;var cut;
+      if(curRange==='5a'){var ly=parseInt(S[S.length-1].date.split('-')[0]);cut=(ly-5)+'-01'}
+      else if(curRange==='desde2010')cut='2010-01';
+      else if(curRange==='desde2000')cut='2000-01';
+      else return 0;
+      for(var i=0;i<S.length;i++){if(S[i].date>=cut)return i}return 0;
+    }
+
+    function render(){
+      var app=document.getElementById('app');var S=DATA.series;var m=DATA.metadata;
+      var latest=S[S.length-1];var updTxt=labelDate(m.ultimo_dato);
+      var oroLast=latest.oro||0;var divLast=latest.divisas||0;var rinLast=latest.rin||0;
+      var pctOro=rinLast>0?(oroLast/rinLast*100).toFixed(1):'—';
+      app.innerHTML=
+        '<div class="sec-hd"><div class="sec-title"><span class="accent-bar"></span>Reservas Internacionales</div><div class="sec-sub">Reservas Internacionales Netas y composición (en millones de USD)</div></div>'+
+        '<div class="hz-bar"><span class="hz-lbl">Rango:</span><div class="hz-grp"><button class="hz-btn range-btn'+(curRange==='5a'?' active':'')+'" onclick="setRange(\'5a\')">5A</button><button class="hz-btn range-btn'+(curRange==='desde2010'?' active':'')+'" onclick="setRange(\'desde2010\')">Desde 2010</button><button class="hz-btn range-btn'+(curRange==='desde2000'?' active':'')+'" onclick="setRange(\'desde2000\')">Desde 2000</button><button class="hz-btn range-btn'+(curRange==='todo'?' active':'')+'" onclick="setRange(\'todo\')">Todo</button></div></div>'+
+        '<div class="kpi-grid">'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#059669"></div><div class="kpi-lbl">RIN (Netas)</div><div class="kpi-val" style="color:#059669">$'+fmt(rinLast)+' MM</div><div class="kpi-d '+(m.var_12m_rin_pct>0?'up':'down')+'">'+(m.var_12m_rin_pct>0?'&#9650;':'&#9660;')+' '+Math.abs(m.var_12m_rin_pct).toFixed(1)+'% 12m</div></div>'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#D97706"></div><div class="kpi-lbl">Oro</div><div class="kpi-val" style="color:#D97706">$'+fmt(oroLast)+' MM</div><div class="kpi-d flat">'+pctOro+'% del RIN</div></div>'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#2563EB"></div><div class="kpi-lbl">Divisas</div><div class="kpi-val" style="color:#2563EB">$'+fmt(divLast)+' MM</div><div class="kpi-d '+(divLast<500?'down':'flat')+'">'+(divLast<500?'Nivel crítico':'Operativo')+'</div></div>'+
+          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#8B5CF6"></div><div class="kpi-lbl">DEG + FMI</div><div class="kpi-val" style="color:#8B5CF6">$'+fmt((latest.deg||0)+(latest.fmi||0))+' MM</div><div class="kpi-d flat">Posiciones multilateral</div></div>'+
+        '</div>'+
+        '<div class="main-grid"><div class="chart-card"><div class="chart-ctrl"><div class="tog-grp" id="toggles"></div></div><div id="chart"></div></div>'+
+        '<div class="panel"><div class="panel-hd"><span class="panel-hd-t">Composición de reservas</span><span class="panel-hd-d" id="panel-date">'+updTxt+'</span></div><div class="panel-body" id="panel-body"></div></div></div>'+
+        '<div class="edu-grid">'+
+          eduBox('¿Qué son las RIN?','Las <strong>Reservas Internacionales Netas</strong> son los activos externos del banco central menos sus pasivos de corto plazo con el exterior. Son el respaldo en divisas de la moneda nacional y la primera línea de defensa ante crisis de balanza de pagos.')+
+          eduBox('Composición: Oro vs Divisas','El <strong>oro</strong> es un activo de reserva que se revaloriza con el mercado internacional, pero tiene menor liquidez que las <strong>divisas</strong> (dólares, euros). Bolivia ha incrementado sus reservas de oro, pero las divisas líquidas son las que se usan para intervenir en el mercado cambiario.')+
+          eduBox('¿Cuánto es suficiente?','El FMI recomienda que las reservas cubran al menos <strong>3 meses de importaciones</strong> o el 20% de M2. Bolivia importa ~$10,000 MM/año, por lo que necesita ~$2,500 MM mínimo. Otro criterio es la regla de Guidotti: cubrir la deuda externa de corto plazo al 100%.')+
+        '</div>'+
+        '<div class="source"><span class="source-txt">Fuente: <a href="https://www.bcb.gob.bo/?q=estad-sticas-semanales" target="_blank">BCB — Estadísticas Semanales</a> · Elaboración: Centro de Estudios POPULI · Datos al: '+updTxt+'</span></div>';
+      buildToggles();chart=echarts.init(document.getElementById('chart'));rebuildChart();updatePanel(curIdx);
+      chart.on('click',function(p){if(p.dataIndex!==undefined)updatePanel(getStartIdx()+p.dataIndex)});
+      window.addEventListener('resize',function(){chart.resize()});
+    }
+
+    function eduBox(t,b){return '<div class="edu" onclick="this.classList.toggle(\'open\')"><div class="edu-t">'+t+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="edu-body">'+b+'</div></div>'}
+    function setRange(r){if(curRange===r)return;curRange=r;var rs=['5a','desde2010','desde2000','todo'];document.querySelectorAll('.range-btn').forEach(function(b,i){b.classList.toggle('active',rs[i]===r)});rebuildChart()}
+
+    function buildToggles(){
+      var tg=document.getElementById('toggles');
+      [{key:'rin',label:'RIN (Netas)',c:'#059669'},{key:'oro',label:'Oro',c:'#D97706'},{key:'divisas',label:'Divisas',c:'#2563EB'},{key:'deg',label:'DEG',c:'#8B5CF6',dash:true},{key:'fmi',label:'Pos. FMI',c:'#64748B',dash:true}].forEach(function(s){
+        var btn=document.createElement('button');btn.className='pill';btn.dataset.key=s.key;
+        btn.innerHTML='<span class="lp'+(s.dash?' dashed':'')+'" style="border-color:#fff"></span>'+s.label;
+        btn.addEventListener('click',function(){toggleKey(s.key)});tg.appendChild(btn);
+      });syncPills();
+    }
+    function toggleKey(k){if(activeKeys.has(k)){if(activeKeys.size===1)return;activeKeys.delete(k)}else activeKeys.add(k);syncPills();rebuildChart()}
+    function syncPills(){document.querySelectorAll('.pill').forEach(function(btn){var k=btn.dataset.key;var c=COLORS[k];var on=activeKeys.has(k);btn.style.backgroundColor=on?c:'transparent';btn.style.color=on?'#fff':c;btn.style.borderColor=c;var lp=btn.querySelector('.lp');if(lp)lp.style.borderColor=on?'#fff':c})}
+
+    function rebuildChart(){
+      var si=getStartIdx();var S=DATA.series.slice(si);var d=dk();
+      var labels=S.map(function(x){return labelDate(x.date)});var series=[];
+      var items=[{key:'rin',name:'RIN (Netas)',w:2.5,z:5},{key:'oro',name:'Oro',w:2,z:3},{key:'divisas',name:'Divisas',w:2,z:4},{key:'deg',name:'DEG',w:1.5,z:2,dash:true},{key:'fmi',name:'Pos. FMI',w:1.5,z:1,dash:true}];
+      items.forEach(function(it){
+        if(!activeKeys.has(it.key))return;
+        series.push({name:it.name,type:'line',data:S.map(function(x){return x[it.key]}),symbol:'none',lineStyle:{width:it.w,type:it.dash?'dashed':'solid'},itemStyle:{color:COLORS[it.key]},z:it.z,connectNulls:true,
+          areaStyle:it.key==='rin'?{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#059669'+(d?'20':'12')},{offset:1,color:'#05966900'}])}:undefined
+        });
+      });
+      chart.setOption({grid:{left:60,right:20,top:20,bottom:40},
+        xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#94A3B8',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},
+        yAxis:{type:'value',axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#94A3B8',formatter:function(v){return '$'+fmtShort(v)+'M'}}},
+        tooltip:{trigger:'axis',backgroundColor:'rgba(0,18,25,.96)',borderColor:d?'#2A3A50':'#1A2940',borderWidth:1,padding:14,extraCssText:'border-radius:10px;',textStyle:{fontFamily:'Inter',fontSize:12,color:'#fff'},
+          formatter:function(params){if(!params.length)return'';var html='<div style="font-weight:700;margin-bottom:6px;color:#6EE7B7">'+params[0].axisValue+'</div>';params.forEach(function(p){if(p.value!=null)html+='<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block"></span><span style="font-size:11px">'+p.seriesName+':</span><span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">$'+fmt(p.value)+' MM</span></div>'});return html}},
+        series:series
+      },true);
+    }
+
+    function updatePanel(idx){
+      curIdx=idx;var S=DATA.series;var d=S[idx];
+      document.getElementById('panel-date').textContent=labelDate(d.date);
+      var rinV=d.rin||0,oroV=d.oro||0,divV=d.divisas||0,degV=d.deg||0,fmiV=d.fmi||0;
+      var pctOro=rinV>0?(oroV/rinV*100).toFixed(1):'0';
+      var pctDiv=rinV>0?(divV/rinV*100).toFixed(1):'0';
+      var analysis;
+      if(divV<200)analysis='Divisas líquidas en <strong>$'+fmt(divV)+' MM</strong> — nivel <strong>crítico</strong>. El BCB tiene muy limitada capacidad de intervención cambiaria. El oro ('+pctOro+'% del RIN) no es fácilmente convertible a corto plazo.';
+      else if(divV<500)analysis='Divisas en <strong>$'+fmt(divV)+' MM</strong> — nivel <strong>bajo</strong>. La mayor parte del RIN es oro (<strong>'+pctOro+'%</strong>), que requiere operaciones de mercado para convertirse en liquidez.';
+      else if(rinV<5000)analysis='RIN en <strong>$'+fmt(rinV)+' MM</strong>. Nivel <strong>moderado</strong> con diversificación entre oro ('+pctOro+'%) y divisas ('+pctDiv+'%).';
+      else analysis='RIN en <strong>$'+fmt(rinV)+' MM</strong> — nivel <strong>holgado</strong>. Buen respaldo para la estabilidad cambiaria.';
+      var html='';
+      [{k:'rin',n:'RIN (Netas)',c:COLORS.rin,v:rinV},{k:'oro',n:'Oro',c:COLORS.oro,v:oroV},{k:'divisas',n:'Divisas Líquidas',c:COLORS.divisas,v:divV},{k:'deg',n:'DEG',c:COLORS.deg,v:degV},{k:'fmi',n:'Posición FMI',c:COLORS.fmi,v:fmiV}].forEach(function(s){
+        html+='<div class="pb"><div class="pb-lbl" style="color:'+s.c+';background:'+s.c+'14;border-left-color:'+s.c+'">'+s.n+'</div><div class="pb-val" style="color:'+s.c+'">$'+fmt(s.v)+' MM USD</div></div>';
+      });
+      html+='<div class="ctx"><p>'+analysis+'</p></div>';
+      document.getElementById('panel-body').innerHTML=html;
+    }
+
+    window.addEventListener('message',function(e){if(e.data&&e.data.theme){document.documentElement.setAttribute('data-theme',e.data.theme);if(chart)rebuildChart()}});
+    init();
+  </script>
+</body>
+</html>
