@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Suficiencia de Reservas (ARA-FMI) · Populi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root{--populi:#8B1A1A;--populi-light:#C00000;--cream:#F5EFE0;--brown-dark:#3D2B1F;--navy:#0D1B2A;--navy-light:#1A2940;--slate:#475569;--slate-light:#64748B;--warm-white:#FAF8F3;--light-gray:#F1EDE5;--border:#E2DDD3;--dark-border:#2A3A50;--bg:var(--warm-white);--card:#FFFFFF;--text:var(--brown-dark);--muted:var(--slate-light);--accent:#059669;--radius:12px}
+    [data-theme="dark"]{--bg:#080808;--card:#141414;--text:#E2E8F0;--muted:#64748B;--border:#2A3A50;--light-gray:#1A1A1A;--cream:#1A2940}
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px 16px}
+    .sec-hd{margin-bottom:16px}.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:1.55rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px;line-height:1.15}[data-theme="dark"] .sec-title{color:#fff}.accent-bar{width:4px;height:26px;background:var(--accent);border-radius:2px;flex-shrink:0}.sec-sub{font-size:.78rem;color:var(--muted);padding-left:14px;margin-top:2px}[data-theme="dark"] .sec-sub{color:rgba(255,255,255,.4)}
+    .hz-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:14px;flex-wrap:wrap}.hz-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.hz-grp{display:flex;gap:0;background:var(--light-gray);border-radius:8px;padding:2px;border:1px solid var(--border)}[data-theme="dark"] .hz-grp{background:#1A1A1A;border-color:var(--dark-border)}.hz-btn{padding:5px 14px;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}.hz-btn:hover{color:var(--text)}.hz-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(5,150,105,.25)}
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}@media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}.kpi{background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden;cursor:pointer;transition:all .2s}.kpi:hover{transform:translateY(-1px)}.kpi.selected{border-color:var(--accent);box-shadow:0 0 0 2px rgba(5,150,105,.2)}[data-theme="dark"] .kpi{background:#141414;border-color:var(--dark-border)}[data-theme="dark"] .kpi.selected{border-color:var(--accent)}.kpi-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}[data-theme="dark"] .kpi-lbl{color:rgba(255,255,255,.4)}.kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}.kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}.kpi-d.ok{background:rgba(5,150,105,.08);color:#059669}.kpi-d.bajo{background:rgba(199,30,29,.08);color:#C71E1D}[data-theme="dark"] .kpi-d.ok{background:rgba(5,150,105,.15)}[data-theme="dark"] .kpi-d.bajo{background:rgba(199,30,29,.15)}.kpi-thr{font-size:.58rem;color:var(--muted);margin-top:2px}
+    .main-grid{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:540px;gap:16px}@media(max-width:900px){.main-grid{grid-template-columns:1fr;grid-template-rows:480px auto}}@media(min-width:1100px){.main-grid{grid-template-rows:580px}}
+    .chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;height:100%;overflow:hidden}[data-theme="dark"] .chart-card{background:#141414;border-color:var(--dark-border)}.chart-ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.tog-grp{display:flex;gap:6px;flex-wrap:wrap}.pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border:1.5px solid;border-radius:8px;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;transition:all .2s}.pill:hover{transform:translateY(-1px)}.lp{width:16px;height:0;border-top:2.5px solid;border-radius:1px}.lp.dashed{border-top-style:dashed}#chart{flex:1;min-height:0}
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:100%}[data-theme="dark"] .panel{background:#141414;border-color:var(--dark-border)}.panel-hd{background:#064E3B;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .panel-hd{background:#022C22}.panel-hd-t{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8)}.panel-hd-d{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:600;color:#34D399;background:rgba(52,211,153,.15);padding:2px 8px;border-radius:5px}.panel-body{padding:14px;flex:1;overflow-y:auto}.pb{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}[data-theme="dark"] .pb{border-color:var(--dark-border)}.pb:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.pb-lbl{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;padding:2px 9px 2px 6px;border-radius:4px;border-left:3px solid}.pb-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:3px}.pb-desc{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .pb-desc{color:rgba(255,255,255,.45)}.pb-desc strong{color:var(--navy)}[data-theme="dark"] .pb-desc strong{color:#E2E8F0}.ctx{background:var(--cream);border-radius:6px;padding:8px 10px;border-left:3px solid var(--accent);margin-top:6px}[data-theme="dark"] .ctx{background:var(--navy-light)}.ctx p{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .ctx p{color:#94A3B8}.ctx p strong{color:var(--navy)}[data-theme="dark"] .ctx p strong{color:#E2E8F0}
+    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px}.edu{background:var(--cream);border-radius:8px;padding:10px 12px;border-left:3px solid var(--accent);cursor:pointer;transition:all .2s}[data-theme="dark"] .edu{background:var(--navy-light)}.edu:hover{transform:translateY(-1px)}.edu-t{font-size:.7rem;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .edu-t{color:#E2E8F0}.edu-t svg{width:14px;height:14px;transition:transform .2s;color:var(--muted)}.edu.open .edu-t svg{transform:rotate(180deg)}.edu-body{display:none;font-size:.68rem;line-height:1.6;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}[data-theme="dark"] .edu-body{color:#94A3B8;border-color:var(--dark-border)}.edu.open .edu-body{display:block}
+    .source{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 2px}.source-txt{font-size:.6rem;color:var(--muted)}.source-txt a{color:var(--populi);font-weight:600;text-decoration:none}.source-txt a:hover{text-decoration:underline}
+    .loading{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:12px;color:var(--muted)}.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app">
+    <div class="loading" id="loader"><div class="spinner"></div><span style="font-size:.8rem">Cargando indicadores ARA-FMI...</span></div>
+  </div>
+  <script>
+    var DATA_URL='../data/ara_fmi.json';
+    var DATA,chart;
+
+    var IND_KEYS=['Reserves_ARA','Reserves_M2','Reserves_STD','Reserves_M'];
+    var IND_SHORT={Reserves_ARA:'ARA General',Reserves_M2:'Reservas/M2',Reserves_STD:'Reservas/Deuda CP',Reserves_M:'Meses Import.'};
+    var IND_COLORS={Reserves_ARA:'#C00000',Reserves_M2:'#2563EB',Reserves_STD:'#D97706',Reserves_M:'#059669'};
+
+    var COUNTRY_COLORS={
+      Bolivia:'#C00000',Chile:'#059669',Peru:'#D97706',Colombia:'#2563EB',
+      Brazil:'#8B5CF6',Paraguay:'#64748B',Argentina:'#EC4899',Uruguay:'#14B8A6',Ecuador:'#F59E0B'
+    };
+    var COUNTRY_SHORT={Bolivia:'BOL',Chile:'CHL',Peru:'PER',Colombia:'COL',Brazil:'BRA',Paraguay:'PRY',Argentina:'ARG',Uruguay:'URY',Ecuador:'ECU'};
+
+    var curInd='Reserves_ARA';
+    var activeCountries=new Set(['Bolivia','Chile','Peru','Colombia','Argentina']);
+
+    function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
+    function fmt(v){return v!=null?v.toFixed(2):'--'}
+
+    async function init(){var r=await fetch(DATA_URL);DATA=await r.json();document.getElementById('loader').style.display='none';render()}
+
+    function render(){
+      var app=document.getElementById('app');var m=DATA.metadata;var inds=DATA.indicators;var bl=m.bolivia_ultimo;
+
+      var kpiHtml='';
+      for(var i=0;i<IND_KEYS.length;i++){
+        var k=IND_KEYS[i];var meta=inds[k];var bv=bl[k];
+        var val=bv?bv.value:null;var yr=bv?bv.year:'--';
+        var ok=val!==null&&val>=meta.threshold;
+        var color=IND_COLORS[k];
+        kpiHtml+='<div class="kpi'+(k===curInd?' selected':'')+'" data-ind="'+k+'" onclick="setInd(\''+k+'\')">'+
+          '<div style="position:absolute;top:0;left:0;width:100%;height:3px;background:'+color+'"></div>'+
+          '<div class="kpi-lbl">'+IND_SHORT[k]+'</div>'+
+          '<div class="kpi-val" style="color:'+color+'">'+fmt(val)+'</div>'+
+          '<div class="kpi-d '+(ok?'ok':'bajo')+'">'+(ok?'&#10003; Adecuado':'&#9660; Insuficiente')+'</div>'+
+          '<div class="kpi-thr">Umbral: '+meta.threshold+(k==='Reserves_M'?' meses':k==='Reserves_M2'?' (20%)':'x')+' ('+yr+')</div>'+
+        '</div>';
+      }
+
+      app.innerHTML=
+        '<div class="sec-hd"><div class="sec-title"><span class="accent-bar"></span>Suficiencia de Reservas (ARA-FMI)</div><div class="sec-sub">Assessing Reserve Adequacy &mdash; Comparativa regional &middot; '+m.primer_dato+'&ndash;'+m.ultimo_dato+'</div></div>'+
+        '<div class="kpi-grid">'+kpiHtml+'</div>'+
+        '<div class="main-grid"><div class="chart-card"><div class="chart-ctrl"><div class="tog-grp" id="toggles"></div></div><div id="chart"></div></div>'+
+        '<div class="panel"><div class="panel-hd"><span class="panel-hd-t">Bolivia &mdash; Diagnóstico ARA</span><span class="panel-hd-d">Último dato disponible</span></div><div class="panel-body" id="panel-body"></div></div></div>'+
+        '<div class="edu-grid">'+
+          eduBox('Metodología ARA del FMI','La métrica <strong>Assessing Reserve Adequacy</strong> (ARA) del FMI es un indicador compuesto que pondera cuatro fuentes de riesgo: exportaciones, dinero amplio (M2), deuda externa de corto plazo y otros pasivos. Un valor <strong>&ge;1</strong> indica reservas adecuadas para enfrentar choques externos sin necesidad de ajustes abruptos en política cambiaria o comercial.')+
+          eduBox('Reservas / M2 (dinero amplio)','Mide qué proporción de los depósitos y billetes en circulación está respaldada por reservas internacionales. El estándar mínimo del FMI es <strong>20% (0.2)</strong>. Cuando este ratio cae, el banco central pierde capacidad para defender la paridad cambiaria ante corridas bancarias o fuga de capitales, porque M2 mide el dinero que podría convertirse rápidamente en demanda de dólares.')+
+          eduBox('Regla de Guidotti: Reservas / Deuda CP','La <strong>regla de Guidotti-Greenspan</strong> establece que las reservas deben cubrir al menos el 100% de la deuda externa de corto plazo (vencimientos &le;1 año). Un ratio <strong>&ge;1</strong> significa que el país puede pagar todos sus compromisos externos inmediatos sin recurrir a nuevos préstamos. Bolivia recuperó este umbral en 2025 tras caer por debajo en 2024.')+
+          eduBox('Meses de importación','Métrica clásica de cobertura: cuántos meses de importaciones puede financiar el país solo con reservas. El nivel <strong>prudente es &ge;3 meses</strong>. Bolivia pasó de más de 15 meses de cobertura en 2012-2015 a apenas 2 meses en 2024, reflejando el agotamiento de reservas líquidas frente a una economía que sigue importando a ritmo elevado.')+
+          eduBox('Bolivia en contexto regional','Bolivia y Argentina son los dos países de Sudamérica con los indicadores ARA más deteriorados. Mientras Perú, Colombia y Paraguay mantienen ratios por encima de los umbrales recomendados, Bolivia enfrenta una situación crítica en 3 de los 4 indicadores. La pérdida de reservas refleja años de déficits gemelos (fiscal y externo) financiados con activos del banco central.')+
+        '</div>'+
+        '<div class="source"><span class="source-txt">Fuente: <a href="https://www.imf.org/external/datamapper/datasets/ARA" target="_blank">FMI &mdash; Assessing Reserve Adequacy (ARA)</a> &middot; Elaboración: Centro de Estudios POPULI</span></div>';
+
+      buildToggles();
+      chart=echarts.init(document.getElementById('chart'));
+      rebuildChart();
+      updatePanel();
+      window.addEventListener('resize',function(){chart.resize()});
+    }
+
+    function eduBox(t,b){return '<div class="edu" onclick="this.classList.toggle(\'open\')"><div class="edu-t">'+t+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="edu-body">'+b+'</div></div>'}
+
+    function setInd(k){
+      if(curInd===k)return;curInd=k;
+      document.querySelectorAll('.kpi').forEach(function(el){el.classList.toggle('selected',el.dataset.ind===k)});
+      rebuildChart();
+    }
+
+    function buildToggles(){
+      var tg=document.getElementById('toggles');
+      var countries=DATA.metadata.paises;
+      countries.forEach(function(name){
+        var c=COUNTRY_COLORS[name];var isBol=name==='Bolivia';
+        var btn=document.createElement('button');btn.className='pill';btn.dataset.country=name;
+        btn.innerHTML='<span class="lp'+(isBol?'':' dashed')+'" style="border-color:#fff"></span>'+(COUNTRY_SHORT[name]||name);
+        btn.addEventListener('click',function(){toggleCountry(name)});
+        tg.appendChild(btn);
+      });
+      syncPills();
+    }
+
+    function toggleCountry(name){
+      if(name==='Bolivia')return;
+      if(activeCountries.has(name)){if(activeCountries.size<=1)return;activeCountries.delete(name)}
+      else activeCountries.add(name);
+      syncPills();rebuildChart();
+    }
+
+    function syncPills(){
+      document.querySelectorAll('.pill').forEach(function(btn){
+        var name=btn.dataset.country;var c=COUNTRY_COLORS[name];var on=activeCountries.has(name);
+        btn.style.backgroundColor=on?c:'transparent';btn.style.color=on?'#fff':c;btn.style.borderColor=c;
+        var lp=btn.querySelector('.lp');if(lp)lp.style.borderColor=on?'#fff':c;
+      });
+    }
+
+    function rebuildChart(){
+      var d=dk();var indMeta=DATA.indicators[curInd];var seriesData=DATA.series[curInd];
+      var allYears=[];
+      for(var country in seriesData){
+        seriesData[country].forEach(function(pt){if(allYears.indexOf(pt.year)<0)allYears.push(pt.year)});
+      }
+      allYears.sort(function(a,b){return a-b});
+      var labels=allYears.map(function(y){return String(y)});
+
+      var echSeries=[];
+      activeCountries.forEach(function(name){
+        var pts=seriesData[name]||[];
+        var map={};pts.forEach(function(p){map[p.year]=p.value});
+        var values=allYears.map(function(y){return map[y]!==undefined?map[y]:null});
+        var isBol=name==='Bolivia';
+        echSeries.push({
+          name:name,type:'line',data:values,smooth:true,
+          symbol:isBol?'circle':'none',symbolSize:isBol?5:0,
+          lineStyle:{width:isBol?3:1.5,type:isBol?'solid':'dashed'},
+          itemStyle:{color:COUNTRY_COLORS[name]},
+          z:isBol?10:1,
+          connectNulls:true
+        });
+      });
+
+      echSeries.push({
+        name:'Umbral',type:'line',
+        markLine:{
+          silent:true,symbol:'none',
+          lineStyle:{color:d?'#EF4444':'#DC2626',width:2,type:'dashed'},
+          label:{
+            show:true,position:'insideEndTop',
+            formatter:indMeta.threshold+(curInd==='Reserves_M'?' meses':'x'),
+            color:d?'#EF4444':'#DC2626',fontSize:11,fontWeight:700,fontFamily:'JetBrains Mono'
+          },
+          data:[{yAxis:indMeta.threshold}]
+        },
+        data:[]
+      });
+
+      var opt={
+        backgroundColor:'transparent',
+        tooltip:{
+          trigger:'axis',backgroundColor:d?'#1E293B':'#fff',borderColor:d?'#334155':'#E2DDD3',
+          textStyle:{color:d?'#E2E8F0':'#3D2B1F',fontSize:12,fontFamily:'Inter'},
+          formatter:function(params){
+            var out='<div style="font-weight:700;margin-bottom:6px;font-size:13px">'+params[0].axisValueLabel+'</div>';
+            params.sort(function(a,b){return(b.value||0)-(a.value||0)});
+            params.forEach(function(p){
+              if(p.value==null||p.seriesName==='Umbral')return;
+              var isBol=p.seriesName==='Bolivia';
+              out+='<div style="display:flex;justify-content:space-between;gap:16px;font-size:12px;'+(isBol?'font-weight:700':'')+'">';
+              out+='<span>'+p.marker+' '+p.seriesName+'</span>';
+              out+='<span style="font-family:JetBrains Mono;font-weight:600">'+p.value.toFixed(2)+'</span></div>';
+            });
+            out+='<div style="margin-top:4px;font-size:10px;color:'+(d?'#64748B':'#94A3B8')+'">Umbral: '+indMeta.threshold+'</div>';
+            return out;
+          }
+        },
+        grid:{left:50,right:20,top:20,bottom:32},
+        xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#334155':'#CBD5E1'}},axisLabel:{color:d?'#94A3B8':'#64748B',fontSize:11,fontFamily:'JetBrains Mono',interval:function(i){return allYears[i]%5===0}},axisTick:{show:false}},
+        yAxis:{type:'value',axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(255,255,255,.06)':'rgba(0,0,0,.06)'}},axisLabel:{color:d?'#94A3B8':'#64748B',fontSize:11,fontFamily:'JetBrains Mono',formatter:function(v){return v.toFixed(1)}}},
+        series:echSeries,
+        animation:true,animationDuration:600
+      };
+      chart.setOption(opt,true);
+    }
+
+    function updatePanel(){
+      var body=document.getElementById('panel-body');var bl=DATA.metadata.bolivia_ultimo;var inds=DATA.indicators;
+      var html='';
+
+      for(var i=0;i<IND_KEYS.length;i++){
+        var k=IND_KEYS[i];var meta=inds[k];var bv=bl[k];
+        var val=bv?bv.value:null;var yr=bv?bv.year:'--';
+        var ok=val!==null&&val>=meta.threshold;
+        var color=ok?'#059669':'#C71E1D';var bgColor=ok?'rgba(5,150,105,.06)':'rgba(199,30,29,.06)';
+
+        var series=DATA.series[k]['Bolivia']||[];
+        var peak=null;series.forEach(function(p){if(!peak||p.value>peak.value)peak=p});
+        var peakTxt=peak?('Máximo: '+peak.value.toFixed(2)+' ('+peak.year+')'):'';
+
+        var desc='';
+        if(k==='Reserves_ARA'){
+          desc=val<1?'Bolivia no alcanza el nivel de reservas adecuado según la métrica compuesta del FMI. Esto implica vulnerabilidad ante choques externos.':'Reservas adecuadas según el indicador compuesto del FMI.';
+        }else if(k==='Reserves_M2'){
+          desc=val<0.2?'Solo el '+(val*100).toFixed(1)+'% del dinero amplio está respaldado por reservas. Muy por debajo del mínimo recomendado de 20%, lo que limita la capacidad de defender el tipo de cambio.':'Respaldo adecuado del dinero amplio con reservas internacionales.';
+        }else if(k==='Reserves_STD'){
+          desc=val<1?'Las reservas no cubren la totalidad de la deuda externa de corto plazo, violando la regla de Guidotti.':'Las reservas cubren la deuda externa de corto plazo, cumpliendo la regla de Guidotti-Greenspan.';
+        }else if(k==='Reserves_M'){
+          desc=val<3?'Con '+val.toFixed(1)+' meses de cobertura, Bolivia está por debajo del nivel prudente de 3 meses. El margen para financiar importaciones con reservas es muy limitado.':'Cobertura de importaciones por encima del nivel prudente de 3 meses.';
+        }
+
+        html+='<div class="pb">'+
+          '<div class="pb-lbl" style="background:'+bgColor+';color:'+color+';border-color:'+color+'">'+IND_SHORT[k]+'</div>'+
+          '<div class="pb-val" style="color:'+color+'">'+fmt(val)+'<span style="font-size:.65rem;color:var(--muted);font-weight:500"> / '+meta.threshold+(k==='Reserves_M'?' meses':'x')+' ('+yr+')</span></div>'+
+          '<div class="pb-desc">'+desc+'</div>'+
+          (peakTxt?'<div class="ctx"><p><strong>'+peakTxt+'</strong></p></div>':'')+
+        '</div>';
+      }
+
+      html+='<div class="pb" style="border-bottom:none">'+
+        '<div class="pb-lbl" style="background:rgba(139,26,26,.06);color:var(--populi);border-color:var(--populi)">Diagnóstico</div>'+
+        '<div class="pb-desc" style="margin-top:4px">Bolivia presenta insuficiencia de reservas en <strong>3 de 4 indicadores ARA</strong>. La tendencia descendente desde 2012 refleja el agotamiento del modelo de financiamiento con reservas del banco central. Solo el indicador de deuda de corto plazo se recuperó por encima del umbral en 2025.</div>'+
+      '</div>';
+
+      body.innerHTML=html;
+    }
+
+    window.addEventListener('message',function(e){
+      if(e.data&&e.data.type==='theme-change'){
+        document.documentElement.setAttribute('data-theme',e.data.theme);
+        if(chart){rebuildChart()}
+      }
+    });
+    new MutationObserver(function(){if(chart)rebuildChart()}).observe(document.documentElement,{attributes:true,attributeFilter:['data-theme']});
+
+    init();
+  </script>
+</body>
+</html>
