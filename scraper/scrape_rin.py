@@ -2,6 +2,10 @@
 Scraper: Reservas Internacionales (RIN/RIB)
 Fuente: BCB — Estadísticas Semanales
 Genera: data/reservas_rin.json
+
+El BCB publica un Excel por semana en:
+  https://www.bcb.gob.bo/webdocs/05_estadisticassemanales/Semanal%20{SEMANA}_{AÑO}.xlsx
+El scraper busca automáticamente la semana más reciente disponible.
 """
 
 import json, os, sys, datetime, time
@@ -9,7 +13,7 @@ from pathlib import Path
 import openpyxl
 import requests
 
-URL = "https://www.bcb.gob.bo/webdocs/publicacionesbcb/estadisticasemanales/Estad%C3%ADstica%20Semanal.xlsx"
+BASE_URL = "https://www.bcb.gob.bo/webdocs/05_estadisticassemanales/Semanal%20{week}_{year}.xlsx"
 OUT_DIR = Path(__file__).resolve().parent.parent / "data"
 XLSX_PATH = Path(__file__).resolve().parent / "bcb_raw" / "semanal.xlsx"
 
@@ -23,12 +27,48 @@ ROW_MAP = {
 }
 
 
+def find_latest_url():
+    now = datetime.date.today()
+    year = now.year
+    week = now.isocalendar()[1]
+
+    suffixes = ["", "_0", "%20(1)"]
+
+    for w in range(week, max(week - 6, 0), -1):
+        for suffix in suffixes:
+            url = BASE_URL.format(week=w, year=year) .replace(".xlsx", f"{suffix}.xlsx")
+            try:
+                r = requests.head(url, timeout=15, allow_redirects=True)
+                if r.status_code == 200:
+                    print(f"  Encontrado: Semana {w}/{year}")
+                    return url
+            except:
+                continue
+
+    if now.month == 1 and week <= 2:
+        for w in range(53, 48, -1):
+            url = BASE_URL.format(week=w, year=year-1)
+            try:
+                r = requests.head(url, timeout=15, allow_redirects=True)
+                if r.status_code == 200:
+                    return url
+            except:
+                continue
+
+    return None
+
+
 def download():
     XLSX_PATH.parent.mkdir(parents=True, exist_ok=True)
-    print(f"Descargando {URL}")
+    url = find_latest_url()
+    if not url:
+        print("  No se encontró ningún Excel semanal reciente del BCB")
+        sys.exit(1)
+
+    print(f"Descargando {url}")
     for attempt in range(3):
         try:
-            r = requests.get(URL, timeout=90)
+            r = requests.get(url, timeout=90)
             r.raise_for_status()
             XLSX_PATH.write_bytes(r.content)
             print(f"  -> {XLSX_PATH} ({len(r.content)//1024} KB)")
