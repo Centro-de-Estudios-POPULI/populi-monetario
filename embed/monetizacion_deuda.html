@@ -114,9 +114,16 @@
           areaStyle:it.key==='total_pct'?{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#C71E1D'+(d?'18':'0C')},{offset:1,color:'#C71E1D00'}])}:it.key==='rib_pct'?{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#059669'+(d?'18':'0C')},{offset:1,color:'#05966900'}])}:undefined
         });
       });
+      var hasNeg=S.some(function(x){return x.total_pct<0||x.gc_pct<0});
+      if(series.length>0){
+        var marks=[];
+        if(hasNeg)marks.push({yAxis:0,lineStyle:{color:d?'#475569':'#94A3B8',width:1.5,type:'solid'},label:{formatter:'0%',position:'insideEndTop',fontSize:9,fontFamily:'JetBrains Mono',color:d?'#475569':'#94A3B8'}});
+        marks.push({yAxis:50,lineStyle:{color:d?'#7F1D1D':'#FECACA',width:1,type:'dashed'},label:{formatter:'50% — Dominancia fiscal',position:'insideEndTop',fontSize:9,fontFamily:'Inter',fontWeight:600,color:d?'#FCA5A5':'#B91C1C'}});
+        series[0].markLine={silent:true,symbol:'none',data:marks};
+      }
       chart.setOption({grid:{left:55,right:20,top:20,bottom:40},
         xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#94A3B8',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},
-        yAxis:{type:'value',min:0,max:100,axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#94A3B8',formatter:function(v){return v+'%'}}},
+        yAxis:{type:'value',axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#94A3B8',formatter:function(v){return v+'%'}}},
         tooltip:{trigger:'axis',backgroundColor:'rgba(0,18,25,.96)',borderColor:d?'#2A3A50':'#1A2940',borderWidth:1,padding:14,extraCssText:'border-radius:10px;',textStyle:{fontFamily:'Inter',fontSize:12,color:'#fff'},
           formatter:function(params){if(!params.length)return'';var html='<div style="font-weight:700;margin-bottom:6px;color:#FCA5A5">'+params[0].axisValue+'</div>';params.forEach(function(p){if(p.value!=null)html+='<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block"></span><span style="font-size:11px">'+p.seriesName+':</span><span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">'+p.value.toFixed(1)+'%</span></div>'});return html}},
         series:series
@@ -133,7 +140,7 @@
       if(d.total_pct>70)analysis='El crédito al SPNF absorbe <strong>'+d.total_pct.toFixed(1)+'%</strong> del activo del BCB — <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>'+d.rib_pct.toFixed(1)+'%</strong>. El banco central está funcionalmente subordinado al fisco.';
       else if(d.total_pct>50)analysis='<strong>'+d.total_pct.toFixed(1)+'%</strong> del activo es crédito al gobierno. <strong>Dominancia fiscal clara</strong>: la política monetaria depende de las necesidades de financiamiento del Estado.';
       else if(d.total_pct>0)analysis='Crédito neto al SPNF en <strong>'+d.total_pct.toFixed(1)+'%</strong> del activo. Nivel <strong>moderado</strong> de monetización con reservas en <strong>'+d.rib_pct.toFixed(1)+'%</strong>.';
-      else analysis='Crédito neto <strong>negativo</strong>: el gobierno tiene más depósitos que deudas en el BCB. <strong>Holgura fiscal</strong>.';
+      else analysis='Crédito neto <strong>negativo ('+d.total_pct.toFixed(1)+'%)</strong>: el gobierno tiene más depósitos que préstamos en el BCB — es <strong>acreedor neto</strong> del banco central. Situación post-reformas estructurales de 1985, donde el Estado mantenía superávits y depósitos que excedían su endeudamiento con el BCB.';
       html+='<div class="ctx"><p>'+analysis+'</p></div>';
       document.getElementById('panel-body').innerHTML=html;
     }
