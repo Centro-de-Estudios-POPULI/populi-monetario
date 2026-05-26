@@ -23,13 +23,11 @@ jobs:
 
       - name: Ejecutar scrapers
         run: |
-          echo "═══ Scraper Sector Monetario BCB ═══"
           python scraper/scrape_emision.py
           python scraper/scrape_agregados.py
           python scraper/scrape_rin.py
           python scraper/scrape_monetizacion.py
           python scraper/scrape_balance.py
-          echo "═══ Todos los scrapers completados ═══"
 
       - name: Commit y push si hay cambios
         run: |
@@ -43,9 +41,15 @@ jobs:
             git push
           fi
 
-      - name: Deploy to Cloudflare Pages
-        uses: cloudflare/wrangler-action@v3
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
         with:
-          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy . --project-name=populi-monetario
+          node-version: '22'
+
+      - name: Deploy to Cloudflare Pages
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          npm install -g wrangler
+          wrangler pages deploy . --project-name=populi-monetario
