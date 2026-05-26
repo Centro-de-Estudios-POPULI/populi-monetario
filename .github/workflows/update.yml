@@ -24,22 +24,11 @@ jobs:
       - name: Ejecutar scrapers
         run: |
           echo "═══ Scraper Sector Monetario BCB ═══"
-          echo ""
-          echo "1. Emisión Monetaria..."
           python scraper/scrape_emision.py
-          echo ""
-          echo "2. Agregados Monetarios..."
           python scraper/scrape_agregados.py
-          echo ""
-          echo "3. Reservas Internacionales..."
           python scraper/scrape_rin.py
-          echo ""
-          echo "4. Monetización de Deuda..."
           python scraper/scrape_monetizacion.py
-          echo ""
-          echo "5. Balance del BCB (Activo + Pasivo)..."
           python scraper/scrape_balance.py
-          echo ""
           echo "═══ Todos los scrapers completados ═══"
 
       - name: Commit y push si hay cambios
@@ -53,3 +42,10 @@ jobs:
             git commit -m "data: actualización automática sector monetario $(date -u +%Y-%m-%d)"
             git push
           fi
+
+      - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy . --project-name=populi-monetario
