@@ -5,12 +5,12 @@
     "fuente": "Banco Central de Bolivia (BCB)",
     "unidad": "Millones de Bs",
     "frecuencia": "Mensual",
-    "ultimo_dato": "2026-03",
+    "ultimo_dato": "2026-04",
     "primer_dato": "1977-12",
-    "observaciones": 459,
-    "emision_mm": 100365.19,
-    "dep_sp_mm": 34886.52,
-    "dep_bancarios_mm": 70209.05
+    "observaciones": 460,
+    "emision_mm": 99056.49,
+    "dep_sp_mm": 35658.84,
+    "dep_bancarios_mm": 70938.41
   },
   "series": [
     {
@@ -6897,6 +6897,21 @@
       "oblig_ext_mlp": 8896.35,
       "otras_ctas": 21716.46,
       "capital": 14199.74
+    },
+    {
+      "date": "2026-04",
+      "emision": 99056.49,
+      "dep_bancarios": 70938.41,
+      "oblig_ext_cp": 0.0,
+      "dep_sp_total": 35658.84,
+      "dep_gc": 17558.45,
+      "dep_ss": 7549.76,
+      "dep_gl": 7151.37,
+      "dep_ep": 3399.26,
+      "dep_oi": 5.21,
+      "oblig_ext_mlp": 8828.37,
+      "otras_ctas": 22361.18,
+      "capital": 14205.14
     }
   ]
 }

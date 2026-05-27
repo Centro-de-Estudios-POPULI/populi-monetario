@@ -5,14 +5,14 @@
     "fuente": "Banco Central de Bolivia (BCB)",
     "unidad": "Millones de Bs",
     "frecuencia": "Mensual",
-    "ultimo_dato": "2026-03",
+    "ultimo_dato": "2026-04",
     "primer_dato": "1987-12",
-    "observaciones": 449,
-    "ultimo_m4_mm": 316540.72,
-    "var_12m_m1_pct": 10.7,
-    "var_12m_m2_pct": 13.6,
-    "var_12m_m3_pct": 9.7,
-    "var_12m_m4_pct": 9.5
+    "observaciones": 450,
+    "ultimo_m4_mm": 316940.8,
+    "var_12m_m1_pct": 11.9,
+    "var_12m_m2_pct": 14.5,
+    "var_12m_m3_pct": 10.5,
+    "var_12m_m4_pct": 10.4
   },
   "series": [
     {
@@ -3605,7 +3605,15 @@
       "m1": 127350.66,
       "m2": 204574.83,
       "m3": 315114.67,
-      "m4": 316540.72
+      "m4": 316540.16
+    },
+    {
+      "date": "2026-04",
+      "billetes": 86648.93,
+      "m1": 126052.61,
+      "m2": 204714.59,
+      "m3": 315544.37,
+      "m4": 316940.8
     }
   ]
 }
