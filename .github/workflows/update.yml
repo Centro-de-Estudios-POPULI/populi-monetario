@@ -24,25 +24,31 @@ jobs:
       - name: Ejecutar scrapers
         run: |
           echo "═══ Scraper Sector Monetario BCB ═══"
+          FAILED=""
+          run_scraper () {
+            echo ""
+            echo "$1"
+            if ! python "$2"; then
+              echo "::warning::Falló $2"
+              FAILED="$FAILED $2"
+            fi
+          }
+          # Cada scraper corre aislado: un fallo (p.ej. 403 del WAF del BCB en
+          # una de las descargas) no impide que los demás actualicen sus datos.
+          run_scraper "1. Emisión Monetaria..."                 scraper/scrape_emision.py
+          run_scraper "2. Agregados Monetarios..."              scraper/scrape_agregados.py
+          run_scraper "3. Reservas Internacionales..."          scraper/scrape_rin.py
+          run_scraper "4. Monetización de Deuda..."             scraper/scrape_monetizacion.py
+          run_scraper "5. Balance del BCB (Activo + Pasivo)..." scraper/scrape_balance.py
           echo ""
-          echo "1. Emisión Monetaria..."
-          python scraper/scrape_emision.py
-          echo ""
-          echo "2. Agregados Monetarios..."
-          python scraper/scrape_agregados.py
-          echo ""
-          echo "3. Reservas Internacionales..."
-          python scraper/scrape_rin.py
-          echo ""
-          echo "4. Monetización de Deuda..."
-          python scraper/scrape_monetizacion.py
-          echo ""
-          echo "5. Balance del BCB (Activo + Pasivo)..."
-          python scraper/scrape_balance.py
-          echo ""
+          if [ -n "$FAILED" ]; then
+            echo "═══ Scrapers con error:$FAILED ═══"
+            exit 1
+          fi
           echo "═══ Todos los scrapers completados ═══"
 
       - name: Commit y push si hay cambios
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"

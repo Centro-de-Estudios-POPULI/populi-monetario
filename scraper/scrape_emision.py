@@ -13,13 +13,23 @@ URL = "https://www.bcb.gob.bo/webdocs/sector_monetario/Indicadores%20Monetarios/
 OUT_DIR = Path(__file__).resolve().parent.parent / "data"
 XLSX_PATH = Path(__file__).resolve().parent / "bcb_raw" / "destino_circulante.xlsx"
 
+# El WAF del BCB puede rechazar (403) el User-Agent por defecto de python-requests.
+# Emulamos un navegador para reducir los bloqueos.
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,"
+              "application/vnd.ms-excel,*/*",
+    "Referer": "https://www.bcb.gob.bo/",
+}
+
 
 def download():
     XLSX_PATH.parent.mkdir(parents=True, exist_ok=True)
     print(f"Descargando {URL}")
     for attempt in range(3):
         try:
-            r = requests.get(URL, timeout=90)
+            r = requests.get(URL, headers=HEADERS, timeout=90)
             r.raise_for_status()
             XLSX_PATH.write_bytes(r.content)
             print(f"  -> {XLSX_PATH} ({len(r.content)//1024} KB)")

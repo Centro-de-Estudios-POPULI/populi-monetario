@@ -26,6 +26,16 @@ ROW_MAP = {
     "rin": 81,
 }
 
+# El WAF del BCB puede rechazar (403) el User-Agent por defecto de python-requests.
+# Emulamos un navegador para reducir los bloqueos.
+HEADERS = {
+    "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
+                  "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,"
+              "application/vnd.ms-excel,*/*",
+    "Referer": "https://www.bcb.gob.bo/",
+}
+
 
 def find_latest_url():
     now = datetime.date.today()
@@ -38,7 +48,7 @@ def find_latest_url():
         for suffix in suffixes:
             url = BASE_URL.format(week=w, year=year) .replace(".xlsx", f"{suffix}.xlsx")
             try:
-                r = requests.head(url, timeout=15, allow_redirects=True)
+                r = requests.head(url, headers=HEADERS, timeout=15, allow_redirects=True)
                 if r.status_code == 200:
                     print(f"  Encontrado: Semana {w}/{year}")
                     return url
@@ -49,7 +59,7 @@ def find_latest_url():
         for w in range(53, 48, -1):
             url = BASE_URL.format(week=w, year=year-1)
             try:
-                r = requests.head(url, timeout=15, allow_redirects=True)
+                r = requests.head(url, headers=HEADERS, timeout=15, allow_redirects=True)
                 if r.status_code == 200:
                     return url
             except:
@@ -68,7 +78,7 @@ def download():
     print(f"Descargando {url}")
     for attempt in range(3):
         try:
-            r = requests.get(url, timeout=90)
+            r = requests.get(url, headers=HEADERS, timeout=90)
             r.raise_for_status()
             XLSX_PATH.write_bytes(r.content)
             print(f"  -> {XLSX_PATH} ({len(r.content)//1024} KB)")
