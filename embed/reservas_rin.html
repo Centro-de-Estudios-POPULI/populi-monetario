@@ -32,8 +32,11 @@
   <script>
     var DATA_URL='../data/reservas_rin.json';
     var COLORS={rin:'#059669',oro:'#D97706',divisas:'#2563EB',deg:'#8B5CF6',fmi:'#64748B'};
+    // Componentes que se apilan y suman exactamente la RIN (identidad del BCB)
+    var COMP=[{key:'oro',name:'Oro',c:'#D97706'},{key:'divisas',name:'Divisas',c:'#2563EB'},{key:'deg',name:'DEG',c:'#8B5CF6'},{key:'fmi',name:'Pos. FMI',c:'#64748B'}];
     var DATA,chart,curIdx;
-    var activeKeys=new Set(['rin','oro','divisas']);
+    var activeKeys=new Set(['oro','divisas','deg','fmi']);
+    var viewMode='abs';   // 'abs' = MM USD apilado · 'pct' = composición %
     var curRange='desde2010';
 
     function fmt(v){return v!=null?(v>=1000?Math.round(v).toLocaleString('es-BO'):v.toFixed(1)):'—'}
@@ -66,7 +69,9 @@
           '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#2563EB"></div><div class="kpi-lbl">Divisas</div><div class="kpi-val" style="color:#2563EB">$'+fmt(divLast)+' MM</div><div class="kpi-d '+(divLast<500?'down':'flat')+'">'+(divLast<500?'Nivel crítico':'Operativo')+'</div></div>'+
           '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#8B5CF6"></div><div class="kpi-lbl">DEG + FMI</div><div class="kpi-val" style="color:#8B5CF6">$'+fmt((latest.deg||0)+(latest.fmi||0))+' MM</div><div class="kpi-d flat">Posiciones multilateral</div></div>'+
         '</div>'+
-        '<div class="main-grid"><div class="chart-card"><div class="chart-ctrl"><div class="tog-grp" id="toggles"></div></div><div id="chart"></div></div>'+
+        '<div class="main-grid"><div class="chart-card"><div class="chart-ctrl"><div class="tog-grp" id="toggles"></div>'+
+          '<div class="hz-grp" id="modesw"><button class="hz-btn mode-btn active" data-mode="abs" onclick="setView(\'abs\')">MM USD</button><button class="hz-btn mode-btn" data-mode="pct" onclick="setView(\'pct\')">%</button></div>'+
+        '</div><div id="chart"></div></div>'+
         '<div class="panel"><div class="panel-hd"><span class="panel-hd-t">Composición de reservas</span><span class="panel-hd-d" id="panel-date">'+updTxt+'</span></div><div class="panel-body" id="panel-body"></div></div></div>'+
         '<div class="edu-grid">'+
           eduBox('¿Qué son las RIN?','Las <strong>Reservas Internacionales Netas</strong> son los activos externos del banco central menos sus pasivos de corto plazo con el exterior. Son el respaldo en divisas de la moneda nacional y la primera línea de defensa ante crisis de balanza de pagos.')+
@@ -85,31 +90,49 @@
     function setRange(r){if(curRange===r)return;curRange=r;var rs=['5a','desde2010','desde2000','todo'];document.querySelectorAll('.range-btn').forEach(function(b,i){b.classList.toggle('active',rs[i]===r)});rebuildChart()}
 
     function buildToggles(){
-      var tg=document.getElementById('toggles');
-      [{key:'rin',label:'RIN (Netas)',c:'#059669'},{key:'oro',label:'Oro',c:'#D97706'},{key:'divisas',label:'Divisas',c:'#2563EB'},{key:'deg',label:'DEG',c:'#8B5CF6',dash:true},{key:'fmi',label:'Pos. FMI',c:'#64748B',dash:true}].forEach(function(s){
+      var tg=document.getElementById('toggles');tg.innerHTML='';
+      COMP.forEach(function(s){
         var btn=document.createElement('button');btn.className='pill';btn.dataset.key=s.key;
-        btn.innerHTML='<span class="lp'+(s.dash?' dashed':'')+'" style="border-color:#fff"></span>'+s.label;
+        btn.innerHTML='<span class="lp" style="border-color:#fff"></span>'+s.name;
         btn.addEventListener('click',function(){toggleKey(s.key)});tg.appendChild(btn);
       });syncPills();
     }
+    function setView(m){if(viewMode===m)return;viewMode=m;document.querySelectorAll('.mode-btn').forEach(function(b){b.classList.toggle('active',b.dataset.mode===m)});rebuildChart()}
     function toggleKey(k){if(activeKeys.has(k)){if(activeKeys.size===1)return;activeKeys.delete(k)}else activeKeys.add(k);syncPills();rebuildChart()}
     function syncPills(){document.querySelectorAll('.pill').forEach(function(btn){var k=btn.dataset.key;var c=COLORS[k];var on=activeKeys.has(k);btn.style.backgroundColor=on?c:'transparent';btn.style.color=on?'#fff':c;btn.style.borderColor=c;var lp=btn.querySelector('.lp');if(lp)lp.style.borderColor=on?'#fff':c})}
 
     function rebuildChart(){
-      var si=getStartIdx();var S=DATA.series.slice(si);var d=dk();
-      var labels=S.map(function(x){return labelDate(x.date)});var series=[];
-      var items=[{key:'rin',name:'RIN (Netas)',w:2.5,z:5},{key:'oro',name:'Oro',w:2,z:3},{key:'divisas',name:'Divisas',w:2,z:4},{key:'deg',name:'DEG',w:1.5,z:2,dash:true},{key:'fmi',name:'Pos. FMI',w:1.5,z:1,dash:true}];
-      items.forEach(function(it){
-        if(!activeKeys.has(it.key))return;
-        series.push({name:it.name,type:'line',data:S.map(function(x){return x[it.key]}),symbol:'none',lineStyle:{width:it.w,type:it.dash?'dashed':'solid'},itemStyle:{color:COLORS[it.key]},z:it.z,connectNulls:true,
-          areaStyle:it.key==='rin'?{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#059669'+(d?'20':'12')},{offset:1,color:'#05966900'}])}:undefined
+      var si=getStartIdx();var S=DATA.series.slice(si);var d=dk();var pct=viewMode==='pct';
+      var labels=S.map(function(x){return labelDate(x.date)});
+      // Total RIN por punto = suma de los 4 componentes presentes
+      var totals=S.map(function(x){var t=0,any=false;COMP.forEach(function(c){if(x[c.key]!=null){t+=x[c.key];any=true}});return any?t:null});
+      var series=COMP.filter(function(c){return activeKeys.has(c.key)}).map(function(c){
+        var data=S.map(function(x,i){
+          var v=x[c.key];
+          if(v==null)return pct?null:0;          // en apilado absoluto, null cuenta como 0
+          if(pct){var t=totals[i];return t?+(v/t*100).toFixed(2):null}
+          return v;
         });
+        return {name:c.name,type:'line',stack:'rin',data:data,symbol:'none',
+          lineStyle:{width:1,color:c.c},itemStyle:{color:c.c},
+          areaStyle:{color:c.c,opacity:d?0.78:0.85},emphasis:{focus:'series'},z:1};
       });
       chart.setOption({grid:{left:60,right:20,top:20,bottom:40},
-        xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#94A3B8',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},
-        yAxis:{type:'value',axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#94A3B8',formatter:function(v){return '$'+fmtShort(v)+'M'}}},
+        xAxis:{type:'category',boundaryGap:false,data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#94A3B8',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},
+        yAxis:{type:'value',max:pct?100:null,axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#94A3B8',formatter:function(v){return pct?(v+'%'):('$'+fmtShort(v)+'M')}}},
         tooltip:{trigger:'axis',backgroundColor:'rgba(0,18,25,.96)',borderColor:d?'#2A3A50':'#1A2940',borderWidth:1,padding:14,extraCssText:'border-radius:10px;',textStyle:{fontFamily:'Inter',fontSize:12,color:'#fff'},
-          formatter:function(params){if(!params.length)return'';var html='<div style="font-weight:700;margin-bottom:6px;color:#6EE7B7">'+params[0].axisValue+'</div>';params.forEach(function(p){if(p.value!=null)html+='<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block"></span><span style="font-size:11px">'+p.seriesName+':</span><span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">$'+fmt(p.value)+' MM</span></div>'});updatePanel(getStartIdx()+params[0].dataIndex);return html}},
+          formatter:function(params){
+            if(!params.length)return'';
+            var idx=getStartIdx()+params[0].dataIndex;updatePanel(idx);
+            var tot=totals[params[0].dataIndex];
+            var html='<div style="font-weight:700;margin-bottom:6px;color:#6EE7B7">'+params[0].axisValue+'</div>';
+            params.slice().reverse().forEach(function(p){if(p.value==null)return;
+              var val=pct?(p.value.toFixed(1)+'%'):('$'+fmt(p.value)+' MM');
+              html+='<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="width:8px;height:8px;border-radius:2px;background:'+p.color+';display:inline-block"></span><span style="font-size:11px">'+p.seriesName+':</span><span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">'+val+'</span></div>';
+            });
+            if(tot!=null)html+='<div style="margin-top:6px;padding-top:5px;border-top:1px solid rgba(255,255,255,.18);display:flex;justify-content:space-between;gap:10px"><span style="font-size:11px;font-weight:700;color:#6EE7B7">RIN total</span><span style="font-family:JetBrains Mono;font-weight:700;color:#6EE7B7">$'+fmt(tot)+' MM</span></div>';
+            return html;
+          }},
         series:series
       },true);
     }
