@@ -10,4078 +10,4078 @@
     "primer_dato": "1987-12",
     "observaciones": 452,
     "observaciones_mensuales": 451,
-    "ultimo_rin": 849.69,
-    "ultimo_rib": 99.68,
-    "var_12m_rin_pct": 2897.6
+    "ultimo_rin": 4596.37,
+    "ultimo_rib": 4596.37,
+    "var_12m_rin_pct": 80.5
   },
   "series": [
     {
       "date": "1987-12",
-      "rib": null,
+      "rib": 413.5,
+      "rin": 189.22,
       "deg": null,
-      "oro": 413.5,
+      "oro": 37.9,
       "divisas": 162.6,
-      "fmi": null,
-      "rin": 162.6
+      "fmi": null
     },
     {
       "date": "1988-12",
-      "rib": null,
+      "rib": 404.4,
+      "rin": 160.94,
       "deg": null,
-      "oro": 404.4,
+      "oro": 38.0,
       "divisas": 230.6,
-      "fmi": null,
-      "rin": 230.6
+      "fmi": null
     },
     {
       "date": "1989-01",
-      "rib": null,
-      "deg": null,
-      "oro": 345.2,
+      "rib": 345.2,
+      "rin": 103.49,
+      "deg": 3.8,
+      "oro": 38.0,
       "divisas": 205.9,
-      "fmi": null,
-      "rin": 205.9
+      "fmi": null
     },
     {
       "date": "1989-02",
-      "rib": null,
-      "deg": null,
-      "oro": 302.2,
+      "rib": 302.2,
+      "rin": 52.87,
+      "deg": 0.2,
+      "oro": 38.0,
       "divisas": 200.4,
-      "fmi": null,
-      "rin": 200.4
+      "fmi": null
     },
     {
       "date": "1989-03",
-      "rib": null,
-      "deg": null,
-      "oro": 308.1,
+      "rib": 308.1,
+      "rin": 32.75,
+      "deg": 0.2,
+      "oro": 38.0,
       "divisas": 233.2,
-      "fmi": null,
-      "rin": 233.2
+      "fmi": null
     },
     {
       "date": "1989-04",
-      "rib": null,
-      "deg": null,
-      "oro": 304.7,
+      "rib": 304.7,
+      "rin": 13.47,
+      "deg": 3.5,
+      "oro": 38.0,
       "divisas": 228.0,
-      "fmi": null,
-      "rin": 228.0
+      "fmi": null
     },
     {
       "date": "1989-05",
-      "rib": null,
-      "deg": null,
-      "oro": 259.2,
+      "rib": 259.2,
+      "rin": -15.99,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 184.4,
-      "fmi": null,
-      "rin": 184.4
+      "fmi": null
     },
     {
       "date": "1989-06",
-      "rib": null,
-      "deg": null,
-      "oro": 255.8,
+      "rib": 255.8,
+      "rin": -28.53,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 188.0,
-      "fmi": null,
-      "rin": 188.0
+      "fmi": null
     },
     {
       "date": "1989-07",
-      "rib": null,
-      "deg": null,
-      "oro": 324.9,
+      "rib": 324.9,
+      "rin": -62.78,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 162.5,
-      "fmi": null,
-      "rin": 162.5
+      "fmi": null
     },
     {
       "date": "1989-08",
-      "rib": null,
-      "deg": null,
-      "oro": 318.6,
+      "rib": 318.6,
+      "rin": -65.57,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 160.8,
-      "fmi": null,
-      "rin": 160.8
+      "fmi": null
     },
     {
       "date": "1989-09",
-      "rib": null,
-      "deg": null,
-      "oro": 370.2,
+      "rib": 370.2,
+      "rin": -18.25,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 213.0,
-      "fmi": null,
-      "rin": 213.0
+      "fmi": null
     },
     {
       "date": "1989-10",
-      "rib": null,
-      "deg": null,
-      "oro": 361.5,
+      "rib": 361.5,
+      "rin": -3.37,
+      "deg": 3.8,
+      "oro": 38.0,
       "divisas": 200.6,
-      "fmi": null,
-      "rin": 200.6
+      "fmi": null
     },
     {
       "date": "1989-11",
-      "rib": null,
-      "deg": null,
-      "oro": 391.7,
+      "rib": 391.7,
+      "rin": 28.24,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 234.6,
-      "fmi": null,
-      "rin": 234.6
+      "fmi": null
     },
     {
       "date": "1989-12",
-      "rib": null,
-      "deg": null,
-      "oro": 373.3,
+      "rib": 373.3,
+      "rin": 18.61,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 228.4,
-      "fmi": null,
-      "rin": 228.4
+      "fmi": null
     },
     {
       "date": "1990-01",
-      "rib": null,
-      "deg": null,
-      "oro": 275.8,
+      "rib": 275.8,
+      "rin": -2.72,
+      "deg": 0.0,
+      "oro": 38.0,
       "divisas": 202.7,
-      "fmi": null,
-      "rin": 202.7
+      "fmi": null
     },
     {
       "date": "1990-02",
-      "rib": null,
-      "deg": null,
-      "oro": 305.0,
+      "rib": 305.0,
+      "rin": 72.8,
+      "deg": 0.2,
+      "oro": 38.0,
       "divisas": 228.6,
-      "fmi": null,
-      "rin": 228.6
+      "fmi": null
     },
     {
       "date": "1990-03",
-      "rib": null,
-      "deg": null,
-      "oro": 305.4,
+      "rib": 305.4,
+      "rin": 98.57,
+      "deg": 0.2,
+      "oro": 38.0,
       "divisas": 225.8,
-      "fmi": null,
-      "rin": 225.8
+      "fmi": null
     },
     {
       "date": "1990-04",
-      "rib": null,
-      "deg": null,
-      "oro": 271.3,
+      "rib": 271.3,
+      "rin": 78.72,
+      "deg": 4.0,
+      "oro": 38.0,
       "divisas": 184.4,
-      "fmi": null,
-      "rin": 184.4
+      "fmi": null
     },
     {
       "date": "1990-05",
-      "rib": null,
-      "deg": null,
-      "oro": 252.2,
+      "rib": 252.2,
+      "rin": 54.0,
+      "deg": 0.1,
+      "oro": 38.0,
       "divisas": 166.0,
-      "fmi": null,
-      "rin": 166.0
+      "fmi": null
     },
     {
       "date": "1990-06",
-      "rib": null,
-      "deg": null,
-      "oro": 247.0,
+      "rib": 247.0,
+      "rin": 57.07,
+      "deg": 0.1,
+      "oro": 38.0,
       "divisas": 158.9,
-      "fmi": null,
-      "rin": 158.9
+      "fmi": null
     },
     {
       "date": "1990-07",
-      "rib": null,
-      "deg": null,
-      "oro": 286.9,
+      "rib": 286.9,
+      "rin": 93.49,
+      "deg": 0.1,
+      "oro": 38.0,
       "divisas": 195.7,
-      "fmi": null,
-      "rin": 195.7
+      "fmi": null
     },
     {
       "date": "1990-08",
-      "rib": null,
-      "deg": null,
-      "oro": 327.6,
+      "rib": 327.6,
+      "rin": 106.44,
+      "deg": 0.5,
+      "oro": 38.0,
       "divisas": 233.5,
-      "fmi": null,
-      "rin": 233.5
+      "fmi": null
     },
     {
       "date": "1990-09",
-      "rib": null,
-      "deg": null,
-      "oro": 388.6,
+      "rib": 388.6,
+      "rin": 144.74,
+      "deg": 0.5,
+      "oro": 38.0,
       "divisas": 270.0,
-      "fmi": null,
-      "rin": 270.0
+      "fmi": null
     },
     {
       "date": "1990-10",
-      "rib": null,
-      "deg": null,
-      "oro": 388.6,
+      "rib": 388.6,
+      "rin": 138.55,
+      "deg": 0.5,
+      "oro": 38.0,
       "divisas": 288.5,
-      "fmi": null,
-      "rin": 288.5
+      "fmi": null
     },
     {
       "date": "1990-11",
-      "rib": null,
-      "deg": null,
-      "oro": 434.6,
+      "rib": 434.6,
+      "rin": 180.29,
+      "deg": 1.6,
+      "oro": 38.0,
       "divisas": 330.1,
-      "fmi": null,
-      "rin": 330.1
+      "fmi": null
     },
     {
       "date": "1990-12",
-      "rib": null,
-      "deg": null,
-      "oro": 375.7,
+      "rib": 375.7,
+      "rin": 132.29,
+      "deg": 0.7,
+      "oro": 37.9,
       "divisas": 269.3,
-      "fmi": null,
-      "rin": 269.3
+      "fmi": null
     },
     {
       "date": "1991-01",
-      "rib": null,
-      "deg": null,
-      "oro": 367.8,
+      "rib": 367.8,
+      "rin": 118.32,
+      "deg": 4.3,
+      "oro": 37.9,
       "divisas": 254.2,
-      "fmi": null,
-      "rin": 254.2
+      "fmi": null
     },
     {
       "date": "1991-02",
-      "rib": null,
-      "deg": null,
-      "oro": 400.3,
+      "rib": 400.3,
+      "rin": 156.07,
+      "deg": 1.1,
+      "oro": 37.9,
       "divisas": 286.5,
-      "fmi": null,
-      "rin": 286.5
+      "fmi": null
     },
     {
       "date": "1991-03",
-      "rib": null,
-      "deg": null,
-      "oro": 417.0,
+      "rib": 417.0,
+      "rin": 199.55,
+      "deg": 1.0,
+      "oro": 37.9,
       "divisas": 299.7,
-      "fmi": null,
-      "rin": 299.7
+      "fmi": null
     },
     {
       "date": "1991-04",
-      "rib": null,
-      "deg": null,
-      "oro": 433.0,
+      "rib": 433.0,
+      "rin": 214.77,
+      "deg": 1.7,
+      "oro": 37.9,
       "divisas": 311.3,
-      "fmi": null,
-      "rin": 311.3
+      "fmi": null
     },
     {
       "date": "1991-05",
-      "rib": null,
-      "deg": null,
-      "oro": 440.5,
+      "rib": 440.5,
+      "rin": 217.91,
+      "deg": 0.0,
+      "oro": 37.9,
       "divisas": 315.7,
-      "fmi": null,
-      "rin": 315.7
+      "fmi": null
     },
     {
       "date": "1991-06",
-      "rib": null,
-      "deg": null,
-      "oro": 438.9,
+      "rib": 438.9,
+      "rin": 230.62,
+      "deg": 1.7,
+      "oro": 37.9,
       "divisas": 307.9,
-      "fmi": null,
-      "rin": 307.9
+      "fmi": null
     },
     {
       "date": "1991-07",
-      "rib": null,
-      "deg": null,
-      "oro": 469.5,
+      "rib": 469.5,
+      "rin": 236.39,
+      "deg": 2.0,
+      "oro": 37.9,
       "divisas": 334.5,
-      "fmi": null,
-      "rin": 334.5
+      "fmi": null
     },
     {
       "date": "1991-08",
-      "rib": null,
-      "deg": null,
-      "oro": 479.3,
+      "rib": 479.3,
+      "rin": 253.98,
+      "deg": 0.6,
+      "oro": 37.9,
       "divisas": 341.8,
-      "fmi": null,
-      "rin": 341.8
+      "fmi": null
     },
     {
       "date": "1991-09",
-      "rib": null,
-      "deg": null,
-      "oro": 492.9,
+      "rib": 492.9,
+      "rin": 279.73,
+      "deg": 0.7,
+      "oro": 37.9,
       "divisas": 353.1,
-      "fmi": null,
-      "rin": 353.1
+      "fmi": null
     },
     {
       "date": "1991-10",
-      "rib": null,
-      "deg": null,
-      "oro": 451.5,
+      "rib": 451.5,
+      "rin": 258.51,
+      "deg": 2.2,
+      "oro": 37.9,
       "divisas": 308.0,
-      "fmi": null,
-      "rin": 308.0
+      "fmi": null
     },
     {
       "date": "1991-11",
-      "rib": null,
-      "deg": null,
-      "oro": 454.1,
+      "rib": 454.1,
+      "rin": 258.7,
+      "deg": 0.1,
+      "oro": 37.9,
       "divisas": 310.1,
-      "fmi": null,
-      "rin": 310.1
+      "fmi": null
     },
     {
       "date": "1991-12",
-      "rib": null,
-      "deg": null,
-      "oro": 393.0,
+      "rib": 393.0,
+      "rin": 200.32,
+      "deg": 0.1,
+      "oro": 39.5,
       "divisas": 247.4,
-      "fmi": null,
-      "rin": 247.4
+      "fmi": null
     },
     {
       "date": "1992-01",
-      "rib": null,
-      "deg": null,
-      "oro": 384.2,
+      "rib": 384.2,
+      "rin": 196.28,
+      "deg": 2.0,
+      "oro": 39.5,
       "divisas": 234.7,
-      "fmi": null,
-      "rin": 234.7
+      "fmi": null
     },
     {
       "date": "1992-02",
-      "rib": null,
-      "deg": null,
-      "oro": 423.2,
+      "rib": 423.2,
+      "rin": 242.28,
+      "deg": 0.3,
+      "oro": 39.4,
       "divisas": 262.3,
-      "fmi": null,
-      "rin": 262.3
+      "fmi": null
     },
     {
       "date": "1992-03",
-      "rib": null,
-      "deg": null,
-      "oro": 432.0,
+      "rib": 432.0,
+      "rin": 250.95,
+      "deg": 0.3,
+      "oro": 39.4,
       "divisas": 268.4,
-      "fmi": null,
-      "rin": 268.4
+      "fmi": null
     },
     {
       "date": "1992-04",
-      "rib": null,
-      "deg": null,
-      "oro": 435.1,
+      "rib": 435.1,
+      "rin": 261.08,
+      "deg": 2.3,
+      "oro": 39.4,
       "divisas": 267.9,
-      "fmi": null,
-      "rin": 267.9
+      "fmi": null
     },
     {
       "date": "1992-05",
-      "rib": null,
-      "deg": null,
-      "oro": 446.7,
+      "rib": 446.7,
+      "rin": 272.6,
+      "deg": 1.5,
+      "oro": 39.4,
       "divisas": 278.2,
-      "fmi": null,
-      "rin": 278.2
+      "fmi": null
     },
     {
       "date": "1992-06",
-      "rib": null,
-      "deg": null,
-      "oro": 528.9,
+      "rib": 528.9,
+      "rin": 315.34,
+      "deg": 1.2,
+      "oro": 39.5,
       "divisas": 359.3,
-      "fmi": null,
-      "rin": 359.3
+      "fmi": null
     },
     {
       "date": "1992-07",
-      "rib": null,
-      "deg": null,
-      "oro": 506.6,
+      "rib": 506.6,
+      "rin": 288.57,
+      "deg": 9.5,
+      "oro": 39.5,
       "divisas": 326.0,
-      "fmi": null,
-      "rin": 326.0
+      "fmi": null
     },
     {
       "date": "1992-08",
-      "rib": null,
-      "deg": null,
-      "oro": 501.8,
+      "rib": 501.8,
+      "rin": 273.9,
+      "deg": 9.0,
+      "oro": 39.5,
       "divisas": 321.6,
-      "fmi": null,
-      "rin": 321.6
+      "fmi": null
     },
     {
       "date": "1992-09",
-      "rib": null,
-      "deg": null,
-      "oro": 523.5,
+      "rib": 523.5,
+      "rin": 292.2,
+      "deg": 0.7,
+      "oro": 39.5,
       "divisas": 351.7,
-      "fmi": null,
-      "rin": 351.7
+      "fmi": null
     },
     {
       "date": "1992-10",
-      "rib": null,
-      "deg": null,
-      "oro": 501.2,
+      "rib": 501.2,
+      "rin": 294.06,
+      "deg": 1.2,
+      "oro": 39.5,
       "divisas": 334.4,
-      "fmi": null,
-      "rin": 334.4
+      "fmi": null
     },
     {
       "date": "1992-11",
-      "rib": null,
-      "deg": null,
-      "oro": 465.2,
+      "rib": 465.2,
+      "rin": 258.26,
+      "deg": 0.1,
+      "oro": 39.5,
       "divisas": 310.2,
-      "fmi": null,
-      "rin": 310.2
+      "fmi": null
     },
     {
       "date": "1992-12",
-      "rib": null,
-      "deg": null,
-      "oro": 416.9,
+      "rib": 416.9,
+      "rin": 233.44,
+      "deg": 0.1,
+      "oro": 39.5,
       "divisas": 293.7,
-      "fmi": null,
-      "rin": 293.7
+      "fmi": null
     },
     {
       "date": "1993-01",
-      "rib": null,
-      "deg": null,
-      "oro": 394.5,
+      "rib": 394.5,
+      "rin": 227.17,
+      "deg": 1.0,
+      "oro": 39.5,
       "divisas": 270.3,
-      "fmi": null,
-      "rin": 270.3
+      "fmi": null
     },
     {
       "date": "1993-02",
-      "rib": null,
-      "deg": null,
-      "oro": 394.5,
+      "rib": 394.5,
+      "rin": 218.89,
+      "deg": 1.0,
+      "oro": 39.5,
       "divisas": 270.2,
-      "fmi": null,
-      "rin": 270.2
+      "fmi": null
     },
     {
       "date": "1993-03",
-      "rib": null,
-      "deg": null,
-      "oro": 392.3,
+      "rib": 392.3,
+      "rin": 231.51,
+      "deg": 0.1,
+      "oro": 39.7,
       "divisas": 270.5,
-      "fmi": null,
-      "rin": 270.5
+      "fmi": null
     },
     {
       "date": "1993-04",
-      "rib": null,
-      "deg": null,
-      "oro": 389.4,
+      "rib": 389.4,
+      "rin": 227.45,
+      "deg": 0.8,
+      "oro": 39.7,
       "divisas": 266.9,
-      "fmi": null,
-      "rin": 266.9
+      "fmi": null
     },
     {
       "date": "1993-05",
-      "rib": null,
-      "deg": null,
-      "oro": 379.9,
+      "rib": 379.9,
+      "rin": 233.6,
+      "deg": 0.6,
+      "oro": 39.7,
       "divisas": 259.2,
-      "fmi": null,
-      "rin": 259.2
+      "fmi": null
     },
     {
       "date": "1993-06",
-      "rib": null,
-      "deg": null,
-      "oro": 383.7,
+      "rib": 383.7,
+      "rin": 239.67,
+      "deg": 0.6,
+      "oro": 39.7,
       "divisas": 264.6,
-      "fmi": null,
-      "rin": 264.6
+      "fmi": null
     },
     {
       "date": "1993-07",
-      "rib": null,
-      "deg": null,
-      "oro": 378.0,
+      "rib": 378.0,
+      "rin": 245.41,
+      "deg": 0.6,
+      "oro": 39.6,
       "divisas": 258.9,
-      "fmi": null,
-      "rin": 258.9
+      "fmi": null
     },
     {
       "date": "1993-08",
-      "rib": null,
-      "deg": null,
-      "oro": 414.8,
+      "rib": 414.8,
+      "rin": 279.0,
+      "deg": 0.1,
+      "oro": 39.6,
       "divisas": 298.9,
-      "fmi": null,
-      "rin": 298.9
+      "fmi": null
     },
     {
       "date": "1993-09",
-      "rib": null,
-      "deg": null,
-      "oro": 408.2,
+      "rib": 408.2,
+      "rin": 274.53,
+      "deg": 0.1,
+      "oro": 39.6,
       "divisas": 292.3,
-      "fmi": null,
-      "rin": 292.3
+      "fmi": null
     },
     {
       "date": "1993-10",
-      "rib": null,
-      "deg": null,
-      "oro": 454.6,
+      "rib": 454.6,
+      "rin": 325.41,
+      "deg": 0.6,
+      "oro": 39.6,
       "divisas": 346.1,
-      "fmi": null,
-      "rin": 346.1
+      "fmi": null
     },
     {
       "date": "1993-11",
-      "rib": null,
-      "deg": null,
-      "oro": 479.3,
+      "rib": 479.3,
+      "rin": 329.97,
+      "deg": 0.3,
+      "oro": 39.7,
       "divisas": 377.6,
-      "fmi": null,
-      "rin": 377.6
+      "fmi": null
     },
     {
       "date": "1993-12",
-      "rib": null,
-      "deg": null,
-      "oro": 494.3,
+      "rib": 494.3,
+      "rin": 370.87,
+      "deg": 14.0,
+      "oro": 39.7,
       "divisas": 377.8,
-      "fmi": null,
-      "rin": 377.8
+      "fmi": null
     },
     {
       "date": "1994-01",
-      "rib": null,
-      "deg": null,
-      "oro": 449.7,
+      "rib": 449.7,
+      "rin": 331.86,
+      "deg": 27.9,
+      "oro": 39.6,
       "divisas": 301.7,
-      "fmi": null,
-      "rin": 301.7
+      "fmi": null
     },
     {
       "date": "1994-02",
-      "rib": null,
-      "deg": null,
-      "oro": 464.0,
+      "rib": 464.0,
+      "rin": 345.69,
+      "deg": 28.2,
+      "oro": 39.6,
       "divisas": 319.0,
-      "fmi": null,
-      "rin": 319.0
+      "fmi": null
     },
     {
       "date": "1994-03",
-      "rib": null,
-      "deg": null,
-      "oro": 498.6,
+      "rib": 498.6,
+      "rin": 364.78,
+      "deg": 28.2,
+      "oro": 39.6,
       "divisas": 359.7,
-      "fmi": null,
-      "rin": 359.7
+      "fmi": null
     },
     {
       "date": "1994-04",
-      "rib": null,
-      "deg": null,
-      "oro": 520.4,
+      "rib": 520.4,
+      "rin": 385.92,
+      "deg": 28.3,
+      "oro": 39.6,
       "divisas": 381.8,
-      "fmi": null,
-      "rin": 381.8
+      "fmi": null
     },
     {
       "date": "1994-05",
-      "rib": null,
-      "deg": null,
-      "oro": 580.2,
+      "rib": 580.2,
+      "rin": 436.87,
+      "deg": 38.2,
+      "oro": 39.6,
       "divisas": 432.9,
-      "fmi": null,
-      "rin": 432.9
+      "fmi": null
     },
     {
       "date": "1994-06",
-      "rib": null,
-      "deg": null,
-      "oro": 572.0,
+      "rib": 572.0,
+      "rin": 433.31,
+      "deg": 39.1,
+      "oro": 39.6,
       "divisas": 429.3,
-      "fmi": null,
-      "rin": 429.3
+      "fmi": null
     },
     {
       "date": "1994-07",
-      "rib": null,
-      "deg": null,
-      "oro": 610.9,
+      "rib": 610.9,
+      "rin": 468.3,
+      "deg": 39.3,
+      "oro": 39.6,
       "divisas": 468.0,
-      "fmi": null,
-      "rin": 468.0
+      "fmi": null
     },
     {
       "date": "1994-08",
-      "rib": null,
-      "deg": null,
-      "oro": 636.8,
+      "rib": 636.8,
+      "rin": 496.33,
+      "deg": 39.1,
+      "oro": 39.6,
       "divisas": 512.1,
-      "fmi": null,
-      "rin": 512.1
+      "fmi": null
     },
     {
       "date": "1994-09",
-      "rib": null,
-      "deg": null,
-      "oro": 635.1,
+      "rib": 635.1,
+      "rin": 493.38,
+      "deg": 39.6,
+      "oro": 39.6,
       "divisas": 520.4,
-      "fmi": null,
-      "rin": 520.4
+      "fmi": null
     },
     {
       "date": "1994-10",
-      "rib": null,
-      "deg": null,
-      "oro": 642.1,
+      "rib": 642.1,
+      "rin": 513.38,
+      "deg": 40.2,
+      "oro": 39.6,
       "divisas": 530.6,
-      "fmi": null,
-      "rin": 530.6
+      "fmi": null
     },
     {
       "date": "1994-11",
-      "rib": null,
-      "deg": null,
-      "oro": 621.7,
+      "rib": 621.7,
+      "rin": 487.48,
+      "deg": 24.8,
+      "oro": 39.6,
       "divisas": 523.1,
-      "fmi": null,
-      "rin": 523.1
+      "fmi": null
     },
     {
       "date": "1994-12",
-      "rib": null,
-      "deg": null,
-      "oro": 659.0,
+      "rib": 659.0,
+      "rin": 502.39,
+      "deg": 24.7,
+      "oro": 39.6,
       "divisas": 552.8,
-      "fmi": null,
-      "rin": 552.8
+      "fmi": null
     },
     {
       "date": "1995-01",
-      "rib": null,
-      "deg": null,
-      "oro": 636.3,
+      "rib": 636.3,
+      "rin": 475.64,
+      "deg": 25.0,
+      "oro": 39.6,
       "divisas": 532.6,
-      "fmi": null,
-      "rin": 532.6
+      "fmi": null
     },
     {
       "date": "1995-02",
-      "rib": null,
-      "deg": null,
-      "oro": 604.6,
+      "rib": 604.6,
+      "rin": 450.85,
+      "deg": 32.7,
+      "oro": 39.6,
       "divisas": 496.4,
-      "fmi": null,
-      "rin": 496.4
+      "fmi": null
     },
     {
       "date": "1995-03",
-      "rib": null,
-      "deg": null,
-      "oro": 626.3,
+      "rib": 626.3,
+      "rin": 465.31,
+      "deg": 41.9,
+      "oro": 39.6,
       "divisas": 521.9,
-      "fmi": null,
-      "rin": 521.9
+      "fmi": null
     },
     {
       "date": "1995-04",
-      "rib": null,
-      "deg": null,
-      "oro": 579.5,
+      "rib": 579.5,
+      "rin": 411.43,
+      "deg": 42.5,
+      "oro": 39.6,
       "divisas": 475.3,
-      "fmi": null,
-      "rin": 475.3
+      "fmi": null
     },
     {
       "date": "1995-05",
-      "rib": null,
-      "deg": null,
-      "oro": 623.1,
+      "rib": 623.1,
+      "rin": 452.89,
+      "deg": 42.4,
+      "oro": 39.6,
       "divisas": 479.4,
-      "fmi": null,
-      "rin": 479.4
+      "fmi": null
     },
     {
       "date": "1995-06",
-      "rib": null,
-      "deg": null,
-      "oro": 618.1,
+      "rib": 618.1,
+      "rin": 457.57,
+      "deg": 42.0,
+      "oro": 39.6,
       "divisas": 445.8,
-      "fmi": null,
-      "rin": 445.8
+      "fmi": null
     },
     {
       "date": "1995-07",
-      "rib": null,
-      "deg": null,
-      "oro": 672.0,
+      "rib": 672.0,
+      "rin": 516.97,
+      "deg": 41.8,
+      "oro": 39.6,
       "divisas": 459.8,
-      "fmi": null,
-      "rin": 459.8
+      "fmi": null
     },
     {
       "date": "1995-08",
-      "rib": null,
-      "deg": null,
-      "oro": 657.4,
+      "rib": 657.4,
+      "rin": 516.33,
+      "deg": 39.9,
+      "oro": 39.6,
       "divisas": 482.2,
-      "fmi": null,
-      "rin": 482.2
+      "fmi": null
     },
     {
       "date": "1995-09",
-      "rib": null,
-      "deg": null,
-      "oro": 691.6,
+      "rib": 691.6,
+      "rin": 550.0,
+      "deg": 40.4,
+      "oro": 39.6,
       "divisas": 489.4,
-      "fmi": null,
-      "rin": 489.4
+      "fmi": null
     },
     {
       "date": "1995-10",
-      "rib": null,
-      "deg": null,
-      "oro": 683.1,
+      "rib": 683.1,
+      "rin": 546.76,
+      "deg": 40.3,
+      "oro": 39.6,
       "divisas": 497.7,
-      "fmi": null,
-      "rin": 497.7
+      "fmi": null
     },
     {
       "date": "1995-11",
-      "rib": null,
-      "deg": null,
-      "oro": 688.6,
+      "rib": 688.6,
+      "rin": 563.33,
+      "deg": 40.0,
+      "oro": 39.6,
       "divisas": 516.2,
-      "fmi": null,
-      "rin": 516.2
+      "fmi": null
     },
     {
       "date": "1995-12",
-      "rib": null,
-      "deg": null,
-      "oro": 789.7,
+      "rib": 789.7,
+      "rin": 650.25,
+      "deg": 40.0,
+      "oro": 39.6,
       "divisas": 599.1,
-      "fmi": null,
-      "rin": 599.1
+      "fmi": null
     },
     {
       "date": "1996-01",
-      "rib": null,
-      "deg": null,
-      "oro": 833.4,
+      "rib": 833.4,
+      "rin": 684.08,
+      "deg": 39.1,
+      "oro": 39.6,
       "divisas": 740.3,
-      "fmi": null,
-      "rin": 740.3
+      "fmi": null
     },
     {
       "date": "1996-02",
-      "rib": null,
-      "deg": null,
-      "oro": 872.0,
+      "rib": 872.0,
+      "rin": 721.56,
+      "deg": 40.6,
+      "oro": 39.6,
       "divisas": 777.3,
-      "fmi": null,
-      "rin": 777.3
+      "fmi": null
     },
     {
       "date": "1996-03",
-      "rib": null,
-      "deg": null,
-      "oro": 874.9,
+      "rib": 874.9,
+      "rin": 732.64,
+      "deg": 40.2,
+      "oro": 39.6,
       "divisas": 780.7,
-      "fmi": null,
-      "rin": 780.7
+      "fmi": null
     },
     {
       "date": "1996-04",
-      "rib": null,
-      "deg": null,
-      "oro": 944.4,
+      "rib": 944.4,
+      "rin": 780.58,
+      "deg": 40.1,
+      "oro": 39.6,
       "divisas": 851.1,
-      "fmi": null,
-      "rin": 851.1
+      "fmi": null
     },
     {
       "date": "1996-05",
-      "rib": null,
-      "deg": null,
-      "oro": 983.9,
+      "rib": 983.9,
+      "rin": 822.99,
+      "deg": 39.9,
+      "oro": 39.6,
       "divisas": 890.8,
-      "fmi": null,
-      "rin": 890.8
+      "fmi": null
     },
     {
       "date": "1996-06",
-      "rib": null,
-      "deg": null,
-      "oro": 995.1,
+      "rib": 995.1,
+      "rin": 850.88,
+      "deg": 39.8,
+      "oro": 39.6,
       "divisas": 902.2,
-      "fmi": null,
-      "rin": 902.2
+      "fmi": null
     },
     {
       "date": "1996-07",
-      "rib": null,
-      "deg": null,
-      "oro": 1030.0,
+      "rib": 1030.0,
+      "rin": 876.37,
+      "deg": 40.3,
+      "oro": 39.6,
       "divisas": 921.6,
-      "fmi": null,
-      "rin": 921.6
+      "fmi": null
     },
     {
       "date": "1996-08",
-      "rib": null,
-      "deg": null,
-      "oro": 1044.54,
+      "rib": 1044.54,
+      "rin": 891.35,
+      "deg": 40.3,
+      "oro": 39.6,
       "divisas": 943.0,
-      "fmi": null,
-      "rin": 943.0
+      "fmi": null
     },
     {
       "date": "1996-09",
-      "rib": null,
-      "deg": null,
-      "oro": 1053.5,
+      "rib": 1053.5,
+      "rin": 909.41,
+      "deg": 39.8,
+      "oro": 39.6,
       "divisas": 952.5,
-      "fmi": null,
-      "rin": 952.5
+      "fmi": null
     },
     {
       "date": "1996-10",
-      "rib": null,
-      "deg": null,
-      "oro": 1055.9,
+      "rib": 1055.9,
+      "rin": 919.51,
+      "deg": 38.7,
+      "oro": 39.6,
       "divisas": 956.5,
-      "fmi": null,
-      "rin": 956.5
+      "fmi": null
     },
     {
       "date": "1996-11",
-      "rib": null,
-      "deg": null,
-      "oro": 1054.2,
+      "rib": 1054.2,
+      "rin": 923.6,
+      "deg": 38.8,
+      "oro": 39.6,
       "divisas": 954.6,
-      "fmi": null,
-      "rin": 954.6
+      "fmi": null
     },
     {
       "date": "1996-12",
-      "rib": null,
-      "deg": null,
-      "oro": 1107.1,
+      "rib": 1107.1,
+      "rin": 950.83,
+      "deg": 38.5,
+      "oro": 39.6,
       "divisas": 1007.9,
-      "fmi": null,
-      "rin": 1007.9
+      "fmi": null
     },
     {
       "date": "1997-01",
-      "rib": null,
-      "deg": null,
-      "oro": 1064.3,
+      "rib": 1064.3,
+      "rin": 918.91,
+      "deg": 37.38,
+      "oro": 39.6,
       "divisas": 966.38,
-      "fmi": null,
-      "rin": 966.38
+      "fmi": null
     },
     {
       "date": "1997-02",
-      "rib": null,
-      "deg": null,
-      "oro": 1032.06,
+      "rib": 1032.06,
+      "rin": 892.16,
+      "deg": 37.12,
+      "oro": 39.6,
       "divisas": 934.4,
-      "fmi": null,
-      "rin": 934.4
+      "fmi": null
     },
     {
       "date": "1997-03",
-      "rib": null,
-      "deg": null,
-      "oro": 1004.9,
+      "rib": 1004.9,
+      "rin": 873.95,
+      "deg": 37.06,
+      "oro": 39.6,
       "divisas": 897.8,
-      "fmi": null,
-      "rin": 897.8
+      "fmi": null
     },
     {
       "date": "1997-04",
-      "rib": null,
-      "deg": null,
-      "oro": 1065.95,
+      "rib": 1065.95,
+      "rin": 935.05,
+      "deg": 36.56,
+      "oro": 39.6,
       "divisas": 943.1,
-      "fmi": null,
-      "rin": 943.1
+      "fmi": null
     },
     {
       "date": "1997-05",
-      "rib": null,
-      "deg": null,
-      "oro": 1176.16,
+      "rib": 1176.16,
+      "rin": 1040.4,
+      "deg": 37.3,
+      "oro": 39.6,
       "divisas": 1081.86,
-      "fmi": null,
-      "rin": 1081.86
+      "fmi": null
     },
     {
       "date": "1997-06",
-      "rib": null,
-      "deg": null,
-      "oro": 1167.84,
+      "rib": 1167.84,
+      "rin": 1042.34,
+      "deg": 37.31,
+      "oro": 39.6,
       "divisas": 1073.61,
-      "fmi": null,
-      "rin": 1073.61
+      "fmi": null
     },
     {
       "date": "1997-07",
-      "rib": null,
-      "deg": null,
-      "oro": 1299.05,
+      "rib": 1299.05,
+      "rin": 1177.15,
+      "deg": 36.3,
+      "oro": 39.6,
       "divisas": 1203.64,
-      "fmi": null,
-      "rin": 1203.64
+      "fmi": null
     },
     {
       "date": "1997-08",
-      "rib": null,
-      "deg": null,
-      "oro": 1279.19,
+      "rib": 1279.19,
+      "rin": 1159.16,
+      "deg": 36.45,
+      "oro": 39.6,
       "divisas": 1184.58,
-      "fmi": null,
-      "rin": 1184.58
+      "fmi": null
     },
     {
       "date": "1997-09",
-      "rib": null,
-      "deg": null,
-      "oro": 1285.01,
+      "rib": 1285.01,
+      "rin": 1142.66,
+      "deg": 36.62,
+      "oro": 39.6,
       "divisas": 1189.32,
-      "fmi": null,
-      "rin": 1189.32
+      "fmi": null
     },
     {
       "date": "1997-10",
-      "rib": null,
-      "deg": null,
-      "oro": 1265.89,
+      "rib": 1265.89,
+      "rin": 1130.62,
+      "deg": 37.09,
+      "oro": 39.6,
       "divisas": 1168.64,
-      "fmi": null,
-      "rin": 1168.64
+      "fmi": null
     },
     {
       "date": "1997-11",
-      "rib": null,
-      "deg": null,
-      "oro": 1223.01,
+      "rib": 1223.01,
+      "rin": 1090.02,
+      "deg": 36.56,
+      "oro": 39.6,
       "divisas": 1127.25,
-      "fmi": null,
-      "rin": 1127.25
+      "fmi": null
     },
     {
       "date": "1997-12",
-      "rib": null,
-      "deg": null,
-      "oro": 1189.6,
+      "rib": 1189.6,
+      "rin": 1066.05,
+      "deg": 36.21,
+      "oro": 39.6,
       "divisas": 1094.5,
-      "fmi": null,
-      "rin": 1094.5
+      "fmi": null
     },
     {
       "date": "1998-01",
-      "rib": null,
-      "deg": null,
-      "oro": 1122.19,
+      "rib": 1122.19,
+      "rin": 999.99,
+      "deg": 36.26,
+      "oro": 39.63,
       "divisas": 1027.4,
-      "fmi": null,
-      "rin": 1027.4
+      "fmi": null
     },
     {
       "date": "1998-02",
-      "rib": null,
-      "deg": null,
-      "oro": 1069.14,
+      "rib": 1069.14,
+      "rin": 951.05,
+      "deg": 36.06,
+      "oro": 39.63,
       "divisas": 975.0,
-      "fmi": null,
-      "rin": 975.0
+      "fmi": null
     },
     {
       "date": "1998-03",
-      "rib": 2.98,
-      "deg": null,
-      "oro": 1072.21,
+      "rib": 1072.21,
+      "rin": 937.57,
+      "deg": 35.92,
+      "oro": 39.63,
       "divisas": 976.19,
-      "fmi": null,
-      "rin": 976.19
+      "fmi": null
     },
     {
       "date": "1998-04",
-      "rib": null,
-      "deg": null,
-      "oro": 1106.47,
+      "rib": 1106.47,
+      "rin": 974.54,
+      "deg": 36.08,
+      "oro": 39.63,
       "divisas": 1010.29,
-      "fmi": null,
-      "rin": 1010.29
+      "fmi": null
     },
     {
       "date": "1998-05",
-      "rib": null,
-      "deg": null,
-      "oro": 1176.47,
+      "rib": 1176.47,
+      "rin": 1045.18,
+      "deg": 35.8,
+      "oro": 262.2,
       "divisas": 857.31,
-      "fmi": null,
-      "rin": 857.31
+      "fmi": null
     },
     {
       "date": "1998-06",
-      "rib": 3.05,
-      "deg": null,
-      "oro": 1172.7,
+      "rib": 1172.7,
+      "rin": 1046.33,
+      "deg": 35.62,
+      "oro": 262.01,
       "divisas": 853.62,
-      "fmi": null,
-      "rin": 853.62
+      "fmi": null
     },
     {
       "date": "1998-07",
-      "rib": null,
-      "deg": null,
-      "oro": 1174.9,
+      "rib": 1174.9,
+      "rin": 1052.99,
+      "deg": 35.8,
+      "oro": 258.8,
       "divisas": 858.8,
-      "fmi": null,
-      "rin": 858.8
+      "fmi": null
     },
     {
       "date": "1998-08",
-      "rib": null,
-      "deg": null,
-      "oro": 1200.4,
+      "rib": 1200.4,
+      "rin": 1082.56,
+      "deg": 35.6,
+      "oro": 244.0,
       "divisas": 897.7,
-      "fmi": null,
-      "rin": 897.7
+      "fmi": null
     },
     {
       "date": "1998-09",
-      "rib": 3.32,
-      "deg": null,
-      "oro": 1153.7,
+      "rib": 1153.7,
+      "rin": 1032.19,
+      "deg": 36.9,
+      "oro": 264.2,
       "divisas": 821.1,
-      "fmi": null,
-      "rin": 821.1
+      "fmi": null
     },
     {
       "date": "1998-10",
-      "rib": null,
-      "deg": null,
-      "oro": 1129.5,
+      "rib": 1129.5,
+      "rin": 989.4,
+      "deg": 37.8,
+      "oro": 262.4,
       "divisas": 797.3,
-      "fmi": null,
-      "rin": 797.3
+      "fmi": null
     },
     {
       "date": "1998-11",
-      "rib": null,
-      "deg": null,
-      "oro": 1133.8,
+      "rib": 1133.8,
+      "rin": 998.67,
+      "deg": 37.2,
+      "oro": 264.3,
       "divisas": 805.2,
-      "fmi": null,
-      "rin": 805.2
+      "fmi": null
     },
     {
       "date": "1998-12",
-      "rib": 3.68,
-      "deg": null,
-      "oro": 1192.85,
+      "rib": 1192.85,
+      "rin": 1063.41,
+      "deg": 37.7,
+      "oro": 256.9,
       "divisas": 888.25,
-      "fmi": null,
-      "rin": 888.25
+      "fmi": null
     },
     {
       "date": "1999-01",
-      "rib": null,
-      "deg": null,
-      "oro": 1156.49,
+      "rib": 1156.49,
+      "rin": 1027.49,
+      "deg": 37.3,
+      "oro": 253.1,
       "divisas": 856.04,
-      "fmi": null,
-      "rin": 856.04
+      "fmi": null
     },
     {
       "date": "1999-02",
-      "rib": null,
-      "deg": null,
-      "oro": 1149.79,
+      "rib": 1149.79,
+      "rin": 1026.25,
+      "deg": 36.58,
+      "oro": 255.65,
       "divisas": 847.57,
-      "fmi": null,
-      "rin": 847.57
+      "fmi": null
     },
     {
       "date": "1999-03",
-      "rib": 3.6,
-      "deg": null,
-      "oro": 1107.14,
+      "rib": 1107.14,
+      "rin": 989.27,
+      "deg": 36.33,
+      "oro": 249.53,
       "divisas": 811.28,
-      "fmi": null,
-      "rin": 811.28
+      "fmi": null
     },
     {
       "date": "1999-04",
-      "rib": null,
-      "deg": null,
-      "oro": 1072.66,
+      "rib": 1072.66,
+      "rin": 958.68,
+      "deg": 36.27,
+      "oro": 252.56,
       "divisas": 773.82,
-      "fmi": null,
-      "rin": 773.82
+      "fmi": null
     },
     {
       "date": "1999-05",
-      "rib": null,
-      "deg": null,
-      "oro": 1085.91,
+      "rib": 1085.91,
+      "rin": 973.26,
+      "deg": 36.05,
+      "oro": 239.71,
       "divisas": 800.15,
-      "fmi": null,
-      "rin": 800.15
+      "fmi": null
     },
     {
       "date": "1999-06",
-      "rib": 3.58,
-      "deg": null,
-      "oro": 1128.66,
+      "rib": 1128.66,
+      "rin": 1001.34,
+      "deg": 35.84,
+      "oro": 234.66,
       "divisas": 848.15,
-      "fmi": null,
-      "rin": 848.15
+      "fmi": null
     },
     {
       "date": "1999-07",
-      "rib": null,
-      "deg": null,
-      "oro": 1062.29,
+      "rib": 1062.29,
+      "rin": 933.01,
+      "deg": 36.51,
+      "oro": 227.41,
       "divisas": 788.37,
-      "fmi": null,
-      "rin": 788.37
+      "fmi": null
     },
     {
       "date": "1999-08",
-      "rib": null,
-      "deg": null,
-      "oro": 1075.6,
+      "rib": 1075.6,
+      "rin": 945.49,
+      "deg": 36.47,
+      "oro": 227.32,
       "divisas": 801.82,
-      "fmi": null,
-      "rin": 801.82
+      "fmi": null
     },
     {
       "date": "1999-09",
-      "rib": 3.67,
-      "deg": null,
-      "oro": 1184.92,
+      "rib": 1184.92,
+      "rin": 1053.66,
+      "deg": 36.99,
+      "oro": 274.97,
       "divisas": 862.96,
-      "fmi": null,
-      "rin": 862.96
+      "fmi": null
     },
     {
       "date": "1999-10",
-      "rib": null,
-      "deg": null,
-      "oro": 1109.59,
+      "rib": 1109.59,
+      "rin": 988.84,
+      "deg": 37.15,
+      "oro": 265.34,
       "divisas": 797.1,
-      "fmi": null,
-      "rin": 797.1
+      "fmi": null
     },
     {
       "date": "1999-11",
-      "rib": null,
-      "deg": null,
-      "oro": 1101.26,
+      "rib": 1101.26,
+      "rin": 984.66,
+      "deg": 36.8,
+      "oro": 261.76,
       "divisas": 792.7,
-      "fmi": null,
-      "rin": 792.7
+      "fmi": null
     },
     {
       "date": "1999-12",
-      "rib": 3.65,
-      "deg": null,
-      "oro": 1222.67,
+      "rib": 1222.67,
+      "rin": 1113.65,
+      "deg": 37.38,
+      "oro": 259.96,
       "divisas": 915.32,
-      "fmi": null,
-      "rin": 915.32
+      "fmi": null
     },
     {
       "date": "2000-01",
-      "rib": 3.61,
-      "deg": null,
-      "oro": 1204.89,
+      "rib": 1204.89,
+      "rin": 1099.69,
+      "deg": 37.06,
+      "oro": 255.94,
       "divisas": 901.88,
-      "fmi": null,
-      "rin": 901.88
+      "fmi": null
     },
     {
       "date": "2000-02",
-      "rib": 3.69,
-      "deg": null,
-      "oro": 1196.56,
+      "rib": 1196.56,
+      "rin": 1080.21,
+      "deg": 36.52,
+      "oro": 261.07,
       "divisas": 888.97,
-      "fmi": null,
-      "rin": 888.97
+      "fmi": null
     },
     {
       "date": "2000-03",
-      "rib": 3.71,
-      "deg": null,
-      "oro": 1144.88,
+      "rib": 1144.88,
+      "rin": 1030.08,
+      "deg": 36.67,
+      "oro": 246.12,
       "divisas": 852.09,
-      "fmi": null,
-      "rin": 852.09
+      "fmi": null
     },
     {
       "date": "2000-04",
-      "rib": 3.7,
-      "deg": null,
-      "oro": 1114.18,
+      "rib": 1114.18,
+      "rin": 1004.98,
+      "deg": 36.21,
+      "oro": 246.34,
       "divisas": 821.63,
-      "fmi": null,
-      "rin": 821.63
+      "fmi": null
     },
     {
       "date": "2000-05",
-      "rib": 3.72,
-      "deg": null,
-      "oro": 1134.55,
+      "rib": 1134.55,
+      "rin": 1028.19,
+      "deg": 36.15,
+      "oro": 243.79,
       "divisas": 844.61,
-      "fmi": null,
-      "rin": 844.61
+      "fmi": null
     },
     {
       "date": "2000-06",
-      "rib": 3.63,
-      "deg": null,
-      "oro": 1145.6,
+      "rib": 1145.6,
+      "rin": 1042.23,
+      "deg": 36.47,
+      "oro": 258.61,
       "divisas": 840.52,
-      "fmi": null,
-      "rin": 840.52
+      "fmi": null
     },
     {
       "date": "2000-07",
-      "rib": 3.62,
-      "deg": null,
-      "oro": 1094.2,
+      "rib": 1094.2,
+      "rin": 995.57,
+      "deg": 35.91,
+      "oro": 248.21,
       "divisas": 800.07,
-      "fmi": null,
-      "rin": 800.07
+      "fmi": null
     },
     {
       "date": "2000-08",
-      "rib": 3.41,
-      "deg": null,
-      "oro": 1086.13,
+      "rib": 1086.13,
+      "rin": 989.96,
+      "deg": 35.53,
+      "oro": 243.77,
       "divisas": 796.83,
-      "fmi": null,
-      "rin": 796.83
+      "fmi": null
     },
     {
       "date": "2000-09",
-      "rib": 3.44,
-      "deg": null,
-      "oro": 1076.84,
+      "rib": 1076.84,
+      "rin": 983.13,
+      "deg": 35.47,
+      "oro": 246.53,
       "divisas": 784.83,
-      "fmi": null,
-      "rin": 784.83
+      "fmi": null
     },
     {
       "date": "2000-10",
-      "rib": 3.4,
-      "deg": null,
-      "oro": 1071.33,
+      "rib": 1071.33,
+      "rin": 990.24,
+      "deg": 35.27,
+      "oro": 236.14,
       "divisas": 789.92,
-      "fmi": null,
-      "rin": 789.92
+      "fmi": null
     },
     {
       "date": "2000-11",
-      "rib": 3.4,
-      "deg": null,
-      "oro": 1060.43,
+      "rib": 1060.43,
+      "rin": 982.3,
+      "deg": 35.0,
+      "oro": 240.02,
       "divisas": 775.41,
-      "fmi": null,
-      "rin": 775.41
+      "fmi": null
     },
     {
       "date": "2000-12",
-      "rib": 3.22,
-      "deg": null,
-      "oro": 1159.71,
+      "rib": 1159.71,
+      "rin": 1084.8,
+      "deg": 35.61,
+      "oro": 244.79,
       "divisas": 869.31,
-      "fmi": null,
-      "rin": 869.31
+      "fmi": null
     },
     {
       "date": "2001-01",
-      "rib": 3.29,
-      "deg": null,
-      "oro": 1044.91,
+      "rib": 1044.91,
+      "rin": 974.07,
+      "deg": 35.25,
+      "oro": 248.76,
       "divisas": 750.9,
-      "fmi": null,
-      "rin": 750.9
+      "fmi": null
     },
     {
       "date": "2001-02",
-      "rib": 3.24,
-      "deg": null,
-      "oro": 1051.43,
+      "rib": 1051.43,
+      "rin": 980.79,
+      "deg": 35.1,
+      "oro": 244.53,
       "divisas": 761.8,
-      "fmi": null,
-      "rin": 761.8
+      "fmi": null
     },
     {
       "date": "2001-03",
-      "rib": 3.18,
-      "deg": null,
-      "oro": 1031.62,
+      "rib": 1031.62,
+      "rin": 966.31,
+      "deg": 34.59,
+      "oro": 244.25,
       "divisas": 742.78,
-      "fmi": null,
-      "rin": 742.78
+      "fmi": null
     },
     {
       "date": "2001-04",
-      "rib": 3.23,
-      "deg": null,
-      "oro": 1047.8,
+      "rib": 1047.8,
+      "rin": 980.68,
+      "deg": 34.74,
+      "oro": 248.43,
       "divisas": 754.63,
-      "fmi": null,
-      "rin": 754.63
+      "fmi": null
     },
     {
       "date": "2001-05",
-      "rib": 3.25,
-      "deg": null,
-      "oro": 1060.48,
+      "rib": 1060.48,
+      "rin": 998.53,
+      "deg": 34.29,
+      "oro": 254.44,
       "divisas": 761.75,
-      "fmi": null,
-      "rin": 761.75
+      "fmi": null
     },
     {
       "date": "2001-06",
-      "rib": 3.17,
-      "deg": null,
-      "oro": 1127.36,
+      "rib": 1127.36,
+      "rin": 1051.0,
+      "deg": 34.06,
+      "oro": 253.03,
       "divisas": 830.26,
-      "fmi": null,
-      "rin": 830.26
+      "fmi": null
     },
     {
       "date": "2001-07",
-      "rib": 3.21,
-      "deg": null,
-      "oro": 1135.22,
+      "rib": 1135.22,
+      "rin": 1059.67,
+      "deg": 34.34,
+      "oro": 250.03,
       "divisas": 840.85,
-      "fmi": null,
-      "rin": 840.85
+      "fmi": null
     },
     {
       "date": "2001-08",
-      "rib": 3.19,
-      "deg": null,
-      "oro": 1124.79,
+      "rib": 1124.79,
+      "rin": 1044.33,
+      "deg": 35.03,
+      "oro": 255.66,
       "divisas": 824.11,
-      "fmi": null,
-      "rin": 824.11
+      "fmi": null
     },
     {
       "date": "2001-09",
-      "rib": 3.18,
-      "deg": null,
-      "oro": 1105.02,
+      "rib": 1105.02,
+      "rin": 1024.88,
+      "deg": 35.24,
+      "oro": 272.09,
       "divisas": 787.68,
-      "fmi": null,
-      "rin": 787.68
+      "fmi": null
     },
     {
       "date": "2001-10",
-      "rib": 3.07,
-      "deg": null,
-      "oro": 1093.14,
+      "rib": 1093.14,
+      "rin": 1029.11,
+      "deg": 34.93,
+      "oro": 263.26,
       "divisas": 784.95,
-      "fmi": null,
-      "rin": 784.95
+      "fmi": null
     },
     {
       "date": "2001-11",
-      "rib": 2.99,
-      "deg": null,
-      "oro": 1164.75,
+      "rib": 1164.75,
+      "rin": 1104.53,
+      "deg": 34.61,
+      "oro": 258.01,
       "divisas": 862.13,
-      "fmi": null,
-      "rin": 862.13
+      "fmi": null
     },
     {
       "date": "2001-12",
-      "rib": 2.95,
-      "deg": null,
-      "oro": 1129.22,
+      "rib": 1129.22,
+      "rin": 1077.41,
+      "deg": 34.3,
+      "oro": 259.6,
       "divisas": 825.32,
-      "fmi": null,
-      "rin": 825.32
+      "fmi": null
     },
     {
       "date": "2002-01",
-      "rib": 2.95,
-      "deg": null,
-      "oro": 1151.14,
+      "rib": 1151.14,
+      "rin": 1091.1,
+      "deg": 34.27,
+      "oro": 257.15,
       "divisas": 838.68,
-      "fmi": null,
-      "rin": 838.68
+      "fmi": 11.04
     },
     {
       "date": "2002-02",
-      "rib": 2.88,
-      "deg": null,
-      "oro": 1097.87,
+      "rib": 1097.87,
+      "rin": 1037.33,
+      "deg": 34.05,
+      "oro": 271.57,
       "divisas": 771.24,
-      "fmi": null,
-      "rin": 771.24
+      "fmi": 11.01
     },
     {
       "date": "2002-03",
-      "rib": 2.75,
-      "deg": null,
-      "oro": 1025.04,
+      "rib": 1025.04,
+      "rin": 964.96,
+      "deg": 34.33,
+      "oro": 273.02,
       "divisas": 696.61,
-      "fmi": null,
-      "rin": 696.61
+      "fmi": 11.08
     },
     {
       "date": "2002-04",
-      "rib": 2.66,
-      "deg": null,
-      "oro": 996.37,
+      "rib": 996.37,
+      "rin": 934.3,
+      "deg": 34.99,
+      "oro": 282.7,
       "divisas": 657.4,
-      "fmi": null,
-      "rin": 657.4
+      "fmi": 11.27
     },
     {
       "date": "2002-05",
-      "rib": 2.62,
-      "deg": null,
-      "oro": 1042.27,
+      "rib": 1042.27,
+      "rin": 979.36,
+      "deg": 35.3,
+      "oro": 298.48,
       "divisas": 687.07,
-      "fmi": null,
-      "rin": 687.07
+      "fmi": 11.41
     },
     {
       "date": "2002-06",
-      "rib": 2.57,
-      "deg": null,
-      "oro": 963.6,
+      "rib": 963.6,
+      "rin": 905.29,
+      "deg": 36.32,
+      "oro": 290.94,
       "divisas": 614.62,
-      "fmi": null,
-      "rin": 614.62
+      "fmi": 11.72
     },
     {
       "date": "2002-07",
-      "rib": 2.63,
-      "deg": null,
-      "oro": 878.73,
+      "rib": 878.73,
+      "rin": 819.96,
+      "deg": 36.52,
+      "oro": 278.68,
       "divisas": 541.76,
-      "fmi": null,
-      "rin": 541.76
+      "fmi": 11.76
     },
     {
       "date": "2002-08",
-      "rib": 2.77,
-      "deg": null,
-      "oro": 999.82,
+      "rib": 999.82,
+      "rin": 939.87,
+      "deg": 36.44,
+      "oro": 284.69,
       "divisas": 656.92,
-      "fmi": null,
-      "rin": 656.92
+      "fmi": 11.77
     },
     {
       "date": "2002-09",
-      "rib": 2.74,
-      "deg": null,
-      "oro": 979.81,
+      "rib": 979.81,
+      "rin": 923.58,
+      "deg": 36.28,
+      "oro": 291.85,
       "divisas": 629.98,
-      "fmi": null,
-      "rin": 629.98
+      "fmi": 11.7
     },
     {
       "date": "2002-10",
-      "rib": 2.65,
-      "deg": null,
-      "oro": 945.68,
+      "rib": 945.68,
+      "rin": 898.52,
+      "deg": 36.4,
+      "oro": 288.58,
       "divisas": 598.98,
-      "fmi": null,
-      "rin": 598.98
+      "fmi": 11.71
     },
     {
       "date": "2002-11",
-      "rib": 2.6,
-      "deg": null,
-      "oro": 915.35,
+      "rib": 915.35,
+      "rin": 869.56,
+      "deg": 36.39,
+      "oro": 289.5,
       "divisas": 567.7,
-      "fmi": null,
-      "rin": 567.7
+      "fmi": 11.76
     },
     {
       "date": "2002-12",
-      "rib": 2.56,
-      "deg": null,
-      "oro": 896.94,
+      "rib": 896.94,
+      "rin": 853.84,
+      "deg": 37.27,
+      "oro": 316.44,
       "divisas": 521.21,
-      "fmi": null,
-      "rin": 521.21
+      "fmi": 12.02
     },
     {
       "date": "2003-01",
-      "rib": 2.64,
-      "deg": null,
-      "oro": 929.46,
+      "rib": 929.46,
+      "rin": 883.57,
+      "deg": 37.83,
+      "oro": 335.05,
       "divisas": 534.4,
-      "fmi": null,
-      "rin": 534.4
+      "fmi": 12.18
     },
     {
       "date": "2003-02",
-      "rib": 2.63,
-      "deg": null,
-      "oro": 770.79,
+      "rib": 770.79,
+      "rin": 724.66,
+      "deg": 37.72,
+      "oro": 320.21,
       "divisas": 390.67,
-      "fmi": null,
-      "rin": 390.67
+      "fmi": 12.19
     },
     {
       "date": "2003-03",
-      "rib": 2.56,
-      "deg": null,
-      "oro": 771.17,
+      "rib": 771.17,
+      "rin": 728.89,
+      "deg": 37.49,
+      "oro": 301.58,
       "divisas": 410.0,
-      "fmi": null,
-      "rin": 410.0
+      "fmi": 12.1
     },
     {
       "date": "2003-04",
-      "rib": 2.56,
-      "deg": null,
-      "oro": 860.17,
+      "rib": 860.17,
+      "rin": 758.91,
+      "deg": 37.45,
+      "oro": 302.18,
       "divisas": 498.34,
-      "fmi": null,
-      "rin": 498.34
+      "fmi": 12.21
     },
     {
       "date": "2003-05",
-      "rib": 2.39,
-      "deg": null,
-      "oro": 852.02,
+      "rib": 852.02,
+      "rin": 753.11,
+      "deg": 38.2,
+      "oro": 331.02,
       "divisas": 460.24,
-      "fmi": null,
-      "rin": 460.24
+      "fmi": 12.56
     },
     {
       "date": "2003-06",
-      "rib": 2.41,
-      "deg": null,
-      "oro": 958.11,
+      "rib": 958.11,
+      "rin": 867.53,
+      "deg": 37.91,
+      "oro": 314.98,
       "divisas": 592.78,
-      "fmi": null,
-      "rin": 592.78
+      "fmi": 12.44
     },
     {
       "date": "2003-07",
-      "rib": 2.37,
-      "deg": null,
-      "oro": 977.34,
+      "rib": 977.34,
+      "rin": 870.51,
+      "deg": 37.85,
+      "oro": 326.09,
       "divisas": 600.98,
-      "fmi": null,
-      "rin": 600.98
+      "fmi": 12.42
     },
     {
       "date": "2003-08",
-      "rib": 2.41,
-      "deg": null,
-      "oro": 962.06,
+      "rib": 962.06,
+      "rin": 861.01,
+      "deg": 37.67,
+      "oro": 337.04,
       "divisas": 575.18,
-      "fmi": null,
-      "rin": 575.18
+      "fmi": 12.17
     },
     {
       "date": "2003-09",
-      "rib": 2.35,
-      "deg": null,
-      "oro": 1006.08,
+      "rib": 1006.08,
+      "rin": 901.54,
+      "deg": 38.88,
+      "oro": 348.09,
       "divisas": 606.56,
-      "fmi": null,
-      "rin": 606.56
+      "fmi": 12.54
     },
     {
       "date": "2003-10",
-      "rib": 2.3,
-      "deg": null,
-      "oro": 1132.24,
+      "rib": 1132.24,
+      "rin": 1009.71,
+      "deg": 39.57,
+      "oro": 352.24,
       "divisas": 727.68,
-      "fmi": null,
-      "rin": 727.68
+      "fmi": 12.76
     },
     {
       "date": "2003-11",
-      "rib": 2.3,
-      "deg": null,
-      "oro": 1010.36,
+      "rib": 1010.36,
+      "rin": 890.08,
+      "deg": 39.1,
+      "oro": 360.42,
       "divisas": 598.07,
-      "fmi": null,
-      "rin": 598.07
+      "fmi": 12.78
     },
     {
       "date": "2003-12",
-      "rib": 2.2,
-      "deg": null,
-      "oro": 1096.12,
+      "rib": 1096.12,
+      "rin": 975.85,
+      "deg": 40.27,
+      "oro": 379.41,
       "divisas": 663.3,
-      "fmi": null,
-      "rin": 663.3
+      "fmi": 13.14
     },
     {
       "date": "2004-01",
-      "rib": 2.24,
-      "deg": null,
-      "oro": 1014.3,
+      "rib": 1014.3,
+      "rin": 892.25,
+      "deg": 40.51,
+      "oro": 369.82,
       "divisas": 590.77,
-      "fmi": null,
-      "rin": 590.77
+      "fmi": 13.2
     },
     {
       "date": "2004-02",
-      "rib": 2.26,
-      "deg": null,
-      "oro": 981.79,
+      "rib": 981.79,
+      "rin": 861.15,
+      "deg": 39.69,
+      "oro": 358.47,
       "divisas": 570.49,
-      "fmi": null,
-      "rin": 570.49
+      "fmi": 13.14
     },
     {
       "date": "2004-03",
-      "rib": 2.21,
-      "deg": null,
-      "oro": 1003.73,
+      "rib": 1003.73,
+      "rin": 888.87,
+      "deg": 39.6,
+      "oro": 383.92,
       "divisas": 567.12,
-      "fmi": null,
-      "rin": 567.12
+      "fmi": 13.09
     },
     {
       "date": "2004-04",
-      "rib": 2.51,
-      "deg": null,
-      "oro": 895.48,
+      "rib": 895.48,
+      "rin": 791.37,
+      "deg": 38.77,
+      "oro": 353.06,
       "divisas": 490.84,
-      "fmi": null,
-      "rin": 490.84
+      "fmi": 12.81
     },
     {
       "date": "2004-05",
-      "rib": 2.55,
-      "deg": null,
-      "oro": 921.12,
+      "rib": 921.12,
+      "rin": 817.66,
+      "deg": 38.85,
+      "oro": 358.63,
       "divisas": 510.61,
-      "fmi": null,
-      "rin": 510.61
+      "fmi": 13.04
     },
     {
       "date": "2004-06",
-      "rib": 2.58,
-      "deg": null,
-      "oro": 915.4,
+      "rib": 915.4,
+      "rin": 804.75,
+      "deg": 38.84,
+      "oro": 357.55,
       "divisas": 505.98,
-      "fmi": null,
-      "rin": 505.98
+      "fmi": 13.02
     },
     {
       "date": "2004-07",
-      "rib": 2.81,
-      "deg": null,
-      "oro": 965.38,
+      "rib": 965.38,
+      "rin": 859.6,
+      "deg": 38.58,
+      "oro": 353.41,
       "divisas": 560.47,
-      "fmi": null,
-      "rin": 560.47
+      "fmi": 12.91
     },
     {
       "date": "2004-08",
-      "rib": 3.23,
-      "deg": null,
-      "oro": 1008.04,
+      "rib": 1008.04,
+      "rin": 897.95,
+      "deg": 40.0,
+      "oro": 371.94,
       "divisas": 583.15,
-      "fmi": null,
-      "rin": 583.15
+      "fmi": 12.94
     },
     {
       "date": "2004-09",
-      "rib": 3.38,
-      "deg": null,
-      "oro": 1096.4,
+      "rib": 1096.4,
+      "rin": 950.6,
+      "deg": 40.44,
+      "oro": 376.53,
       "divisas": 666.4,
-      "fmi": null,
-      "rin": 666.4
+      "fmi": 13.03
     },
     {
       "date": "2004-10",
-      "rib": 3.36,
-      "deg": null,
-      "oro": 1140.17,
+      "rib": 1140.17,
+      "rin": 994.76,
+      "deg": 41.0,
+      "oro": 386.96,
       "divisas": 698.96,
-      "fmi": null,
-      "rin": 698.96
+      "fmi": 13.26
     },
     {
       "date": "2004-11",
-      "rib": 3.56,
-      "deg": null,
-      "oro": 1213.74,
+      "rib": 1213.74,
+      "rin": 1059.41,
+      "deg": 40.77,
+      "oro": 413.88,
       "divisas": 745.5,
-      "fmi": null,
-      "rin": 745.5
+      "fmi": 13.59
     },
     {
       "date": "2004-12",
-      "rib": 3.83,
-      "deg": null,
-      "oro": 1271.73,
+      "rib": 1271.73,
+      "rin": 1123.3,
+      "deg": 41.25,
+      "oro": 399.39,
       "divisas": 817.35,
-      "fmi": null,
-      "rin": 817.35
+      "fmi": 13.74
     },
     {
       "date": "2005-01",
-      "rib": 3.91,
-      "deg": null,
-      "oro": 1158.17,
+      "rib": 1158.17,
+      "rin": 1016.13,
+      "deg": 40.61,
+      "oro": 388.97,
       "divisas": 715.09,
-      "fmi": null,
-      "rin": 715.09
+      "fmi": 13.5
     },
     {
       "date": "2005-02",
-      "rib": 4.0,
-      "deg": null,
-      "oro": 1188.47,
+      "rib": 1188.47,
+      "rin": 1045.69,
+      "deg": 39.34,
+      "oro": 396.64,
       "divisas": 738.96,
-      "fmi": null,
-      "rin": 738.96
+      "fmi": 13.53
     },
     {
       "date": "2005-03",
-      "rib": 4.16,
-      "deg": null,
-      "oro": 1170.9,
+      "rib": 1170.9,
+      "rin": 1035.44,
+      "deg": 39.02,
+      "oro": 389.01,
       "divisas": 729.48,
-      "fmi": null,
-      "rin": 729.48
+      "fmi": 13.39
     },
     {
       "date": "2005-04",
-      "rib": 4.36,
-      "deg": null,
-      "oro": 1247.24,
+      "rib": 1247.24,
+      "rin": 1102.26,
+      "deg": 42.3,
+      "oro": 392.9,
       "divisas": 798.61,
-      "fmi": null,
-      "rin": 798.61
+      "fmi": 13.43
     },
     {
       "date": "2005-05",
-      "rib": 4.71,
-      "deg": null,
-      "oro": 1232.44,
+      "rib": 1232.44,
+      "rin": 1094.18,
+      "deg": 40.07,
+      "oro": 381.49,
       "divisas": 797.7,
-      "fmi": null,
-      "rin": 797.7
+      "fmi": 13.18
     },
     {
       "date": "2005-06",
-      "rib": 4.79,
-      "deg": null,
-      "oro": 1286.79,
+      "rib": 1286.79,
+      "rin": 1162.95,
+      "deg": 39.55,
+      "oro": 398.61,
       "divisas": 835.68,
-      "fmi": null,
-      "rin": 835.68
+      "fmi": 12.95
     },
     {
       "date": "2005-07",
-      "rib": 4.93,
-      "deg": null,
-      "oro": 1364.92,
+      "rib": 1364.92,
+      "rin": 1247.73,
+      "deg": 39.39,
+      "oro": 390.31,
       "divisas": 922.34,
-      "fmi": null,
-      "rin": 922.34
+      "fmi": 12.87
     },
     {
       "date": "2005-08",
-      "rib": 5.14,
-      "deg": null,
-      "oro": 1454.0,
+      "rib": 1454.0,
+      "rin": 1337.63,
+      "deg": 38.0,
+      "oro": 393.44,
       "divisas": 1009.6,
-      "fmi": null,
-      "rin": 1009.6
+      "fmi": 12.96
     },
     {
       "date": "2005-09",
-      "rib": 5.92,
-      "deg": null,
-      "oro": 1498.13,
+      "rib": 1498.13,
+      "rin": 1390.07,
+      "deg": 37.83,
+      "oro": 431.38,
       "divisas": 1016.05,
-      "fmi": null,
-      "rin": 1016.05
+      "fmi": 12.87
     },
     {
       "date": "2005-10",
-      "rib": 6.26,
-      "deg": null,
-      "oro": 1613.73,
+      "rib": 1613.73,
+      "rin": 1517.71,
+      "deg": 38.0,
+      "oro": 431.68,
       "divisas": 1131.16,
-      "fmi": null,
-      "rin": 1131.16
+      "fmi": 12.89
     },
     {
       "date": "2005-11",
-      "rib": 6.69,
-      "deg": null,
-      "oro": 1740.22,
+      "rib": 1740.22,
+      "rin": 1649.52,
+      "deg": 35.68,
+      "oro": 456.0,
       "divisas": 1235.89,
-      "fmi": null,
-      "rin": 1235.89
+      "fmi": 12.66
     },
     {
       "date": "2005-12",
-      "rib": 7.48,
-      "deg": null,
-      "oro": 1798.39,
+      "rib": 1798.39,
+      "rin": 1714.16,
+      "deg": 38.41,
+      "oro": 470.61,
       "divisas": 1276.68,
-      "fmi": null,
-      "rin": 1276.68
+      "fmi": 12.68
     },
     {
       "date": "2006-01",
-      "rib": 7.87,
-      "deg": null,
-      "oro": 1839.29,
+      "rib": 1839.29,
+      "rin": 1823.47,
+      "deg": 38.9,
+      "oro": 517.59,
       "divisas": 1269.98,
-      "fmi": null,
-      "rin": 1269.98
+      "fmi": 12.81
     },
     {
       "date": "2006-02",
-      "rib": 7.94,
-      "deg": null,
-      "oro": 1890.53,
+      "rib": 1890.53,
+      "rin": 1876.17,
+      "deg": 37.36,
+      "oro": 501.45,
       "divisas": 1338.97,
-      "fmi": null,
-      "rin": 1338.97
+      "fmi": 12.76
     },
     {
       "date": "2006-03",
-      "rib": 7.94,
-      "deg": null,
-      "oro": 2028.6,
+      "rib": 2028.6,
+      "rin": 2014.0,
+      "deg": 37.54,
+      "oro": 537.36,
       "divisas": 1440.91,
-      "fmi": null,
-      "rin": 1440.91
+      "fmi": 12.79
     },
     {
       "date": "2006-04",
-      "rib": 8.17,
-      "deg": null,
-      "oro": 2230.9,
+      "rib": 2230.9,
+      "rin": 2216.66,
+      "deg": 38.24,
+      "oro": 577.87,
       "divisas": 1601.8,
-      "fmi": null,
-      "rin": 1601.8
+      "fmi": 12.99
     },
     {
       "date": "2006-05",
-      "rib": 8.7,
-      "deg": null,
-      "oro": 2413.17,
+      "rib": 2413.17,
+      "rin": 2401.29,
+      "deg": 38.66,
+      "oro": 597.26,
       "divisas": 1764.0,
-      "fmi": null,
-      "rin": 1764.0
+      "fmi": 13.26
     },
     {
       "date": "2006-06",
-      "rib": 9.47,
-      "deg": null,
-      "oro": 2488.56,
+      "rib": 2488.56,
+      "rin": 2474.07,
+      "deg": 39.85,
+      "oro": 545.2,
       "divisas": 1890.49,
-      "fmi": null,
-      "rin": 1890.49
+      "fmi": 13.02
     },
     {
       "date": "2006-07",
-      "rib": 10.62,
-      "deg": null,
-      "oro": 2685.65,
+      "rib": 2685.65,
+      "rin": 2671.3,
+      "deg": 40.27,
+      "oro": 578.93,
       "divisas": 2053.33,
-      "fmi": null,
-      "rin": 2053.33
+      "fmi": 13.12
     },
     {
       "date": "2006-08",
-      "rib": 11.54,
-      "deg": null,
-      "oro": 2783.44,
+      "rib": 2783.44,
+      "rin": 2775.67,
+      "deg": 40.08,
+      "oro": 564.08,
       "divisas": 2166.1,
-      "fmi": null,
-      "rin": 2166.1
+      "fmi": 13.19
     },
     {
       "date": "2006-09",
-      "rib": 12.25,
-      "deg": null,
-      "oro": 2897.85,
+      "rib": 2897.85,
+      "rin": 2885.22,
+      "deg": 40.02,
+      "oro": 548.57,
       "divisas": 2296.12,
-      "fmi": null,
-      "rin": 2296.12
+      "fmi": 13.13
     },
     {
       "date": "2006-10",
-      "rib": 13.04,
-      "deg": null,
-      "oro": 2982.8,
+      "rib": 2982.8,
+      "rin": 2970.67,
+      "deg": 40.22,
+      "oro": 550.8,
       "divisas": 2378.63,
-      "fmi": null,
-      "rin": 2378.63
+      "fmi": 13.15
     },
     {
       "date": "2006-11",
-      "rib": 13.89,
-      "deg": null,
-      "oro": 3083.64,
+      "rib": 3083.64,
+      "rin": 3070.69,
+      "deg": 40.41,
+      "oro": 579.84,
       "divisas": 2450.02,
-      "fmi": null,
-      "rin": 2450.02
+      "fmi": 13.37
     },
     {
       "date": "2006-12",
-      "rib": 14.43,
-      "deg": null,
-      "oro": 3192.63,
+      "rib": 3192.63,
+      "rin": 3178.99,
+      "deg": 40.48,
+      "oro": 577.59,
       "divisas": 2561.22,
-      "fmi": null,
-      "rin": 2561.22
+      "fmi": 13.34
     },
     {
       "date": "2007-01",
-      "rib": 15.12,
-      "deg": null,
-      "oro": 3254.82,
+      "rib": 3254.82,
+      "rin": 3239.76,
+      "deg": 40.31,
+      "oro": 590.1,
       "divisas": 2611.17,
-      "fmi": null,
-      "rin": 2611.17
+      "fmi": 13.24
     },
     {
       "date": "2007-02",
-      "rib": 15.42,
-      "deg": null,
-      "oro": 3384.24,
+      "rib": 3384.24,
+      "rin": 3369.4,
+      "deg": 40.2,
+      "oro": 602.38,
       "divisas": 2728.3,
-      "fmi": null,
-      "rin": 2728.3
+      "fmi": 13.36
     },
     {
       "date": "2007-03",
-      "rib": 15.39,
-      "deg": null,
-      "oro": 3547.37,
+      "rib": 3547.37,
+      "rin": 3532.69,
+      "deg": 40.55,
+      "oro": 603.72,
       "divisas": 2889.67,
-      "fmi": null,
-      "rin": 2889.67
+      "fmi": 13.43
     },
     {
       "date": "2007-04",
-      "rib": 15.9,
-      "deg": null,
-      "oro": 3749.0,
+      "rib": 3749.0,
+      "rin": 3733.76,
+      "deg": 41.03,
+      "oro": 621.51,
       "divisas": 3072.92,
-      "fmi": null,
-      "rin": 3072.92
+      "fmi": 13.54
     },
     {
       "date": "2007-05",
-      "rib": 16.4,
-      "deg": null,
-      "oro": 3855.35,
+      "rib": 3855.35,
+      "rin": 3840.77,
+      "deg": 40.19,
+      "oro": 594.99,
       "divisas": 3206.76,
-      "fmi": null,
-      "rin": 3206.76
+      "fmi": 13.42
     },
     {
       "date": "2007-06",
-      "rib": 16.94,
-      "deg": null,
-      "oro": 3887.85,
+      "rib": 3887.85,
+      "rin": 3890.74,
+      "deg": 40.39,
+      "oro": 591.64,
       "divisas": 3242.38,
-      "fmi": null,
-      "rin": 3242.38
+      "fmi": 13.44
     },
     {
       "date": "2007-07",
-      "rib": 17.29,
-      "deg": null,
-      "oro": 4115.31,
+      "rib": 4115.31,
+      "rin": 4113.56,
+      "deg": 40.98,
+      "oro": 606.2,
       "divisas": 3454.54,
-      "fmi": null,
-      "rin": 3454.54
+      "fmi": 13.59
     },
     {
       "date": "2007-08",
-      "rib": 17.58,
-      "deg": null,
-      "oro": 4380.68,
+      "rib": 4380.68,
+      "rin": 4383.71,
+      "deg": 40.55,
+      "oro": 606.52,
       "divisas": 3720.02,
-      "fmi": null,
-      "rin": 3720.02
+      "fmi": 13.58
     },
     {
       "date": "2007-09",
-      "rib": 17.79,
-      "deg": null,
-      "oro": 4741.87,
+      "rib": 4741.87,
+      "rin": 4742.54,
+      "deg": 41.31,
+      "oro": 669.24,
       "divisas": 4017.53,
-      "fmi": null,
-      "rin": 4017.53
+      "fmi": 13.79
     },
     {
       "date": "2007-10",
-      "rib": 18.33,
-      "deg": null,
-      "oro": 4917.48,
+      "rib": 4917.48,
+      "rin": 4916.98,
+      "deg": 42.46,
+      "oro": 712.68,
       "divisas": 4148.41,
-      "fmi": null,
-      "rin": 4148.41
+      "fmi": 13.92
     },
     {
       "date": "2007-11",
-      "rib": 18.78,
-      "deg": null,
-      "oro": 5078.87,
+      "rib": 5078.87,
+      "rin": 5078.79,
+      "deg": 42.61,
+      "oro": 723.28,
       "divisas": 4298.75,
-      "fmi": null,
-      "rin": 4298.75
+      "fmi": 14.11
     },
     {
       "date": "2007-12",
-      "rib": 19.2,
-      "deg": null,
-      "oro": 5318.52,
+      "rib": 5318.52,
+      "rin": 5319.24,
+      "deg": 42.55,
+      "oro": 764.31,
       "divisas": 4497.65,
-      "fmi": null,
-      "rin": 4497.65
+      "fmi": 14.01
     },
     {
       "date": "2008-01",
-      "rib": 19.43,
-      "deg": null,
-      "oro": 5622.47,
+      "rib": 5622.47,
+      "rin": 5622.24,
+      "deg": 43.03,
+      "oro": 847.44,
       "divisas": 4717.87,
-      "fmi": null,
-      "rin": 4717.87
+      "fmi": 14.13
     },
     {
       "date": "2008-02",
-      "rib": 19.28,
-      "deg": null,
-      "oro": 5993.34,
+      "rib": 5993.34,
+      "rin": 5993.98,
+      "deg": 43.05,
+      "oro": 885.49,
       "divisas": 5050.57,
-      "fmi": null,
-      "rin": 5050.57
+      "fmi": 14.22
     },
     {
       "date": "2008-03",
-      "rib": 19.58,
-      "deg": null,
-      "oro": 6231.89,
+      "rib": 6231.89,
+      "rin": 6231.92,
+      "deg": 45.42,
+      "oro": 848.8,
       "divisas": 5323.07,
-      "fmi": null,
-      "rin": 5323.07
+      "fmi": 14.61
     },
     {
       "date": "2008-04",
-      "rib": 20.83,
-      "deg": null,
-      "oro": 6508.82,
+      "rib": 6508.82,
+      "rin": 6513.25,
+      "deg": 44.95,
+      "oro": 793.78,
       "divisas": 5655.66,
-      "fmi": null,
-      "rin": 5655.66
+      "fmi": 14.43
     },
     {
       "date": "2008-05",
-      "rib": 22.31,
-      "deg": null,
-      "oro": 6827.67,
+      "rib": 6827.67,
+      "rin": 6828.31,
+      "deg": 44.7,
+      "oro": 800.41,
       "divisas": 5968.15,
-      "fmi": null,
-      "rin": 5968.15
+      "fmi": 14.41
     },
     {
       "date": "2008-06",
-      "rib": 24.37,
-      "deg": null,
-      "oro": 7118.33,
+      "rib": 7118.33,
+      "rin": 7121.28,
+      "deg": 44.99,
+      "oro": 846.08,
       "divisas": 6212.79,
-      "fmi": null,
-      "rin": 6212.79
+      "fmi": 14.47
     },
     {
       "date": "2008-07",
-      "rib": 27.07,
-      "deg": null,
-      "oro": 7437.97,
+      "rib": 7437.97,
+      "rin": 7438.68,
+      "deg": 44.84,
+      "oro": 826.14,
       "divisas": 6552.6,
-      "fmi": null,
-      "rin": 6552.6
+      "fmi": 14.38
     },
     {
       "date": "2008-08",
-      "rib": 29.22,
-      "deg": null,
-      "oro": 7687.65,
+      "rib": 7687.65,
+      "rin": 7686.86,
+      "deg": 43.3,
+      "oro": 760.53,
       "divisas": 6869.87,
-      "fmi": null,
-      "rin": 6869.87
+      "fmi": 13.95
     },
     {
       "date": "2008-09",
-      "rib": 32.17,
-      "deg": null,
-      "oro": 7809.29,
+      "rib": 7809.29,
+      "rin": 7810.73,
+      "deg": 42.97,
+      "oro": 826.19,
       "divisas": 6926.31,
-      "fmi": null,
-      "rin": 6926.31
+      "fmi": 13.81
     },
     {
       "date": "2008-10",
-      "rib": 34.45,
-      "deg": null,
-      "oro": 7535.88,
+      "rib": 7535.88,
+      "rin": 7537.38,
+      "deg": 41.58,
+      "oro": 672.44,
       "divisas": 6808.52,
-      "fmi": null,
-      "rin": 6808.52
+      "fmi": 13.34
     },
     {
       "date": "2008-11",
-      "rib": 34.91,
-      "deg": null,
-      "oro": 7615.04,
+      "rib": 7615.04,
+      "rin": 7617.75,
+      "deg": 41.1,
+      "oro": 744.2,
       "divisas": 6816.48,
-      "fmi": null,
-      "rin": 6816.48
+      "fmi": 13.26
     },
     {
       "date": "2008-12",
-      "rib": 33.92,
-      "deg": null,
-      "oro": 7722.18,
+      "rib": 7722.18,
+      "rin": 7722.03,
+      "deg": 42.61,
+      "oro": 794.46,
       "divisas": 6871.36,
-      "fmi": null,
-      "rin": 6871.36
+      "fmi": 13.74
     },
     {
       "date": "2009-01",
-      "rib": 33.2,
-      "deg": null,
-      "oro": 7783.08,
+      "rib": 7783.08,
+      "rin": 7783.5,
+      "deg": 41.45,
+      "oro": 826.71,
       "divisas": 6901.56,
-      "fmi": null,
-      "rin": 6901.56
+      "fmi": 13.35
     },
     {
       "date": "2009-02",
-      "rib": 32.37,
-      "deg": null,
-      "oro": 7678.51,
+      "rib": 7678.51,
+      "rin": 7679.11,
+      "deg": 40.49,
+      "oro": 861.02,
       "divisas": 6763.93,
-      "fmi": null,
-      "rin": 6763.93
+      "fmi": 13.07
     },
     {
       "date": "2009-03",
-      "rib": 31.3,
-      "deg": null,
-      "oro": 7762.2,
+      "rib": 7762.2,
+      "rin": 7764.97,
+      "deg": 40.99,
+      "oro": 836.07,
       "divisas": 6871.92,
-      "fmi": null,
-      "rin": 6871.92
+      "fmi": 13.22
     },
     {
       "date": "2009-04",
-      "rib": 30.64,
-      "deg": null,
-      "oro": 7739.79,
+      "rib": 7739.79,
+      "rin": 7740.18,
+      "deg": 41.23,
+      "oro": 820.45,
       "divisas": 6864.81,
-      "fmi": null,
-      "rin": 6864.81
+      "fmi": 13.3
     },
     {
       "date": "2009-05",
-      "rib": 29.85,
-      "deg": null,
-      "oro": 7894.11,
+      "rib": 7894.11,
+      "rin": 7894.58,
+      "deg": 42.2,
+      "oro": 874.96,
       "divisas": 6963.33,
-      "fmi": null,
-      "rin": 6963.33
+      "fmi": 13.62
     },
     {
       "date": "2009-06",
-      "rib": 30.03,
-      "deg": null,
-      "oro": 7954.5,
+      "rib": 7954.5,
+      "rin": 7955.65,
+      "deg": 42.63,
+      "oro": 855.74,
       "divisas": 7042.37,
-      "fmi": null,
-      "rin": 7042.37
+      "fmi": 13.76
     },
     {
       "date": "2009-07",
-      "rib": 30.4,
-      "deg": null,
-      "oro": 8005.58,
+      "rib": 8005.58,
+      "rin": 8008.19,
+      "deg": 42.67,
+      "oro": 852.31,
       "divisas": 7096.83,
-      "fmi": null,
-      "rin": 7096.83
+      "fmi": 13.77
     },
     {
       "date": "2009-08",
-      "rib": 31.25,
-      "deg": null,
-      "oro": 8307.07,
+      "rib": 8307.07,
+      "rin": 8310.01,
+      "deg": 241.82,
+      "oro": 873.27,
       "divisas": 7178.1,
-      "fmi": null,
-      "rin": 7178.1
+      "fmi": 13.88
     },
     {
       "date": "2009-09",
-      "rib": 32.94,
-      "deg": null,
-      "oro": 8453.38,
+      "rib": 8453.38,
+      "rin": 8453.46,
+      "deg": 260.23,
+      "oro": 906.5,
       "divisas": 7272.65,
-      "fmi": null,
-      "rin": 7272.65
+      "fmi": 14.0
     },
     {
       "date": "2009-10",
-      "rib": 34.67,
-      "deg": null,
-      "oro": 8597.45,
+      "rib": 8597.45,
+      "rin": 8599.16,
+      "deg": 261.88,
+      "oro": 956.65,
       "divisas": 7364.83,
-      "fmi": null,
-      "rin": 7364.83
+      "fmi": 14.09
     },
     {
       "date": "2009-11",
-      "rib": 36.34,
-      "deg": null,
-      "oro": 8760.45,
+      "rib": 8760.45,
+      "rin": 8760.17,
+      "deg": 265.63,
+      "oro": 1075.97,
       "divisas": 7404.56,
-      "fmi": null,
-      "rin": 7404.56
+      "fmi": 14.29
     },
     {
       "date": "2009-12",
-      "rib": 38.73,
-      "deg": null,
-      "oro": 8580.49,
+      "rib": 8580.49,
+      "rin": 8580.1,
+      "deg": 257.69,
+      "oro": 997.59,
       "divisas": 7311.34,
-      "fmi": null,
-      "rin": 7311.34
+      "fmi": 13.86
     },
     {
       "date": "2010-01",
-      "rib": 40.11,
-      "deg": null,
-      "oro": 8558.33,
+      "rib": 8558.33,
+      "rin": 8558.37,
+      "deg": 256.85,
+      "oro": 992.29,
       "divisas": 7295.37,
-      "fmi": null,
-      "rin": 7295.37
+      "fmi": 13.81
     },
     {
       "date": "2010-02",
-      "rib": 41.33,
-      "deg": null,
-      "oro": 8523.39,
+      "rib": 8523.39,
+      "rin": 8523.51,
+      "deg": 252.25,
+      "oro": 1006.78,
       "divisas": 7250.78,
-      "fmi": null,
-      "rin": 7250.78
+      "fmi": 13.57
     },
     {
       "date": "2010-03",
-      "rib": 42.45,
-      "deg": null,
-      "oro": 8448.53,
+      "rib": 8448.53,
+      "rin": 8447.34,
+      "deg": 250.69,
+      "oro": 1005.56,
       "divisas": 7178.8,
-      "fmi": null,
-      "rin": 7178.8
+      "fmi": 13.49
     },
     {
       "date": "2010-04",
-      "rib": 43.67,
-      "deg": null,
-      "oro": 8440.17,
+      "rib": 8440.17,
+      "rin": 8440.24,
+      "deg": 248.89,
+      "oro": 1064.51,
       "divisas": 7113.39,
-      "fmi": null,
-      "rin": 7113.39
+      "fmi": 13.39
     },
     {
       "date": "2010-05",
-      "rib": 44.91,
-      "deg": null,
-      "oro": 8456.28,
+      "rib": 8456.28,
+      "rin": 8455.69,
+      "deg": 243.17,
+      "oro": 1107.54,
       "divisas": 7092.47,
-      "fmi": null,
-      "rin": 7092.47
+      "fmi": 13.08
     },
     {
       "date": "2010-06",
-      "rib": 46.45,
-      "deg": null,
-      "oro": 8536.54,
+      "rib": 8536.54,
+      "rin": 8537.32,
+      "deg": 243.37,
+      "oro": 1130.39,
       "divisas": 7149.68,
-      "fmi": null,
-      "rin": 7149.68
+      "fmi": 13.09
     },
     {
       "date": "2010-07",
-      "rib": 48.46,
-      "deg": null,
-      "oro": 8617.3,
+      "rib": 8617.3,
+      "rin": 8616.87,
+      "deg": 251.1,
+      "oro": 1064.54,
       "divisas": 7288.15,
-      "fmi": null,
-      "rin": 7288.15
+      "fmi": 13.5
     },
     {
       "date": "2010-08",
-      "rib": 50.11,
-      "deg": null,
-      "oro": 8738.48,
+      "rib": 8738.48,
+      "rin": 8737.18,
+      "deg": 248.94,
+      "oro": 1128.16,
       "divisas": 7347.99,
-      "fmi": null,
-      "rin": 7347.99
+      "fmi": 13.39
     },
     {
       "date": "2010-09",
-      "rib": 51.79,
-      "deg": null,
-      "oro": 9058.42,
+      "rib": 9058.42,
+      "rin": 9058.47,
+      "deg": 256.11,
+      "oro": 1193.55,
       "divisas": 7594.98,
-      "fmi": null,
-      "rin": 7594.98
+      "fmi": 13.78
     },
     {
       "date": "2010-10",
-      "rib": 53.54,
-      "deg": null,
-      "oro": 9207.43,
+      "rib": 9207.43,
+      "rin": 9207.68,
+      "deg": 259.05,
+      "oro": 1224.46,
       "divisas": 7710.0,
-      "fmi": null,
-      "rin": 7710.0
+      "fmi": 13.93
     },
     {
       "date": "2010-11",
-      "rib": 55.31,
-      "deg": null,
-      "oro": 9273.97,
+      "rib": 9273.97,
+      "rin": 9273.58,
+      "deg": 252.62,
+      "oro": 1246.17,
       "divisas": 7761.59,
-      "fmi": null,
-      "rin": 7761.59
+      "fmi": 13.59
     },
     {
       "date": "2010-12",
-      "rib": 56.38,
-      "deg": null,
-      "oro": 9730.2,
+      "rib": 9730.2,
+      "rin": 9729.65,
+      "deg": 254.12,
+      "oro": 1596.18,
       "divisas": 7866.22,
-      "fmi": null,
-      "rin": 7866.22
+      "fmi": 13.67
     },
     {
       "date": "2011-01",
-      "rib": 57.47,
-      "deg": null,
-      "oro": 10015.74,
+      "rib": 10015.74,
+      "rin": 10016.12,
+      "deg": 258.21,
+      "oro": 1519.85,
       "divisas": 8223.81,
-      "fmi": null,
-      "rin": 8223.81
+      "fmi": 13.88
     },
     {
       "date": "2011-02",
-      "rib": 58.53,
-      "deg": null,
-      "oro": 10356.28,
+      "rib": 10356.28,
+      "rin": 10357.06,
+      "deg": 258.92,
+      "oro": 1601.79,
       "divisas": 8481.64,
-      "fmi": null,
-      "rin": 8481.64
+      "fmi": 13.93
     },
     {
       "date": "2011-03",
-      "rib": 59.91,
-      "deg": null,
-      "oro": 10484.92,
+      "rib": 10484.92,
+      "rin": 10485.88,
+      "deg": 260.69,
+      "oro": 1616.11,
       "divisas": 8594.1,
-      "fmi": null,
-      "rin": 8594.1
+      "fmi": 14.02
     },
     {
       "date": "2011-04",
-      "rib": 60.91,
-      "deg": null,
-      "oro": 10750.24,
+      "rib": 10750.24,
+      "rin": 10751.95,
+      "deg": 267.4,
+      "oro": 1745.86,
       "divisas": 8722.61,
-      "fmi": null,
-      "rin": 8722.61
+      "fmi": 14.37
     },
     {
       "date": "2011-05",
-      "rib": 61.53,
-      "deg": null,
-      "oro": 10676.65,
+      "rib": 10676.65,
+      "rin": 10676.73,
+      "deg": 262.82,
+      "oro": 1747.18,
       "divisas": 8652.51,
-      "fmi": null,
-      "rin": 8652.51
+      "fmi": 14.14
     },
     {
       "date": "2011-06",
-      "rib": 62.71,
-      "deg": null,
-      "oro": 10751.17,
+      "rib": 10751.17,
+      "rin": 10751.34,
+      "deg": 263.65,
+      "oro": 1715.03,
       "divisas": 8758.32,
-      "fmi": null,
-      "rin": 8758.32
+      "fmi": 14.18
     },
     {
       "date": "2011-07",
-      "rib": 63.88,
-      "deg": null,
-      "oro": 11036.68,
+      "rib": 11036.68,
+      "rin": 11036.82,
+      "deg": 264.47,
+      "oro": 1735.88,
       "divisas": 8922.12,
-      "fmi": null,
-      "rin": 8922.12
+      "fmi": 14.21
     },
     {
       "date": "2011-08",
-      "rib": 65.16,
-      "deg": null,
-      "oro": 11635.35,
+      "rib": 11635.35,
+      "rin": 11632.06,
+      "deg": 265.33,
+      "oro": 2505.02,
       "divisas": 8850.73,
-      "fmi": null,
-      "rin": 8850.73
+      "fmi": 14.27
     },
     {
       "date": "2011-09",
-      "rib": 66.35,
-      "deg": null,
-      "oro": 11407.93,
+      "rib": 11407.93,
+      "rin": 11408.14,
+      "deg": 258.62,
+      "oro": 2205.71,
       "divisas": 8929.69,
-      "fmi": null,
-      "rin": 8929.69
+      "fmi": 13.91
     },
     {
       "date": "2011-10",
-      "rib": 67.39,
-      "deg": null,
-      "oro": 11902.83,
+      "rib": 11902.83,
+      "rin": 11902.66,
+      "deg": 263.59,
+      "oro": 2375.15,
       "divisas": 9249.91,
-      "fmi": null,
-      "rin": 9249.91
+      "fmi": 14.17
     },
     {
       "date": "2011-11",
-      "rib": 68.37,
-      "deg": null,
-      "oro": 12114.56,
+      "rib": 12114.56,
+      "rin": 12114.74,
+      "deg": 256.41,
+      "oro": 2342.58,
       "divisas": 9501.77,
-      "fmi": null,
-      "rin": 9501.77
+      "fmi": 13.8
     },
     {
       "date": "2011-12",
-      "rib": 69.52,
-      "deg": null,
-      "oro": 12019.02,
+      "rib": 12019.02,
+      "rin": 12018.55,
+      "deg": 252.46,
+      "oro": 2109.07,
       "divisas": 9643.91,
-      "fmi": null,
-      "rin": 9643.91
+      "fmi": 13.58
     },
     {
       "date": "2012-01",
-      "rib": 70.13,
-      "deg": null,
-      "oro": 12489.13,
+      "rib": 12489.13,
+      "rin": 12488.94,
+      "deg": 255.29,
+      "oro": 2357.63,
       "divisas": 9862.48,
-      "fmi": null,
-      "rin": 9862.48
+      "fmi": 13.73
     },
     {
       "date": "2012-02",
-      "rib": 70.85,
-      "deg": null,
-      "oro": 12738.81,
+      "rib": 12738.81,
+      "rin": 12739.12,
+      "deg": 256.43,
+      "oro": 2431.02,
       "divisas": 10037.56,
-      "fmi": null,
-      "rin": 10037.56
+      "fmi": 13.8
     },
     {
       "date": "2012-03",
-      "rib": 71.79,
-      "deg": null,
-      "oro": 12745.59,
+      "rib": 12745.59,
+      "rin": 12746.65,
+      "deg": 254.86,
+      "oro": 2263.72,
       "divisas": 10213.3,
-      "fmi": null,
-      "rin": 10213.3
+      "fmi": 13.71
     },
     {
       "date": "2012-04",
-      "rib": 72.16,
-      "deg": null,
-      "oro": 12573.15,
+      "rib": 12573.15,
+      "rin": 12573.12,
+      "deg": 255.38,
+      "oro": 2258.1,
       "divisas": 10045.93,
-      "fmi": null,
-      "rin": 10045.93
+      "fmi": 13.74
     },
     {
       "date": "2012-05",
-      "rib": 73.14,
-      "deg": null,
-      "oro": 12422.03,
+      "rib": 12422.03,
+      "rin": 12421.88,
+      "deg": 249.3,
+      "oro": 2133.07,
       "divisas": 10026.24,
-      "fmi": null,
-      "rin": 10026.24
+      "fmi": 13.42
     },
     {
       "date": "2012-06",
-      "rib": 74.17,
-      "deg": null,
-      "oro": 12438.35,
+      "rib": 12438.35,
+      "rin": 12439.76,
+      "deg": 249.17,
+      "oro": 2122.83,
       "divisas": 10052.95,
-      "fmi": null,
-      "rin": 10052.95
+      "fmi": 13.41
     },
     {
       "date": "2012-07",
-      "rib": 75.32,
-      "deg": null,
-      "oro": 12747.3,
+      "rib": 12747.3,
+      "rin": 12747.99,
+      "deg": 248.73,
+      "oro": 2211.93,
       "divisas": 10273.27,
-      "fmi": null,
-      "rin": 10273.27
+      "fmi": 13.38
     },
     {
       "date": "2012-08",
-      "rib": 76.35,
-      "deg": null,
-      "oro": 13063.64,
+      "rib": 13063.64,
+      "rin": 13063.7,
+      "deg": 250.73,
+      "oro": 2261.44,
       "divisas": 10537.97,
-      "fmi": null,
-      "rin": 10537.97
+      "fmi": 13.49
     },
     {
       "date": "2012-09",
-      "rib": 77.3,
-      "deg": null,
-      "oro": 13419.07,
+      "rib": 13419.07,
+      "rin": 13419.26,
+      "deg": 253.96,
+      "oro": 2429.65,
       "divisas": 10721.79,
-      "fmi": null,
-      "rin": 10721.79
+      "fmi": 13.67
     },
     {
       "date": "2012-10",
-      "rib": 78.35,
-      "deg": null,
-      "oro": 13771.92,
+      "rib": 13771.92,
+      "rin": 13771.75,
+      "deg": 254.5,
+      "oro": 2340.24,
       "divisas": 11163.53,
-      "fmi": null,
-      "rin": 11163.53
+      "fmi": 13.65
     },
     {
       "date": "2012-11",
-      "rib": 79.23,
-      "deg": null,
-      "oro": 13925.48,
+      "rib": 13925.48,
+      "rin": 13925.79,
+      "deg": 253.84,
+      "oro": 2365.13,
       "divisas": 11292.89,
-      "fmi": null,
-      "rin": 11292.89
+      "fmi": 13.62
     },
     {
       "date": "2012-12",
-      "rib": 80.01,
-      "deg": null,
-      "oro": 13926.64,
+      "rib": 13926.64,
+      "rin": 13926.72,
+      "deg": 254.26,
+      "oro": 2267.32,
       "divisas": 11391.42,
-      "fmi": null,
-      "rin": 11391.42
+      "fmi": 13.64
     },
     {
       "date": "2013-01",
-      "rib": 80.58,
-      "deg": null,
-      "oro": 14048.69,
+      "rib": 14048.69,
+      "rin": 14049.0,
+      "deg": 254.89,
+      "oro": 2297.85,
       "divisas": 11482.27,
-      "fmi": null,
-      "rin": 11482.27
+      "fmi": 13.67
     },
     {
       "date": "2013-02",
-      "rib": 81.26,
-      "deg": null,
-      "oro": 14100.81,
+      "rib": 14100.81,
+      "rin": 14100.62,
+      "deg": 250.51,
+      "oro": 2189.93,
       "divisas": 11646.94,
-      "fmi": null,
-      "rin": 11646.94
+      "fmi": 13.44
     },
     {
       "date": "2013-03",
-      "rib": 81.92,
-      "deg": null,
-      "oro": 14188.54,
+      "rib": 14188.54,
+      "rin": 14187.68,
+      "deg": 247.53,
+      "oro": 2206.34,
       "divisas": 11721.39,
-      "fmi": null,
-      "rin": 11721.39
+      "fmi": 13.28
     },
     {
       "date": "2013-04",
-      "rib": 82.79,
-      "deg": null,
-      "oro": 14206.02,
+      "rib": 14206.02,
+      "rin": 14206.26,
+      "deg": 249.7,
+      "oro": 2023.04,
       "divisas": 11919.87,
-      "fmi": null,
-      "rin": 11919.87
+      "fmi": 13.44
     },
     {
       "date": "2013-05",
-      "rib": 83.59,
-      "deg": null,
-      "oro": 14007.13,
+      "rib": 14007.13,
+      "rin": 14007.63,
+      "deg": 247.12,
+      "oro": 1912.56,
       "divisas": 11834.19,
-      "fmi": null,
-      "rin": 11834.19
+      "fmi": 13.26
     },
     {
       "date": "2013-06",
-      "rib": 84.26,
-      "deg": null,
-      "oro": 13951.06,
+      "rib": 13951.06,
+      "rin": 13951.7,
+      "deg": 248.77,
+      "oro": 1647.23,
       "divisas": 12041.7,
-      "fmi": null,
-      "rin": 12041.7
+      "fmi": 13.35
     },
     {
       "date": "2013-07",
-      "rib": 84.82,
-      "deg": null,
-      "oro": 14310.56,
+      "rib": 14310.56,
+      "rin": 14310.63,
+      "deg": 250.6,
+      "oro": 1818.08,
       "divisas": 12228.43,
-      "fmi": null,
-      "rin": 12228.43
+      "fmi": 13.44
     },
     {
       "date": "2013-08",
-      "rib": 85.39,
-      "deg": null,
-      "oro": 14401.38,
+      "rib": 14401.38,
+      "rin": 14401.29,
+      "deg": 250.82,
+      "oro": 1928.24,
       "divisas": 12208.87,
-      "fmi": null,
-      "rin": 12208.87
+      "fmi": 13.46
     },
     {
       "date": "2013-09",
-      "rib": 85.88,
-      "deg": null,
-      "oro": 14516.47,
+      "rib": 14516.47,
+      "rin": 14517.55,
+      "deg": 253.55,
+      "oro": 1829.47,
       "divisas": 12419.85,
-      "fmi": null,
-      "rin": 12419.85
+      "fmi": 13.6
     },
     {
       "date": "2013-10",
-      "rib": 86.52,
-      "deg": null,
-      "oro": 14249.6,
+      "rib": 14249.6,
+      "rin": 14249.98,
+      "deg": 257.32,
+      "oro": 1840.35,
       "divisas": 12138.23,
-      "fmi": null,
-      "rin": 12138.23
+      "fmi": 13.7
     },
     {
       "date": "2013-11",
-      "rib": 87.06,
-      "deg": null,
-      "oro": 14227.5,
+      "rib": 14227.5,
+      "rin": 14228.17,
+      "deg": 255.9,
+      "oro": 1705.27,
       "divisas": 12252.71,
-      "fmi": null,
-      "rin": 12252.71
+      "fmi": 13.62
     },
     {
       "date": "2013-12",
-      "rib": 87.61,
-      "deg": null,
-      "oro": 14430.17,
+      "rib": 14430.17,
+      "rin": 14430.14,
+      "deg": 256.73,
+      "oro": 1647.4,
       "divisas": 12512.38,
-      "fmi": null,
-      "rin": 12512.38
+      "fmi": 13.67
     },
     {
       "date": "2014-01",
-      "rib": 88.03,
-      "deg": null,
-      "oro": 14519.26,
+      "rib": 14519.26,
+      "rin": 14519.41,
+      "deg": 256.13,
+      "oro": 1706.57,
       "divisas": 12542.93,
-      "fmi": null,
-      "rin": 12542.93
+      "fmi": 13.63
     },
     {
       "date": "2014-02",
-      "rib": 88.35,
-      "deg": null,
-      "oro": 14557.48,
+      "rib": 14557.48,
+      "rin": 14557.7,
+      "deg": 256.93,
+      "oro": 1823.49,
       "divisas": 12463.38,
-      "fmi": null,
-      "rin": 12463.38
+      "fmi": 13.68
     },
     {
       "date": "2014-03",
-      "rib": 88.83,
-      "deg": null,
-      "oro": 14490.07,
+      "rib": 14490.07,
+      "rin": 14490.56,
+      "deg": 257.36,
+      "oro": 1774.02,
       "divisas": 12444.99,
-      "fmi": null,
-      "rin": 12444.99
+      "fmi": 13.7
     },
     {
       "date": "2014-04",
-      "rib": 89.38,
-      "deg": null,
-      "oro": 14530.76,
+      "rib": 14530.76,
+      "rin": 14533.03,
+      "deg": 258.53,
+      "oro": 1776.45,
       "divisas": 12482.01,
-      "fmi": null,
-      "rin": 12482.01
+      "fmi": 13.76
     },
     {
       "date": "2014-05",
-      "rib": 89.76,
-      "deg": null,
-      "oro": 14540.23,
+      "rib": 14540.23,
+      "rin": 14540.69,
+      "deg": 256.84,
+      "oro": 1719.65,
       "divisas": 12550.08,
-      "fmi": null,
-      "rin": 12550.08
+      "fmi": 13.67
     },
     {
       "date": "2014-06",
-      "rib": 90.12,
-      "deg": null,
-      "oro": 14808.53,
+      "rib": 14808.53,
+      "rin": 14808.85,
+      "deg": 257.41,
+      "oro": 1804.94,
       "divisas": 12732.48,
-      "fmi": null,
-      "rin": 12732.48
+      "fmi": 13.7
     },
     {
       "date": "2014-07",
-      "rib": 90.54,
-      "deg": null,
-      "oro": 14873.53,
+      "rib": 14873.53,
+      "rin": 14873.38,
+      "deg": 255.6,
+      "oro": 1776.31,
       "divisas": 12828.01,
-      "fmi": null,
-      "rin": 12828.01
+      "fmi": 13.61
     },
     {
       "date": "2014-08",
-      "rib": 91.05,
-      "deg": null,
-      "oro": 15396.29,
+      "rib": 15396.29,
+      "rin": 15395.17,
+      "deg": 253.06,
+      "oro": 1765.73,
       "divisas": 13364.03,
-      "fmi": null,
-      "rin": 13364.03
+      "fmi": 13.47
     },
     {
       "date": "2014-09",
-      "rib": 91.42,
-      "deg": null,
-      "oro": 15272.01,
+      "rib": 15272.01,
+      "rin": 15271.85,
+      "deg": 247.93,
+      "oro": 1664.41,
       "divisas": 13346.47,
-      "fmi": null,
-      "rin": 13346.47
+      "fmi": 13.2
     },
     {
       "date": "2014-10",
-      "rib": 91.66,
-      "deg": null,
-      "oro": 15386.65,
+      "rib": 15386.65,
+      "rin": 15386.73,
+      "deg": 246.84,
+      "oro": 1640.28,
       "divisas": 13486.38,
-      "fmi": null,
-      "rin": 13486.38
+      "fmi": 13.14
     },
     {
       "date": "2014-11",
-      "rib": 91.93,
-      "deg": null,
-      "oro": 15477.55,
+      "rib": 15477.55,
+      "rin": 15477.4,
+      "deg": 244.07,
+      "oro": 1634.79,
       "divisas": 13585.7,
-      "fmi": null,
-      "rin": 13585.7
+      "fmi": 13.0
     },
     {
       "date": "2014-12",
-      "rib": 92.3,
-      "deg": null,
-      "oro": 15123.15,
+      "rib": 15123.15,
+      "rin": 15122.84,
+      "deg": 241.43,
+      "oro": 1642.32,
       "divisas": 13226.55,
-      "fmi": null,
-      "rin": 13226.55
+      "fmi": 12.85
     },
     {
       "date": "2015-01",
-      "rib": 92.38,
-      "deg": null,
-      "oro": 15087.31,
+      "rib": 15087.31,
+      "rin": 15087.16,
+      "deg": 234.87,
+      "oro": 1722.46,
       "divisas": 13117.47,
-      "fmi": null,
-      "rin": 13117.47
+      "fmi": 12.5
     },
     {
       "date": "2015-02",
-      "rib": 92.5,
-      "deg": null,
-      "oro": 15143.51,
+      "rib": 15143.51,
+      "rin": 15143.51,
+      "deg": 235.72,
+      "oro": 1652.55,
       "divisas": 13242.69,
-      "fmi": null,
-      "rin": 13242.69
+      "fmi": 12.55
     },
     {
       "date": "2015-03",
-      "rib": 92.82,
-      "deg": null,
-      "oro": 14967.56,
+      "rib": 14967.56,
+      "rin": 14967.53,
+      "deg": 230.62,
+      "oro": 1624.43,
       "divisas": 13100.24,
-      "fmi": null,
-      "rin": 13100.24
+      "fmi": 12.28
     },
     {
       "date": "2015-04",
-      "rib": 93.16,
-      "deg": null,
-      "oro": 14841.49,
+      "rib": 14841.49,
+      "rin": 14840.97,
+      "deg": 232.88,
+      "oro": 1651.81,
       "divisas": 12944.4,
-      "fmi": null,
-      "rin": 12944.4
+      "fmi": 12.4
     },
     {
       "date": "2015-05",
-      "rib": 93.45,
-      "deg": null,
-      "oro": 14647.74,
+      "rib": 14647.74,
+      "rin": 14647.68,
+      "deg": 231.62,
+      "oro": 1627.31,
       "divisas": 12776.48,
-      "fmi": null,
-      "rin": 12776.48
+      "fmi": 12.33
     },
     {
       "date": "2015-06",
-      "rib": 93.74,
-      "deg": null,
-      "oro": 14708.36,
+      "rib": 14708.36,
+      "rin": 14707.94,
+      "deg": 233.9,
+      "oro": 1616.59,
       "divisas": 12845.41,
-      "fmi": null,
-      "rin": 12845.41
+      "fmi": 12.45
     },
     {
       "date": "2015-07",
-      "rib": 94.05,
-      "deg": null,
-      "oro": 14486.08,
+      "rib": 14486.08,
+      "rin": 14486.08,
+      "deg": 232.44,
+      "oro": 1491.74,
       "divisas": 12749.52,
-      "fmi": null,
-      "rin": 12749.52
+      "fmi": 12.38
     },
     {
       "date": "2015-08",
-      "rib": 94.29,
-      "deg": null,
-      "oro": 14353.03,
+      "rib": 14353.03,
+      "rin": 14352.66,
+      "deg": 234.73,
+      "oro": 1554.44,
       "divisas": 12551.36,
-      "fmi": null,
-      "rin": 12551.36
+      "fmi": 12.5
     },
     {
       "date": "2015-09",
-      "rib": 94.53,
-      "deg": null,
-      "oro": 14229.22,
+      "rib": 14229.22,
+      "rin": 14226.77,
+      "deg": 234.19,
+      "oro": 1544.17,
       "divisas": 12438.4,
-      "fmi": null,
-      "rin": 12438.4
+      "fmi": 12.47
     },
     {
       "date": "2015-10",
-      "rib": 94.79,
-      "deg": null,
-      "oro": 13967.46,
+      "rib": 13967.46,
+      "rin": 13967.16,
+      "deg": 232.27,
+      "oro": 1571.76,
       "divisas": 12151.06,
-      "fmi": null,
-      "rin": 12151.06
+      "fmi": 12.36
     },
     {
       "date": "2015-11",
-      "rib": 95.03,
-      "deg": null,
-      "oro": 13528.59,
+      "rib": 13528.59,
+      "rin": 13528.43,
+      "deg": 228.98,
+      "oro": 1450.36,
       "divisas": 11837.06,
-      "fmi": null,
-      "rin": 11837.06
+      "fmi": 12.19
     },
     {
       "date": "2015-12",
-      "rib": 95.24,
-      "deg": null,
-      "oro": 13056.14,
+      "rib": 13056.14,
+      "rin": 13055.9,
+      "deg": 231.21,
+      "oro": 1455.14,
       "divisas": 11357.49,
-      "fmi": null,
-      "rin": 11357.49
+      "fmi": 12.31
     },
     {
       "date": "2016-01",
-      "rib": 95.41,
-      "deg": null,
-      "oro": 12818.3,
+      "rib": 12818.3,
+      "rin": 12818.31,
+      "deg": 230.48,
+      "oro": 1528.79,
       "divisas": 11046.76,
-      "fmi": null,
-      "rin": 11046.76
+      "fmi": 12.27
     },
     {
       "date": "2016-02",
-      "rib": 95.56,
-      "deg": null,
-      "oro": 12787.37,
+      "rib": 12787.37,
+      "rin": 12787.38,
+      "deg": 231.48,
+      "oro": 1678.98,
       "divisas": 10864.59,
-      "fmi": null,
-      "rin": 10864.59
+      "fmi": 12.32
     },
     {
       "date": "2016-03",
-      "rib": 95.73,
-      "deg": null,
-      "oro": 12482.88,
+      "rib": 12482.88,
+      "rin": 12482.76,
+      "deg": 234.5,
+      "oro": 1679.52,
       "divisas": 10556.37,
-      "fmi": null,
-      "rin": 10556.37
+      "fmi": 12.48
     },
     {
       "date": "2016-04",
-      "rib": 95.92,
-      "deg": null,
-      "oro": 12233.36,
+      "rib": 12233.36,
+      "rin": 12233.24,
+      "deg": 235.66,
+      "oro": 1735.17,
       "divisas": 10249.98,
-      "fmi": null,
-      "rin": 10249.98
+      "fmi": 12.54
     },
     {
       "date": "2016-05",
-      "rib": 96.08,
-      "deg": null,
-      "oro": 11725.24,
+      "rib": 11725.24,
+      "rin": 11725.2,
+      "deg": 234.36,
+      "oro": 1651.61,
       "divisas": 9826.8,
-      "fmi": null,
-      "rin": 9826.8
+      "fmi": 12.48
     },
     {
       "date": "2016-06",
-      "rib": 96.25,
-      "deg": null,
-      "oro": 11609.06,
+      "rib": 11609.06,
+      "rin": 11608.99,
+      "deg": 232.71,
+      "oro": 1813.8,
       "divisas": 9550.17,
-      "fmi": null,
-      "rin": 9550.17
+      "fmi": 12.39
     },
     {
       "date": "2016-07",
-      "rib": 96.41,
-      "deg": null,
-      "oro": 11549.92,
+      "rib": 11549.92,
+      "rin": 11549.92,
+      "deg": 231.79,
+      "oro": 1838.39,
       "divisas": 9467.4,
-      "fmi": null,
-      "rin": 9467.4
+      "fmi": 12.34
     },
     {
       "date": "2016-08",
-      "rib": 96.53,
-      "deg": null,
-      "oro": 11259.04,
+      "rib": 11259.04,
+      "rin": 11258.53,
+      "deg": 232.69,
+      "oro": 1803.7,
       "divisas": 9210.25,
-      "fmi": null,
-      "rin": 9210.25
+      "fmi": 12.39
     },
     {
       "date": "2016-09",
-      "rib": 96.65,
-      "deg": null,
-      "oro": 11039.11,
+      "rib": 11039.11,
+      "rin": 11038.82,
+      "deg": 233.11,
+      "oro": 1818.02,
       "divisas": 8975.57,
-      "fmi": null,
-      "rin": 8975.57
+      "fmi": 12.41
     },
     {
       "date": "2016-10",
-      "rib": 96.76,
-      "deg": null,
-      "oro": 10694.29,
+      "rib": 10694.29,
+      "rin": 10694.29,
+      "deg": 228.7,
+      "oro": 1754.93,
       "divisas": 8698.49,
-      "fmi": null,
-      "rin": 8698.49
+      "fmi": 12.17
     },
     {
       "date": "2016-11",
-      "rib": 96.88,
-      "deg": null,
-      "oro": 10353.12,
+      "rib": 10353.12,
+      "rin": 10353.11,
+      "deg": 225.42,
+      "oro": 1638.06,
       "divisas": 8477.63,
-      "fmi": null,
-      "rin": 8477.63
+      "fmi": 12.0
     },
     {
       "date": "2016-12",
-      "rib": 97.0,
-      "deg": null,
-      "oro": 10081.37,
+      "rib": 10081.37,
+      "rin": 10080.96,
+      "deg": 223.47,
+      "oro": 1594.65,
       "divisas": 8251.36,
-      "fmi": null,
-      "rin": 8251.36
+      "fmi": 11.89
     },
     {
       "date": "2017-01",
-      "rib": 96.83,
-      "deg": null,
-      "oro": 9838.66,
+      "rib": 9838.66,
+      "rin": 9838.66,
+      "deg": 225.91,
+      "oro": 1647.57,
       "divisas": 7929.93,
-      "fmi": null,
-      "rin": 7929.93
+      "fmi": 35.25
     },
     {
       "date": "2017-02",
-      "rib": 96.93,
-      "deg": null,
-      "oro": 9804.82,
+      "rib": 9804.82,
+      "rin": 9804.82,
+      "deg": 225.32,
+      "oro": 1719.21,
       "divisas": 7825.12,
-      "fmi": null,
-      "rin": 7825.12
+      "fmi": 35.17
     },
     {
       "date": "2017-03",
-      "rib": 97.04,
-      "deg": null,
-      "oro": 10261.08,
+      "rib": 10261.08,
+      "rin": 10260.82,
+      "deg": 226.82,
+      "oro": 1711.0,
       "divisas": 8287.87,
-      "fmi": null,
-      "rin": 8287.87
+      "fmi": 35.39
     },
     {
       "date": "2017-04",
-      "rib": 97.13,
-      "deg": null,
-      "oro": 10025.31,
+      "rib": 10025.31,
+      "rin": 10025.19,
+      "deg": 228.44,
+      "oro": 1737.72,
       "divisas": 8023.51,
-      "fmi": null,
-      "rin": 8023.51
+      "fmi": 35.64
     },
     {
       "date": "2017-05",
-      "rib": 97.2,
-      "deg": null,
-      "oro": 10253.68,
+      "rib": 10253.68,
+      "rin": 10253.68,
+      "deg": 230.26,
+      "oro": 1735.37,
       "divisas": 8252.11,
-      "fmi": null,
-      "rin": 8252.11
+      "fmi": 35.94
     },
     {
       "date": "2017-06",
-      "rib": 97.31,
-      "deg": null,
-      "oro": 10305.81,
+      "rib": 10305.81,
+      "rin": 10305.74,
+      "deg": 232.05,
+      "oro": 1712.05,
       "divisas": 8325.49,
-      "fmi": null,
-      "rin": 8325.49
+      "fmi": 36.21
     },
     {
       "date": "2017-07",
-      "rib": 97.37,
-      "deg": null,
-      "oro": 10357.94,
+      "rib": 10357.94,
+      "rin": 10357.85,
+      "deg": 234.66,
+      "oro": 1745.38,
       "divisas": 8341.28,
-      "fmi": null,
-      "rin": 8341.28
+      "fmi": 36.61
     },
     {
       "date": "2017-08",
-      "rib": 97.47,
-      "deg": null,
-      "oro": 10452.24,
+      "rib": 10452.24,
+      "rin": 10452.19,
+      "deg": 236.59,
+      "oro": 1798.02,
       "divisas": 8380.71,
-      "fmi": null,
-      "rin": 8380.71
+      "fmi": 36.92
     },
     {
       "date": "2017-09",
-      "rib": 97.54,
-      "deg": null,
-      "oro": 10129.61,
+      "rib": 10129.61,
+      "rin": 10129.55,
+      "deg": 235.61,
+      "oro": 1768.67,
       "divisas": 8088.58,
-      "fmi": null,
-      "rin": 8088.58
+      "fmi": 36.76
     },
     {
       "date": "2017-10",
-      "rib": 97.62,
-      "deg": null,
-      "oro": 9934.38,
+      "rib": 9934.38,
+      "rin": 9934.34,
+      "deg": 234.36,
+      "oro": 1753.59,
       "divisas": 7909.87,
-      "fmi": null,
-      "rin": 7909.87
+      "fmi": 36.56
     },
     {
       "date": "2017-11",
-      "rib": 97.7,
-      "deg": null,
-      "oro": 10631.84,
+      "rib": 10631.84,
+      "rin": 10631.82,
+      "deg": 236.36,
+      "oro": 1766.64,
       "divisas": 8591.97,
-      "fmi": null,
-      "rin": 8591.97
+      "fmi": 36.88
     },
     {
       "date": "2017-12",
-      "rib": 97.78,
-      "deg": null,
-      "oro": 10260.64,
+      "rib": 10260.64,
+      "rin": 10260.64,
+      "deg": 237.21,
+      "oro": 1787.1,
       "divisas": 8199.32,
-      "fmi": null,
-      "rin": 8199.32
+      "fmi": 37.0
     },
     {
       "date": "2018-01",
-      "rib": 97.84,
-      "deg": null,
-      "oro": 10226.04,
+      "rib": 10226.04,
+      "rin": 10226.04,
+      "deg": 243.13,
+      "oro": 1849.58,
       "divisas": 8095.42,
-      "fmi": null,
-      "rin": 8095.42
+      "fmi": 37.92
     },
     {
       "date": "2018-02",
-      "rib": 97.9,
-      "deg": null,
-      "oro": 9965.43,
+      "rib": 9965.43,
+      "rin": 9964.94,
+      "deg": 242.24,
+      "oro": 1818.34,
       "divisas": 7867.07,
-      "fmi": null,
-      "rin": 7867.07
+      "fmi": 37.79
     },
     {
       "date": "2018-03",
-      "rib": 97.96,
-      "deg": null,
-      "oro": 9804.63,
+      "rib": 9804.63,
+      "rin": 9804.61,
+      "deg": 243.45,
+      "oro": 1827.13,
       "divisas": 7696.08,
-      "fmi": null,
-      "rin": 7696.08
+      "fmi": 37.97
     },
     {
       "date": "2018-04",
-      "rib": 98.02,
-      "deg": null,
-      "oro": 9602.31,
+      "rib": 9602.31,
+      "rin": 9602.22,
+      "deg": 240.32,
+      "oro": 1824.59,
       "divisas": 7499.94,
-      "fmi": null,
-      "rin": 7499.94
+      "fmi": 37.47
     },
     {
       "date": "2018-05",
-      "rib": 98.1,
-      "deg": null,
-      "oro": 9758.76,
+      "rib": 9758.76,
+      "rin": 9758.66,
+      "deg": 235.57,
+      "oro": 1792.23,
       "divisas": 7694.22,
-      "fmi": null,
-      "rin": 7694.22
+      "fmi": 36.74
     },
     {
       "date": "2018-06",
-      "rib": 98.14,
-      "deg": null,
-      "oro": 9522.24,
+      "rib": 9522.24,
+      "rin": 9522.24,
+      "deg": 234.77,
+      "oro": 1721.27,
       "divisas": 7529.6,
-      "fmi": null,
-      "rin": 7529.6
+      "fmi": 36.6
     },
     {
       "date": "2018-07",
-      "rib": 98.19,
-      "deg": null,
-      "oro": 9256.56,
+      "rib": 9256.56,
+      "rin": 9256.51,
+      "deg": 234.68,
+      "oro": 1684.63,
       "divisas": 7300.68,
-      "fmi": null,
-      "rin": 7300.68
+      "fmi": 36.58
     },
     {
       "date": "2018-08",
-      "rib": 98.25,
-      "deg": null,
-      "oro": 9080.15,
+      "rib": 9080.15,
+      "rin": 9079.61,
+      "deg": 234.21,
+      "oro": 1654.77,
       "divisas": 7154.66,
-      "fmi": null,
-      "rin": 7154.66
+      "fmi": 36.51
     },
     {
       "date": "2018-09",
-      "rib": 98.28,
-      "deg": null,
-      "oro": 8729.33,
+      "rib": 8729.33,
+      "rin": 8729.33,
+      "deg": 234.36,
+      "oro": 1632.0,
       "divisas": 6826.44,
-      "fmi": null,
-      "rin": 6826.44
+      "fmi": 36.53
     },
     {
       "date": "2018-10",
-      "rib": 98.33,
-      "deg": null,
-      "oro": 8506.38,
+      "rib": 8506.38,
+      "rin": 8506.35,
+      "deg": 231.23,
+      "oro": 1686.31,
       "divisas": 6552.81,
-      "fmi": null,
-      "rin": 6552.81
+      "fmi": 36.03
     },
     {
       "date": "2018-11",
-      "rib": 98.37,
-      "deg": null,
-      "oro": 8739.58,
+      "rib": 8739.58,
+      "rin": 8739.58,
+      "deg": 231.12,
+      "oro": 1687.54,
       "divisas": 6784.9,
-      "fmi": null,
-      "rin": 6784.9
+      "fmi": 36.02
     },
     {
       "date": "2018-12",
-      "rib": 98.4,
-      "deg": null,
-      "oro": 8946.38,
+      "rib": 8946.38,
+      "rin": 8946.3,
+      "deg": 232.59,
+      "oro": 1768.09,
       "divisas": 6909.46,
-      "fmi": null,
-      "rin": 6909.46
+      "fmi": 36.24
     },
     {
       "date": "2019-01",
-      "rib": 98.41,
-      "deg": null,
-      "oro": 8723.85,
+      "rib": 8723.85,
+      "rin": 8723.56,
+      "deg": 233.88,
+      "oro": 1823.53,
       "divisas": 6630.01,
-      "fmi": null,
-      "rin": 6630.01
+      "fmi": 36.43
     },
     {
       "date": "2019-02",
-      "rib": 98.45,
-      "deg": null,
-      "oro": 8474.84,
+      "rib": 8474.84,
+      "rin": 8474.84,
+      "deg": 233.6,
+      "oro": 1821.79,
       "divisas": 6383.06,
-      "fmi": null,
-      "rin": 6383.06
+      "fmi": 36.4
     },
     {
       "date": "2019-03",
-      "rib": 98.48,
-      "deg": null,
-      "oro": 7946.53,
+      "rib": 7946.53,
+      "rin": 7946.53,
+      "deg": 232.22,
+      "oro": 1782.6,
       "divisas": 5895.54,
-      "fmi": null,
-      "rin": 5895.54
+      "fmi": 36.17
     },
     {
       "date": "2019-04",
-      "rib": 98.5,
-      "deg": null,
-      "oro": 8409.46,
+      "rib": 8409.46,
+      "rin": 8409.46,
+      "deg": 231.48,
+      "oro": 1767.43,
       "divisas": 6374.5,
-      "fmi": null,
-      "rin": 6374.5
+      "fmi": 36.04
     },
     {
       "date": "2019-05",
-      "rib": 98.52,
-      "deg": null,
-      "oro": 8253.34,
+      "rib": 8253.34,
+      "rin": 8253.34,
+      "deg": 230.25,
+      "oro": 1779.46,
       "divisas": 6207.77,
-      "fmi": null,
-      "rin": 6207.77
+      "fmi": 35.86
     },
     {
       "date": "2019-06",
-      "rib": 98.54,
-      "deg": null,
-      "oro": 8316.96,
+      "rib": 8316.96,
+      "rin": 8316.89,
+      "deg": 232.63,
+      "oro": 1944.81,
       "divisas": 6103.3,
-      "fmi": null,
-      "rin": 6103.3
+      "fmi": 36.22
     },
     {
       "date": "2019-07",
-      "rib": 98.57,
-      "deg": null,
-      "oro": 8046.82,
+      "rib": 8046.82,
+      "rin": 8046.6,
+      "deg": 230.38,
+      "oro": 1975.36,
       "divisas": 5805.21,
-      "fmi": null,
-      "rin": 5805.21
+      "fmi": 35.86
     },
     {
       "date": "2019-08",
-      "rib": 98.58,
-      "deg": null,
-      "oro": 8027.29,
+      "rib": 8027.29,
+      "rin": 8026.71,
+      "deg": 229.07,
+      "oro": 2108.97,
       "divisas": 5653.59,
-      "fmi": null,
-      "rin": 5653.59
+      "fmi": 35.67
     },
     {
       "date": "2019-09",
-      "rib": 98.62,
-      "deg": null,
-      "oro": 7650.24,
+      "rib": 7650.24,
+      "rin": 7650.23,
+      "deg": 228.31,
+      "oro": 2068.54,
       "divisas": 5317.85,
-      "fmi": null,
-      "rin": 5317.85
+      "fmi": 35.54
     },
     {
       "date": "2019-10",
-      "rib": 98.65,
-      "deg": null,
-      "oro": 6829.83,
+      "rib": 6829.83,
+      "rin": 6829.81,
+      "deg": 230.55,
+      "oro": 2066.31,
       "divisas": 4497.1,
-      "fmi": null,
-      "rin": 4497.1
+      "fmi": 35.88
     },
     {
       "date": "2019-11",
-      "rib": 98.67,
-      "deg": null,
-      "oro": 6459.54,
+      "rib": 6459.54,
+      "rin": 6459.54,
+      "deg": 229.61,
+      "oro": 2013.55,
       "divisas": 4180.65,
-      "fmi": null,
-      "rin": 4180.65
+      "fmi": 35.74
     },
     {
       "date": "2019-12",
-      "rib": 98.7,
-      "deg": null,
-      "oro": 6467.53,
+      "rib": 6467.53,
+      "rin": 6467.53,
+      "deg": 231.42,
+      "oro": 2093.42,
       "divisas": 4106.67,
-      "fmi": null,
-      "rin": 4106.67
+      "fmi": 36.02
     },
     {
       "date": "2020-01",
-      "rib": 98.71,
-      "deg": null,
-      "oro": 6373.55,
+      "rib": 6373.55,
+      "rin": 6373.55,
+      "deg": 230.41,
+      "oro": 2180.55,
       "divisas": 3926.74,
-      "fmi": null,
-      "rin": 3926.74
+      "fmi": 35.85
     },
     {
       "date": "2020-02",
-      "rib": 98.73,
-      "deg": null,
-      "oro": 6309.69,
+      "rib": 6309.69,
+      "rin": 6309.69,
+      "deg": 229.1,
+      "oro": 2267.62,
       "divisas": 3777.31,
-      "fmi": null,
-      "rin": 3777.31
+      "fmi": 35.66
     },
     {
       "date": "2020-03",
-      "rib": 98.74,
-      "deg": null,
-      "oro": 6090.58,
+      "rib": 6090.58,
+      "rin": 6090.58,
+      "deg": 229.26,
+      "oro": 2237.81,
       "divisas": 3587.83,
-      "fmi": null,
-      "rin": 3587.83
+      "fmi": 35.68
     },
     {
       "date": "2020-04",
-      "rib": 98.75,
-      "deg": null,
-      "oro": 6532.35,
+      "rib": 6532.35,
+      "rin": 6532.35,
+      "deg": 228.2,
+      "oro": 2350.39,
       "divisas": 3918.25,
-      "fmi": null,
-      "rin": 3918.25
+      "fmi": 35.51
     },
     {
       "date": "2020-05",
-      "rib": 98.76,
-      "deg": null,
-      "oro": 6389.73,
+      "rib": 6389.73,
+      "rin": 6389.73,
+      "deg": 228.22,
+      "oro": 2372.31,
       "divisas": 3753.66,
-      "fmi": null,
-      "rin": 3753.66
+      "fmi": 35.54
     },
     {
       "date": "2020-06",
-      "rib": 98.77,
-      "deg": null,
-      "oro": 6272.37,
+      "rib": 6272.37,
+      "rin": 6272.37,
+      "deg": 230.61,
+      "oro": 2444.27,
       "divisas": 3561.58,
-      "fmi": null,
-      "rin": 3561.58
+      "fmi": 35.91
     },
     {
       "date": "2020-07",
-      "rib": 98.79,
-      "deg": null,
-      "oro": 6608.23,
+      "rib": 6608.23,
+      "rin": 6608.23,
+      "deg": 235.19,
+      "oro": 2687.59,
       "divisas": 3648.84,
-      "fmi": null,
-      "rin": 3648.84
+      "fmi": 36.62
     },
     {
       "date": "2020-08",
-      "rib": 98.79,
-      "deg": null,
-      "oro": 6644.18,
+      "rib": 6644.18,
+      "rin": 6644.18,
+      "deg": 236.14,
+      "oro": 2720.61,
       "divisas": 3650.52,
-      "fmi": null,
-      "rin": 3650.52
+      "fmi": 36.92
     },
     {
       "date": "2020-09",
-      "rib": 98.79,
-      "deg": null,
-      "oro": 6355.79,
+      "rib": 6355.79,
+      "rin": 6355.79,
+      "deg": 234.31,
+      "oro": 2619.54,
       "divisas": 3465.31,
-      "fmi": null,
-      "rin": 3465.31
+      "fmi": 36.63
     },
     {
       "date": "2020-10",
-      "rib": 98.81,
-      "deg": null,
-      "oro": 5578.06,
+      "rib": 5578.06,
+      "rin": 5578.06,
+      "deg": 235.11,
+      "oro": 2582.12,
       "divisas": 2724.07,
-      "fmi": null,
-      "rin": 2724.07
+      "fmi": 36.75
     },
     {
       "date": "2020-11",
-      "rib": 98.83,
-      "deg": null,
-      "oro": 5304.52,
+      "rib": 5304.52,
+      "rin": 5304.52,
+      "deg": 236.37,
+      "oro": 2483.32,
       "divisas": 2547.74,
-      "fmi": null,
-      "rin": 2547.74
+      "fmi": 37.09
     },
     {
       "date": "2020-12",
-      "rib": 98.87,
-      "deg": null,
-      "oro": 5275.94,
+      "rib": 5275.94,
+      "rin": 5275.94,
+      "deg": 238.88,
+      "oro": 2613.46,
       "divisas": 2386.12,
-      "fmi": null,
-      "rin": 2386.12
+      "fmi": 37.49
     },
     {
       "date": "2021-01",
-      "rib": 98.87,
-      "deg": null,
-      "oro": 4964.85,
+      "rib": 4964.85,
+      "rin": 4963.76,
+      "deg": 238.62,
+      "oro": 2544.59,
       "divisas": 2144.2,
-      "fmi": null,
-      "rin": 2144.2
+      "fmi": 37.45
     },
     {
       "date": "2021-02",
-      "rib": 98.88,
-      "deg": null,
-      "oro": 4769.87,
+      "rib": 4769.87,
+      "rin": 4769.87,
+      "deg": 238.48,
+      "oro": 2457.51,
       "divisas": 2036.24,
-      "fmi": null,
-      "rin": 2036.24
+      "fmi": 37.65
     },
     {
       "date": "2021-03",
-      "rib": 98.89,
-      "deg": null,
-      "oro": 4525.96,
+      "rib": 4525.96,
+      "rin": 4525.89,
+      "deg": 236.93,
+      "oro": 2323.67,
       "divisas": 1928.48,
-      "fmi": null,
-      "rin": 1928.48
+      "fmi": 36.88
     },
     {
       "date": "2021-04",
-      "rib": 98.91,
-      "deg": null,
-      "oro": 4629.36,
+      "rib": 4629.36,
+      "rin": 4628.54,
+      "deg": 240.43,
+      "oro": 2448.34,
       "divisas": 1903.18,
-      "fmi": null,
-      "rin": 1903.18
+      "fmi": 37.42
     },
     {
       "date": "2021-05",
-      "rib": 98.93,
-      "deg": null,
-      "oro": 4886.76,
+      "rib": 4886.76,
+      "rin": 4886.76,
+      "deg": 241.35,
+      "oro": 2627.85,
       "divisas": 1979.99,
-      "fmi": null,
-      "rin": 1979.99
+      "fmi": 37.57
     },
     {
       "date": "2021-06",
-      "rib": 98.94,
-      "deg": null,
-      "oro": 4624.27,
+      "rib": 4624.27,
+      "rin": 4624.27,
+      "deg": 238.58,
+      "oro": 2435.32,
       "divisas": 1913.24,
-      "fmi": null,
-      "rin": 1913.24
+      "fmi": 37.13
     },
     {
       "date": "2021-07",
-      "rib": 98.95,
-      "deg": null,
-      "oro": 4745.56,
+      "rib": 4745.56,
+      "rin": 4745.56,
+      "deg": 240.95,
+      "oro": 2528.51,
       "divisas": 1938.94,
-      "fmi": null,
-      "rin": 1938.94
+      "fmi": 37.15
     },
     {
       "date": "2021-08",
-      "rib": 98.96,
-      "deg": null,
-      "oro": 5116.24,
+      "rib": 5116.24,
+      "rin": 5116.24,
+      "deg": 567.49,
+      "oro": 2502.64,
       "divisas": 2009.08,
-      "fmi": null,
-      "rin": 2009.08
+      "fmi": 37.02
     },
     {
       "date": "2021-09",
-      "rib": 98.98,
-      "deg": null,
-      "oro": 4830.67,
+      "rib": 4830.67,
+      "rin": 4830.67,
+      "deg": 563.9,
+      "oro": 2383.54,
       "divisas": 1846.44,
-      "fmi": null,
-      "rin": 1846.44
+      "fmi": 36.79
     },
     {
       "date": "2021-10",
-      "rib": 98.99,
-      "deg": null,
-      "oro": 4890.17,
+      "rib": 4890.17,
+      "rin": 4890.17,
+      "deg": 563.91,
+      "oro": 2485.57,
       "divisas": 1803.9,
-      "fmi": null,
-      "rin": 1803.9
+      "fmi": 36.79
     },
     {
       "date": "2021-11",
-      "rib": 99.03,
-      "deg": null,
-      "oro": 4762.26,
+      "rib": 4762.26,
+      "rin": 4762.26,
+      "deg": 557.71,
+      "oro": 2463.89,
       "divisas": 1704.27,
-      "fmi": null,
-      "rin": 1704.27
+      "fmi": 36.38
     },
     {
       "date": "2021-12",
-      "rib": 99.05,
-      "deg": null,
-      "oro": 4753.46,
+      "rib": 4753.46,
+      "rin": 4752.49,
+      "deg": 558.35,
+      "oro": 2511.0,
       "divisas": 1647.68,
-      "fmi": null,
-      "rin": 1647.68
+      "fmi": 36.43
     },
     {
       "date": "2022-01",
-      "rib": 99.05,
-      "deg": null,
-      "oro": 4483.35,
+      "rib": 4483.35,
+      "rin": 4483.35,
+      "deg": 554.86,
+      "oro": 2469.68,
       "divisas": 1422.61,
-      "fmi": null,
-      "rin": 1422.61
+      "fmi": 36.2
     },
     {
       "date": "2022-02",
-      "rib": 99.07,
-      "deg": null,
-      "oro": 4396.18,
+      "rib": 4396.18,
+      "rin": 4396.18,
+      "deg": 556.22,
+      "oro": 2600.32,
       "divisas": 1203.35,
-      "fmi": null,
-      "rin": 1203.35
+      "fmi": 36.29
     },
     {
       "date": "2022-03",
-      "rib": 99.08,
-      "deg": null,
-      "oro": 4599.03,
+      "rib": 4599.03,
+      "rin": 4599.03,
+      "deg": 551.99,
+      "oro": 2675.4,
       "divisas": 1335.64,
-      "fmi": null,
-      "rin": 1335.64
+      "fmi": 36.01
     },
     {
       "date": "2022-04",
-      "rib": 99.1,
-      "deg": null,
-      "oro": 4602.18,
+      "rib": 4602.18,
+      "rin": 4602.18,
+      "deg": 534.86,
+      "oro": 2616.85,
       "divisas": 1415.58,
-      "fmi": null,
-      "rin": 1415.58
+      "fmi": 34.89
     },
     {
       "date": "2022-05",
-      "rib": 99.11,
-      "deg": null,
-      "oro": 4577.54,
+      "rib": 4577.54,
+      "rin": 4577.54,
+      "deg": 538.45,
+      "oro": 2564.93,
       "divisas": 1439.04,
-      "fmi": null,
-      "rin": 1439.04
+      "fmi": 35.12
     },
     {
       "date": "2022-06",
-      "rib": 99.13,
-      "deg": null,
-      "oro": 4505.45,
+      "rib": 4505.45,
+      "rin": 4505.45,
+      "deg": 532.3,
+      "oro": 2513.67,
       "divisas": 1424.77,
-      "fmi": null,
-      "rin": 1424.77
+      "fmi": 34.71
     },
     {
       "date": "2022-07",
-      "rib": 99.14,
-      "deg": null,
-      "oro": 4301.06,
+      "rib": 4301.06,
+      "rin": 4301.06,
+      "deg": 526.45,
+      "oro": 2428.42,
       "divisas": 1311.87,
-      "fmi": null,
-      "rin": 1311.87
+      "fmi": 34.32
     },
     {
       "date": "2022-08",
-      "rib": 99.15,
-      "deg": null,
-      "oro": 3806.97,
+      "rib": 3806.97,
+      "rin": 3806.97,
+      "deg": 520.99,
+      "oro": 2386.04,
       "divisas": 865.97,
-      "fmi": null,
-      "rin": 865.97
+      "fmi": 33.97
     },
     {
       "date": "2022-09",
-      "rib": 99.17,
-      "deg": null,
-      "oro": 3844.16,
+      "rib": 3844.16,
+      "rin": 3844.16,
+      "deg": 510.43,
+      "oro": 2295.13,
       "divisas": 1005.35,
-      "fmi": null,
-      "rin": 1005.35
+      "fmi": 33.26
     },
     {
       "date": "2022-10",
-      "rib": 99.18,
-      "deg": null,
-      "oro": 3687.16,
+      "rib": 3687.16,
+      "rin": 3687.16,
+      "deg": 515.22,
+      "oro": 2275.32,
       "divisas": 863.07,
-      "fmi": null,
-      "rin": 863.07
+      "fmi": 33.55
     },
     {
       "date": "2022-11",
-      "rib": 99.2,
-      "deg": null,
-      "oro": 3808.28,
+      "rib": 3808.28,
+      "rin": 3808.28,
+      "deg": 525.61,
+      "oro": 2425.14,
       "divisas": 823.28,
-      "fmi": null,
-      "rin": 823.28
+      "fmi": 34.25
     },
     {
       "date": "2022-12",
-      "rib": 99.21,
-      "deg": null,
-      "oro": 3796.18,
+      "rib": 3796.18,
+      "rin": 3796.18,
+      "deg": 533.53,
+      "oro": 2518.73,
       "divisas": 709.18,
-      "fmi": null,
-      "rin": 709.18
+      "fmi": 34.74
     },
     {
       "date": "2023-01",
-      "rib": 99.2,
-      "deg": null,
-      "oro": 3616.01,
+      "rib": 3616.01,
+      "rin": 3616.01,
+      "deg": 543.32,
+      "oro": 2664.91,
       "divisas": 372.45,
-      "fmi": null,
-      "rin": 372.45
+      "fmi": 35.34
     },
     {
       "date": "2023-02",
-      "rib": 99.21,
-      "deg": null,
-      "oro": 3148.52,
+      "rib": 3148.52,
+      "rin": 3148.52,
+      "deg": 229.11,
+      "oro": 2523.28,
       "divisas": 361.4,
-      "fmi": null,
-      "rin": 361.4
+      "fmi": 34.73
     },
     {
       "date": "2023-03",
-      "rib": 99.23,
-      "deg": null,
-      "oro": 3112.26,
+      "rib": 3112.26,
+      "rin": 3112.26,
+      "deg": 54.03,
+      "oro": 2746.79,
       "divisas": 276.3,
-      "fmi": null,
-      "rin": 276.3
+      "fmi": 35.15
     },
     {
       "date": "2023-04",
-      "rib": 99.24,
-      "deg": null,
-      "oro": 3158.3,
+      "rib": 3158.3,
+      "rin": 3158.3,
+      "deg": 54.4,
+      "oro": 2757.75,
       "divisas": 310.8,
-      "fmi": null,
-      "rin": 310.8
+      "fmi": 35.35
     },
     {
       "date": "2023-05",
-      "rib": 99.22,
-      "deg": null,
-      "oro": 2951.92,
+      "rib": 2951.92,
+      "rin": 2951.92,
+      "deg": 49.48,
+      "oro": 2572.53,
       "divisas": 295.2,
-      "fmi": null,
-      "rin": 295.2
+      "fmi": 34.71
     },
     {
       "date": "2023-06",
-      "rib": 99.24,
-      "deg": null,
-      "oro": 2611.58,
+      "rib": 2611.58,
+      "rin": 2611.58,
+      "deg": 49.75,
+      "oro": 2169.94,
       "divisas": 357.04,
-      "fmi": null,
-      "rin": 357.04
+      "fmi": 34.86
     },
     {
       "date": "2023-07",
-      "rib": 99.25,
-      "deg": null,
-      "oro": 2512.93,
+      "rib": 2512.93,
+      "rin": 2512.93,
+      "deg": 50.26,
+      "oro": 1957.88,
       "divisas": 469.61,
-      "fmi": null,
-      "rin": 469.61
+      "fmi": 35.17
     },
     {
       "date": "2023-08",
-      "rib": 99.26,
-      "deg": null,
-      "oro": 2147.31,
+      "rib": 2147.31,
+      "rin": 2147.31,
+      "deg": 45.01,
+      "oro": 1629.7,
       "divisas": 437.91,
-      "fmi": null,
-      "rin": 437.91
+      "fmi": 34.69
     },
     {
       "date": "2023-09",
-      "rib": 99.26,
-      "deg": null,
-      "oro": 1817.61,
+      "rib": 1817.61,
+      "rin": 1817.61,
+      "deg": 44.52,
+      "oro": 1466.62,
       "divisas": 272.19,
-      "fmi": null,
-      "rin": 272.19
+      "fmi": 34.28
     },
     {
       "date": "2023-10",
-      "rib": 99.26,
-      "deg": null,
-      "oro": 1653.8,
+      "rib": 1653.8,
+      "rin": 1653.8,
+      "deg": 44.69,
+      "oro": 1424.22,
       "divisas": 150.51,
-      "fmi": null,
-      "rin": 150.51
+      "fmi": 34.36
     },
     {
       "date": "2023-11",
-      "rib": 99.26,
-      "deg": null,
-      "oro": 1687.52,
+      "rib": 1687.52,
+      "rin": 1687.52,
+      "deg": 40.46,
+      "oro": 1460.98,
       "divisas": 151.22,
-      "fmi": null,
-      "rin": 151.22
+      "fmi": 34.86
     },
     {
       "date": "2023-12",
-      "rib": 99.28,
-      "deg": null,
-      "oro": 1807.76,
-      "divisas": 266.44,
-      "fmi": 100.77,
-      "rin": 165.67
+      "rib": 1807.76,
+      "rin": 1708.59,
+      "deg": 40.76,
+      "oro": 1566.26,
+      "divisas": 165.67,
+      "fmi": 35.07
     },
     {
       "date": "2024-01",
-      "rib": 99.29,
-      "deg": null,
-      "oro": 1715.33,
-      "divisas": 202.18,
-      "fmi": 30.06,
-      "rin": 172.12
+      "rib": 1715.33,
+      "rin": 1615.56,
+      "deg": 40.55,
+      "oro": 1467.82,
+      "divisas": 172.12,
+      "fmi": 34.85
     },
     {
       "date": "2024-02",
-      "rib": 99.31,
-      "deg": null,
-      "oro": 1682.12,
-      "divisas": 173.36,
-      "fmi": 16.82,
-      "rin": 156.54
+      "rib": 1682.12,
+      "rin": 1581.87,
+      "deg": 35.34,
+      "oro": 1455.65,
+      "divisas": 156.54,
+      "fmi": 34.59
     },
     {
       "date": "2024-03",
-      "rib": 99.35,
-      "deg": null,
-      "oro": 1777.83,
-      "divisas": 157.72,
-      "fmi": 3.64,
-      "rin": 154.07
+      "rib": 1777.83,
+      "rin": 1677.06,
+      "deg": 35.42,
+      "oro": 1553.7,
+      "divisas": 154.07,
+      "fmi": 34.63
     },
     {
       "date": "2024-04",
-      "rib": 99.36,
-      "deg": null,
-      "oro": 1897.67,
-      "divisas": 173.31,
-      "fmi": 34.0,
-      "rin": 139.31
+      "rib": 1897.67,
+      "rin": 1796.4,
+      "deg": 35.35,
+      "oro": 1688.48,
+      "divisas": 139.31,
+      "fmi": 34.52
     },
     {
       "date": "2024-05",
-      "rib": 99.39,
-      "deg": null,
-      "oro": 2040.08,
-      "divisas": 317.11,
-      "fmi": 1.39,
-      "rin": 315.72
+      "rib": 2040.08,
+      "rin": 1938.3,
+      "deg": 30.56,
+      "oro": 1659.29,
+      "divisas": 315.72,
+      "fmi": 34.52
     },
     {
       "date": "2024-06",
-      "rib": 99.41,
-      "deg": null,
-      "oro": 1941.2,
-      "divisas": 228.54,
-      "fmi": 18.55,
-      "rin": 209.99
+      "rib": 1941.2,
+      "rin": 1838.91,
+      "deg": 30.46,
+      "oro": 1666.38,
+      "divisas": 209.99,
+      "fmi": 34.37
     },
     {
       "date": "2024-07",
-      "rib": 99.43,
-      "deg": null,
-      "oro": 1922.98,
-      "divisas": 181.58,
-      "fmi": 20.89,
-      "rin": 160.69
+      "rib": 1922.98,
+      "rin": 1820.17,
+      "deg": 5.45,
+      "oro": 1722.11,
+      "divisas": 160.69,
+      "fmi": 34.72
     },
     {
       "date": "2024-08",
-      "rib": 99.45,
-      "deg": null,
-      "oro": 2008.61,
-      "divisas": 183.57,
-      "fmi": 30.47,
-      "rin": 153.09
+      "rib": 2008.61,
+      "rin": 1905.28,
+      "deg": 5.24,
+      "oro": 1815.12,
+      "divisas": 153.09,
+      "fmi": 35.15
     },
     {
       "date": "2024-09",
-      "rib": 99.47,
-      "deg": null,
-      "oro": 2070.21,
-      "divisas": 156.17,
-      "fmi": 16.47,
-      "rin": 139.7
+      "rib": 2070.21,
+      "rin": 1966.37,
+      "deg": 5.28,
+      "oro": 1889.83,
+      "divisas": 139.7,
+      "fmi": 35.41
     },
     {
       "date": "2024-10",
-      "rib": 99.48,
-      "deg": null,
-      "oro": 2169.67,
-      "divisas": 158.74,
-      "fmi": 20.86,
-      "rin": 137.88
+      "rib": 2169.67,
+      "rin": 2065.35,
+      "deg": 5.19,
+      "oro": 1991.79,
+      "divisas": 137.88,
+      "fmi": 34.81
     },
     {
       "date": "2024-11",
-      "rib": 99.49,
-      "deg": null,
-      "oro": 2056.89,
-      "divisas": 156.6,
-      "fmi": 9.54,
-      "rin": 147.05
+      "rib": 2056.89,
+      "rin": 1952.12,
+      "deg": 0.54,
+      "oro": 1875.05,
+      "divisas": 147.05,
+      "fmi": 34.26
     },
     {
       "date": "2024-12",
-      "rib": 99.51,
-      "deg": null,
-      "oro": 1976.54,
-      "divisas": 91.35,
-      "fmi": 44.54,
-      "rin": 46.81
+      "rib": 1976.54,
+      "rin": 1976.54,
+      "deg": 6.41,
+      "oro": 1889.26,
+      "divisas": 46.81,
+      "fmi": 34.06
     },
     {
       "date": "2025-01",
-      "rib": 99.51,
-      "deg": null,
-      "oro": 2103.37,
-      "divisas": 78.58,
-      "fmi": 21.56,
-      "rin": 57.02
+      "rib": 2103.37,
+      "rin": 2103.37,
+      "deg": 15.46,
+      "oro": 1996.74,
+      "divisas": 57.02,
+      "fmi": 34.15
     },
     {
       "date": "2025-02",
-      "rib": 99.52,
-      "deg": null,
-      "oro": 2187.91,
-      "divisas": 92.27,
-      "fmi": 14.0,
-      "rin": 78.27
+      "rib": 2187.91,
+      "rin": 2187.91,
+      "deg": 19.49,
+      "oro": 2055.92,
+      "divisas": 78.27,
+      "fmi": 34.23
     },
     {
       "date": "2025-03",
-      "rib": 99.54,
-      "deg": null,
-      "oro": 2302.0,
-      "divisas": 68.37,
-      "fmi": 14.79,
-      "rin": 53.59
+      "rib": 2302.0,
+      "rin": 2302.0,
+      "deg": 19.73,
+      "oro": 2194.08,
+      "divisas": 53.59,
+      "fmi": 34.61
     },
     {
       "date": "2025-04",
-      "rib": 99.55,
-      "deg": null,
-      "oro": 2618.15,
-      "divisas": 219.39,
-      "fmi": 54.2,
-      "rin": 165.19
+      "rib": 2618.15,
+      "rin": 2618.15,
+      "deg": 20.24,
+      "oro": 2397.23,
+      "divisas": 165.19,
+      "fmi": 35.49
     },
     {
       "date": "2025-05",
-      "rib": 99.56,
-      "deg": null,
-      "oro": 2519.37,
-      "divisas": 119.19,
-      "fmi": 89.25,
-      "rin": 29.94
+      "rib": 2519.37,
+      "rin": 2519.37,
+      "deg": 16.37,
+      "oro": 2437.75,
+      "divisas": 29.94,
+      "fmi": 35.31
     },
     {
       "date": "2025-06",
-      "rib": 99.57,
-      "deg": null,
-      "oro": 2806.96,
-      "divisas": 439.64,
-      "fmi": 175.01,
-      "rin": 264.63
+      "rib": 2806.96,
+      "rin": 2806.96,
+      "deg": 16.63,
+      "oro": 2489.83,
+      "divisas": 264.63,
+      "fmi": 35.86
     },
     {
       "date": "2025-07",
-      "rib": 99.58,
-      "deg": null,
-      "oro": 2725.71,
-      "divisas": 346.82,
-      "fmi": 279.61,
-      "rin": 67.2
+      "rib": 2725.71,
+      "rin": 2725.71,
+      "deg": 26.63,
+      "oro": 2596.28,
+      "divisas": 67.2,
+      "fmi": 35.6
     },
     {
       "date": "2025-08",
-      "rib": 99.59,
-      "deg": null,
-      "oro": 2881.24,
-      "divisas": 404.14,
-      "fmi": 233.41,
-      "rin": 170.73
+      "rib": 2881.24,
+      "rin": 2881.24,
+      "deg": 22.98,
+      "oro": 2651.83,
+      "divisas": 170.73,
+      "fmi": 35.7
     },
     {
       "date": "2025-09",
-      "rib": 99.6,
-      "deg": null,
-      "oro": 3275.01,
-      "divisas": 508.34,
-      "fmi": 405.85,
-      "rin": 102.49
+      "rib": 3275.01,
+      "rin": 3275.01,
+      "deg": 23.03,
+      "oro": 3113.74,
+      "divisas": 102.49,
+      "fmi": 35.75
     },
     {
       "date": "2025-10",
-      "rib": 99.61,
-      "deg": null,
-      "oro": 3226.91,
-      "divisas": 301.34,
-      "fmi": 228.7,
-      "rin": 72.64
+      "rib": 3226.91,
+      "rin": 3226.91,
+      "deg": 42.92,
+      "oro": 3075.8,
+      "divisas": 72.64,
+      "fmi": 35.56
     },
     {
       "date": "2025-11",
-      "rib": 99.62,
-      "deg": null,
-      "oro": 3261.38,
-      "divisas": 245.95,
-      "fmi": 194.67,
-      "rin": 51.28
+      "rib": 3261.38,
+      "rin": 3261.38,
+      "deg": 39.28,
+      "oro": 3135.41,
+      "divisas": 51.28,
+      "fmi": 35.41
     },
     {
       "date": "2025-12",
-      "rib": 99.63,
-      "deg": null,
-      "oro": 3713.24,
-      "divisas": 552.92,
-      "fmi": 48.16,
-      "rin": 504.76
+      "rib": 3713.24,
+      "rin": 3713.24,
+      "deg": 39.72,
+      "oro": 3132.99,
+      "divisas": 504.76,
+      "fmi": 35.78
     },
     {
       "date": "2026-01",
-      "rib": 99.63,
-      "deg": null,
-      "oro": 4416.73,
-      "divisas": 578.59,
-      "fmi": 113.2,
-      "rin": 465.39
+      "rib": 4416.73,
+      "rin": 4416.73,
+      "deg": 40.15,
+      "oro": 3875.06,
+      "divisas": 465.39,
+      "fmi": 36.14
     },
     {
       "date": "2026-02",
-      "rib": 99.64,
-      "deg": null,
-      "oro": 4320.17,
-      "divisas": 577.72,
-      "fmi": 152.77,
-      "rin": 424.95
+      "rib": 4320.17,
+      "rin": 4320.17,
+      "deg": 35.85,
+      "oro": 3822.89,
+      "divisas": 424.95,
+      "fmi": 36.48
     },
     {
       "date": "2026-03",
-      "rib": 99.66,
-      "deg": null,
-      "oro": 3542.85,
-      "divisas": 275.58,
-      "fmi": 127.15,
-      "rin": 148.42
+      "rib": 3542.85,
+      "rin": 3542.85,
+      "deg": 36.09,
+      "oro": 3322.9,
+      "divisas": 148.42,
+      "fmi": 35.44
     },
     {
       "date": "2026-04",
-      "rib": 99.67,
-      "deg": null,
-      "oro": 3706.13,
-      "divisas": 435.96,
-      "fmi": 220.53,
-      "rin": 215.43
+      "rib": 3706.13,
+      "rin": 3706.13,
+      "deg": 36.5,
+      "oro": 3418.39,
+      "divisas": 215.43,
+      "fmi": 35.81
     },
     {
       "date": "2026-05",
-      "rib": 99.68,
-      "deg": null,
-      "oro": 4546.78,
-      "divisas": 1295.64,
-      "fmi": 398.16,
-      "rin": 897.47
+      "rib": 4546.78,
+      "rin": 4546.78,
+      "deg": 33.07,
+      "oro": 3580.62,
+      "divisas": 897.47,
+      "fmi": 35.62
     },
     {
       "date": "2026-06-S1",
-      "rib": 99.68,
-      "deg": null,
-      "oro": 4596.37,
-      "divisas": 1302.98,
-      "fmi": 453.28,
-      "rin": 849.69
+      "rib": 4596.37,
+      "rin": 4596.37,
+      "deg": 33.12,
+      "oro": 3677.88,
+      "divisas": 849.69,
+      "fmi": 35.68
     }
   ]
 }
