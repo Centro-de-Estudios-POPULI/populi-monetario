@@ -62,14 +62,21 @@ def find_row_map(ws) -> dict:
         )
 
     rows = {"rib": rib, "rin": rin}
+    # El bloque de reservas tiene muchas líneas con la palabra "Oro" (p.ej.
+    # "Oro en toneladas", "Oro convertible en divisas", "d/c Oro…"), así que no
+    # podemos usar un simple "oro" in lab. Anclamos en los cuatro componentes
+    # que suman a las RIB. Desde mediados de 2026 el BCB los rotula con numeral
+    # romano ("I. Oro (d + e)", "II. Divisas", "III. DEG", "IV. Posición con el
+    # FMI"), coherente con el título "Reservas … Brutas (I + II + III + IV)".
+    # Aceptamos tanto ese formato como el antiguo plano ("Oro"/"Divisas"/"DEG").
     for r in range(rib + 1, rin):           # solo dentro del bloque de reservas
         lab = _norm(_label(ws, r))
-        if "deg" not in rows and lab == "deg":
-            rows["deg"] = r
-        elif "oro" not in rows and lab == "oro":            # exacto: evita "d/c Oro…", "Oro convertible…"
+        if "oro" not in rows and (lab == "oro" or lab.startswith("i. oro")):
             rows["oro"] = r
-        elif "divisas" not in rows and lab == "divisas":    # exacto: evita "Oro convertible en divisas"
+        elif "divisas" not in rows and (lab == "divisas" or lab.startswith("ii. divisas")):
             rows["divisas"] = r
+        elif "deg" not in rows and (lab == "deg" or lab.startswith("iii. deg")):
+            rows["deg"] = r
         elif "fmi" not in rows and "posicion con el fmi" in lab:
             rows["fmi"] = r
 
