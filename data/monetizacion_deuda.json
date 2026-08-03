@@ -5,12 +5,12 @@
     "fuente": "Banco Central de Bolivia (BCB)",
     "unidad": "Millones de Bs",
     "frecuencia": "Mensual",
-    "ultimo_dato": "2026-05",
+    "ultimo_dato": "2026-06",
     "primer_dato": "1987-12",
-    "observaciones": 451,
-    "credito_neto_total_mm": 156637.7,
-    "credito_neto_gc_mm": 140301.03,
-    "var_12m_neto_abs": 25238.94
+    "observaciones": 452,
+    "credito_neto_total_mm": 153923.09,
+    "credito_neto_gc_mm": 137961.01,
+    "var_12m_neto_abs": 20883.71
   },
   "series": [
     {
@@ -5424,6 +5424,18 @@
       "total_bruto": 199180.81,
       "total_depositos": 42543.11,
       "total_neto": 156637.7
+    },
+    {
+      "date": "2026-06",
+      "gc_bruto": 165370.6,
+      "gc_depositos": 27409.6,
+      "gc_neto": 137961.01,
+      "ss_neto": -7742.96,
+      "gl_neto": -8324.19,
+      "ep_neto": 32029.23,
+      "total_bruto": 200644.67,
+      "total_depositos": 46721.58,
+      "total_neto": 153923.09
     }
   ]
 }

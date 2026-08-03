@@ -5,13 +5,13 @@
     "fuente": "Banco Central de Bolivia (BCB)",
     "unidad": "Millones de Bs",
     "frecuencia": "Mensual",
-    "ultimo_dato": "2026-05",
+    "ultimo_dato": "2026-06",
     "primer_dato": "1977-12",
-    "observaciones": 461,
-    "total_activo_mm": 253073.07,
-    "rib_mm": 31190.94,
-    "credito_sp_mm": 199180.81,
-    "credito_sf_mm": 16348.17
+    "observaciones": 462,
+    "total_activo_mm": 262174.31,
+    "rib_mm": 35304.56,
+    "credito_sp_mm": 200644.67,
+    "credito_sf_mm": 17613.61
   },
   "series": [
     {
@@ -7850,6 +7850,23 @@
       "credito_sf": 16348.17,
       "otras_ctas": 2558.88,
       "total_activo": 253073.07
+    },
+    {
+      "date": "2026-06",
+      "rib": 35304.56,
+      "oro": 28137.31,
+      "divisas": 3464.12,
+      "otros_rib": 3703.14,
+      "aportes_oi": 2162.46,
+      "otros_ext": 3235.81,
+      "credito_sp": 200644.67,
+      "credito_gc": 165370.6,
+      "credito_ss": 0,
+      "credito_gl": 0,
+      "credito_ep": 35274.07,
+      "credito_sf": 17613.61,
+      "otras_ctas": 3213.19,
+      "total_activo": 262174.31
     }
   ]
 }
