@@ -10,12 +10,12 @@
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
   <style>
     :root {
-      --populi:#8B1A1A; --populi-light:#C00000;
+      --populi:#C71E1D; --populi-light:#E8706B;
       --cream:#F5EFE0; --brown-dark:#3D2B1F;
       --navy:#0D1B2A; --navy-light:#1A2940; --slate:#475569; --slate-light:#64748B;
       --warm-white:#FAF8F3; --light-gray:#F1EDE5; --border:#E2DDD3; --dark-border:#2A3A50;
       --bg:var(--warm-white); --card:#FFFFFF; --text:var(--brown-dark); --muted:var(--slate-light);
-      --c-emision:#D97706; --c-billetes:#2563EB; --c-caja:#059669;
+      --c-emision:#EE9B00; --c-billetes:#005F73; --c-caja:#0A9396;
       --radius:12px;
     }
     [data-theme="dark"] {
@@ -52,7 +52,7 @@
     .kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}
     .kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}
     .kpi-d.up{background:rgba(199,30,29,.08);color:#C71E1D}
-    .kpi-d.down{background:rgba(5,150,105,.08);color:#059669}
+    .kpi-d.down{background:rgba(5,150,105,.08);color:#0A9396}
     .kpi-d.flat{background:rgba(100,116,139,.08);color:#64748B}
     [data-theme="dark"] .kpi-d.up{background:rgba(199,30,29,.15)}
     [data-theme="dark"] .kpi-d.down{background:rgba(5,150,105,.15)}
@@ -133,7 +133,7 @@
   <script>
     const DATA_URL = '../data/emision_monetaria.json';
     const DASHBOARD_URL = '../index.html';
-    const COLORS = { emision:'#D97706', billetes:'#2563EB', caja_sf:'#059669' };
+    const COLORS = { emision:'#EE9B00', billetes:'#005F73', caja_sf:'#0A9396' };
 
     let DATA, chart, curIdx;
     let activeKeys = new Set(['emision','billetes','caja_sf']);
@@ -207,7 +207,7 @@
           </div>
           <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${COLORS.emision}"></div>
             <div class="kpi-lbl">Var. 12 meses</div>
-            <div class="kpi-val" style="color:${var12>0?'#C71E1D':'#059669'}">${var12>0?'+':''}${var12}%</div>
+            <div class="kpi-val" style="color:${var12>0?'#C71E1D':'#0A9396'}">${var12>0?'+':''}${var12}%</div>
             <div class="kpi-d ${var12>10?'up':var12>0?'flat':'down'}">${var12>10?'Expansión acelerada':var12>0?'Expansión moderada':'Contracción'}</div>
           </div>
         </div>
