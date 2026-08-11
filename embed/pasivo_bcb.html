@@ -99,10 +99,15 @@
       var si=getStartIdx();var S=DATA.series.slice(si);var d=dk();
       var labels=S.map(function(x){return labelDate(x.date)});var series=[];
       var stackOrder=[{key:'capital',name:'Capital y Reservas'},{key:'otras_ctas',name:'Otras Cuentas'},{key:'oblig_ext_cp',name:'Oblig. Externas CP'},{key:'dep_sp_total',name:'Dep. Sector Público'},{key:'dep_bancarios',name:'Dep. Bancarios'},{key:'emision',name:'Emisión'}];
+      // Barras apiladas. El separador entre segmentos sólo se dibuja cuando la barra da
+      // el ancho: con el rango por defecto ("desde 2010") son ~200 puntos mensuales, o sea
+      // barras de 3-4px, y un borde de 1px por lado se comería el dato.
+      var denso=S.length>90, bw=denso?0:1;
       stackOrder.forEach(function(it){
         if(!activeKeys.has(it.key))return;
-        var op=d?0.75:0.85;
-        series.push({name:it.name,type:'line',stack:'total',data:S.map(function(x){return x[it.key]||0}),symbol:'none',lineStyle:{width:1,color:COLORS[it.key]},itemStyle:{color:COLORS[it.key]},areaStyle:{opacity:op},emphasis:{focus:'series'},connectNulls:true});
+        series.push({name:it.name,type:'bar',stack:'total',data:S.map(function(x){return x[it.key]||0}),
+          itemStyle:{color:COLORS[it.key],opacity:d?0.92:1,borderColor:d?'#141414':'#fff',borderWidth:bw},
+          barCategoryGap:denso?'5%':'20%',emphasis:{focus:'series'}});
       });
       chart.setOption({grid:{left:70,right:20,top:20,bottom:40},
         xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#64748B',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},

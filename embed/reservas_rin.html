@@ -113,7 +113,11 @@
           if(pct){var t=totals[i];return t?+(v/t*100).toFixed(2):null}
           return v;
         });
+        // Bordes suavizados. smoothMonotone:'x' es obligatorio en un APILADO: sin él la
+        // spline sobrepasa en los quiebres e inventa valores (bandas que se hunden por
+        // debajo del dato real). Con monotonía en x la curva no se pasa de los puntos.
         return {name:c.name,type:'line',stack:'rin',data:data,symbol:'none',
+          smooth:0.35,smoothMonotone:'x',
           lineStyle:{width:1,color:c.c},itemStyle:{color:c.c},
           areaStyle:{color:c.c,opacity:d?0.78:0.85},emphasis:{focus:'series'},z:1};
       });

@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Determinantes de la Base Monetaria · Populi</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+  <style>
+    :root {
+      --populi:#C71E1D; --populi-light:#E8706B;
+      --cream:#F5EFE0; --brown-dark:#3D2B1F;
+      --navy:#0D1B2A; --navy-light:#1A2940; --slate:#475569; --slate-light:#64748B;
+      --warm-white:#FAF8F3; --light-gray:#F1EDE5; --border:#E2DDD3; --dark-border:#2A3A50;
+      --bg:var(--warm-white); --card:#FFFFFF; --text:var(--brown-dark); --muted:var(--slate-light);
+      --c-accent:#C71E1D;
+      /* Sólo DOS series llevan color, y son la tesis del gráfico: de dónde salía el dinero
+         primario (RIN) y de dónde sale ahora (crédito al sector público). El par
+         #C71E1D/#0A9396 es el único de la rampa oficial que pasa las 5 verificaciones en
+         tema claro Y oscuro. Con 4 colores la rampa no llega: #9B2226 choca con el rojo
+         (ΔE 9,1 en visión normal) y el ámbar #EE9B00 se sale de banda en oscuro. Por eso
+         crédito a bancos, OMA y otras cuentas van en grises escalonados: son el resto. */
+      --c-rin:#0A9396; --c-sp:#C71E1D; --c-bancos:#64748B; --c-oma:#475569; --c-otras:#94A3B8; --c-base:#0D1B2A;
+      --radius:12px;
+    }
+    [data-theme="dark"] {
+      --bg:#080808; --card:#141414; --text:#E2E8F0; --muted:#64748B;
+      --border:#2A3A50; --light-gray:#1A1A1A; --cream:#1A2940;
+      --c-base:#F1F5F9;
+    }
+    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
+    .wrap{max-width:1200px;margin:0 auto;padding:20px 16px}
+
+    .sec-hd{margin-bottom:16px}
+    .sec-title{font-family:'Playfair Display',Georgia,serif;font-size:1.55rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px;line-height:1.15}
+    [data-theme="dark"] .sec-title{color:#fff}
+    .accent-bar{width:4px;height:26px;background:var(--c-accent);border-radius:2px;flex-shrink:0}
+    .sec-sub{font-size:.78rem;color:var(--muted);padding-left:14px;margin-top:2px}
+    [data-theme="dark"] .sec-sub{color:rgba(255,255,255,.4)}
+
+    .hz-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:14px;flex-wrap:wrap}
+    .hz-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
+    .hz-grp{display:flex;flex-wrap:wrap;gap:0;background:var(--light-gray);border-radius:8px;padding:2px;border:1px solid var(--border)}
+    [data-theme="dark"] .hz-grp{background:#1A1A1A;border-color:var(--dark-border)}
+    .hz-btn{padding:5px 14px;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}
+    .hz-btn:hover{color:var(--text)}
+    .hz-btn.active{background:var(--c-accent);color:#fff;box-shadow:0 2px 8px rgba(185,28,28,.25)}
+
+    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+    @media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
+    .kpi{background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden;transition:transform .2s}
+    [data-theme="dark"] .kpi{background:#141414;border-color:var(--dark-border)}
+    .kpi:hover{transform:translateY(-1px)}
+    .kpi-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
+    [data-theme="dark"] .kpi-lbl{color:rgba(255,255,255,.4)}
+    .kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}
+    .kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}
+    .kpi-d.up{background:rgba(199,30,29,.08);color:#C71E1D}
+    .kpi-d.down{background:rgba(10,147,150,.08);color:#0A9396}
+    .kpi-d.flat{background:rgba(100,116,139,.08);color:#64748B}
+    [data-theme="dark"] .kpi-d.up{background:rgba(199,30,29,.15)}
+    [data-theme="dark"] .kpi-d.down{background:rgba(10,147,150,.15)}
+
+    .main-grid{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:540px;gap:16px}
+    @media(max-width:900px){.main-grid{grid-template-columns:1fr;grid-template-rows:420px auto}}
+    @media(max-width:500px){.main-grid{grid-template-rows:340px auto}.sec-title{font-size:1.2rem}.sec-sub{font-size:.7rem}.kpi-val{font-size:1rem}.pill{padding:3px 8px;font-size:.6rem}.hz-btn{padding:4px 10px;font-size:.6rem}}
+    @media(min-width:1100px){.main-grid{grid-template-rows:580px}}
+
+    .chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;height:100%;overflow:hidden}
+    [data-theme="dark"] .chart-card{background:#141414;border-color:var(--dark-border)}
+    .chart-ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
+    .tog-grp{display:flex;gap:6px;flex-wrap:wrap}
+    .pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border:1.5px solid;border-radius:8px;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;transition:all .2s}
+    .pill:hover{transform:translateY(-1px)}
+    .lp{width:16px;height:0;border-top:2.5px solid;border-radius:1px}
+    .lp.dashed{border-top-style:dashed}
+    #chart{flex:1;min-height:0}
+
+    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:100%}
+    [data-theme="dark"] .panel{background:#141414;border-color:var(--dark-border)}
+    .panel-hd{background:#8B1A1A;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
+    [data-theme="dark"] .panel-hd{background:#2A0A0A}
+    .panel-hd-t{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8)}
+    .panel-hd-d{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:600;color:#E8706B;background:rgba(199,30,29,.25);padding:2px 8px;border-radius:5px}
+    .panel-body{padding:14px;flex:1;overflow-y:auto}
+    .pb{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+    [data-theme="dark"] .pb{border-color:var(--dark-border)}
+    .pb:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+    .pb-lbl{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;padding:2px 9px 2px 6px;border-radius:4px;border-left:3px solid}
+    .pb-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:3px}
+    .pb-desc{font-size:.68rem;line-height:1.5;color:var(--muted)}
+    [data-theme="dark"] .pb-desc{color:rgba(255,255,255,.45)}
+    .pb-desc strong{color:var(--navy)}
+    [data-theme="dark"] .pb-desc strong{color:#E2E8F0}
+    .ctx{background:var(--cream);border-radius:6px;padding:8px 10px;border-left:3px solid var(--c-accent);margin-top:6px}
+    [data-theme="dark"] .ctx{background:var(--navy-light)}
+    .ctx p{font-size:.68rem;line-height:1.5;color:var(--muted)}
+    [data-theme="dark"] .ctx p{color:#64748B}
+    .ctx p strong{color:var(--navy)}
+    [data-theme="dark"] .ctx p strong{color:#E2E8F0}
+    .panel-ft{padding:10px 14px;border-top:1px solid var(--border)}
+    [data-theme="dark"] .panel-ft{border-color:var(--dark-border)}
+    .amp{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:8px 0;border-radius:8px;font-family:'Inter',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--c-accent);background:rgba(185,28,28,.06);border:1.5px solid rgba(185,28,28,.15);transition:all .2s;text-decoration:none;cursor:pointer}
+    [data-theme="dark"] .amp{background:rgba(185,28,28,.1);border-color:rgba(185,28,28,.25)}
+    .amp:hover{background:rgba(185,28,28,.12);border-color:rgba(185,28,28,.3);transform:translateY(-1px);text-decoration:none}
+
+    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px}
+    .edu{background:var(--cream);border-radius:8px;padding:10px 12px;border-left:3px solid var(--c-accent);cursor:pointer;transition:all .2s}
+    [data-theme="dark"] .edu{background:var(--navy-light)}
+    .edu:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.08)}
+    .edu-t{font-size:.7rem;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between}
+    [data-theme="dark"] .edu-t{color:#E2E8F0}
+    .edu-t svg{width:14px;height:14px;transition:transform .2s;color:var(--muted)}
+    .edu.open .edu-t svg{transform:rotate(180deg)}
+    .edu-body{display:none;font-size:.68rem;line-height:1.6;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+    [data-theme="dark"] .edu-body{color:#64748B;border-color:var(--dark-border)}
+    .edu.open .edu-body{display:block}
+
+    .source{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 2px}
+    .source-txt{font-size:.6rem;color:var(--muted)}
+    .source-txt a{color:var(--populi);font-weight:600;text-decoration:none}
+    .source-txt a:hover{text-decoration:underline}
+
+    .loading{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:12px;color:var(--muted)}
+    .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--c-accent);border-radius:50%;animation:spin .7s linear infinite}
+    @keyframes spin{to{transform:rotate(360deg)}}
+  </style>
+</head>
+<body>
+  <div class="wrap" id="app">
+    <div class="loading" id="loader">
+      <div class="spinner"></div>
+      <span style="font-size:.8rem">Cargando determinantes de la base monetaria...</span>
+    </div>
+  </div>
+
+  <script>
+    const DATA_URL = '../data/determinantes_base.json';
+    const DASHBOARD_URL = '../index.html';
+    const COLORS = { rin:'#0A9396', cred_sp:'#C71E1D', cred_bancos:'#64748B', oma:'#475569', otras:'#94A3B8', base:'#0D1B2A' };
+    // sign = +1 expansivo (suma a la base), -1 contractivo (se resta de la base)
+    const COMPS = [
+      {key:'rin',         label:'Reservas Int. Netas (RIN)',      color:COLORS.rin,         sign:1},
+      {key:'cred_sp',     label:'Crédito Neto al Sector Público', color:COLORS.cred_sp,     sign:1},
+      {key:'cred_bancos', label:'Crédito a Bancos',               color:COLORS.cred_bancos, sign:1},
+      {key:'oma',         label:'OMA (regulación monetaria)',     color:COLORS.oma,         sign:-1},
+      {key:'otras',       label:'Otras Cuentas (Neto)',           color:COLORS.otras,       sign:1}
+    ];
+
+    let DATA, chart, curIdx;
+    let activeKeys = new Set(['rin','cred_sp','cred_bancos','oma','otras']);
+    let showBase = true;
+    let mode = 'nivel';            // 'nivel' (MM Bs) | 'share' (% de la base)
+    let curRange = 'desde2010';
+
+    function fmt(v){ var a=Math.abs(v); return a>=1000 ? Math.round(v).toLocaleString('es-BO') : v.toFixed(1); }
+    function fmtShort(v){ var a=Math.abs(v); var s=v<0?'−':''; return a>=1e6 ? s+(a/1e6).toFixed(1)+'T' : a>=1000 ? s+Math.round(a/1000).toLocaleString('es-BO')+'k' : s+a.toFixed(0); }
+    function dk(){ return document.documentElement.getAttribute('data-theme') === 'dark'; }
+    function baseColor(){ return dk()?'#F1F5F9':'#0D1B2A'; }
+    function labelDate(d){ const [y,m]=d.split('-'); const ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']; return ms[+m-1]+' '+y; }
+
+    async function init(){
+      const r = await fetch(DATA_URL);
+      DATA = await r.json();
+      document.getElementById('loader').style.display = 'none';
+      curIdx = DATA.series.length - 1;
+      render();
+    }
+
+    function render(){
+      const app = document.getElementById('app');
+      const S = DATA.series;
+      const N = S.length;
+      const last = S[N-1];
+      const last12 = S[N-13] || S[0];
+      const m = DATA.metadata;
+      const updTxt = labelDate(m.ultimo_dato);
+
+      const var12 = ((last.base/last12.base)-1)*100;
+      const shareRin = last.rin/last.base*100;
+      const shareSp = last.cred_sp/last.base*100;
+
+      app.innerHTML = `
+        <div class="sec-hd">
+          <div class="sec-title"><span class="accent-bar"></span>Determinantes de la Base Monetaria</div>
+          <div class="sec-sub">Fuentes de creación de dinero primario (cuadro oficial del BCB). Base monetaria = billetes y monedas + reservas bancarias</div>
+        </div>
+
+        <div class="hz-bar">
+          <span class="hz-lbl">Medida:</span>
+          <div class="hz-grp">
+            <button class="hz-btn mode-btn${mode==='nivel'?' active':''}" onclick="setMode('nivel')">Nivel (MM Bs)</button>
+            <button class="hz-btn mode-btn${mode==='share'?' active':''}" onclick="setMode('share')">% de la base</button>
+          </div>
+          <span class="hz-lbl" style="margin-left:8px">Rango:</span>
+          <div class="hz-grp">
+            <button class="hz-btn range-btn${curRange==='5a'?' active':''}" onclick="setRange('5a')">5A</button>
+            <button class="hz-btn range-btn${curRange==='desde2010'?' active':''}" onclick="setRange('desde2010')">Desde 2010</button>
+            <button class="hz-btn range-btn${curRange==='desde2005'?' active':''}" onclick="setRange('desde2005')">Desde 2005</button>
+            <button class="hz-btn range-btn${curRange==='todo'?' active':''}" onclick="setRange('todo')">Todo</button>
+          </div>
+        </div>
+
+        <div class="kpi-grid">
+          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${baseColor()}"></div>
+            <div class="kpi-lbl">Base Monetaria</div>
+            <div class="kpi-val" style="color:${baseColor()}">${fmt(last.base)} MM</div>
+            <div class="kpi-d ${var12>10?'up':var12>0?'flat':'down'}">${var12>0?'+':''}${var12.toFixed(1)}% 12m</div>
+          </div>
+          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${COLORS.rin}"></div>
+            <div class="kpi-lbl">Reservas Int. Netas</div>
+            <div class="kpi-val" style="color:${COLORS.rin}">${fmt(last.rin)} MM</div>
+            <div class="kpi-d flat">${shareRin.toFixed(0)}% de la base</div>
+          </div>
+          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${COLORS.cred_sp}"></div>
+            <div class="kpi-lbl">Créd. Neto Sector Público</div>
+            <div class="kpi-val" style="color:${COLORS.cred_sp}">${fmt(last.cred_sp)} MM</div>
+            <div class="kpi-d up">${shareSp.toFixed(0)}% de la base</div>
+          </div>
+          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${shareRin<40?'#C71E1D':shareRin<100?'#EE9B00':'#0A9396'}"></div>
+            <div class="kpi-lbl">Respaldo en Reservas</div>
+            <div class="kpi-val" style="color:${shareRin<40?'#C71E1D':shareRin<100?'#EE9B00':'#0A9396'}">${shareRin.toFixed(1)}%</div>
+            <div class="kpi-d ${shareRin<100?'up':'down'}">RIN / Base monetaria</div>
+          </div>
+        </div>
+
+        <div class="main-grid">
+          <div class="chart-card">
+            <div class="chart-ctrl">
+              <div class="tog-grp" id="toggles"></div>
+            </div>
+            <div id="chart"></div>
+          </div>
+          <div class="panel" id="panel">
+            <div class="panel-hd">
+              <span class="panel-hd-t">Lectura del indicador</span>
+              <span class="panel-hd-d" id="panel-date">${updTxt}</span>
+            </div>
+            <div class="panel-body" id="panel-body"></div>
+            <div class="panel-ft">
+              <a href="${DASHBOARD_URL}" target="_blank" class="amp">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                Ampliar análisis
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <div class="edu-grid">
+          <div class="edu" onclick="this.classList.toggle('open')">
+            <div class="edu-t">¿Qué son los determinantes de la base?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div class="edu-body">La <strong>base monetaria</strong> es el dinero primario que crea el Banco Central. Según el cuadro oficial del BCB, sus fuentes son: <strong>Reservas Internacionales Netas</strong> (respaldo externo), <strong>Crédito Neto al Sector Público</strong>, <strong>Crédito a Bancos</strong>, las <strong>OMA</strong> (que se restan) y <strong>Otras Cuentas (Neto)</strong>. La suma reproduce, peso por peso, la base monetaria.</div>
+          </div>
+          <div class="edu" onclick="this.classList.toggle('open')">
+            <div class="edu-t">¿Qué son las OMA y por qué se restan?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div class="edu-body">Las <strong>Operaciones de Mercado Abierto (OMA)</strong> son la venta de títulos del BCB (letras y bonos) para <strong>retirar liquidez</strong> de la economía. Como absorben dinero, <strong>se restan</strong> de la base: son el principal instrumento contractivo del Banco Central. Cuando el BCB <em>redime</em> esos títulos (deja vencer su deuda), inyecta liquidez y la base crece.</div>
+          </div>
+          <div class="edu" onclick="this.classList.toggle('open')">
+            <div class="edu-t">¿Por qué el RIN puede superar el 100%?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div class="edu-body">En el auge del gas (2006–2014) las reservas llegaron a valer <strong>más que toda la base monetaria</strong>. El exceso se compensaba con crédito interno negativo y OMA: el BCB <em>esterilizaba</em> el ingreso de dólares. Era un régimen de sobre-respaldo externo, hoy revertido.</div>
+          </div>
+          <div class="edu" onclick="this.classList.toggle('open')">
+            <div class="edu-t">Crédito al sector público y dominancia fiscal<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div class="edu-body">Cuando el déficit fiscal se financia con el Banco Central, el <strong>crédito neto al sector público</strong> se vuelve la fuente dominante de creación de dinero: es la <strong>dominancia fiscal</strong>. En Bolivia este componente pasó de ser pequeño hasta 2017 a explicar más que toda la base hoy (el resto lo compensan OMA y otras cuentas, en negativo).</div>
+          </div>
+          <div class="edu" onclick="this.classList.toggle('open')">
+            <div class="edu-t">¿Qué son las "Otras Cuentas (Neto)"?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div class="edu-body">Es el <strong>residuo contable</strong> del balance: todo lo que no es reservas, crédito al sector público, crédito a bancos ni OMA. Sus piezas principales son el <strong>patrimonio del propio BCB</strong> (capital, reservas y cuentas de revaluación) y sus <strong>obligaciones externas de largo plazo</strong>. Son pasivos no monetarios: por eso suele ser <strong>negativo</strong> y actúa como un contrapeso que absorbe base monetaria. En Bolivia se hizo cada vez más negativo (de ~0 en 2014 a −36.582 MM en 2026), por el crecimiento del patrimonio del BCB y de su deuda externa.</div>
+          </div>
+          <div class="edu" onclick="this.classList.toggle('open')">
+            <div class="edu-t">Base monetaria vs. emisión<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
+            <div class="edu-body">No son lo mismo. La <strong>emisión</strong> = billetes y monedas + caja de los bancos. La <strong>base monetaria</strong> es más amplia: billetes y monedas + <strong>reservas bancarias</strong> (incluye el encaje depositado en el BCB). Este cuadro descompone la base monetaria, el agregado sobre el que el BCB ejerce control más directo.</div>
+          </div>
+        </div>
+
+        <div class="source">
+          <span class="source-txt">Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank">BCB — Base Monetaria, Determinantes y Componentes</a> · Elaboración: Centro de Estudios POPULI · Datos al: ${updTxt}</span>
+        </div>
+      `;
+
+      buildToggles();
+      chart = echarts.init(document.getElementById('chart'));
+      rebuildChart();
+      updatePanel(curIdx);
+      chart.on('click', function(p){ if(p.dataIndex !== undefined) updatePanel(getStartIdx() + p.dataIndex); });
+      window.addEventListener('resize', function(){ chart.resize(); });
+    }
+
+    function setMode(md){
+      if(mode === md) return;
+      mode = md;
+      document.querySelectorAll('.mode-btn').forEach(function(b){ b.classList.toggle('active', b.textContent.indexOf(md==='nivel'?'Nivel':'%')>=0); });
+      rebuildChart();
+    }
+
+    function getStartIdx(){
+      var S = DATA.series;
+      if(curRange === 'todo') return 0;
+      var cutoff;
+      if(curRange === '5a'){ var ly = parseInt(S[S.length-1].date.split('-')[0]); cutoff = (ly-5)+'-01'; }
+      else if(curRange === 'desde2010') cutoff = '2010-01';
+      else if(curRange === 'desde2005') cutoff = '2005-01';
+      else return 0;
+      for(var i=0;i<S.length;i++){ if(S[i].date >= cutoff) return i; }
+      return 0;
+    }
+
+    function setRange(r){
+      if(curRange === r) return;
+      curRange = r;
+      var ranges = ['5a','desde2010','desde2005','todo'];
+      document.querySelectorAll('.range-btn').forEach(function(b,i){ b.classList.toggle('active', ranges[i]===r); });
+      rebuildChart();
+    }
+
+    function buildToggles(){
+      var tg = document.getElementById('toggles');
+      tg.innerHTML = '';
+      COMPS.forEach(function(s){
+        var btn = document.createElement('button');
+        btn.className = 'pill';
+        btn.dataset.key = s.key;
+        btn.innerHTML = '<span class="lp" style="border-color:#fff"></span>'+s.label;
+        btn.addEventListener('click', function(){ toggleKey(s.key); });
+        tg.appendChild(btn);
+      });
+      var bb = document.createElement('button');
+      bb.className = 'pill';
+      bb.dataset.key = 'base';
+      bb.innerHTML = '<span class="lp dashed" style="border-color:#fff"></span>Base monetaria';
+      bb.addEventListener('click', function(){ showBase = !showBase; syncPills(); rebuildChart(); });
+      tg.appendChild(bb);
+      syncPills();
+    }
+
+    function toggleKey(k){
+      if(activeKeys.has(k)){ if(activeKeys.size===1) return; activeKeys.delete(k); }
+      else activeKeys.add(k);
+      syncPills();
+      rebuildChart();
+    }
+
+    function syncPills(){
+      document.querySelectorAll('.pill').forEach(function(btn){
+        var k = btn.dataset.key;
+        var c = COLORS[k];
+        var on = k==='base' ? showBase : activeKeys.has(k);
+        btn.style.backgroundColor = on ? c : 'transparent';
+        btn.style.color = on ? '#fff' : c;
+        btn.style.borderColor = c;
+        var lp = btn.querySelector('.lp');
+        if(lp) lp.style.borderColor = on ? '#fff' : c;
+      });
+    }
+
+    function rebuildChart(){
+      var si = getStartIdx();
+      var S = DATA.series.slice(si);
+      var d = dk();
+      var isShare = mode === 'share';
+      var labels = S.map(function(x){ return labelDate(x.date); });
+      var series = [];
+
+      // contribución de un componente a la base (con su signo); en % = sobre la base
+      function contrib(x, c){
+        var v = c.sign * x[c.key];
+        if(!isShare) return v;
+        return x.base ? +(v/x.base*100).toFixed(2) : 0;
+      }
+
+      // Barras apiladas (no áreas): los componentes cruzan el cero (p. ej. el
+      // crédito al SP a fines de 2017) y las áreas apiladas dejan huecos en esos
+      // cruces. Las barras apilan positivos hacia arriba y negativos hacia abajo
+      // de forma exacta. Con barCategoryGap 0% se tocan y simulan un área llena.
+      COMPS.forEach(function(c){
+        if(!activeKeys.has(c.key)) return;
+        series.push({
+          name:c.label, type:'bar', stack:'fuentes',
+          data:S.map(function(x){ return contrib(x, c); }),
+          barCategoryGap:'0%',
+          itemStyle:{color:c.color, opacity: d?0.9:0.94}, z:1
+        });
+      });
+
+      if(showBase){
+        var bc = baseColor();
+        series.push({
+          name:'Base monetaria', type:'line',
+          data:S.map(function(x){ return isShare ? 100 : x.base; }),
+          symbol:'none', lineStyle:{width:2.5, type: isShare?'dashed':'solid'}, itemStyle:{color:bc}, z:5,
+          markPoint: isShare ? undefined : {
+            data:[{coord:[S.length-1, S[S.length-1].base]}],
+            symbol:'circle', symbolSize:7,
+            itemStyle:{color:bc, borderColor:d?'#141414':'#fff', borderWidth:2},
+            label:{show:false}
+          }
+        });
+      }
+
+      chart.setOption({
+        grid:{ left:62, right:18, top:18, bottom:40 },
+        xAxis:{
+          type:'category', data:labels, boundaryGap:true,
+          axisLine:{ lineStyle:{ color:d?'#2A3A50':'#E2E8F0' }},
+          axisTick:{ show:false },
+          axisLabel:{
+            fontFamily:'Inter', fontSize:10, fontWeight:500,
+            color:d?'#555':'#64748B', rotate:45,
+            formatter: function(v){ var p=v.split(' '); return p[0]==='Ene'?p[0]+' '+p[1]:p[0]; }
+          }
+        },
+        yAxis:{
+          type:'value',
+          axisLine:{ show:false },
+          splitLine:{ lineStyle:{ color:d?'rgba(42,58,80,.5)':'#F1F5F9' }},
+          axisLabel:{
+            fontFamily:'JetBrains Mono', fontSize:11, color:d?'#555':'#64748B',
+            formatter: function(v){ return isShare ? v+'%' : fmtShort(v)+' MM'; }
+          }
+        },
+        tooltip:{
+          trigger:'axis',
+          axisPointer:{ type:'shadow', shadowStyle:{ color:d?'rgba(255,255,255,.04)':'rgba(13,27,42,.05)' }},
+          backgroundColor:'rgba(0,18,25,.96)',
+          borderColor:d?'#2A3A50':'#1A2940',
+          borderWidth:1, padding:14,
+          extraCssText:'border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.3);',
+          textStyle:{ fontFamily:'Inter', fontSize:12, color:'#fff' },
+          formatter: function(params){
+            if(!params.length) return '';
+            var idx = params[0].dataIndex;
+            var row = S[idx];
+            var html = '<div style="font-weight:700;margin-bottom:6px;color:#E8706B">'+params[0].axisValue+'</div>';
+            params.forEach(function(p){
+              var unit = isShare ? '%' : ' MM Bs';
+              var v = isShare ? p.value.toFixed(1) : fmt(p.value);
+              html += '<div style="display:flex;align-items:center;gap:6px;margin-top:4px">'
+                +'<span style="width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block"></span>'
+                +'<span style="font-size:11px">'+p.seriesName+':</span>'
+                +'<span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">'+v+unit+'</span>'
+                +'</div>';
+            });
+            if(!isShare){
+              html += '<div style="margin-top:6px;padding-top:5px;border-top:1px solid rgba(255,255,255,.15);font-size:10.5px;color:#E2DDD3">Respaldo en reservas: <strong style="color:#fff">'+(row.rin/row.base*100).toFixed(1)+'%</strong></div>';
+            }
+            updatePanel(getStartIdx()+idx);
+            return html;
+          }
+        },
+        series: series
+      }, true);
+    }
+
+    function analysisFor(row){
+      var sh = row.rin/row.base*100;
+      var shS = row.cred_sp/row.base*100;
+      if(sh >= 150) return 'Las reservas valen <strong>'+(sh/100).toFixed(1)+' veces</strong> la base monetaria: régimen de <strong>sobre-respaldo externo</strong>. El BCB esteriliza el excedente con crédito interno negativo y OMA. El dinero está plenamente respaldado en divisas.';
+      if(sh >= 100) return 'Las reservas aún <strong>cubren toda la base</strong> ('+sh.toFixed(0)+'%). El respaldo externo es sólido, pero el colchón se reduce respecto de los años de bonanza.';
+      if(sh >= 50) return 'El respaldo en reservas cayó a <strong>'+sh.toFixed(0)+'%</strong>: la base ya no está plenamente cubierta por divisas. El <strong>crédito al sector público</strong> gana peso como fuente de creación de dinero.';
+      if(sh >= 25) return 'Solo <strong>'+sh.toFixed(0)+'%</strong> de la base se respalda en reservas. El crédito al sector público ('+shS.toFixed(0)+'% de la base) es la <strong>fuente dominante</strong> de emisión: señal de dominancia fiscal.';
+      return 'Respaldo en reservas mínimo (<strong>'+sh.toFixed(1)+'%</strong>). Prácticamente toda la base se sostiene sobre <strong>crédito al sector público</strong> ('+shS.toFixed(0)+'%), apenas amortiguado por OMA y otras cuentas en negativo. La base está desconectada del respaldo externo.';
+    }
+
+    function updatePanel(idx){
+      curIdx = idx;
+      var S = DATA.series;
+      var d = S[idx], prev12 = idx >= 12 ? S[idx-12] : S[0];
+      var dateLabel = labelDate(d.date);
+      document.getElementById('panel-date').textContent = dateLabel;
+
+      var var12 = ((d.base/prev12.base)-1)*100;
+      var shRin = d.rin/d.base*100;
+      var shSp = d.cred_sp/d.base*100;
+      var shOma = d.oma/d.base*100;
+
+      document.getElementById('panel-body').innerHTML = ''
+        +'<div class="pb"><div class="pb-lbl" style="color:'+baseColor()+';background:rgba(13,27,42,.06);border-left-color:'+baseColor()+'">Base Monetaria</div>'
+        +'<div class="pb-val" style="color:'+baseColor()+'">'+fmt(d.base)+' MM Bs</div>'
+        +'<p class="pb-desc">En <strong>'+dateLabel+'</strong>. Variación 12 meses: <strong>'+(var12>=0?'+':'')+var12.toFixed(1)+'%</strong>. Es la suma de los determinantes de abajo.</p></div>'
+        +'<div class="pb"><div class="pb-lbl" style="color:'+COLORS.rin+';background:rgba(0,95,115,.08);border-left-color:'+COLORS.rin+'">Reservas Int. Netas</div>'
+        +'<div class="pb-val" style="color:'+COLORS.rin+'">'+fmt(d.rin)+' MM Bs</div>'
+        +'<p class="pb-desc">Respaldo externo: <strong>'+shRin.toFixed(1)+'%</strong> de la base monetaria.</p></div>'
+        +'<div class="pb"><div class="pb-lbl" style="color:'+COLORS.cred_sp+';background:rgba(185,28,28,.08);border-left-color:'+COLORS.cred_sp+'">Crédito Neto Sector Público</div>'
+        +'<div class="pb-val" style="color:'+COLORS.cred_sp+'">'+fmt(d.cred_sp)+' MM Bs</div>'
+        +'<p class="pb-desc">Financiamiento al SPNF: <strong>'+(shSp>=0?'+':'')+shSp.toFixed(0)+'%</strong> de la base.</p></div>'
+        +'<div class="pb"><div class="pb-lbl" style="color:'+COLORS.oma+';background:rgba(124,58,237,.08);border-left-color:'+COLORS.oma+'">OMA (se resta)</div>'
+        +'<div class="pb-val" style="color:'+COLORS.oma+'">−'+fmt(d.oma)+' MM Bs</div>'
+        +'<p class="pb-desc">Liquidez retirada vía títulos del BCB: <strong>−'+shOma.toFixed(0)+'%</strong> de la base.</p></div>'
+        +'<div class="ctx"><p>'+analysisFor(d)+'</p></div>';
+    }
+
+    window.addEventListener('message', function(e){
+      if(e.data && e.data.theme){
+        document.documentElement.setAttribute('data-theme', e.data.theme);
+        if(chart){ rebuildChart(); updatePanel(curIdx); }
+      }
+    });
+
+    init();
+  </script>
+</body>
+</html>

@@ -40,6 +40,7 @@ jobs:
           run_scraper "3. Reservas Internacionales..."          scraper/scrape_rin.py
           run_scraper "4. Monetización de Deuda..."             scraper/scrape_monetizacion.py
           run_scraper "5. Balance del BCB (Activo + Pasivo)..." scraper/scrape_balance.py
+          run_scraper "6. Base Monetaria — Determinantes..."    scraper/scrape_base_determinantes.py
           echo ""
           if [ -n "$FAILED" ]; then
             echo "═══ Scrapers con error:$FAILED ═══"
