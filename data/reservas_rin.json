@@ -5,14 +5,14 @@
     "fuente": "Banco Central de Bolivia (BCB) — Estadísticas Semanales",
     "unidad": "Millones de USD",
     "frecuencia": "Mensual + Semanal",
-    "ultimo_dato": "2026-08-S4",
-    "ultimo_mensual": "2026-07",
+    "ultimo_dato": "2026-09-S1",
+    "ultimo_mensual": "2026-08",
     "primer_dato": "1987-12",
-    "observaciones": 457,
-    "observaciones_mensuales": 453,
-    "ultimo_rin": 4531.39,
-    "ultimo_rib": 4531.39,
-    "var_12m_rin_pct": 33.2
+    "observaciones": 455,
+    "observaciones_mensuales": 454,
+    "ultimo_rin": 4278.2,
+    "ultimo_rib": 4278.2,
+    "var_12m_rin_pct": 48.9
   },
   "series": [
     {
@@ -4093,40 +4093,22 @@
       "fmi": 35.57
     },
     {
-      "date": "2026-08-S1",
-      "rib": 3772.56,
-      "rin": 3772.56,
-      "oro": 3099.22,
-      "divisas": 604.46,
-      "deg": 33.19,
-      "fmi": 35.69
+      "date": "2026-08",
+      "rib": 4290.3,
+      "rin": 4290.3,
+      "oro": 3479.7,
+      "divisas": 745.09,
+      "deg": 29.77,
+      "fmi": 35.74
     },
     {
-      "date": "2026-08-S2",
-      "rib": 4254.72,
-      "rin": 4254.72,
-      "oro": 3389.62,
-      "divisas": 799.97,
-      "deg": 29.58,
-      "fmi": 35.55
-    },
-    {
-      "date": "2026-08-S3",
-      "rib": 4435.43,
-      "rin": 4435.43,
-      "oro": 3610.78,
-      "divisas": 759.14,
-      "deg": 29.76,
-      "fmi": 35.76
-    },
-    {
-      "date": "2026-08-S4",
-      "rib": 4531.39,
-      "rin": 4531.39,
-      "oro": 3700.94,
-      "divisas": 764.92,
-      "deg": 29.76,
-      "fmi": 35.76
+      "date": "2026-09-S1",
+      "rib": 4278.2,
+      "rin": 4278.2,
+      "oro": 3469.64,
+      "divisas": 743.17,
+      "deg": 29.72,
+      "fmi": 35.68
     }
   ]
 }
