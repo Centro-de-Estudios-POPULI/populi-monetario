@@ -5,13 +5,13 @@
     "fuente": "Banco Central de Bolivia (BCB) — Estadísticas Semanales",
     "unidad": "Millones de USD",
     "frecuencia": "Mensual + Semanal",
-    "ultimo_dato": "2026-09-S1",
+    "ultimo_dato": "2026-09-S2",
     "ultimo_mensual": "2026-08",
     "primer_dato": "1987-12",
-    "observaciones": 455,
+    "observaciones": 456,
     "observaciones_mensuales": 454,
-    "ultimo_rin": 4278.2,
-    "ultimo_rib": 4278.2,
+    "ultimo_rin": 4233.58,
+    "ultimo_rib": 4233.58,
     "var_12m_rin_pct": 48.9
   },
   "series": [
@@ -4103,12 +4103,21 @@
     },
     {
       "date": "2026-09-S1",
-      "rib": 4278.2,
-      "rin": 4278.2,
-      "oro": 3469.64,
-      "divisas": 743.17,
-      "deg": 29.72,
-      "fmi": 35.68
+      "rib": 4266.87,
+      "rin": 4266.87,
+      "oro": 3524.62,
+      "divisas": 676.77,
+      "deg": 29.76,
+      "fmi": 35.73
+    },
+    {
+      "date": "2026-09-S2",
+      "rib": 4233.58,
+      "rin": 4233.58,
+      "oro": 3491.11,
+      "divisas": 676.93,
+      "deg": 29.78,
+      "fmi": 35.76
     }
   ]
 }
