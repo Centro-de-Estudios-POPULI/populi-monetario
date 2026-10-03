@@ -5,18 +5,18 @@
     "fuente": "Banco Central de Bolivia (BCB)",
     "unidad": "Millones de Bs",
     "frecuencia": "Mensual",
-    "ultimo_dato": "2026-07",
+    "ultimo_dato": "2026-08",
     "primer_dato": "2001-12",
-    "observaciones": 266,
-    "base_mm": 150072.4,
-    "rin_mm": 44127.9,
-    "cred_sp_mm": 151405.0,
-    "oma_mm": 32800.8,
-    "share_rin_pct": 29.4,
-    "share_cred_sp_pct": 100.9,
+    "observaciones": 267,
+    "base_mm": 153256.3,
+    "rin_mm": 51140.4,
+    "cred_sp_mm": 152070.7,
+    "oma_mm": 35474.5,
+    "share_rin_pct": 33.4,
+    "share_cred_sp_pct": 99.2,
     "var_12m_base_pct": 14.0,
-    "var_12m_rin_pct": 136.0,
-    "var_12m_cred_sp_pct": 10.3,
+    "var_12m_rin_pct": 158.7,
+    "var_12m_cred_sp_pct": 7.8,
     "verif_dif_max_mm": 0.2
   },
   "series": [
@@ -2945,6 +2945,17 @@
       "otras": -30745.9,
       "billetes": 87823.3,
       "reservas_bancarias": 62249.1
+    },
+    {
+      "date": "2026-08",
+      "base": 153256.3,
+      "rin": 51140.4,
+      "cred_sp": 152070.7,
+      "cred_bancos": 17563.6,
+      "oma": 35474.5,
+      "otras": -32043.9,
+      "billetes": 90112.7,
+      "reservas_bancarias": 63143.7
     }
   ]
 }
