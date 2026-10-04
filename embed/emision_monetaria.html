@@ -1,479 +1,169 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="light" style="--acento:#A86E00">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Emisión Monetaria · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="comun/monitor.css" />
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-  <style>
-    :root {
-      --populi:#C71E1D; --populi-light:#E8706B;
-      --cream:#F5EFE0; --brown-dark:#3D2B1F;
-      --navy:#0D1B2A; --navy-light:#1A2940; --slate:#475569; --slate-light:#64748B;
-      --warm-white:#FAF8F3; --light-gray:#F1EDE5; --border:#E2DDD3; --dark-border:#2A3A50;
-      --bg:var(--warm-white); --card:#FFFFFF; --text:var(--brown-dark); --muted:var(--slate-light);
-      --c-emision:#EE9B00; --c-billetes:#005F73; --c-caja:#0A9396;
-      --radius:12px;
-    }
-    [data-theme="dark"] {
-      --bg:#080808; --card:#141414; --text:#E2E8F0; --muted:#64748B;
-      --border:#2A3A50; --light-gray:#1A1A1A; --cream:#1A2940;
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}
-    .wrap{max-width:1200px;margin:0 auto;padding:20px 16px}
-
-    .sec-hd{margin-bottom:16px}
-    .sec-title{font-family:'Playfair Display',Georgia,serif;font-size:1.55rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px;line-height:1.15}
-    [data-theme="dark"] .sec-title{color:#fff}
-    .accent-bar{width:4px;height:26px;background:var(--c-emision);border-radius:2px;flex-shrink:0}
-    .sec-sub{font-size:.78rem;color:var(--muted);padding-left:14px;margin-top:2px}
-    [data-theme="dark"] .sec-sub{color:rgba(255,255,255,.4)}
-
-    .hz-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:14px;flex-wrap:wrap}
-    .hz-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}
-    .hz-grp{display:flex;flex-wrap:wrap;gap:0;background:var(--light-gray);border-radius:8px;padding:2px;border:1px solid var(--border)}
-    [data-theme="dark"] .hz-grp{background:#1A1A1A;border-color:var(--dark-border)}
-    .hz-btn{padding:5px 14px;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}
-    .hz-btn:hover{color:var(--text)}
-    .hz-btn.active{background:var(--c-emision);color:#fff;box-shadow:0 2px 8px rgba(238,155,0,.25)}
-
-    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
-    @media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}
-    .kpi{background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden;transition:transform .2s}
-    [data-theme="dark"] .kpi{background:#141414;border-color:var(--dark-border)}
-    .kpi:hover{transform:translateY(-1px)}
-    .kpi::after{content:'';position:absolute;top:0;left:0;width:100%;height:3px}
-    .kpi-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}
-    [data-theme="dark"] .kpi-lbl{color:rgba(255,255,255,.4)}
-    .kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}
-    .kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}
-    .kpi-d.up{background:rgba(199,30,29,.08);color:#C71E1D}
-    .kpi-d.down{background:rgba(10,147,150,.08);color:#0A9396}
-    .kpi-d.flat{background:rgba(100,116,139,.08);color:#64748B}
-    [data-theme="dark"] .kpi-d.up{background:rgba(199,30,29,.15)}
-    [data-theme="dark"] .kpi-d.down{background:rgba(10,147,150,.15)}
-
-    .main-grid{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:540px;gap:16px}
-    @media(max-width:900px){.main-grid{grid-template-columns:1fr;grid-template-rows:420px auto}}
-    @media(max-width:500px){.main-grid{grid-template-rows:340px auto}.sec-title{font-size:1.2rem}.sec-sub{font-size:.7rem}.kpi-val{font-size:1rem}.pill{padding:3px 8px;font-size:.6rem}.hz-btn{padding:4px 10px;font-size:.6rem}}
-    @media(min-width:1100px){.main-grid{grid-template-rows:580px}}
-
-    .chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;height:100%;overflow:hidden}
-    [data-theme="dark"] .chart-card{background:#141414;border-color:var(--dark-border)}
-    .chart-ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}
-    .tog-grp{display:flex;gap:6px;flex-wrap:wrap}
-    .pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border:1.5px solid;border-radius:8px;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;transition:all .2s}
-    .pill:hover{transform:translateY(-1px)}
-    .lp{width:16px;height:0;border-top:2.5px solid;border-radius:1px}
-    .lp.dashed{border-top-style:dashed}
-    #chart{flex:1;min-height:0}
-
-    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:100%}
-    [data-theme="dark"] .panel{background:#141414;border-color:var(--dark-border)}
-    .panel-hd{background:#78350F;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}
-    [data-theme="dark"] .panel-hd{background:#2A1A0A}
-    .panel-hd-t{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8)}
-    .panel-hd-d{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:600;color:var(--c-emision);background:rgba(238,155,0,.15);padding:2px 8px;border-radius:5px}
-    .panel-body{padding:14px;flex:1;overflow-y:auto}
-    .pb{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}
-    [data-theme="dark"] .pb{border-color:var(--dark-border)}
-    .pb:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
-    .pb-lbl{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;padding:2px 9px 2px 6px;border-radius:4px;border-left:3px solid}
-    .pb-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:3px}
-    .pb-desc{font-size:.68rem;line-height:1.5;color:var(--muted)}
-    [data-theme="dark"] .pb-desc{color:rgba(255,255,255,.45)}
-    .pb-desc strong{color:var(--navy)}
-    [data-theme="dark"] .pb-desc strong{color:#E2E8F0}
-    .ctx{background:var(--cream);border-radius:6px;padding:8px 10px;border-left:3px solid var(--c-emision);margin-top:6px}
-    [data-theme="dark"] .ctx{background:var(--navy-light)}
-    .ctx p{font-size:.68rem;line-height:1.5;color:var(--muted)}
-    [data-theme="dark"] .ctx p{color:#64748B}
-    .ctx p strong{color:var(--navy)}
-    [data-theme="dark"] .ctx p strong{color:#E2E8F0}
-    .panel-ft{padding:10px 14px;border-top:1px solid var(--border)}
-    [data-theme="dark"] .panel-ft{border-color:var(--dark-border)}
-    .amp{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;padding:8px 0;border-radius:8px;font-family:'Inter',sans-serif;font-size:.66rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--c-emision);background:rgba(238,155,0,.06);border:1.5px solid rgba(238,155,0,.15);transition:all .2s;text-decoration:none;cursor:pointer}
-    [data-theme="dark"] .amp{background:rgba(238,155,0,.08);border-color:rgba(238,155,0,.2)}
-    .amp:hover{background:rgba(238,155,0,.12);border-color:rgba(238,155,0,.3);transform:translateY(-1px);text-decoration:none}
-
-    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px}
-    .edu{background:var(--cream);border-radius:8px;padding:10px 12px;border-left:3px solid var(--c-emision);cursor:pointer;transition:all .2s}
-    [data-theme="dark"] .edu{background:var(--navy-light)}
-    .edu:hover{transform:translateY(-1px);box-shadow:0 2px 8px rgba(0,0,0,.08)}
-    .edu-t{font-size:.7rem;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between}
-    [data-theme="dark"] .edu-t{color:#E2E8F0}
-    .edu-t svg{width:14px;height:14px;transition:transform .2s;color:var(--muted)}
-    .edu.open .edu-t svg{transform:rotate(180deg)}
-    .edu-body{display:none;font-size:.68rem;line-height:1.6;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
-    [data-theme="dark"] .edu-body{color:#64748B;border-color:var(--dark-border)}
-    .edu.open .edu-body{display:block}
-
-    .source{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 2px}
-    .source-txt{font-size:.6rem;color:var(--muted)}
-    .source-txt a{color:var(--populi);font-weight:600;text-decoration:none}
-    .source-txt a:hover{text-decoration:underline}
-
-    .loading{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:12px;color:var(--muted)}
-    .spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--c-emision);border-radius:50%;animation:spin .7s linear infinite}
-    @keyframes spin{to{transform:rotate(360deg)}}
-  </style>
+  <script src="comun/monitor.js"></script>
 </head>
 <body>
-  <div class="wrap" id="app">
-    <div class="loading" id="loader">
-      <div class="spinner"></div>
-      <span style="font-size:.8rem">Cargando datos de emisión monetaria...</span>
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-title"><span class="accent-bar"></span>Emisión Monetaria</div>
+      <div class="sec-sub">Destino del medio circulante: billetes en poder del público y caja del sistema financiero</div>
     </div>
+
+    <div class="hz-bar">
+      <div class="hz-item"><span class="hz-lbl">Escala</span><div class="hz-grp" id="b-escala"></div></div>
+      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+    </div>
+
+    <div class="kpi-grid" id="kpis"></div>
+
+    <div class="main-grid">
+      <div class="chart-card">
+        <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando datos de emisión monetaria…</span></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-hd"><span class="panel-hd-t">Lectura del indicador</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-body" id="panel"></div>
+        <div class="panel-ft">
+          <a href="../index.html" target="_blank" rel="noopener" class="amp">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+            Ampliar análisis
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <div class="edu-grid" id="preguntas"></div>
+    <div class="source"><span class="source-txt" id="fuente"></span></div>
   </div>
 
   <script>
-    const DATA_URL = '../data/emision_monetaria.json';
-    const DASHBOARD_URL = '../index.html';
-    const COLORS = { emision:'#EE9B00', billetes:'#005F73', caja_sf:'#0A9396' };
+  (function () {
+    var C = PM.C;
+    // En tema oscuro los billetes (petróleo) suben a menta: el petróleo queda bajo 3:1 contra la tarjeta (validado).
+    var SERIES = [
+      { k: 'emision', nombre: 'Emisión', color: C.oro, ancho: 2.5, forma: 'linea' },
+      { k: 'billetes', nombre: 'Billetes y monedas', color: { claro: C.petroleo, oscuro: C.menta }, ancho: 1.75, forma: 'linea' },
+      { k: 'caja_sf', nombre: 'Caja sist. financiero', color: C.turquesa, ancho: 1.75, forma: 'punteada' }
+    ];
+    var COL = { emision: SERIES[0].color, billetes: SERIES[1].color, caja_sf: SERIES[2].color };
+    var estado = { escala: 'lineal', rango: 'desde2010', idx: null };
+    var activas = new Set(['emision', 'billetes', 'caja_sf']);
+    var S, M, K, si = 0, grafico;
+    var bs = function (v) { return PM.mm(v, 'Bs'); };
+    // índice del último dato no nulo (el punto final va ahí, no en un hueco)
+    var ultimoDato = function (data) { var n = data.length - 1; while (n > 0 && data[n] == null) n--; return n; };
 
-    let DATA, chart, curIdx;
-    let activeKeys = new Set(['emision','billetes','caja_sf']);
-    let logScale = false;
-    let curRange = 'desde2010';
+    PM.cargar(['emision_monetaria.json']).then(function (r) {
+      S = r[0].series; M = r[0].metadata; estado.idx = S.length - 1;
+      K = S.map(function (x) { return x.date; });
+      PM.botonera(document.getElementById('b-escala'), [['lineal', 'Lineal'], ['log', 'Logarítmica']],
+        estado.escala, function (v) { estado.escala = v; grafico.redibujar(); });
+      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+        estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
+      PM.pastillas(document.getElementById('pastillas'),
+        SERIES.map(function (s) { return { k: s.k, nombre: s.nombre, color: s.color, forma: s.forma }; }),
+        activas, function () { grafico.redibujar(); });
+      cifras();
+      var el = document.getElementById('chart');
+      el.innerHTML = '';
+      grafico = PM.montar(el, opciones);
+      grafico.chart.on('click', function (p) { if (p.dataIndex != null) panel(si + p.dataIndex); });
+      panel(estado.idx);
+      PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
+      PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
+      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(M.ultimo_dato);
+    }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
-    function fmt(v){ return v >= 1000 ? Math.round(v).toLocaleString('es-BO') : v.toFixed(1); }
-    function fmtShort(v){ return v >= 1e6 ? (v/1e6).toFixed(1)+'T' : v >= 1000 ? Math.round(v/1000).toLocaleString('es-BO')+'k' : v.toFixed(0); }
-    function dk(){ return document.documentElement.getAttribute('data-theme') === 'dark'; }
-    function labelDate(d){ const [y,m]=d.split('-'); const ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic']; return ms[+m-1]+' '+y; }
-
-    async function init(){
-      const r = await fetch(DATA_URL);
-      DATA = await r.json();
-      document.getElementById('loader').style.display = 'none';
-      curIdx = DATA.series.length - 1;
-      render();
+    function cifras() {
+      var n = S.length, u = S[n - 1], a = S[n - 2], v12 = M.var_12m_pct;
+      var vMes = (u.emision / a.emision - 1) * 100;
+      var t12 = v12 > 10 ? 'malo' : v12 > 0 ? 'neutro' : 'bueno';   // más emisión, más presión sobre los precios
+      // minilíneas: los últimos 24 meses de la misma magnitud que muestra cada cifra
+      var serie = function (f) { return PM.ultimos(S.map(f), 24); };
+      var var12 = S.map(function (x, i) { return i >= 12 && S[i - 12].emision ? (x.emision / S[i - 12].emision - 1) * 100 : null; });
+      document.getElementById('kpis').innerHTML =
+        PM.kpi({ color: COL.emision, rotulo: 'Emisión total', valor: bs(u.emision), delta: PM.flecha(vMes) + ' ' + PM.pct(Math.abs(vMes), 1) + ' mensual', tono: 'neutro', serie: serie(function (x) { return x.emision; }) }) +
+        PM.kpi({ color: COL.billetes, rotulo: 'Billetes y monedas', valor: bs(u.billetes), delta: PM.pct(u.billetes / u.emision * 100, 1) + ' de la emisión', tono: 'neutro', serie: serie(function (x) { return x.billetes; }) }) +
+        PM.kpi({ color: COL.caja_sf, rotulo: 'Caja sist. financiero', valor: bs(u.caja_sf), delta: PM.pct(u.caja_sf / u.emision * 100, 1) + ' de la emisión', tono: 'neutro', serie: serie(function (x) { return x.caja_sf; }) }) +
+        PM.kpi({ color: v12 > 0 ? C.rojo : C.turquesa, rotulo: 'Var. 12 meses', valor: PM.pct(v12, 1, true),
+          delta: v12 > 10 ? 'Expansión acelerada' : v12 > 0 ? 'Expansión moderada' : 'Contracción', tono: t12, serie: PM.ultimos(var12, 24) });
     }
 
-    function render(){
-      const app = document.getElementById('app');
-      const S = DATA.series;
-      const N = S.length;
-      const last = S[N-1], prev = S[N-2];
-      const last12 = S[N-13] || S[0];
-      const m = DATA.metadata;
-      const updTxt = labelDate(m.ultimo_dato);
-
-      const varMes = last.emision - prev.emision;
-      const varPctMes = ((last.emision/prev.emision)-1)*100;
-      const var12 = m.var_12m_pct;
-      const pctBilletes = (last.billetes/last.emision*100);
-      const pctCaja = (last.caja_sf/last.emision*100);
-
-      app.innerHTML = `
-        <div class="sec-hd">
-          <div class="sec-title"><span class="accent-bar"></span>Emisión Monetaria</div>
-          <div class="sec-sub">Destino del medio circulante: billetes en poder del público y caja del sistema financiero</div>
-        </div>
-
-        <div class="hz-bar">
-          <span class="hz-lbl">Escala:</span>
-          <div class="hz-grp">
-            <button class="hz-btn scale-btn${logScale?'':' active'}" onclick="setScale(false)">Lineal</button>
-            <button class="hz-btn scale-btn${logScale?' active':''}" onclick="setScale(true)">Logarítmica</button>
-          </div>
-          <span class="hz-lbl" style="margin-left:8px">Rango:</span>
-          <div class="hz-grp">
-            <button class="hz-btn range-btn${curRange==='5a'?' active':''}" onclick="setRange('5a')">5A</button>
-            <button class="hz-btn range-btn${curRange==='desde2010'?' active':''}" onclick="setRange('desde2010')">Desde 2010</button>
-            <button class="hz-btn range-btn${curRange==='desde2000'?' active':''}" onclick="setRange('desde2000')">Desde 2000</button>
-            <button class="hz-btn range-btn${curRange==='todo'?' active':''}" onclick="setRange('todo')">Todo</button>
-          </div>
-        </div>
-
-        <div class="kpi-grid">
-          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${COLORS.emision}"></div>
-            <div class="kpi-lbl">Emisión Total</div>
-            <div class="kpi-val" style="color:${COLORS.emision}">${fmt(last.emision)} MM</div>
-            <div class="kpi-d ${varMes>0?'up':varMes<0?'down':'flat'}">${varMes>0?'&#9650;':'&#9660;'} ${Math.abs(varPctMes).toFixed(1)}% mensual</div>
-          </div>
-          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${COLORS.billetes}"></div>
-            <div class="kpi-lbl">Billetes y Monedas</div>
-            <div class="kpi-val" style="color:${COLORS.billetes}">${fmt(last.billetes)} MM</div>
-            <div class="kpi-d flat">${pctBilletes.toFixed(1)}% de emisión</div>
-          </div>
-          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${COLORS.caja_sf}"></div>
-            <div class="kpi-lbl">Caja Sist. Financiero</div>
-            <div class="kpi-val" style="color:${COLORS.caja_sf}">${fmt(last.caja_sf)} MM</div>
-            <div class="kpi-d flat">${pctCaja.toFixed(1)}% de emisión</div>
-          </div>
-          <div class="kpi" style="cursor:default"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:${COLORS.emision}"></div>
-            <div class="kpi-lbl">Var. 12 meses</div>
-            <div class="kpi-val" style="color:${var12>0?'#C71E1D':'#0A9396'}">${var12>0?'+':''}${var12}%</div>
-            <div class="kpi-d ${var12>10?'up':var12>0?'flat':'down'}">${var12>10?'Expansión acelerada':var12>0?'Expansión moderada':'Contracción'}</div>
-          </div>
-        </div>
-
-        <div class="main-grid">
-          <div class="chart-card">
-            <div class="chart-ctrl">
-              <div class="tog-grp" id="toggles"></div>
-            </div>
-            <div id="chart"></div>
-          </div>
-          <div class="panel" id="panel">
-            <div class="panel-hd">
-              <span class="panel-hd-t">Lectura del indicador</span>
-              <span class="panel-hd-d" id="panel-date">${updTxt}</span>
-            </div>
-            <div class="panel-body" id="panel-body"></div>
-            <div class="panel-ft">
-              <a href="${DASHBOARD_URL}" target="_blank" class="amp">
-                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-                Ampliar análisis
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div class="edu-grid">
-          <div class="edu" onclick="this.classList.toggle('open')">
-            <div class="edu-t">¿Qué es la emisión monetaria?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div class="edu-body">La <strong>emisión monetaria</strong> es la cantidad total de dinero que el Banco Central ha puesto en circulación. Se divide en: <strong>billetes y monedas en poder del público</strong> (el efectivo que usa la gente) y <strong>caja del sistema financiero</strong> (reservas de efectivo en bancos).</div>
-          </div>
-          <div class="edu" onclick="this.classList.toggle('open')">
-            <div class="edu-t">¿Por qué escala logarítmica?<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div class="edu-body">La emisión creció de ~400 MM Bs en 1987 a más de 100,000 MM Bs. En escala lineal, los primeros 20 años parecen planos. La <strong>escala logarítmica</strong> muestra las tasas de crecimiento proporcional: una pendiente constante = crecimiento porcentual constante. Permite ver aceleraciones y desaceleraciones en cualquier época.</div>
-          </div>
-          <div class="edu" onclick="this.classList.toggle('open')">
-            <div class="edu-t">Emisión e inflación<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div class="edu-body">La teoría monetaria establece que un crecimiento sostenido de la emisión por encima del crecimiento real de la economía genera inflación, con <strong>retardos de 12 a 18 meses</strong>. Cuando la emisión crece al 20% y el PIB al 2%, la diferencia presiona los precios.</div>
-          </div>
-          <div class="edu" onclick="this.classList.toggle('open')">
-            <div class="edu-t">Teoría cuantitativa del dinero<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div class="edu-body">La <strong>teoría cuantitativa</strong> establece una relación proporcional entre la cantidad de dinero en circulación y el nivel de precios (<strong>MV = PY</strong>). Un aumento en la oferta monetaria genera, <em>ceteris paribus</em>, un incremento en la inflación. De manera inversa, una reducción en el crecimiento del dinero tiende a desacelerar los precios — fenómeno conocido como <strong>desinflación</strong>.</div>
-          </div>
-          <div class="edu" onclick="this.classList.toggle('open')">
-            <div class="edu-t">La base monetaria como instrumento<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div>
-            <div class="edu-body">La base monetaria es el <strong>agregado más restringido</strong> y el que tiene relación más directa con las decisiones de política monetaria. Es el instrumento principal mediante el cual las autoridades monetarias influyen en la oferta de dinero. A diferencia de M2 o M4, sobre los que el BCB solo tiene influencia indirecta, la base monetaria responde directamente a operaciones del banco central.</div>
-          </div>
-        </div>
-
-        <div class="source">
-          <span class="source-txt">Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ${updTxt}</span>
-        </div>
-      `;
-
-      buildToggles();
-      chart = echarts.init(document.getElementById('chart'));
-      rebuildChart();
-      updatePanel(curIdx);
-      chart.on('click', function(p){ if(p.dataIndex !== undefined) updatePanel(getStartIdx() + p.dataIndex); });
-      window.addEventListener('resize', function(){ chart.resize(); });
-    }
-
-    function setScale(isLog){
-      if(logScale === isLog) return;
-      logScale = isLog;
-      document.querySelectorAll('.scale-btn').forEach(function(b,i){ b.classList.toggle('active', i === (isLog?1:0)); });
-      rebuildChart();
-    }
-
-    function getStartIdx(){
-      var S = DATA.series;
-      if(curRange === 'todo') return 0;
-      var cutoff;
-      if(curRange === '5a'){ var ly = parseInt(S[S.length-1].date.split('-')[0]); cutoff = (ly-5)+'-01'; }
-      else if(curRange === 'desde2010') cutoff = '2010-01';
-      else if(curRange === 'desde2000') cutoff = '2000-01';
-      else return 0;
-      for(var i=0;i<S.length;i++){ if(S[i].date >= cutoff) return i; }
-      return 0;
-    }
-
-    function setRange(r){
-      if(curRange === r) return;
-      curRange = r;
-      var ranges = ['5a','desde2010','desde2000','todo'];
-      document.querySelectorAll('.range-btn').forEach(function(b,i){ b.classList.toggle('active', ranges[i]===r); });
-      rebuildChart();
-    }
-
-    function buildToggles(){
-      var tg = document.getElementById('toggles');
-      var items = [
-        {key:'emision',label:'Emisión',color:COLORS.emision,dash:false},
-        {key:'billetes',label:'Billetes y Monedas',color:COLORS.billetes,dash:false},
-        {key:'caja_sf',label:'Caja Sist. Financiero',color:COLORS.caja_sf,dash:true}
-      ];
-      tg.innerHTML = '';
-      items.forEach(function(s){
-        var btn = document.createElement('button');
-        btn.className = 'pill';
-        btn.dataset.key = s.key;
-        btn.innerHTML = '<span class="lp'+(s.dash?' dashed':'')+'" style="border-color:#fff"></span>'+s.label;
-        btn.addEventListener('click', function(){ toggleKey(s.key); });
-        tg.appendChild(btn);
+    function opciones() {
+      si = PM.desde(K, estado.rango);
+      var V = S.slice(si), KV = K.slice(si), dk = PM.dk(), log = estado.escala === 'log', n = V.length - 1;
+      var series = SERIES.filter(function (c) { return activas.has(c.k); }).map(function (c) {
+        var data = V.map(function (x) { return x[c.k]; }), u = ultimoDato(data);
+        var o = PM.linea(c.color, { ancho: c.ancho, punteada: c.forma === 'punteada', extra: {
+          name: c.nombre, data: data, z: c.k === 'emision' ? 3 : c.k === 'billetes' ? 2 : 1,
+          markPoint: PM.puntoFinal(c.color, u, data[u])
+        } });
+        // sólo la protagonista lleva relleno
+        if (c.k === 'emision') o.areaStyle = { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: PM.rgba(c.color, dk ? 0.16 : 0.1) }, { offset: 1, color: PM.rgba(c.color, 0) }]) };
+        return o;
       });
-      syncPills();
-    }
-
-    function toggleKey(k){
-      if(activeKeys.has(k)){ if(activeKeys.size===1) return; activeKeys.delete(k); }
-      else activeKeys.add(k);
-      syncPills();
-      rebuildChart();
-    }
-
-    function syncPills(){
-      document.querySelectorAll('.pill').forEach(function(btn){
-        var k = btn.dataset.key;
-        var c = COLORS[k];
-        var on = activeKeys.has(k);
-        btn.style.backgroundColor = on ? c : 'transparent';
-        btn.style.color = on ? '#fff' : c;
-        btn.style.borderColor = c;
-        var lp = btn.querySelector('.lp');
-        if(lp) lp.style.borderColor = on ? '#fff' : c;
-      });
-    }
-
-    function rebuildChart(){
-      var si = getStartIdx();
-      var S = DATA.series.slice(si);
-      var d = dk();
-      var labels = S.map(function(x){ return labelDate(x.date); });
-      var series = [];
-
-      if(activeKeys.has('emision')){
-        series.push({
-          name:'Emisión', type:'line', data:S.map(function(x){return x.emision}),
-          symbol:'none', lineStyle:{width:2.5}, itemStyle:{color:COLORS.emision}, z:3,
-          areaStyle:{ color: new echarts.graphic.LinearGradient(0,0,0,1,[
-            {offset:0, color:COLORS.emision+(d?'20':'12')},
-            {offset:1, color:COLORS.emision+'00'}
-          ])},
-          markPoint:{
-            data:[{coord:[S.length-1, S[S.length-1].emision]}],
-            symbol:'circle', symbolSize:7,
-            itemStyle:{color:COLORS.emision, borderColor:d?'#141414':'#fff', borderWidth:2},
-            label:{show:false}
-          }
-        });
-      }
-      if(activeKeys.has('billetes')){
-        series.push({
-          name:'Billetes y Monedas', type:'line', data:S.map(function(x){return x.billetes}),
-          symbol:'none', lineStyle:{width:2}, itemStyle:{color:COLORS.billetes}, z:2,
-          markPoint:{
-            data:[{coord:[S.length-1, S[S.length-1].billetes]}],
-            symbol:'circle', symbolSize:6,
-            itemStyle:{color:COLORS.billetes, borderColor:d?'#141414':'#fff', borderWidth:2},
-            label:{show:false}
-          }
-        });
-      }
-      if(activeKeys.has('caja_sf')){
-        series.push({
-          name:'Caja Sist. Financiero', type:'line', data:S.map(function(x){return x.caja_sf}),
-          symbol:'none', lineStyle:{width:1.5, type:'dashed'}, itemStyle:{color:COLORS.caja_sf}, z:1,
-          markPoint:{
-            data:[{coord:[S.length-1, S[S.length-1].caja_sf]}],
-            symbol:'circle', symbolSize:5,
-            itemStyle:{color:COLORS.caja_sf, borderColor:d?'#141414':'#fff', borderWidth:2},
-            label:{show:false}
-          }
-        });
-      }
-
-      chart.setOption({
-        grid:{ left:65, right:20, top:20, bottom:40 },
-        xAxis:{
-          type:'category', data:labels,
-          axisLine:{ lineStyle:{ color:d?'#2A3A50':'#E2E8F0' }},
-          axisTick:{ show:false },
-          axisLabel:{
-            fontFamily:'Inter', fontSize:10, fontWeight:500,
-            color:d?'#555':'#64748B', rotate:45,
-            formatter: function(v){ var p=v.split(' '); return p[0]==='Ene'?p[0]+' '+p[1]:p[0]; }
-          }
-        },
-        yAxis:{
-          type: logScale ? 'log' : 'value',
-          min: logScale ? undefined : undefined,
-          axisLine:{ show:false },
-          splitLine:{ lineStyle:{ color:d?'rgba(42,58,80,.5)':'#F1F5F9' }},
-          axisLabel:{
-            fontFamily:'JetBrains Mono', fontSize:11, color:d?'#555':'#64748B',
-            formatter: function(v){ return fmtShort(v)+' MM'; }
-          }
-        },
-        tooltip:{
-          trigger:'axis',
-          backgroundColor:'rgba(0,18,25,.96)',
-          borderColor:d?'#2A3A50':'#1A2940',
-          borderWidth:1, padding:14,
-          extraCssText:'border-radius:10px;box-shadow:0 8px 32px rgba(0,0,0,.3);',
-          textStyle:{ fontFamily:'Inter', fontSize:12, color:'#fff' },
-          formatter: function(params){
-            if(!params.length) return '';
-            var idx = params[0].dataIndex;
-            var html = '<div style="font-weight:700;margin-bottom:6px;color:#E9D8A6">'+params[0].axisValue+'</div>';
-            params.forEach(function(p){
-              html += '<div style="display:flex;align-items:center;gap:6px;margin-top:4px">'
-                +'<span style="width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block"></span>'
-                +'<span style="font-size:11px">'+p.seriesName+':</span>'
-                +'<span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">'+fmt(p.value)+' MM Bs</span>'
-                +'</div>';
-            });
-            updatePanel(getStartIdx()+idx);
-            return html;
-          }
-        },
+      var el = document.getElementById('chart');
+      return {
+        grid: PM.grid(),
+        xAxis: PM.ejeTiempo(KV, el),
+        yAxis: PM.ejeY({ unidad: 'MM Bs', extra: { type: log ? 'log' : 'value', logBase: 10 } }),
+        tooltip: PM.tooltip(function (ps) {
+          if (!ps.length) return '';
+          var i = ps[0].dataIndex;
+          panel(si + i);
+          var h = PM.ttTitulo(PM.fecha(KV[i]));
+          ps.forEach(function (p) {
+            if (p.value == null) return;
+            var c = SERIES.filter(function (q) { return q.nombre === p.seriesName; })[0];
+            h += PM.ttFila(c.color, c.nombre, bs(p.value), c.forma);
+          });
+          return h;
+        }),
         series: series
-      }, true);
+      };
     }
 
-    function updatePanel(idx){
-      curIdx = idx;
-      var S = DATA.series;
-      var d = S[idx], prev = idx > 0 ? S[idx-1] : null;
-      var prev12 = idx >= 12 ? S[idx-12] : S[0];
-      var dateLabel = labelDate(d.date);
-
-      document.getElementById('panel-date').textContent = dateLabel;
-
-      var varMes = prev ? ((d.emision/prev.emision)-1)*100 : 0;
-      var var12 = ((d.emision/prev12.emision)-1)*100;
-      var pctB = (d.billetes/d.emision*100);
-      var pctC = (d.caja_sf/d.emision*100);
-
-      var analysis;
-      if(var12 > 25) analysis = 'Crecimiento de <strong>'+var12.toFixed(1)+'%</strong> interanual: <strong>expansión monetaria acelerada</strong>. A esta tasa, la emisión se duplica cada '+(70/var12).toFixed(1)+' años. Presión inflacionaria significativa con retardos de 12-18 meses.';
-      else if(var12 > 15) analysis = 'Expansión interanual de <strong>'+var12.toFixed(1)+'%</strong>, ritmo <strong>elevado</strong> que supera el crecimiento nominal de la economía. Señal de financiamiento monetario del déficit.';
-      else if(var12 > 5) analysis = 'Crecimiento de <strong>'+var12.toFixed(1)+'%</strong> interanual, ritmo <strong>moderado</strong> compatible con la expansión económica si el PIB nominal crece a tasas similares.';
-      else if(var12 > 0) analysis = 'Crecimiento bajo de <strong>'+var12.toFixed(1)+'%</strong>. Política monetaria <strong>restrictiva</strong> o contracción de la demanda de dinero.';
-      else analysis = 'La emisión se <strong>contrajo '+Math.abs(var12).toFixed(1)+'%</strong> interanual. Señal de restricción monetaria severa o destrucción de base monetaria.';
-
-      document.getElementById('panel-body').innerHTML = ''
-        +'<div class="pb"><div class="pb-lbl" style="color:'+COLORS.emision+';background:rgba(238,155,0,.08);border-left-color:'+COLORS.emision+'">Emisión Total</div>'
-        +'<div class="pb-val" style="color:'+COLORS.emision+'">'+fmt(d.emision)+' MM Bs</div>'
-        +'<p class="pb-desc">En <strong>'+dateLabel+'</strong>'+(prev?', '+(varMes>=0?'subiendo':'bajando')+' <strong>'+Math.abs(varMes).toFixed(1)+'%</strong> vs. mes anterior':'')+'. Variación 12 meses: <strong>'+var12.toFixed(1)+'%</strong>.</p></div>'
-        +'<div class="pb"><div class="pb-lbl" style="color:'+COLORS.billetes+';background:rgba(0,95,115,.08);border-left-color:'+COLORS.billetes+'">Billetes y Monedas</div>'
-        +'<div class="pb-val" style="color:'+COLORS.billetes+'">'+fmt(d.billetes)+' MM Bs</div>'
-        +'<p class="pb-desc">Efectivo en manos del público: <strong>'+pctB.toFixed(1)+'%</strong> de la emisión total.</p></div>'
-        +'<div class="pb"><div class="pb-lbl" style="color:'+COLORS.caja_sf+';background:rgba(10,147,150,.08);border-left-color:'+COLORS.caja_sf+'">Caja Sist. Financiero</div>'
-        +'<div class="pb-val" style="color:'+COLORS.caja_sf+'">'+fmt(d.caja_sf)+' MM Bs</div>'
-        +'<p class="pb-desc">Reservas de efectivo en bancos: <strong>'+pctC.toFixed(1)+'%</strong> de la emisión.</p></div>'
-        +'<div class="ctx"><p>'+analysis+'</p></div>';
+    function panel(i) {
+      if (i == null || !S || !S[i]) return;
+      estado.idx = i;
+      var d = S[i], a = i > 0 ? S[i - 1] : null, a12 = i >= 12 ? S[i - 12] : S[0];
+      var mes = PM.fecha(d.date);
+      var vMes = a ? (d.emision / a.emision - 1) * 100 : 0, v12 = (d.emision / a12.emision - 1) * 100;
+      var txt;
+      if (v12 > 25) txt = 'Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual: <strong>expansión monetaria acelerada</strong>. A esta tasa, la emisión se duplica cada ' + PM.num(70 / v12, 1) + ' años. Presión inflacionaria significativa, con retardos de 12 a 18 meses.';
+      else if (v12 > 15) txt = 'Expansión interanual de <strong>' + PM.pct(v12, 1) + '</strong>, un ritmo <strong>elevado</strong> que supera el crecimiento nominal de la economía. Señal de financiamiento monetario del déficit.';
+      else if (v12 > 5) txt = 'Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual, un ritmo <strong>moderado</strong>, compatible con la expansión económica si el PIB nominal crece a tasas similares.';
+      else if (v12 > 0) txt = 'Crecimiento bajo, de <strong>' + PM.pct(v12, 1) + '</strong>. Política monetaria <strong>restrictiva</strong> o contracción de la demanda de dinero.';
+      else txt = 'La emisión se <strong>contrajo ' + PM.pct(Math.abs(v12), 1) + '</strong> interanual. Señal de restricción monetaria severa o destrucción de base monetaria.';
+      document.getElementById('panel-fecha').textContent = mes;
+      document.getElementById('panel').innerHTML =
+        PM.pb(COL.emision, 'Emisión total', bs(d.emision),
+          'En <strong>' + mes + '</strong>' + (a ? ', ' + (vMes >= 0 ? 'subiendo' : 'bajando') + ' <strong>' + PM.pct(Math.abs(vMes), 1) + '</strong> respecto al mes anterior' : '') +
+          '. Variación en 12 meses: <strong>' + PM.pct(v12, 1) + '</strong>.') +
+        PM.pb(COL.billetes, 'Billetes y monedas', bs(d.billetes), 'Efectivo en manos del público: <strong>' + PM.pct(d.billetes / d.emision * 100, 1) + '</strong> de la emisión total.') +
+        PM.pb(COL.caja_sf, 'Caja sist. financiero', bs(d.caja_sf), 'Reservas de efectivo en los bancos: <strong>' + PM.pct(d.caja_sf / d.emision * 100, 1) + '</strong> de la emisión.') +
+        PM.ctx(txt);
     }
 
-    window.addEventListener('message', function(e){
-      if(e.data && e.data.theme){
-        document.documentElement.setAttribute('data-theme', e.data.theme);
-        if(chart) rebuildChart();
-      }
-    });
-
-    init();
+    var PREGUNTAS = [
+      ['¿Qué es la emisión monetaria?', 'La <strong>emisión monetaria</strong> es la cantidad total de dinero que el Banco Central ha puesto en circulación. Se divide en <strong>billetes y monedas en poder del público</strong> (el efectivo que usa la gente) y <strong>caja del sistema financiero</strong> (reservas de efectivo en los bancos).'],
+      ['¿Por qué escala logarítmica?', 'La emisión creció de ~400 MM Bs en 1987 a más de 100.000 MM Bs. En escala lineal, los primeros 20 años parecen planos. La <strong>escala logarítmica</strong> muestra las tasas de crecimiento proporcional: una pendiente constante equivale a un crecimiento porcentual constante. Permite ver aceleraciones y desaceleraciones en cualquier época.'],
+      ['Emisión e inflación', 'La teoría monetaria establece que un crecimiento sostenido de la emisión por encima del crecimiento real de la economía genera inflación, con <strong>retardos de 12 a 18 meses</strong>. Cuando la emisión crece al 20% y el PIB al 2%, la diferencia presiona los precios.'],
+      ['Teoría cuantitativa del dinero', 'La <strong>teoría cuantitativa</strong> establece una relación proporcional entre la cantidad de dinero en circulación y el nivel de precios (<strong>MV = PY</strong>). Un aumento en la oferta monetaria genera, <em>ceteris paribus</em>, un incremento en la inflación. De manera inversa, una reducción en el crecimiento del dinero tiende a desacelerar los precios, fenómeno conocido como <strong>desinflación</strong>.'],
+      ['La base monetaria como instrumento', 'La base monetaria es el <strong>agregado más restringido</strong> y el que tiene relación más directa con las decisiones de política monetaria. Es el instrumento principal mediante el cual las autoridades monetarias influyen en la oferta de dinero. A diferencia de M2 o M4, sobre los que el BCB solo tiene influencia indirecta, la base monetaria responde directamente a operaciones del banco central.']
+    ];
+  })();
   </script>
 </body>
 </html>

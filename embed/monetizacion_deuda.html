@@ -1,152 +1,176 @@
 <!DOCTYPE html>
-<html lang="es" data-theme="light">
+<html lang="es" data-theme="light" style="--acento:#C71E1D">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Monetización de la Deuda · Populi</title>
+  <title>Monetización de la Deuda Pública · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="comun/monitor.css" />
   <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
-  <style>
-    :root{--populi:#C71E1D;--cream:#F5EFE0;--brown-dark:#3D2B1F;--navy:#0D1B2A;--navy-light:#1A2940;--slate:#475569;--slate-light:#64748B;--warm-white:#FAF8F3;--light-gray:#F1EDE5;--border:#E2DDD3;--dark-border:#2A3A50;--bg:var(--warm-white);--card:#FFFFFF;--text:var(--brown-dark);--muted:var(--slate-light);--accent:#C71E1D;--radius:12px}
-    [data-theme="dark"]{--bg:#080808;--card:#141414;--text:#E2E8F0;--muted:#64748B;--border:#2A3A50;--light-gray:#1A1A1A;--cream:#1A2940}
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;transition:background .25s,color .25s}.wrap{max-width:1200px;margin:0 auto;padding:20px 16px}
-    .sec-hd{margin-bottom:16px}.sec-title{font-family:'Playfair Display',Georgia,serif;font-size:1.55rem;font-weight:700;color:var(--navy);display:flex;align-items:center;gap:10px;line-height:1.15}[data-theme="dark"] .sec-title{color:#fff}.accent-bar{width:4px;height:26px;background:var(--accent);border-radius:2px;flex-shrink:0}.sec-sub{font-size:.78rem;color:var(--muted);padding-left:14px;margin-top:2px}[data-theme="dark"] .sec-sub{color:rgba(255,255,255,.4)}
-    .hz-bar{display:flex;align-items:center;gap:8px;margin-bottom:14px;padding-left:14px;flex-wrap:wrap}.hz-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted)}.hz-grp{display:flex;flex-wrap:wrap;gap:0;background:var(--light-gray);border-radius:8px;padding:2px;border:1px solid var(--border)}[data-theme="dark"] .hz-grp{background:#1A1A1A;border-color:var(--dark-border)}.hz-btn{padding:5px 14px;border:none;border-radius:6px;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;cursor:pointer;background:transparent;color:var(--muted);transition:all .2s}.hz-btn:hover{color:var(--text)}.hz-btn.active{background:var(--accent);color:#fff;box-shadow:0 2px 8px rgba(199,30,29,.25)}
-    .kpi-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}@media(max-width:700px){.kpi-grid{grid-template-columns:repeat(2,1fr)}}.kpi{background:var(--warm-white);border:1px solid var(--border);border-radius:10px;padding:12px 14px;position:relative;overflow:hidden}[data-theme="dark"] .kpi{background:#141414;border-color:var(--dark-border)}.kpi-lbl{font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);margin-bottom:4px}[data-theme="dark"] .kpi-lbl{color:rgba(255,255,255,.4)}.kpi-val{font-family:'JetBrains Mono',monospace;font-size:1.2rem;font-weight:700}.kpi-d{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:.66rem;font-weight:600;padding:1px 7px;border-radius:5px;margin-top:4px}.kpi-d.up{background:rgba(199,30,29,.08);color:#C71E1D}.kpi-d.down{background:rgba(10,147,150,.08);color:#0A9396}.kpi-d.flat{background:rgba(100,116,139,.08);color:#64748B}[data-theme="dark"] .kpi-d.up{background:rgba(199,30,29,.15)}[data-theme="dark"] .kpi-d.down{background:rgba(10,147,150,.15)}
-    .main-grid{display:grid;grid-template-columns:3fr 2fr;grid-template-rows:540px;gap:16px}@media(max-width:900px){.main-grid{grid-template-columns:1fr;grid-template-rows:420px auto}}@media(max-width:500px){.main-grid{grid-template-rows:340px auto}.sec-title{font-size:1.2rem}.sec-sub{font-size:.7rem}.kpi-val{font-size:1rem}.pill{padding:3px 8px;font-size:.6rem}.hz-btn{padding:4px 10px;font-size:.6rem}}@media(min-width:1100px){.main-grid{grid-template-rows:580px}}
-    .chart-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;display:flex;flex-direction:column;height:100%;overflow:hidden}[data-theme="dark"] .chart-card{background:#141414;border-color:var(--dark-border)}.chart-ctrl{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:8px;margin-bottom:10px}.tog-grp{display:flex;gap:6px;flex-wrap:wrap}.pill{display:flex;align-items:center;gap:5px;padding:4px 12px;border:1.5px solid;border-radius:8px;background:transparent;cursor:pointer;font-family:'Inter',sans-serif;font-size:.68rem;font-weight:600;transition:all .2s}.pill:hover{transform:translateY(-1px)}.lp{width:16px;height:0;border-top:2.5px solid;border-radius:1px}.lp.dashed{border-top-style:dashed}#chart{flex:1;min-height:0}
-    .panel{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;display:flex;flex-direction:column;height:100%}[data-theme="dark"] .panel{background:#141414;border-color:var(--dark-border)}.panel-hd{background:#7F1D1D;padding:10px 14px;display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .panel-hd{background:#450A0A}.panel-hd-t{font-size:.56rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:rgba(255,255,255,.8)}.panel-hd-d{font-family:'JetBrains Mono',monospace;font-size:.56rem;font-weight:600;color:#FCA5A5;background:rgba(252,165,165,.15);padding:2px 8px;border-radius:5px}.panel-body{padding:14px;flex:1;overflow-y:auto}.pb{margin-bottom:10px;padding-bottom:10px;border-bottom:1px solid var(--border)}[data-theme="dark"] .pb{border-color:var(--dark-border)}.pb:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}.pb-lbl{display:inline-flex;align-items:center;gap:4px;font-size:.58rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;margin-bottom:2px;padding:2px 9px 2px 6px;border-radius:4px;border-left:3px solid}.pb-val{font-family:'JetBrains Mono',monospace;font-size:.95rem;font-weight:700;margin-bottom:3px}.pb-desc{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .pb-desc{color:rgba(255,255,255,.45)}.pb-desc strong{color:var(--navy)}[data-theme="dark"] .pb-desc strong{color:#E2E8F0}.ctx{background:var(--cream);border-radius:6px;padding:8px 10px;border-left:3px solid var(--accent);margin-top:6px}[data-theme="dark"] .ctx{background:var(--navy-light)}.ctx p{font-size:.68rem;line-height:1.5;color:var(--muted)}[data-theme="dark"] .ctx p{color:#64748B}.ctx p strong{color:var(--navy)}[data-theme="dark"] .ctx p strong{color:#E2E8F0}
-    .edu-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin-top:16px}.edu{background:var(--cream);border-radius:8px;padding:10px 12px;border-left:3px solid var(--accent);cursor:pointer;transition:all .2s}[data-theme="dark"] .edu{background:var(--navy-light)}.edu:hover{transform:translateY(-1px)}.edu-t{font-size:.7rem;font-weight:700;color:var(--navy);display:flex;align-items:center;justify-content:space-between}[data-theme="dark"] .edu-t{color:#E2E8F0}.edu-t svg{width:14px;height:14px;transition:transform .2s;color:var(--muted)}.edu.open .edu-t svg{transform:rotate(180deg)}.edu-body{display:none;font-size:.68rem;line-height:1.6;color:var(--muted);margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}[data-theme="dark"] .edu-body{color:#64748B;border-color:var(--dark-border)}.edu.open .edu-body{display:block}
-    .source{display:flex;align-items:center;justify-content:space-between;margin-top:8px;padding:0 2px}.source-txt{font-size:.6rem;color:var(--muted)}.source-txt a{color:var(--populi);font-weight:600;text-decoration:none}.source-txt a:hover{text-decoration:underline}
-    .loading{display:flex;align-items:center;justify-content:center;height:300px;flex-direction:column;gap:12px;color:var(--muted)}.spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--accent);border-radius:50%;animation:spin .7s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-  </style>
+  <script src="comun/monitor.js"></script>
 </head>
 <body>
-  <div class="wrap" id="app"><div class="loading" id="loader"><div class="spinner"></div><span style="font-size:.8rem">Cargando datos de monetización...</span></div></div>
+  <div class="wrap">
+    <div class="sec-hd">
+      <div class="sec-title"><span class="accent-bar"></span>Monetización de la Deuda Pública</div>
+      <div class="sec-sub">Crédito neto del BCB al SPNF como porcentaje del activo total del BCB</div>
+    </div>
+
+    <div class="hz-bar">
+      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+    </div>
+
+    <div class="kpi-grid" id="kpis"></div>
+
+    <div class="main-grid">
+      <div class="chart-card">
+        <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando datos de monetización…</span></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-hd"><span class="panel-hd-t">Análisis de monetización</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-body" id="panel"></div>
+      </div>
+    </div>
+
+    <div class="edu-grid" id="preguntas"></div>
+    <div class="source"><span class="source-txt" id="fuente"></span></div>
+  </div>
+
   <script>
-    var COLORS={total_pct:'#C71E1D',gc_pct:'#EE9B00',ep_pct:'#005F73',rib_pct:'#0A9396'};
-    var DATA,ACTIVO,MERGED,chart,curIdx;
-    var activeKeys=new Set(['total_pct','gc_pct','rib_pct']);
-    var curRange='desde2010';
+  (function () {
+    var C = PM.C;
+    // En tema oscuro las empresas públicas (petróleo) suben a menta: el petróleo queda bajo 3:1 contra la tarjeta (validado).
+    var SERIES = [
+      { k: 'total_pct', nombre: 'Créd. neto SPNF / Activo', corto: 'Créd. neto total', color: C.rojo, ancho: 2.5, forma: 'linea', area: true },
+      { k: 'gc_pct', nombre: 'Gob. central / Activo', corto: 'Gob. central', color: C.oro, ancho: 1.75, forma: 'linea' },
+      { k: 'rib_pct', nombre: 'Reservas / Activo', corto: 'Reservas (RIB)', color: C.turquesa, ancho: 1.75, forma: 'linea' },
+      { k: 'ep_pct', nombre: 'Emp. públicas / Activo', corto: 'Emp. públicas', color: { claro: C.petroleo, oscuro: C.menta }, ancho: 1.75, forma: 'punteada' }
+    ];
+    var COL = { total_pct: SERIES[0].color, gc_pct: SERIES[1].color, rib_pct: SERIES[2].color, ep_pct: SERIES[3].color };
+    var estado = { rango: 'desde2010', idx: null };
+    var activas = new Set(['total_pct', 'gc_pct', 'rib_pct']);
+    var G, K, si = 0, grafico;
+    // índice del último dato no nulo (el punto final va ahí, no en un hueco)
+    var ultimoDato = function (data) { var n = data.length - 1; while (n > 0 && data[n] == null) n--; return n; };
+    var bs = function (v) { return PM.num(v, 0) + ' MM Bs'; };
 
-    function dk(){return document.documentElement.getAttribute('data-theme')==='dark'}
-    function labelDate(d){var p=d.split('-');var ms=['Ene','Feb','Mar','Abr','May','Jun','Jul','Ago','Sep','Oct','Nov','Dic'];return ms[+p[1]-1]+' '+p[0]}
-
-    function mergeData(){
-      var actMap={};ACTIVO.series.forEach(function(a){actMap[a.date]=a});
-      MERGED=[];
-      DATA.series.forEach(function(d){
-        var a=actMap[d.date];if(!a||!a.total_activo)return;
-        var ta=a.total_activo;
-        MERGED.push({
-          date:d.date,
-          total_pct:Math.round(d.total_neto/ta*1000)/10,
-          gc_pct:Math.round(d.gc_neto/ta*1000)/10,
-          ep_pct:Math.round(d.ep_neto/ta*1000)/10,
-          rib_pct:Math.round(a.rib/ta*1000)/10,
-          total_neto:d.total_neto,gc_neto:d.gc_neto,total_activo:ta,rib:a.rib
-        });
+    // Crédito neto del BCB al SPNF (monetizacion_deuda.json) sobre el activo total del BCB (activo_bcb.json), mes a mes
+    function unir(deuda, activo) {
+      var porMes = {};
+      activo.series.forEach(function (a) { porMes[a.date] = a; });
+      var out = [];
+      deuda.series.forEach(function (d) {
+        var a = porMes[d.date];
+        if (!a || !a.total_activo) return;
+        var ta = a.total_activo, r1 = function (x) { return Math.round(x / ta * 1000) / 10; };
+        out.push({ date: d.date, total_pct: r1(d.total_neto), gc_pct: r1(d.gc_neto), ep_pct: r1(d.ep_neto), rib_pct: r1(a.rib),
+          total_neto: d.total_neto, gc_neto: d.gc_neto, total_activo: ta, rib: a.rib });
       });
+      return out;
     }
 
-    async function init(){
-      var r1=await fetch('../data/monetizacion_deuda.json');DATA=await r1.json();
-      var r2=await fetch('../data/activo_bcb.json');ACTIVO=await r2.json();
-      mergeData();document.getElementById('loader').style.display='none';curIdx=MERGED.length-1;render();
+    PM.cargar(['monetizacion_deuda.json', 'activo_bcb.json']).then(function (r) {
+      G = unir(r[0], r[1]);
+      K = G.map(function (x) { return x.date; }); estado.idx = G.length - 1;
+      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+        estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
+      PM.pastillas(document.getElementById('pastillas'),
+        SERIES.map(function (s) { return { k: s.k, nombre: s.corto, color: s.color, forma: s.forma }; }),
+        activas, function () { grafico.redibujar(); });
+      cifras();
+      var el = document.getElementById('chart');
+      el.innerHTML = '';
+      grafico = PM.montar(el, opciones);
+      grafico.chart.on('click', function (p) { if (p.dataIndex != null) panel(si + p.dataIndex); });
+      panel(estado.idx);
+      PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
+      PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
+      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(G[G.length - 1].date);
+    }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
+
+    function cifras() {
+      var u = G[G.length - 1];
+      var serie = function (k) { return PM.ultimos(G.map(function (x) { return x[k]; }), 24); };   // últimos 24 meses de cada razón
+      document.getElementById('kpis').innerHTML =
+        PM.kpi({ color: COL.total_pct, rotulo: 'Créd. neto SPNF / Activo', valor: PM.pct(u.total_pct, 1), delta: u.total_pct > 50 ? 'Dominancia fiscal' : 'Moderado', tono: u.total_pct > 50 ? 'malo' : 'neutro', serie: serie('total_pct') }) +
+        PM.kpi({ color: COL.gc_pct, rotulo: 'Gob. central / Activo', valor: PM.pct(u.gc_pct, 1), delta: 'Principal deudor', tono: 'neutro', serie: serie('gc_pct') }) +
+        PM.kpi({ color: COL.rib_pct, rotulo: 'Reservas (RIB) / Activo', valor: PM.pct(u.rib_pct, 1), delta: u.rib_pct < 20 ? 'Bajo respaldo' : 'Respaldo externo', tono: u.rib_pct < 20 ? 'malo' : 'neutro', serie: serie('rib_pct') }) +
+        PM.kpi({ color: COL.ep_pct, rotulo: 'Emp. públicas / Activo', valor: PM.pct(u.ep_pct, 1), delta: 'YPFB, ENDE, etc.', tono: 'neutro', serie: serie('ep_pct') });
     }
 
-    function getStartIdx(){
-      var S=MERGED;if(curRange==='todo')return 0;var cut;
-      if(curRange==='5a'){var ly=parseInt(S[S.length-1].date.split('-')[0]);cut=(ly-5)+'-01'}
-      else if(curRange==='desde2010')cut='2010-01';else if(curRange==='desde2000')cut='2000-01';else return 0;
-      for(var i=0;i<S.length;i++){if(S[i].date>=cut)return i}return 0;
-    }
-
-    function render(){
-      var app=document.getElementById('app');var last=MERGED[MERGED.length-1];var updTxt=labelDate(last.date);
-      app.innerHTML=
-        '<div class="sec-hd"><div class="sec-title"><span class="accent-bar"></span>Monetización de la Deuda Pública</div><div class="sec-sub">Crédito neto del BCB al SPNF como porcentaje del activo total del BCB</div></div>'+
-        '<div class="hz-bar"><span class="hz-lbl">Rango:</span><div class="hz-grp"><button class="hz-btn range-btn'+(curRange==='5a'?' active':'')+'" onclick="setRange(\'5a\')">5A</button><button class="hz-btn range-btn'+(curRange==='desde2010'?' active':'')+'" onclick="setRange(\'desde2010\')">Desde 2010</button><button class="hz-btn range-btn'+(curRange==='desde2000'?' active':'')+'" onclick="setRange(\'desde2000\')">Desde 2000</button><button class="hz-btn range-btn'+(curRange==='todo'?' active':'')+'" onclick="setRange(\'todo\')">Todo</button></div></div>'+
-        '<div class="kpi-grid">'+
-          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#C71E1D"></div><div class="kpi-lbl">Créd. Neto SPNF / Activo</div><div class="kpi-val" style="color:#C71E1D">'+last.total_pct.toFixed(1)+'%</div><div class="kpi-d '+(last.total_pct>50?'up':'flat')+'">'+(last.total_pct>50?'Dominancia fiscal':'Moderado')+'</div></div>'+
-          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#EE9B00"></div><div class="kpi-lbl">Gob. Central / Activo</div><div class="kpi-val" style="color:#EE9B00">'+last.gc_pct.toFixed(1)+'%</div><div class="kpi-d flat">Principal deudor</div></div>'+
-          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#0A9396"></div><div class="kpi-lbl">Reservas (RIB) / Activo</div><div class="kpi-val" style="color:#0A9396">'+last.rib_pct.toFixed(1)+'%</div><div class="kpi-d '+(last.rib_pct<20?'down':'flat')+'">'+(last.rib_pct<20?'Bajo respaldo':'Respaldo externo')+'</div></div>'+
-          '<div class="kpi"><div style="position:absolute;top:0;left:0;width:100%;height:3px;background:#005F73"></div><div class="kpi-lbl">Emp. Públicas / Activo</div><div class="kpi-val" style="color:#005F73">'+last.ep_pct.toFixed(1)+'%</div><div class="kpi-d flat">YPFB, ENDE, etc.</div></div>'+
-        '</div>'+
-        '<div class="main-grid"><div class="chart-card"><div class="chart-ctrl"><div class="tog-grp" id="toggles"></div></div><div id="chart"></div></div>'+
-        '<div class="panel"><div class="panel-hd"><span class="panel-hd-t">Análisis de monetización</span><span class="panel-hd-d" id="panel-date">'+updTxt+'</span></div><div class="panel-body" id="panel-body"></div></div></div>'+
-        '<div class="edu-grid">'+
-          eduBox('¿Qué mide este indicador?','Muestra qué <strong>porcentaje del activo del BCB</strong> corresponde a crédito al gobierno. Si supera 50%, más de la mitad del balance del banco central son préstamos al sector público — señal de <strong>dominancia fiscal</strong>.')+
-          eduBox('RIB vs Crédito: la tijera','Cuando el crédito al SPNF sube y las reservas bajan, se forma una <strong>"tijera"</strong>: el BCB sustituye activos de calidad (divisas) por deuda del gobierno. Este deterioro compromete la capacidad de defender el tipo de cambio.')+
-          eduBox('¿Cuándo es peligroso?','No existe un umbral universal, pero cuando el crédito neto al SPNF supera el <strong>60-70%</strong> del activo total, la política monetaria pierde autonomía efectiva y la inflación depende más de la política fiscal que de las decisiones del banco central.')+
-          eduBox('La deuda pública como respaldo monetario','El <strong>respaldo monetario por antonomasia desde el siglo XX ha sido la deuda pública</strong>. Sin embargo, una cantidad excesiva de deuda pública junto a su monetización es la principal causa de la aparición de la inflación en la última centuria. Cuando la demanda de deuda pública se concentra en el banco central, la inflación se dispara.')+
-          eduBox('Mecanismo de la monetización','La monetización ocurre cuando el BCB compra deuda del gobierno, inyectando dinero nuevo a la economía. A diferencia de cuando un privado compra bonos (transfiere dinero existente), cuando el banco central lo hace <strong>crea dinero nuevo</strong>. Este es el canal directo entre <strong>déficit fiscal e inflación</strong>: mayor gasto público financiado con emisión deteriora el valor de la moneda.')+
-        '</div>'+
-        '<div class="source"><span class="source-txt">Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: '+updTxt+'</span></div>';
-      buildToggles();chart=echarts.init(document.getElementById('chart'));rebuildChart();updatePanel(curIdx);
-      chart.on('click',function(p){if(p.dataIndex!==undefined)updatePanel(getStartIdx()+p.dataIndex)});
-      window.addEventListener('resize',function(){chart.resize()});
-    }
-
-    function eduBox(t,b){return '<div class="edu" onclick="this.classList.toggle(\'open\')"><div class="edu-t">'+t+'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></div><div class="edu-body">'+b+'</div></div>'}
-    function setRange(r){if(curRange===r)return;curRange=r;var rs=['5a','desde2010','desde2000','todo'];document.querySelectorAll('.range-btn').forEach(function(b,i){b.classList.toggle('active',rs[i]===r)});rebuildChart()}
-
-    function buildToggles(){
-      var tg=document.getElementById('toggles');
-      [{key:'total_pct',label:'Créd. Neto Total',c:COLORS.total_pct},{key:'gc_pct',label:'Gob. Central',c:COLORS.gc_pct},{key:'rib_pct',label:'Reservas (RIB)',c:COLORS.rib_pct},{key:'ep_pct',label:'Emp. Públicas',c:COLORS.ep_pct,dash:true}].forEach(function(s){
-        var btn=document.createElement('button');btn.className='pill';btn.dataset.key=s.key;
-        btn.innerHTML='<span class="lp'+(s.dash?' dashed':'')+'" style="border-color:#fff"></span>'+s.label;
-        btn.addEventListener('click',function(){toggleKey(s.key)});tg.appendChild(btn);
-      });syncPills();
-    }
-    function toggleKey(k){if(activeKeys.has(k)){if(activeKeys.size===1)return;activeKeys.delete(k)}else activeKeys.add(k);syncPills();rebuildChart()}
-    function syncPills(){document.querySelectorAll('.pill').forEach(function(btn){var k=btn.dataset.key;var c=COLORS[k];var on=activeKeys.has(k);btn.style.backgroundColor=on?c:'transparent';btn.style.color=on?'#fff':c;btn.style.borderColor=c;var lp=btn.querySelector('.lp');if(lp)lp.style.borderColor=on?'#fff':c})}
-
-    function rebuildChart(){
-      var si=getStartIdx();var S=MERGED.slice(si);var d=dk();
-      var labels=S.map(function(x){return labelDate(x.date)});var series=[];
-      var items=[{key:'total_pct',name:'Créd. Neto SPNF / Activo',w:2.5,z:5},{key:'gc_pct',name:'Gob. Central / Activo',w:2,z:4},{key:'rib_pct',name:'Reservas / Activo',w:2,z:3},{key:'ep_pct',name:'Emp. Públicas / Activo',w:1.5,z:2,dash:true}];
-      items.forEach(function(it){
-        if(!activeKeys.has(it.key))return;
-        series.push({name:it.name,type:'line',data:S.map(function(x){return x[it.key]}),symbol:'none',lineStyle:{width:it.w,type:it.dash?'dashed':'solid'},itemStyle:{color:COLORS[it.key]},z:it.z,connectNulls:true,
-          areaStyle:it.key==='total_pct'?{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#C71E1D'+(d?'18':'0C')},{offset:1,color:'#C71E1D00'}])}:it.key==='rib_pct'?{color:new echarts.graphic.LinearGradient(0,0,0,1,[{offset:0,color:'#0A9396'+(d?'18':'0C')},{offset:1,color:'#0A939600'}])}:undefined
-        });
+    function opciones() {
+      si = PM.desde(K, estado.rango);
+      var V = G.slice(si), KV = K.slice(si), dk = PM.dk();
+      var series = SERIES.filter(function (c) { return activas.has(c.k); }).map(function (c, j) {
+        var data = V.map(function (x) { return x[c.k]; }), u = ultimoDato(data);
+        var o = PM.linea(c.color, { ancho: c.ancho, punteada: c.forma === 'punteada', extra: {
+          name: c.nombre, data: data, connectNulls: true, z: 5 - j, markPoint: PM.puntoFinal(c.color, u, data[u])
+        } });
+        // sólo la protagonista (crédito neto total) lleva relleno
+        if (c.area) o.areaStyle = { color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [
+          { offset: 0, color: PM.rgba(c.color, dk ? 0.16 : 0.1) }, { offset: 1, color: PM.rgba(c.color, 0) }]) };
+        return o;
       });
-      var hasNeg=S.some(function(x){return x.total_pct<0||x.gc_pct<0});
-      if(series.length>0){
-        var marks=[];
-        if(hasNeg)marks.push({yAxis:0,lineStyle:{color:d?'#475569':'#64748B',width:1.5,type:'solid'},label:{formatter:'0%',position:'insideEndTop',fontSize:9,fontFamily:'JetBrains Mono',color:d?'#475569':'#64748B'}});
-        marks.push({yAxis:50,lineStyle:{color:d?'#7F1D1D':'#FECACA',width:1,type:'dashed'},label:{formatter:'50% — Dominancia fiscal',position:'insideEndTop',fontSize:9,fontFamily:'Inter',fontWeight:600,color:d?'#FCA5A5':'#B91C1C'}});
-        series[0].markLine={silent:true,symbol:'none',data:marks};
+      // El cero (si la serie lo cruza) y el umbral del 50%: más de la mitad del activo del BCB prestado al fisco
+      var hayNeg = V.some(function (x) { return x.total_pct < 0 || x.gc_pct < 0; });
+      if (series.length) {
+        var cero = PM.cero(), marcas = [];
+        if (hayNeg) marcas.push({ yAxis: 0, lineStyle: cero.lineStyle, label: { show: false } });
+        // umbral: punteado de 1,25 px en pizarra, como toda referencia
+        marcas.push({ yAxis: 50, lineStyle: { color: PM.var('--pizarra'), width: 1.25, type: 'dashed' },
+          label: { show: true, formatter: '50% — Dominancia fiscal', position: 'insideStartTop', fontFamily: PM.inter(), fontSize: 9.5, fontWeight: 600, color: PM.var('--pizarra'),
+            textBorderColor: PM.var('--card') || '#fff', textBorderWidth: 3 } });
+        series[0].markLine = { silent: true, symbol: 'none', animation: false, data: marcas };
       }
-      chart.setOption({grid:{left:55,right:20,top:20,bottom:40},
-        xAxis:{type:'category',data:labels,axisLine:{lineStyle:{color:d?'#2A3A50':'#E2E8F0'}},axisTick:{show:false},axisLabel:{fontFamily:'Inter',fontSize:10,fontWeight:500,color:d?'#555':'#64748B',rotate:45,formatter:function(v){var p=v.split(' ');return p[0]==='Ene'?p[0]+' '+p[1]:p[0]}}},
-        yAxis:{type:'value',axisLine:{show:false},splitLine:{lineStyle:{color:d?'rgba(42,58,80,.5)':'#F1F5F9'}},axisLabel:{fontFamily:'JetBrains Mono',fontSize:11,color:d?'#555':'#64748B',formatter:function(v){return v+'%'}}},
-        tooltip:{trigger:'axis',backgroundColor:'rgba(0,18,25,.96)',borderColor:d?'#2A3A50':'#1A2940',borderWidth:1,padding:14,extraCssText:'border-radius:10px;',textStyle:{fontFamily:'Inter',fontSize:12,color:'#fff'},
-          formatter:function(params){if(!params.length)return'';var html='<div style="font-weight:700;margin-bottom:6px;color:#FCA5A5">'+params[0].axisValue+'</div>';params.forEach(function(p){if(p.value!=null)html+='<div style="display:flex;align-items:center;gap:6px;margin-top:4px"><span style="width:8px;height:8px;border-radius:50%;background:'+p.color+';display:inline-block"></span><span style="font-size:11px">'+p.seriesName+':</span><span style="font-family:JetBrains Mono;font-weight:700;color:'+p.color+'">'+p.value.toFixed(1)+'%</span></div>'});updatePanel(getStartIdx()+params[0].dataIndex);return html}},
-        series:series
-      },true);
+      var el = document.getElementById('chart');
+      return {
+        grid: PM.grid({ top: 16 }),
+        xAxis: PM.ejeTiempo(KV, el),
+        yAxis: PM.ejeY({ fmt: 'pct' }),
+        tooltip: PM.tooltip(function (ps) {
+          if (!ps.length) return '';
+          var i = ps[0].dataIndex;
+          panel(si + i);
+          var h = PM.ttTitulo(PM.fecha(KV[i]));
+          ps.forEach(function (p) {
+            if (p.value == null) return;
+            var c = SERIES.filter(function (q) { return q.nombre === p.seriesName; })[0];
+            h += PM.ttFila(c.color, c.nombre, PM.pct(p.value, 1), c.forma);
+          });
+          return h;
+        }),
+        series: series
+      };
     }
 
-    function updatePanel(idx){
-      curIdx=idx;var d=MERGED[idx];document.getElementById('panel-date').textContent=labelDate(d.date);
-      var html='';
-      html+='<div class="pb"><div class="pb-lbl" style="color:#C71E1D;background:rgba(199,30,29,.08);border-left-color:#C71E1D">Créd. Neto SPNF / Activo</div><div class="pb-val" style="color:#C71E1D">'+d.total_pct.toFixed(1)+'%</div><p class="pb-desc">Créd. neto: <strong>'+Math.round(d.total_neto).toLocaleString('es-BO')+'</strong> MM Bs de un activo total de <strong>'+Math.round(d.total_activo).toLocaleString('es-BO')+'</strong> MM Bs</p></div>';
-      html+='<div class="pb"><div class="pb-lbl" style="color:#EE9B00;background:rgba(238,155,0,.08);border-left-color:#EE9B00">Gobierno Central / Activo</div><div class="pb-val" style="color:#EE9B00">'+d.gc_pct.toFixed(1)+'%</div></div>';
-      html+='<div class="pb"><div class="pb-lbl" style="color:#0A9396;background:rgba(10,147,150,.08);border-left-color:#0A9396">Reservas (RIB) / Activo</div><div class="pb-val" style="color:#0A9396">'+d.rib_pct.toFixed(1)+'%</div></div>';
-      var analysis;
-      if(d.total_pct>70)analysis='El crédito al SPNF absorbe <strong>'+d.total_pct.toFixed(1)+'%</strong> del activo del BCB — <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>'+d.rib_pct.toFixed(1)+'%</strong>. El banco central está funcionalmente subordinado al fisco.';
-      else if(d.total_pct>50)analysis='<strong>'+d.total_pct.toFixed(1)+'%</strong> del activo es crédito al gobierno. <strong>Dominancia fiscal clara</strong>: la política monetaria depende de las necesidades de financiamiento del Estado.';
-      else if(d.total_pct>0)analysis='Crédito neto al SPNF en <strong>'+d.total_pct.toFixed(1)+'%</strong> del activo. Nivel <strong>moderado</strong> de monetización con reservas en <strong>'+d.rib_pct.toFixed(1)+'%</strong>.';
-      else analysis='Crédito neto <strong>negativo ('+d.total_pct.toFixed(1)+'%)</strong>: el gobierno tiene más depósitos que préstamos en el BCB — es <strong>acreedor neto</strong> del banco central. Situación post-reformas estructurales de 1985, donde el Estado mantenía superávits y depósitos que excedían su endeudamiento con el BCB.';
-      html+='<div class="ctx"><p>'+analysis+'</p></div>';
-      document.getElementById('panel-body').innerHTML=html;
+    function panel(i) {
+      if (i == null || !G || !G[i]) return;
+      estado.idx = i;
+      var d = G[i], txt;
+      if (d.total_pct > 70) txt = 'El crédito al SPNF absorbe <strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo del BCB: <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>' + PM.pct(d.rib_pct, 1) + '</strong>. El banco central está funcionalmente subordinado al fisco.';
+      else if (d.total_pct > 50) txt = '<strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo es crédito al gobierno. <strong>Dominancia fiscal clara</strong>: la política monetaria depende de las necesidades de financiamiento del Estado.';
+      else if (d.total_pct > 0) txt = 'Crédito neto al SPNF en <strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo. Nivel <strong>moderado</strong> de monetización, con reservas en <strong>' + PM.pct(d.rib_pct, 1) + '</strong>.';
+      else txt = 'Crédito neto <strong>negativo (' + PM.pct(d.total_pct, 1) + ')</strong>: el gobierno tiene más depósitos que préstamos en el BCB, es decir, es <strong>acreedor neto</strong> del banco central. Situación posterior a las reformas estructurales de 1985, cuando el Estado mantenía superávits y depósitos que excedían su endeudamiento con el BCB.';
+      document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
+      document.getElementById('panel').innerHTML =
+        PM.pb(COL.total_pct, 'Créd. neto SPNF / Activo', PM.pct(d.total_pct, 1),
+          'Crédito neto: <strong>' + bs(d.total_neto) + '</strong> de un activo total de <strong>' + bs(d.total_activo) + '</strong>.') +
+        PM.pb(COL.gc_pct, 'Gobierno central / Activo', PM.pct(d.gc_pct, 1)) +
+        PM.pb(COL.rib_pct, 'Reservas (RIB) / Activo', PM.pct(d.rib_pct, 1)) +
+        PM.ctx(txt);
     }
 
-    window.addEventListener('message',function(e){if(e.data&&e.data.theme){document.documentElement.setAttribute('data-theme',e.data.theme);if(chart)rebuildChart()}});
-    init();
+    var PREGUNTAS = [
+      ['¿Qué mide este indicador?', 'Muestra qué <strong>porcentaje del activo del BCB</strong> corresponde a crédito al gobierno. Si supera el 50%, más de la mitad del balance del banco central son préstamos al sector público: señal de <strong>dominancia fiscal</strong>.'],
+      ['RIB vs. crédito: la tijera', 'Cuando el crédito al SPNF sube y las reservas bajan, se forma una <strong>«tijera»</strong>: el BCB sustituye activos de calidad (divisas) por deuda del gobierno. Este deterioro compromete la capacidad de defender el tipo de cambio.'],
+      ['¿Cuándo es peligroso?', 'No existe un umbral universal, pero cuando el crédito neto al SPNF supera el <strong>60-70%</strong> del activo total, la política monetaria pierde autonomía efectiva y la inflación depende más de la política fiscal que de las decisiones del banco central.'],
+      ['La deuda pública como respaldo monetario', 'El <strong>respaldo monetario por antonomasia desde el siglo XX ha sido la deuda pública</strong>. Sin embargo, una cantidad excesiva de deuda pública junto a su monetización es la principal causa de la aparición de la inflación en la última centuria. Cuando la demanda de deuda pública se concentra en el banco central, la inflación se dispara.'],
+      ['Mecanismo de la monetización', 'La monetización ocurre cuando el BCB compra deuda del gobierno, inyectando dinero nuevo a la economía. A diferencia de cuando un privado compra bonos (transfiere dinero existente), cuando el banco central lo hace <strong>crea dinero nuevo</strong>. Este es el canal directo entre <strong>déficit fiscal e inflación</strong>: mayor gasto público financiado con emisión deteriora el valor de la moneda.']
+    ];
+  })();
   </script>
 </body>
 </html>

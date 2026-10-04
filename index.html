@@ -19,19 +19,20 @@
     .hero{background:linear-gradient(135deg,#700200 0%,#0D1B2A 100%);color:white;padding:48px 24px;text-align:center}
     .hero h1{font-family:'Playfair Display',Georgia,serif;font-size:2.2rem;font-weight:700;margin-bottom:8px}
     .hero p{font-size:1rem;opacity:0.8;max-width:700px;margin:0 auto}
-    .hero .badge{display:inline-block;background:rgba(238,155,0,0.2);border:1px solid rgba(238,155,0,0.4);color:#FBBF24;font-size:0.75rem;font-weight:600;padding:4px 12px;border-radius:20px;margin-bottom:16px;font-family:'JetBrains Mono',monospace}
+    .hero .badge{display:inline-block;background:rgba(238,155,0,0.2);border:1px solid rgba(238,155,0,0.4);color:#FBBF24;font-size:0.75rem;font-weight:600;padding:4px 12px;margin-bottom:16px;font-family:'JetBrains Mono',monospace}
 
     .wrap{max-width:1200px;margin:0 auto;padding:32px 16px}
 
     .nav{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-bottom:32px}
-    .nav a{display:inline-block;padding:8px 16px;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:0.85rem;font-weight:500;transition:all 0.2s}
-    .nav a:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);box-shadow:0 4px 12px rgba(0,0,0,0.08)}
+    .nav a{display:inline-block;padding:8px 16px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:0.85rem;font-weight:500;transition:border-color .2s,color .2s}
+    .nav a:hover{border-color:var(--accent);color:#A86E00}
 
-    .grid{display:grid;grid-template-columns:1fr;gap:24px}
+    .grid{display:grid;grid-template-columns:1fr;gap:40px}
 
-    .embed-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:box-shadow 0.2s}
-    .embed-card:hover{box-shadow:0 8px 24px rgba(0,0,0,0.08)}
-    .embed-card iframe{width:100%;border:none;min-height:850px;display:block}
+    /* Sin marco propio: cada gráfico trae sus tarjetas. El alto lo avisa el gráfico (abajo). */
+    .embed-card{scroll-margin-top:16px}
+    .embed-card iframe{width:100%;border:none;min-height:850px;display:block;transition:height .2s ease}
+    @media(max-width:640px){.wrap{padding:24px 0}.nav{padding:0 16px}.grid{gap:28px}}
 
     .footer{text-align:center;padding:32px 16px;font-size:0.8rem;color:var(--muted);border-top:1px solid var(--border);margin-top:48px}
     .footer a{color:var(--populi);text-decoration:none;font-weight:600}
@@ -84,6 +85,27 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Alto automático de los gráficos (protocolo POPULI, el mismo del sitio): cada gráfico avisa
+    // cuánto mide su contenido y el iframe toma ese alto; sin esto, en el teléfono el panel y las
+    // preguntas quedaban en un scroll interno.
+    (function () {
+      var marcos = function () { return Array.prototype.slice.call(document.querySelectorAll('.embed-card iframe')); };
+      var pedir = function (f) { try { f.contentWindow.postMessage({ populiEmbed: 'ask-height' }, '*'); } catch (e) {} };
+      window.addEventListener('message', function (e) {
+        var d = e.data;
+        if (!d || typeof d !== 'object') return;
+        var f = marcos().filter(function (x) { return x.contentWindow === e.source; })[0];
+        if (!f) return;
+        if (d.populiEmbed === 'hello') pedir(f);
+        if (d.populiEmbed === 'height' && typeof d.height === 'number' && d.height >= 200 && d.height <= 6000) {
+          f.style.height = Math.ceil(d.height) + 'px'; f.style.minHeight = '0';
+        }
+      });
+      marcos().forEach(function (f) { f.addEventListener('load', function () { pedir(f); }); pedir(f); });
+    })();
+  </script>
 
   <div class="footer">
     Fuente: <a href="https://www.bcb.gob.bo" target="_blank">Banco Central de Bolivia</a> &middot;
