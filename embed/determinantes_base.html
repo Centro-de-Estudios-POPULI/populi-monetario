@@ -179,11 +179,14 @@
     function panel(i) {
       if (i == null || !S || !S[i]) return;
       estado.idx = i;
-      var d = S[i], a12 = i >= 12 ? S[i - 12] : S[0], fecha = PM.fecha(d.date);
-      var var12 = (d.base / a12.base - 1) * 100, shRin = d.rin / d.base * 100, shSp = d.cred_sp / d.base * 100, shOma = d.oma / d.base * 100;
+      // el mismo mes del año anterior, por FECHA: 2001-2003 son anuales y 2004 trimestral; por posición,
+      // S[i - 12] caía años atrás (y en las primeras filas se comparaba con la primera)
+      var d = S[i], fecha = PM.fecha(d.date), a12 = null;
+      for (var j = i - 1; j >= 0 && S[j].date >= (+d.date.slice(0, 4) - 1) + d.date.slice(4); j--) if (S[j].date === (+d.date.slice(0, 4) - 1) + d.date.slice(4)) a12 = S[j];
+      var var12 = a12 ? (d.base / a12.base - 1) * 100 : null, shRin = d.rin / d.base * 100, shSp = d.cred_sp / d.base * 100, shOma = d.oma / d.base * 100;
       document.getElementById('panel-fecha').textContent = fecha;
       document.getElementById('panel').innerHTML =
-        PM.pb(BASE, 'Base monetaria', bs(d.base), 'En <strong>' + fecha + '</strong>. Variación 12 meses: <strong>' + PM.pct(var12, 1, true) + '</strong>. Es la suma de los determinantes de abajo.') +
+        PM.pb(BASE, 'Base monetaria', bs(d.base), 'En <strong>' + fecha + '</strong>. Variación 12 meses: <strong>' + (var12 == null ? 'sin dato' : PM.pct(var12, 1, true)) + '</strong>. Es la suma de los determinantes de abajo.') +
         PM.pb(C.turquesa, 'Reservas int. netas', bs(d.rin), 'Respaldo externo: <strong>' + PM.pct(shRin, 1) + '</strong> de la base monetaria.') +
         PM.pb(C.rojo, 'Crédito neto al sector público', bs(d.cred_sp), 'Financiamiento al SPNF: <strong>' + PM.pct(shSp, 0, true) + '</strong> de la base.') +
         PM.pb(comp('oma').color, 'OMA (se resta)', bs(-d.oma), 'Liquidez retirada vía títulos del BCB: <strong>' + PM.pct(-shOma, 0) + '</strong> de la base.') +

@@ -58,13 +58,18 @@
     var ultimoDato = function (data) { var n = data.length - 1; while (n > 0 && data[n] == null) n--; return n; };
 
     // Crecimiento a 12 meses de cada agregado, calculado desde los saldos del BCB
+    // (contra el mismo mes del año anterior, buscado por fecha: la serie arranca con un dato anual, dic-1987,
+    // antes de los mensuales, y por posición S[i - 12] caía 23 meses atrás)
     function crecimiento() {
-      var S = DATA.series; G = [];
-      for (var i = 12; i < S.length; i++) {
-        var a = S[i], b = S[i - 12], g = { date: a.date };
-        ['m1', 'm2', 'm3', 'm4'].forEach(function (k) { g[k] = b[k] > 0 ? Math.round((a[k] / b[k] - 1) * 1000) / 10 : null; });
+      var S = DATA.series, porFecha = {}; G = [];
+      S.forEach(function (x) { porFecha[x.date] = x; });
+      S.forEach(function (a) {
+        var b = porFecha[(+a.date.slice(0, 4) - 1) + a.date.slice(4)];
+        if (!b) return;
+        var g = { date: a.date };
+        ['m1', 'm2', 'm3', 'm4'].forEach(function (k) { g[k] = b[k] > 0 && a[k] != null ? Math.round((a[k] / b[k] - 1) * 1000) / 10 : null; });
         G.push(g);
-      }
+      });
     }
     // Para el lector de un monitor monetario, una expansión alta de la liquidez es una señal de alerta
     function nivel(v) { return v > 10 ? ['Expansión alta', 'malo'] : v > 0 ? ['Crecimiento moderado', 'neutro'] : ['Contracción', 'neutro']; }

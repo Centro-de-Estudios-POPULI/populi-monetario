@@ -90,7 +90,7 @@
       var t12 = v12 > 10 ? 'malo' : v12 > 0 ? 'neutro' : 'bueno';   // más emisión, más presión sobre los precios
       // minilíneas: los últimos 24 meses de la misma magnitud que muestra cada cifra
       var serie = function (f) { return PM.ultimos(S.map(f), 24); };
-      var var12 = S.map(function (x, i) { return i >= 12 && S[i - 12].emision ? (x.emision / S[i - 12].emision - 1) * 100 : null; });
+      var var12 = S.map(function (x) { var b = hace(x.date, 12); return b && b.emision && x.emision != null ? (x.emision / b.emision - 1) * 100 : null; });
       document.getElementById('kpis').innerHTML =
         PM.kpi({ color: COL.emision, rotulo: 'Emisión total', valor: bs(u.emision), delta: PM.flecha(vMes) + ' ' + PM.pct(Math.abs(vMes), 1) + ' mensual', tono: 'neutro', serie: serie(function (x) { return x.emision; }) }) +
         PM.kpi({ color: COL.billetes, rotulo: 'Billetes y monedas', valor: bs(u.billetes), delta: PM.pct(u.billetes / u.emision * 100, 1) + ' de la emisión', tono: 'neutro', serie: serie(function (x) { return x.billetes; }) }) +
@@ -134,14 +134,23 @@
       };
     }
 
+    // El mismo mes k meses antes, buscado por FECHA: la serie arranca con un dato anual (dic-1987) antes de
+    // los mensuales, y por posición S[i - 12] caía 23 meses atrás.
+    var porFecha = null;
+    function hace(fecha, k) {
+      if (!porFecha) { porFecha = {}; S.forEach(function (x) { porFecha[x.date] = x; }); }
+      var m = +fecha.slice(0, 4) * 12 + (+fecha.slice(5, 7) - 1) - k;
+      return porFecha[Math.floor(m / 12) + '-' + String(m % 12 + 1).padStart(2, '0')] || null;
+    }
     function panel(i) {
       if (i == null || !S || !S[i]) return;
       estado.idx = i;
-      var d = S[i], a = i > 0 ? S[i - 1] : null, a12 = i >= 12 ? S[i - 12] : S[0];
+      var d = S[i], a = hace(d.date, 1), a12 = hace(d.date, 12);
       var mes = PM.fecha(d.date);
-      var vMes = a ? (d.emision / a.emision - 1) * 100 : 0, v12 = (d.emision / a12.emision - 1) * 100;
+      var vMes = a ? (d.emision / a.emision - 1) * 100 : 0, v12 = a12 ? (d.emision / a12.emision - 1) * 100 : null;
       var txt;
-      if (v12 > 25) txt = 'Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual: <strong>expansión monetaria acelerada</strong>. A esta tasa, la emisión se duplica cada ' + PM.num(70 / v12, 1) + ' años. Presión inflacionaria significativa, con retardos de 12 a 18 meses.';
+      if (v12 == null) txt = 'Sin el dato del mismo mes del año anterior: la serie es anual antes de diciembre de 1988.';
+      else if (v12 > 25) txt = 'Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual: <strong>expansión monetaria acelerada</strong>. A esta tasa, la emisión se duplica cada ' + PM.num(70 / v12, 1) + ' años. Presión inflacionaria significativa, con retardos de 12 a 18 meses.';
       else if (v12 > 15) txt = 'Expansión interanual de <strong>' + PM.pct(v12, 1) + '</strong>, un ritmo <strong>elevado</strong> que supera el crecimiento nominal de la economía. Señal de financiamiento monetario del déficit.';
       else if (v12 > 5) txt = 'Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual, un ritmo <strong>moderado</strong>, compatible con la expansión económica si el PIB nominal crece a tasas similares.';
       else if (v12 > 0) txt = 'Crecimiento bajo, de <strong>' + PM.pct(v12, 1) + '</strong>. Política monetaria <strong>restrictiva</strong> o contracción de la demanda de dinero.';
@@ -150,7 +159,7 @@
       document.getElementById('panel').innerHTML =
         PM.pb(COL.emision, 'Emisión total', bs(d.emision),
           'En <strong>' + mes + '</strong>' + (a ? ', ' + (vMes >= 0 ? 'subiendo' : 'bajando') + ' <strong>' + PM.pct(Math.abs(vMes), 1) + '</strong> respecto al mes anterior' : '') +
-          '. Variación en 12 meses: <strong>' + PM.pct(v12, 1) + '</strong>.') +
+          '. Variación en 12 meses: <strong>' + (v12 == null ? 'sin dato' : PM.pct(v12, 1)) + '</strong>.') +
         PM.pb(COL.billetes, 'Billetes y monedas', bs(d.billetes), 'Efectivo en manos del público: <strong>' + PM.pct(d.billetes / d.emision * 100, 1) + '</strong> de la emisión total.') +
         PM.pb(COL.caja_sf, 'Caja sist. financiero', bs(d.caja_sf), 'Reservas de efectivo en los bancos: <strong>' + PM.pct(d.caja_sf / d.emision * 100, 1) + '</strong> de la emisión.') +
         PM.ctx(txt);
