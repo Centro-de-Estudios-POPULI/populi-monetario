@@ -8,7 +8,7 @@ El BCB publica un Excel por semana en:
 El scraper busca automáticamente la semana más reciente disponible.
 """
 
-import json, os, sys, datetime, time, unicodedata
+import json, os, re, sys, datetime, time, unicodedata
 from pathlib import Path
 import openpyxl
 import requests
@@ -181,7 +181,10 @@ def parse():
             if next_m > 12:
                 next_m = 1
                 next_y += 1
-            week_num = int("".join(filter(str.isdigit, date_val)) or "1")
+            # El número es el que sigue a «Semana»: el BCB le cuelga llamadas de
+            # nota («Semana 5/1», 10-oct-2026) y juntar todos los dígitos daba «S51».
+            m_sem = re.search(r"semana\s*(\d+)", date_val, re.IGNORECASE)
+            week_num = int(m_sem.group(1)) if m_sem else 1
             date_str = f"{next_y}-{next_m:02d}-S{week_num}"
         else:
             continue
@@ -202,6 +205,13 @@ def parse():
         entry = {"date": date_str}
         entry.update(row_data)
         series.append(entry)
+
+    # Los embeds sólo entienden «AAAA-MM» y «AAAA-MM-S1..5»: un rótulo distinto
+    # tumba el gráfico entero («No se pudieron cargar los datos»). Abortamos antes
+    # de escribir: vale más el último dato bueno que una serie que no se dibuja.
+    raros = [s["date"] for s in series if not re.fullmatch(r"\d{4}-\d{2}(-S[1-5])?", s["date"])]
+    if raros:
+        raise ValueError(f"Rótulos de período no reconocidos: {raros}. Revisar la cabecera del Excel del BCB.")
 
     monthly = [s for s in series if "-S" not in s["date"]]
     weekly = [s for s in series if "-S" in s["date"]]
