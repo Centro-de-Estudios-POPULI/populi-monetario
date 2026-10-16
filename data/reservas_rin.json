@@ -5,14 +5,14 @@
     "fuente": "Banco Central de Bolivia (BCB) — Estadísticas Semanales",
     "unidad": "Millones de USD",
     "frecuencia": "Mensual + Semanal",
-    "ultimo_dato": "2026-09-S5",
-    "ultimo_mensual": "2026-08",
+    "ultimo_dato": "2026-10-S2",
+    "ultimo_mensual": "2026-09",
     "primer_dato": "1987-12",
-    "observaciones": 459,
-    "observaciones_mensuales": 454,
-    "ultimo_rin": 4084.49,
-    "ultimo_rib": 4084.49,
-    "var_12m_rin_pct": 48.9
+    "observaciones": 457,
+    "observaciones_mensuales": 455,
+    "ultimo_rin": 3942.96,
+    "ultimo_rib": 3942.96,
+    "var_12m_rin_pct": 20.1
   },
   "series": [
     {
@@ -4102,49 +4102,31 @@
       "fmi": 35.74
     },
     {
-      "date": "2026-09-S1",
-      "rib": 4266.87,
-      "rin": 4266.87,
-      "oro": 3524.62,
-      "divisas": 676.77,
-      "deg": 29.76,
-      "fmi": 35.73
+      "date": "2026-09",
+      "rib": 3932.78,
+      "rin": 3932.78,
+      "oro": 3389.67,
+      "divisas": 478.07,
+      "deg": 29.57,
+      "fmi": 35.48
     },
     {
-      "date": "2026-09-S2",
-      "rib": 4214.02,
-      "rin": 4214.02,
-      "oro": 3476.09,
-      "divisas": 672.31,
-      "deg": 29.82,
-      "fmi": 35.8
+      "date": "2026-10-S1",
+      "rib": 3966.33,
+      "rin": 3966.33,
+      "oro": 3399.92,
+      "divisas": 502.48,
+      "deg": 28.53,
+      "fmi": 35.4
     },
     {
-      "date": "2026-09-S3",
-      "rib": 4160.21,
-      "rin": 4160.21,
-      "oro": 3513.08,
-      "divisas": 581.88,
-      "deg": 29.65,
-      "fmi": 35.6
-    },
-    {
-      "date": "2026-09-S4",
-      "rib": 4053.1,
-      "rin": 4053.1,
-      "oro": 3452.62,
-      "divisas": 535.57,
-      "deg": 29.5,
-      "fmi": 35.42
-    },
-    {
-      "date": "2026-09-S5",
-      "rib": 4084.49,
-      "rin": 4084.49,
-      "oro": 3488.84,
-      "divisas": 530.67,
-      "deg": 29.53,
-      "fmi": 35.45
+      "date": "2026-10-S2",
+      "rib": 3942.96,
+      "rin": 3942.96,
+      "oro": 3372.83,
+      "divisas": 506.28,
+      "deg": 28.49,
+      "fmi": 35.35
     }
   ]
 }
