@@ -62,7 +62,16 @@
     var estado = { rango: 'desde2010', idx: null };
     var activas = new Set(COMP.map(function (c) { return c.k; }));
     var S, M, K, si = 0, grafico;
-    var bs = function (v) { return PM.mm(v, 'Bs'); };
+    // Hasta el año de la nota del cuadro del BCB («Hasta 1984, está expresado en bolivianos») el balance va en
+    // bolivianos: en millones son cifras como 0,005275, que con el formato del molde se leerían «0,0». En esos
+    // años, debajo de un millón, cuatro cifras significativas (el dato es el boliviano entero); en los demás,
+    // el formato del molde (el dato trae dos decimales).
+    var monto = function (v, fecha) {
+      var a = Math.abs(v || 0), anio = +String(fecha).slice(0, 4);
+      if (!a || a >= 1 || !(anio <= ((M && M.hasta_en_bolivianos) || 0))) return PM.auto(v || 0);
+      return PM.num(v, Math.min(6, Math.ceil(-Math.log10(a)) + 3));
+    };
+    var bs = function (v, fecha) { return monto(v, fecha) + ' MM Bs'; };
     var parte = function (v, t) { return t > 0 ? v / t * 100 : 0; };
     // En el panel el porcentaje va en la misma línea del valor: con seis partidas, una línea más por
     // ítem dejaba la conclusión fuera de la vista.
@@ -133,9 +142,9 @@
             var c = COMP.filter(function (q) { return q.nombre === p.seriesName; })[0];
             if (!c) return;
             var v = x[c.k] || 0;
-            h += PM.ttFila(c.color, c.nombre, PM.auto(v) + '<span style="color:rgba(255,255,255,.5);font-weight:500;margin-left:8px">' + PM.pct(parte(v, t), 1) + '</span>', 'area');
+            h += PM.ttFila(c.color, c.nombre, monto(v, KV[i]) + '<span style="color:rgba(255,255,255,.5);font-weight:500;margin-left:8px">' + PM.pct(parte(v, t), 1) + '</span>', 'area');
           });
-          return h + PM.ttTotal('Total del activo', PM.auto(t));
+          return h + PM.ttTotal('Total del activo', monto(t, KV[i]));
         }, { axisPointer: PM.sombraEje() }),
         series: series
       };
@@ -152,9 +161,9 @@
       else txt = 'Balance del BCB con reservas en <strong>' + PM.pct(rib, 1) + '</strong> y crédito al SPNF en <strong>' + PM.pct(sp, 1) + '</strong>. Estructura equilibrada.';
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML = PANEL.map(function (x) {
-        var desc = x[0] === 'otros_ext_tot' ? 'Aportes a organismos internacionales ' + PM.auto(d.aportes_oi || 0) +
-          ' · otros de mediano y largo plazo ' + PM.auto(d.otros_ext || 0) : null;
-        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0), p(x[0]), 'del activo'), desc);
+        var desc = x[0] === 'otros_ext_tot' ? 'Aportes a organismos internacionales ' + monto(d.aportes_oi || 0, d.date) +
+          ' · otros de mediano y largo plazo ' + monto(d.otros_ext || 0, d.date) : null;
+        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0, d.date), p(x[0]), 'del activo'), desc);
       }).join('') + PM.ctx(txt);
     }
 
@@ -164,6 +173,7 @@
       ['Deterioro del balance', 'Si el crédito al SPNF crece mientras las RIB caen, el BCB está <strong>sustituyendo activos de calidad</strong> (divisas) por crédito al gobierno (activo de menor calidad). Este deterioro compromete la capacidad de defender el tipo de cambio.'],
       ['Activos buenos vs. malos', 'Un activo es <strong>«bueno»</strong> si proporciona solvencia y liquidez inmediata (reservas en divisas, oro monetario). Un activo es <strong>«malo»</strong> si es ilíquido, riesgoso o de dudoso valor (créditos irrecuperables al gobierno o empresas públicas deficitarias). La proporción entre ambos determina la solidez real del banco central.'],
       ['¿Cómo se agrupan las partidas?', 'El gráfico apila <strong>todas las partidas</strong> del balance que publica el BCB, así que la altura de cada barra es el activo total: reservas internacionales brutas, crédito al sector público, crédito al sistema financiero, <strong>otros activos externos</strong> (aportes a organismos internacionales y otros activos externos de mediano y largo plazo) y otras cuentas del activo. Antes de publicar se comprueba, mes a mes desde 1977, que la suma cierre con el total del cuadro.'],
+      ['Las cifras hasta 1984', 'El BCB publica este cuadro en miles de bolivianos, pero su nota al pie aclara que <strong>hasta 1984 está expresado en bolivianos</strong>. Aquí todo va en millones de bolivianos actuales, y la reforma monetaria de 1987 cambió <strong>un boliviano por un millón de pesos bolivianos</strong>: por eso, en millones, el balance de esos años da cifras tan chicas. La composición en porcentaje no cambia.'],
       ['Dominancia fiscal', 'La <strong>dominancia fiscal</strong> ocurre cuando la política fiscal (decisiones de gasto e ingresos del gobierno) impone restricciones sobre la política monetaria, limitando la capacidad del BCB para controlar la inflación. Se manifiesta cuando el crédito al sector público domina el activo, convirtiendo al banco central en financiador del Estado en lugar de garante de la estabilidad monetaria.']
     ];
   })();

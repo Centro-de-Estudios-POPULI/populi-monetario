@@ -68,7 +68,16 @@
     var estado = { rango: 'desde2010', idx: null };
     var activas = new Set(COMP.map(function (c) { return c.k; }));
     var S, M, K, si = 0, grafico;
-    var bs = function (v) { return PM.mm(v, 'Bs'); };
+    // Hasta el año de la nota del cuadro del BCB («Hasta 1984, está expresado en bolivianos») el balance va en
+    // bolivianos: en millones son cifras como 0,00503, que con el formato del molde se leerían «0,0». En esos
+    // años, debajo de un millón, cuatro cifras significativas (el dato es el boliviano entero); en los demás,
+    // el formato del molde (el dato trae dos decimales).
+    var monto = function (v, fecha) {
+      var a = Math.abs(v || 0), anio = +String(fecha).slice(0, 4);
+      if (!a || a >= 1 || !(anio <= ((M && M.hasta_en_bolivianos) || 0))) return PM.auto(v || 0);
+      return PM.num(v, Math.min(6, Math.ceil(-Math.log10(a)) + 3));
+    };
+    var bs = function (v, fecha) { return monto(v, fecha) + ' MM Bs'; };
     // Total del pasivo = total del activo (columna «TOTAL ACTIVO Y PASIVO» del cuadro). Las siete
     // series del gráfico lo suman exacto: el scraper comprueba la identidad mes a mes.
     var total = function (d) {
@@ -162,9 +171,9 @@
             if (!c) return;
             var v = x[c.k] || 0;
             if (c.k === 'cdd' && Math.abs(v) < 0.0005) return;
-            h += PM.ttFila(c.color, c.nombre, PM.auto(v) + '<span style="color:rgba(255,255,255,.5);font-weight:500;margin-left:8px">' + PM.pct(parte(v, t), 1) + '</span>', 'area');
+            h += PM.ttFila(c.color, c.nombre, monto(v, KV[i]) + '<span style="color:rgba(255,255,255,.5);font-weight:500;margin-left:8px">' + PM.pct(parte(v, t), 1) + '</span>', 'area');
           });
-          return h + PM.ttTotal('Total del pasivo', PM.auto(t));
+          return h + PM.ttTotal('Total del pasivo', monto(t, KV[i]));
         }, { axisPointer: PM.sombraEje() }),
         series: series
       };
@@ -178,15 +187,15 @@
         ? 'La emisión representa <strong>' + PM.pct(p('emision'), 1) + '</strong> del pasivo: estructura <strong>concentrada</strong> en billetes. Los depósitos bancarios y del sector público complementan.'
         : 'Estructura del pasivo con la emisión en <strong>' + PM.pct(p('emision'), 1) + '</strong> y los depósitos bancarios en <strong>' + PM.pct(p('dep_bancarios'), 1) + '</strong>. Los depósitos del sector público (<strong>' + PM.pct(p('dep_sp_total'), 1) + '</strong>) reflejan la posición fiscal del gobierno en el BCB.';
       var pe = p('pas_ext');
-      if (pe >= 1) txt += ' Los <strong>pasivos externos</strong> suman ' + bs(d.pas_ext) + ' (<strong>' + PM.pct(pe, 1) + '</strong> del pasivo)' +
+      if (pe >= 1) txt += ' Los <strong>pasivos externos</strong> suman ' + bs(d.pas_ext, d.date) + ' (<strong>' + PM.pct(pe, 1) + '</strong> del pasivo)' +
         ((d.oblig_ext_mlp || 0) > 0.9 * d.pas_ext ? ', casi todos obligaciones de mediano y largo plazo.' : '.');
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML = PANEL.map(function (x) {
         if (x[0] === 'cdd' && Math.abs(d.cdd || 0) < 0.0005) return '';
-        var desc = x[0] === 'pas_ext' ? 'Obligaciones de corto plazo ' + PM.auto(d.oblig_ext_cp || 0) + ' · de mediano y largo plazo ' +
-          PM.auto(d.oblig_ext_mlp || 0) + ' · depósitos de organismos internacionales ' + PM.auto(d.dep_oi || 0)
+        var desc = x[0] === 'pas_ext' ? 'Obligaciones de corto plazo ' + monto(d.oblig_ext_cp || 0, d.date) + ' · de mediano y largo plazo ' +
+          monto(d.oblig_ext_mlp || 0, d.date) + ' · depósitos de organismos internacionales ' + monto(d.dep_oi || 0, d.date)
           : x[0] === 'cdd' ? 'Certificados de devolución de depósitos, emitidos tras la liquidación de bancos' : null;
-        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0), p(x[0]), 'del pasivo'), desc);
+        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0, d.date), p(x[0]), 'del pasivo'), desc);
       }).join('') + PM.ctx(txt);
     }
 
@@ -196,6 +205,7 @@
       ['Depósitos del sector público', 'Cuando el gobierno deposita ingresos en el BCB (impuestos, regalías), esos depósitos <strong>contraen la base monetaria</strong>. Cuando los retira para gastar, la <strong>expanden</strong>. Es un canal directo de transmisión fiscal-monetaria.'],
       ['Acreedores del banco central', 'La composición del pasivo muestra <strong>quiénes son los mayores acreedores del BCB</strong>: el público (vía emisión de billetes), el sector financiero (depósitos de encaje), el sector público (depósitos del gobierno) y organismos internacionales (obligaciones externas). Entender quién tiene derechos sobre los pasivos del BCB revela las presiones y restricciones de la política monetaria.'],
       ['¿Cómo se agrupan las partidas?', 'El gráfico apila <strong>todas las partidas</strong> del balance que publica el BCB, así que la altura de cada barra es el pasivo total, igual al activo total: emisión, depósitos bancarios, depósitos del sector público, <strong>pasivos externos</strong> (obligaciones con el exterior de corto y de mediano y largo plazo, y depósitos de organismos internacionales), capital y reservas, otras cuentas del pasivo y, entre 1994 y 2010, los <strong>CDD</strong> (certificados de devolución de depósitos emitidos tras la liquidación de bancos). Antes de publicar se comprueba, mes a mes desde 1977, que la suma cierre con el total del cuadro.'],
+      ['Las cifras hasta 1984', 'El BCB publica este cuadro en miles de bolivianos, pero su nota al pie aclara que <strong>hasta 1984 está expresado en bolivianos</strong>. Aquí todo va en millones de bolivianos actuales, y la reforma monetaria de 1987 cambió <strong>un boliviano por un millón de pesos bolivianos</strong>: por eso, en millones, el balance de esos años da cifras tan chicas. La composición en porcentaje no cambia.'],
       ['Pasivo y calidad del dinero', 'Desde la <strong>teoría cualitativa del dinero</strong>, la composición del pasivo refleja la calidad de la moneda. Un pasivo dominado por emisión sin respaldo en reservas indica un banco central que financia al gobierno imprimiendo dinero. La relación <strong>emisión/pasivo total</strong> es un indicador clave de la presión inflacionaria latente en la economía.']
     ];
   })();

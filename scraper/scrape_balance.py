@@ -1,7 +1,12 @@
 """
 Scraper: Balance del BCB (Activo y Pasivo)
-Fuente: BCB — cuadro «4. Banco Central.xlsx» (Balances Consolidados), en miles de bolivianos.
+Fuente: BCB — cuadro «4. Banco Central.xlsx» (Balances Consolidados), en miles de bolivianos, salvo los años
+que exceptúa su nota al pie: «Hasta 1984, está expresado en bolivianos».
 Genera: data/activo_bcb.json, data/pasivo_bcb.json (en millones de Bs)
+
+La nota se lee del propio cuadro, en las dos hojas: los años hasta el que dice van en bolivianos y se dividen
+por 1.000.000; los demás, en miles, por 1.000. Si la nota falta, cambia de redacción o dice años distintos en
+cada hoja, el scraper aborta sin escribir: la unidad de los años viejos se revisa a mano.
 
 Cada partida se ubica por su RÓTULO, no por número de columna (lección del scraper de RIN:
 el BCB inserta columnas y un mapa fijo lee partidas equivocadas sin avisar). Y antes de escribir
@@ -33,7 +38,8 @@ import requests
 URL = "https://www.bcb.gob.bo/webdocs/sector_monetario/Balances%20Consolidados/4.%20Banco%20Central.xlsx"
 OUT_DIR = Path(__file__).resolve().parent.parent / "data"
 XLSX_PATH = Path(__file__).resolve().parent / "bcb_raw" / "balance_bcb.xlsx"
-TOLERANCIA = 2.0   # miles de Bs: el cuadro redondea cada partida por separado
+TOLERANCIA = 2.0   # en la unidad del cuadro (miles de Bs; bolivianos en los años de la nota): cada partida va redondeada
+NOTA_BOLIVIANOS = re.compile(r"hasta\s+(\d{4})\s*,?\s*est[aá]\s+expresad[oa]\s+en\s+bolivianos", re.IGNORECASE)
 
 # El WAF del BCB puede rechazar (403) el User-Agent por defecto de python-requests.
 HEADERS = {
@@ -191,7 +197,22 @@ def verificar(nombre, filas, total, partes):
     print(f"  ✓ {nombre}: cierra en {len(filas)} meses")
 
 
-def mm(v):
+def hasta_en_bolivianos(ws):
+    """El año hasta el que la hoja está en bolivianos, según su nota al pie («Hasta 1984, está expresado en
+    bolivianos»). Aborta si la nota no está o si dice más de un año."""
+    anios = {int(m.group(1)) for fila in ws.iter_rows(values_only=True) for v in fila
+             if isinstance(v, str) for m in [NOTA_BOLIVIANOS.search(v)] if m}
+    if len(anios) != 1:
+        raise ValueError(f"{ws.title}: la nota «Hasta AAAA, está expresado en bolivianos» no está o es ambigua "
+                         f"({sorted(anios)}): revisar a mano la unidad de los años viejos")
+    return anios.pop()
+
+
+def mm(v, fecha, hasta):
+    """A millones de Bs: los años de la nota están en bolivianos (seis decimales: el boliviano entero); el
+    resto, en miles (dos decimales)."""
+    if int(fecha[:4]) <= hasta:
+        return round(v / 1_000_000, 6)
     return round(v / 1000, 2)
 
 
@@ -201,6 +222,10 @@ def main():
     wb = openpyxl.load_workbook(str(XLSX_PATH), data_only=True)
 
     wa, wp = wb["Activo"], wb["Pasivo"]
+    hasta = hasta_en_bolivianos(wa)
+    if hasta_en_bolivianos(wp) != hasta:
+        raise ValueError("Las notas de Activo y Pasivo dicen años distintos para la unidad en bolivianos")
+    print(f"Nota del cuadro: hasta {hasta} en bolivianos (÷ 1.000.000); desde {hasta + 1}, en miles (÷ 1.000)")
     lab_a, ini_a = rotulos(wa)
     lab_p, ini_p = rotulos(wp)
     ca = ubicar(lab_a, ACTIVO, "Activo")
@@ -217,7 +242,7 @@ def main():
     P = leer(wp, cp, ini_p, "emision")
     P = {f: x for f, x in P.items() if f in A}            # el total del pasivo es la columna del activo
 
-    print("Identidades (miles de Bs, tolerancia ±%.0f):" % TOLERANCIA)
+    print("Identidades (en la unidad del cuadro, tolerancia ±%.0f):" % TOLERANCIA)
     verificar("Activo = 6 partidas", A, lambda f, x: x["total_activo"],
               ["rib", "aportes_oi", "otros_ext", "credito_sp", "credito_sf", "otras_ctas"])
     verificar("Pasivo = 9 partidas", P, lambda f, x: A[f]["total_activo"],
@@ -227,15 +252,19 @@ def main():
     verificar("Crédito SF = bancos + otras entidades", A, lambda f, x: x["credito_sf"], ["credito_bancos", "credito_oef"])
     verificar("Depósitos SP = GC + SS + GL + EP", P, lambda f, x: x["dep_sp_total"], ["dep_gc", "dep_ss", "dep_gl", "dep_ep"])
 
-    activo = [{"date": f, **{k: mm(v) for k, v in x.items()}} for f, x in A.items()]
-    pasivo = [{"date": f, **{k: mm(v) for k, v in x.items()}, "total_pasivo": mm(A[f]["total_activo"])} for f, x in P.items()]
+    activo = [{"date": f, **{k: mm(v, f, hasta) for k, v in x.items()}} for f, x in A.items()]
+    pasivo = [{"date": f, **{k: mm(v, f, hasta) for k, v in x.items()}, "total_pasivo": mm(A[f]["total_activo"], f, hasta)}
+              for f, x in P.items()]
     ua, up = activo[-1], pasivo[-1]
+    nota_unidad = (f"El cuadro dice «En miles de bolivianos», con la nota «Hasta {hasta}, está expresado en bolivianos»: "
+                   f"hasta {hasta} se divide por 1.000.000 y desde {hasta + 1} por 1.000. Son bolivianos de hoy: la reforma "
+                   f"de 1987 cambió un boliviano por un millón de pesos bolivianos.")
 
     salida_a = {"metadata": {
         "titulo": "Activo del Banco Central de Bolivia",
         "subtitulo": "Composición del activo: reservas, otros activos externos, crédito al sector público y financiero",
         "fuente": "Banco Central de Bolivia (BCB) — 4. Banco Central.xlsx",
-        "unidad": "Millones de Bs", "frecuencia": "Mensual",
+        "unidad": "Millones de Bs", "nota_unidad": nota_unidad, "hasta_en_bolivianos": hasta, "frecuencia": "Mensual",
         "identidad": "total_activo = rib + aportes_oi + otros_ext + credito_sp + credito_sf + otras_ctas",
         "ultimo_dato": ua["date"], "primer_dato": activo[0]["date"], "observaciones": len(activo),
         "total_activo_mm": ua["total_activo"], "rib_mm": ua["rib"], "credito_sp_mm": ua["credito_sp"], "credito_sf_mm": ua["credito_sf"],
@@ -244,7 +273,7 @@ def main():
         "titulo": "Pasivo del Banco Central de Bolivia",
         "subtitulo": "Composición del pasivo: emisión, depósitos, pasivos externos, capital y otras cuentas",
         "fuente": "Banco Central de Bolivia (BCB) — 4. Banco Central.xlsx",
-        "unidad": "Millones de Bs", "frecuencia": "Mensual",
+        "unidad": "Millones de Bs", "nota_unidad": nota_unidad, "hasta_en_bolivianos": hasta, "frecuencia": "Mensual",
         "identidad": "total_pasivo = emision + dep_bancarios + oblig_ext_cp + dep_sp_total + dep_oi + oblig_ext_mlp + otras_ctas + cdd + capital",
         "ultimo_dato": up["date"], "primer_dato": pasivo[0]["date"], "observaciones": len(pasivo),
         "emision_mm": up["emision"], "dep_sp_mm": up["dep_sp_total"], "dep_bancarios_mm": up["dep_bancarios"],
