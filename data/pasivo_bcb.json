@@ -8,14 +8,14 @@
     "hasta_en_bolivianos": 1984,
     "frecuencia": "Mensual",
     "identidad": "total_pasivo = emision + dep_bancarios + oblig_ext_cp + dep_sp_total + dep_oi + oblig_ext_mlp + otras_ctas + cdd + capital",
-    "ultimo_dato": "2026-08",
+    "ultimo_dato": "2026-09",
     "primer_dato": "1977-12",
-    "observaciones": 464,
-    "emision_mm": 105416.62,
-    "dep_sp_mm": 48183.49,
-    "dep_bancarios_mm": 80276.24,
-    "pasivos_externos_mm": 8249.38,
-    "total_pasivo_mm": 279239.23
+    "observaciones": 465,
+    "emision_mm": 106848.47,
+    "dep_sp_mm": 44377.77,
+    "dep_bancarios_mm": 80526.11,
+    "pasivos_externos_mm": 8305.37,
+    "total_pasivo_mm": 271151.89
   },
   "series": [
     {
@@ -8833,6 +8833,25 @@
       "capital": 18176.1,
       "dep_sp_total": 48183.49,
       "total_pasivo": 279239.23
+    },
+    {
+      "date": "2026-09",
+      "emision": 106848.47,
+      "dep_bancarios": 80526.11,
+      "oblig_ext_cp": 0.0,
+      "oblig_fmi": 0.0,
+      "oblig_bancos_oi": 0.0,
+      "dep_gc": 21962.35,
+      "dep_ss": 8134.77,
+      "dep_gl": 10609.01,
+      "dep_ep": 3671.64,
+      "dep_oi": 13.78,
+      "oblig_ext_mlp": 8291.59,
+      "otras_ctas": 11601.02,
+      "cdd": 0.0,
+      "capital": 19493.16,
+      "dep_sp_total": 44377.77,
+      "total_pasivo": 271151.89
     }
   ]
 }

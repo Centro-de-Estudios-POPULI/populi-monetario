@@ -5,11 +5,11 @@
     "fuente": "Banco Central de Bolivia (BCB)",
     "unidad": "Millones de Bs",
     "frecuencia": "Mensual",
-    "ultimo_dato": "2026-08",
+    "ultimo_dato": "2026-09",
     "primer_dato": "1987-12",
-    "observaciones": 454,
-    "ultima_emision_mm": 105416.62,
-    "var_12m_pct": 9.5
+    "observaciones": 455,
+    "ultima_emision_mm": 106848.47,
+    "var_12m_pct": 9.2
   },
   "series": [
     {
@@ -2735,6 +2735,12 @@
       "emision": 105416.62,
       "caja_sf": 15303.94,
       "billetes": 90112.68
+    },
+    {
+      "date": "2026-09",
+      "emision": 106848.47,
+      "caja_sf": 15956.9,
+      "billetes": 90891.57
     }
   ]
 }

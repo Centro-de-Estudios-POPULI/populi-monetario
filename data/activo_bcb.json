@@ -8,13 +8,13 @@
     "hasta_en_bolivianos": 1984,
     "frecuencia": "Mensual",
     "identidad": "total_activo = rib + aportes_oi + otros_ext + credito_sp + credito_sf + otras_ctas",
-    "ultimo_dato": "2026-08",
+    "ultimo_dato": "2026-09",
     "primer_dato": "1977-12",
-    "observaciones": 464,
-    "total_activo_mm": 279239.23,
-    "rib_mm": 51140.41,
-    "credito_sp_mm": 200254.2,
-    "credito_sf_mm": 17563.62
+    "observaciones": 465,
+    "total_activo_mm": 271151.89,
+    "rib_mm": 47272.07,
+    "credito_sp_mm": 199757.94,
+    "credito_sf_mm": 13651.67
   },
   "series": [
     {
@@ -8832,6 +8832,25 @@
       "credito_oef": 2584.75,
       "otras_ctas": 3688.04,
       "total_activo": 279239.23
+    },
+    {
+      "date": "2026-09",
+      "rib": 47272.07,
+      "oro": 40743.81,
+      "divisas": 1679.71,
+      "otros_rib": 4848.55,
+      "aportes_oi": 2663.2,
+      "otros_ext": 3985.08,
+      "credito_sp": 199757.94,
+      "credito_gc": 164579.68,
+      "credito_ss": 0.0,
+      "credito_gl": 0.0,
+      "credito_ep": 35178.26,
+      "credito_sf": 13651.67,
+      "credito_bancos": 14130.46,
+      "credito_oef": -478.79,
+      "otras_ctas": 3821.94,
+      "total_activo": 271151.89
     }
   ]
 }
