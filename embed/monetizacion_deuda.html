@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Monetización de la Deuda Pública · Populi</title>
+  <title data-en="Monetization of Public Debt · Populi">Monetización de la Deuda Pública · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -14,12 +14,12 @@
 <body>
   <div class="wrap">
     <div class="sec-hd">
-      <div class="sec-title"><span class="accent-bar"></span>Monetización de la Deuda Pública</div>
-      <div class="sec-sub">Crédito neto del BCB al SPNF como porcentaje del activo total del BCB</div>
+      <div class="sec-title" data-en='<span class="accent-bar"></span>Monetization of Public Debt'><span class="accent-bar"></span>Monetización de la Deuda Pública</div>
+      <div class="sec-sub" data-en="Net credit of the BCB to the NFPS as a percentage of the total assets of the BCB">Crédito neto del BCB al SPNF como porcentaje del activo total del BCB</div>
     </div>
 
     <div class="hz-bar">
-      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Range">Rango</span><div class="hz-grp" id="b-rango"></div></div>
     </div>
 
     <div class="kpi-grid" id="kpis"></div>
@@ -27,10 +27,10 @@
     <div class="main-grid">
       <div class="chart-card">
         <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
-        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando datos de monetización…</span></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span data-en="Loading monetization data…">Cargando datos de monetización…</span></div></div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><span class="panel-hd-t">Análisis de monetización</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-hd"><span class="panel-hd-t" data-en="Monetization analysis">Análisis de monetización</span><span class="panel-hd-d" id="panel-fecha"></span></div>
         <div class="panel-body" id="panel"></div>
       </div>
     </div>
@@ -41,13 +41,13 @@
 
   <script>
   (function () {
-    var C = PM.C;
+    var C = PM.C, T = PM.t;   // T('castellano', 'inglés'): con ?lang=en el gráfico sale en inglés
     // En tema oscuro las empresas públicas (petróleo) suben a menta: el petróleo queda bajo 3:1 contra la tarjeta (validado).
     var SERIES = [
-      { k: 'total_pct', nombre: 'Créd. neto SPNF / Activo', corto: 'Créd. neto total', color: C.rojo, ancho: 2.5, forma: 'linea', area: true },
-      { k: 'gc_pct', nombre: 'Gob. central / Activo', corto: 'Gob. central', color: C.oro, ancho: 1.75, forma: 'linea' },
-      { k: 'rib_pct', nombre: 'Reservas / Activo', corto: 'Reservas (RIB)', color: C.turquesa, ancho: 1.75, forma: 'linea' },
-      { k: 'ep_pct', nombre: 'Emp. públicas / Activo', corto: 'Emp. públicas', color: { claro: C.petroleo, oscuro: C.menta }, ancho: 1.75, forma: 'punteada' }
+      { k: 'total_pct', nombre: T('Créd. neto SPNF / Activo', 'Net NFPS credit / Assets'), corto: T('Créd. neto total', 'Total net credit'), color: C.rojo, ancho: 2.5, forma: 'linea', area: true },
+      { k: 'gc_pct', nombre: T('Gob. central / Activo', 'Central gov. / Assets'), corto: T('Gob. central', 'Central gov.'), color: C.oro, ancho: 1.75, forma: 'linea' },
+      { k: 'rib_pct', nombre: T('Reservas / Activo', 'Reserves / Assets'), corto: T('Reservas (RIB)', 'Reserves (GIR)'), color: C.turquesa, ancho: 1.75, forma: 'linea' },
+      { k: 'ep_pct', nombre: T('Emp. públicas / Activo', 'Public enterprises / Assets'), corto: T('Emp. públicas', 'Public enterprises'), color: { claro: C.petroleo, oscuro: C.menta }, ancho: 1.75, forma: 'punteada' }
     ];
     var COL = { total_pct: SERIES[0].color, gc_pct: SERIES[1].color, rib_pct: SERIES[2].color, ep_pct: SERIES[3].color };
     var estado = { rango: 'desde2010', idx: null };
@@ -55,7 +55,8 @@
     var G, K, si = 0, grafico;
     // índice del último dato no nulo (el punto final va ahí, no en un hueco)
     var ultimoDato = function (data) { var n = data.length - 1; while (n > 0 && data[n] == null) n--; return n; };
-    var bs = function (v) { return PM.num(v, 0) + ' MM Bs'; };
+    // en inglés, «M» y la moneda adelante, como PM.mm: «Bs 155,380 M» (el signo antes de la moneda: «−Bs 393 M»)
+    var bs = function (v) { return PM.en ? PM.num(v, 0).replace(/^(−?)/, '$1Bs ') + ' M' : PM.num(v, 0) + ' MM Bs'; };
 
     // Crédito neto del BCB al SPNF (monetizacion_deuda.json) sobre el activo total del BCB (activo_bcb.json), mes a mes
     function unir(deuda, activo) {
@@ -75,7 +76,7 @@
     PM.cargar(['monetizacion_deuda.json', 'activo_bcb.json']).then(function (r) {
       G = unir(r[0], r[1]);
       K = G.map(function (x) { return x.date; }); estado.idx = G.length - 1;
-      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+      PM.botonera(document.getElementById('b-rango'), [['5a', T('5 años', '5 years')], ['desde2010', T('Desde 2010', 'Since 2010')], ['desde2000', T('Desde 2000', 'Since 2000')], ['todo', T('Todo', 'All')]],
         estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
       PM.pastillas(document.getElementById('pastillas'),
         SERIES.map(function (s) { return { k: s.k, nombre: s.corto, color: s.color, forma: s.forma }; }),
@@ -88,17 +89,19 @@
       panel(estado.idx);
       PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
       PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
-      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(G[G.length - 1].date);
+      document.getElementById('fuente').innerHTML = T(
+        'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ',
+        'Source: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Analysis: Centro de Estudios POPULI · Data as of: ') + PM.fecha(G[G.length - 1].date);
     }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
     function cifras() {
       var u = G[G.length - 1];
       var serie = function (k) { return PM.ultimos(G.map(function (x) { return x[k]; }), 24); };   // últimos 24 meses de cada razón
       document.getElementById('kpis').innerHTML =
-        PM.kpi({ color: COL.total_pct, rotulo: 'Créd. neto SPNF / Activo', valor: PM.pct(u.total_pct, 1), delta: u.total_pct > 50 ? 'Dominancia fiscal' : 'Moderado', tono: u.total_pct > 50 ? 'malo' : 'neutro', serie: serie('total_pct') }) +
-        PM.kpi({ color: COL.gc_pct, rotulo: 'Gob. central / Activo', valor: PM.pct(u.gc_pct, 1), delta: 'Principal deudor', tono: 'neutro', serie: serie('gc_pct') }) +
-        PM.kpi({ color: COL.rib_pct, rotulo: 'Reservas (RIB) / Activo', valor: PM.pct(u.rib_pct, 1), delta: u.rib_pct < 20 ? 'Bajo respaldo' : 'Respaldo externo', tono: u.rib_pct < 20 ? 'malo' : 'neutro', serie: serie('rib_pct') }) +
-        PM.kpi({ color: COL.ep_pct, rotulo: 'Emp. públicas / Activo', valor: PM.pct(u.ep_pct, 1), delta: 'YPFB, ENDE, etc.', tono: 'neutro', serie: serie('ep_pct') });
+        PM.kpi({ color: COL.total_pct, rotulo: T('Créd. neto SPNF / Activo', 'Net NFPS credit / Assets'), valor: PM.pct(u.total_pct, 1), delta: u.total_pct > 50 ? T('Dominancia fiscal', 'Fiscal dominance') : T('Moderado', 'Moderate'), tono: u.total_pct > 50 ? 'malo' : 'neutro', serie: serie('total_pct') }) +
+        PM.kpi({ color: COL.gc_pct, rotulo: T('Gob. central / Activo', 'Central gov. / Assets'), valor: PM.pct(u.gc_pct, 1), delta: T('Principal deudor', 'Main debtor'), tono: 'neutro', serie: serie('gc_pct') }) +
+        PM.kpi({ color: COL.rib_pct, rotulo: T('Reservas (RIB) / Activo', 'Reserves (GIR) / Assets'), valor: PM.pct(u.rib_pct, 1), delta: u.rib_pct < 20 ? T('Bajo respaldo', 'Low backing') : T('Respaldo externo', 'External backing'), tono: u.rib_pct < 20 ? 'malo' : 'neutro', serie: serie('rib_pct') }) +
+        PM.kpi({ color: COL.ep_pct, rotulo: T('Emp. públicas / Activo', 'Public enterprises / Assets'), valor: PM.pct(u.ep_pct, 1), delta: T('YPFB, ENDE, etc.', 'YPFB, ENDE, etc.'), tono: 'neutro', serie: serie('ep_pct') });
     }
 
     function opciones() {
@@ -121,7 +124,7 @@
         if (hayNeg) marcas.push({ yAxis: 0, lineStyle: cero.lineStyle, label: { show: false } });
         // umbral: punteado de 1,25 px en pizarra, como toda referencia
         marcas.push({ yAxis: 50, lineStyle: { color: PM.var('--pizarra'), width: 1.25, type: 'dashed' },
-          label: { show: true, formatter: '50% — Dominancia fiscal', position: 'insideStartTop', fontFamily: PM.inter(), fontSize: 9.5, fontWeight: 600, color: PM.var('--pizarra'),
+          label: { show: true, formatter: T('50% — Dominancia fiscal', '50% — Fiscal dominance'), position: 'insideStartTop', fontFamily: PM.inter(), fontSize: 9.5, fontWeight: 600, color: PM.var('--pizarra'),
             textBorderColor: PM.var('--card') || '#fff', textBorderWidth: 3 } });
         series[0].markLine = { silent: true, symbol: 'none', animation: false, data: marcas };
       }
@@ -150,25 +153,40 @@
       if (i == null || !G || !G[i]) return;
       estado.idx = i;
       var d = G[i], txt;
-      if (d.total_pct > 70) txt = 'El crédito al SPNF absorbe <strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo del BCB: <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>' + PM.pct(d.rib_pct, 1) + '</strong>. El banco central está funcionalmente subordinado al fisco.';
-      else if (d.total_pct > 50) txt = '<strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo es crédito al gobierno. <strong>Dominancia fiscal clara</strong>: la política monetaria depende de las necesidades de financiamiento del Estado.';
-      else if (d.total_pct > 0) txt = 'Crédito neto al SPNF en <strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo. Nivel <strong>moderado</strong> de monetización, con reservas en <strong>' + PM.pct(d.rib_pct, 1) + '</strong>.';
-      else txt = 'Crédito neto <strong>negativo (' + PM.pct(d.total_pct, 1) + ')</strong>: el gobierno tiene más depósitos que préstamos en el BCB, es decir, es <strong>acreedor neto</strong> del banco central. Situación posterior a las reformas estructurales de 1985, cuando el Estado mantenía superávits y depósitos que excedían su endeudamiento con el BCB.';
+      if (d.total_pct > 70) txt = T('El crédito al SPNF absorbe <strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo del BCB: <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>' + PM.pct(d.rib_pct, 1) + '</strong>. El banco central está funcionalmente subordinado al fisco.',
+        'Credit to the NFPS absorbs <strong>' + PM.pct(d.total_pct, 1) + '</strong> of the assets of the BCB: <strong>extreme fiscal dominance</strong>. Reserves barely cover <strong>' + PM.pct(d.rib_pct, 1) + '</strong>. The central bank is functionally subordinated to the fiscal authority.');
+      else if (d.total_pct > 50) txt = T('<strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo es crédito al gobierno. <strong>Dominancia fiscal clara</strong>: la política monetaria depende de las necesidades de financiamiento del Estado.',
+        '<strong>' + PM.pct(d.total_pct, 1) + '</strong> of assets is credit to the government. <strong>Clear fiscal dominance</strong>: monetary policy depends on the financing needs of the State.');
+      else if (d.total_pct > 0) txt = T('Crédito neto al SPNF en <strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo. Nivel <strong>moderado</strong> de monetización, con reservas en <strong>' + PM.pct(d.rib_pct, 1) + '</strong>.',
+        'Net credit to the NFPS at <strong>' + PM.pct(d.total_pct, 1) + '</strong> of assets. A <strong>moderate</strong> level of monetization, with reserves at <strong>' + PM.pct(d.rib_pct, 1) + '</strong>.');
+      else txt = T('Crédito neto <strong>negativo (' + PM.pct(d.total_pct, 1) + ')</strong>: el gobierno tiene más depósitos que préstamos en el BCB, es decir, es <strong>acreedor neto</strong> del banco central. Situación posterior a las reformas estructurales de 1985, cuando el Estado mantenía superávits y depósitos que excedían su endeudamiento con el BCB.',
+        'Net credit is <strong>negative (' + PM.pct(d.total_pct, 1) + ')</strong>: the government has more deposits than loans at the BCB, that is, it is a <strong>net creditor</strong> of the central bank. A situation that followed the structural reforms of 1985, when the State maintained surpluses and deposits that exceeded its debt to the BCB.');
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML =
-        PM.pb(COL.total_pct, 'Créd. neto SPNF / Activo', PM.pct(d.total_pct, 1),
-          'Crédito neto: <strong>' + bs(d.total_neto) + '</strong> de un activo total de <strong>' + bs(d.total_activo) + '</strong>.') +
-        PM.pb(COL.gc_pct, 'Gobierno central / Activo', PM.pct(d.gc_pct, 1)) +
-        PM.pb(COL.rib_pct, 'Reservas (RIB) / Activo', PM.pct(d.rib_pct, 1)) +
+        PM.pb(COL.total_pct, T('Créd. neto SPNF / Activo', 'Net NFPS credit / Assets'), PM.pct(d.total_pct, 1),
+          T('Crédito neto: <strong>' + bs(d.total_neto) + '</strong> de un activo total de <strong>' + bs(d.total_activo) + '</strong>.',
+            'Net credit: <strong>' + bs(d.total_neto) + '</strong> out of total assets of <strong>' + bs(d.total_activo) + '</strong>.')) +
+        PM.pb(COL.gc_pct, T('Gobierno central / Activo', 'Central government / Assets'), PM.pct(d.gc_pct, 1)) +
+        PM.pb(COL.rib_pct, T('Reservas (RIB) / Activo', 'Reserves (GIR) / Assets'), PM.pct(d.rib_pct, 1)) +
         PM.ctx(txt);
     }
 
     var PREGUNTAS = [
-      ['¿Qué mide este indicador?', 'Muestra qué <strong>porcentaje del activo del BCB</strong> corresponde a crédito al gobierno. Si supera el 50%, más de la mitad del balance del banco central son préstamos al sector público: señal de <strong>dominancia fiscal</strong>.'],
-      ['RIB vs. crédito: la tijera', 'Cuando el crédito al SPNF sube y las reservas bajan, se forma una <strong>«tijera»</strong>: el BCB sustituye activos de calidad (divisas) por deuda del gobierno. Este deterioro compromete la capacidad de defender el tipo de cambio.'],
-      ['¿Cuándo es peligroso?', 'No existe un umbral universal, pero cuando el crédito neto al SPNF supera el <strong>60-70%</strong> del activo total, la política monetaria pierde autonomía efectiva y la inflación depende más de la política fiscal que de las decisiones del banco central.'],
-      ['La deuda pública como respaldo monetario', 'El <strong>respaldo monetario por antonomasia desde el siglo XX ha sido la deuda pública</strong>. Sin embargo, una cantidad excesiva de deuda pública junto a su monetización es la principal causa de la aparición de la inflación en la última centuria. Cuando la demanda de deuda pública se concentra en el banco central, la inflación se dispara.'],
-      ['Mecanismo de la monetización', 'La monetización ocurre cuando el BCB compra deuda del gobierno, inyectando dinero nuevo a la economía. A diferencia de cuando un privado compra bonos (transfiere dinero existente), cuando el banco central lo hace <strong>crea dinero nuevo</strong>. Este es el canal directo entre <strong>déficit fiscal e inflación</strong>: mayor gasto público financiado con emisión deteriora el valor de la moneda.']
+      [T('¿Qué mide este indicador?', 'What does this indicator measure?'), T(
+        'Muestra qué <strong>porcentaje del activo del BCB</strong> corresponde a crédito al gobierno. Si supera el 50%, más de la mitad del balance del banco central son préstamos al sector público: señal de <strong>dominancia fiscal</strong>.',
+        'It shows what <strong>percentage of the assets of the BCB</strong> corresponds to credit to the government. If it exceeds 50%, more than half of the balance sheet of the central bank is loans to the public sector: a sign of <strong>fiscal dominance</strong>.')],
+      [T('RIB vs. crédito: la tijera', 'GIR vs. credit: the scissors'), T(
+        'Cuando el crédito al SPNF sube y las reservas bajan, se forma una <strong>«tijera»</strong>: el BCB sustituye activos de calidad (divisas) por deuda del gobierno. Este deterioro compromete la capacidad de defender el tipo de cambio.',
+        'When credit to the NFPS rises and reserves fall, a <strong>“scissors”</strong> forms: the BCB replaces quality assets (foreign exchange) with government debt. This deterioration compromises the capacity to defend the exchange rate.')],
+      [T('¿Cuándo es peligroso?', 'When is it dangerous?'), T(
+        'No existe un umbral universal, pero cuando el crédito neto al SPNF supera el <strong>60-70%</strong> del activo total, la política monetaria pierde autonomía efectiva y la inflación depende más de la política fiscal que de las decisiones del banco central.',
+        'There is no universal threshold, but when net credit to the NFPS exceeds <strong>60-70%</strong> of total assets, monetary policy loses effective autonomy and inflation depends more on fiscal policy than on the decisions of the central bank.')],
+      [T('La deuda pública como respaldo monetario', 'Public debt as monetary backing'), T(
+        'El <strong>respaldo monetario por antonomasia desde el siglo XX ha sido la deuda pública</strong>. Sin embargo, una cantidad excesiva de deuda pública junto a su monetización es la principal causa de la aparición de la inflación en la última centuria. Cuando la demanda de deuda pública se concentra en el banco central, la inflación se dispara.',
+        'The <strong>monetary backing par excellence since the 20th century has been public debt</strong>. However, an excessive amount of public debt together with its monetization is the main cause of the emergence of inflation over the last century. When the demand for public debt is concentrated in the central bank, inflation soars.')],
+      [T('Mecanismo de la monetización', 'The mechanism of monetization'), T(
+        'La monetización ocurre cuando el BCB compra deuda del gobierno, inyectando dinero nuevo a la economía. A diferencia de cuando un privado compra bonos (transfiere dinero existente), cuando el banco central lo hace <strong>crea dinero nuevo</strong>. Este es el canal directo entre <strong>déficit fiscal e inflación</strong>: mayor gasto público financiado con emisión deteriora el valor de la moneda.',
+        'Monetization occurs when the BCB buys government debt, injecting new money into the economy. Unlike when a private party buys bonds (it transfers existing money), when the central bank does so it <strong>creates new money</strong>. This is the direct channel between <strong>fiscal deficit and inflation</strong>: higher public spending financed with issuance erodes the value of the currency.')]
     ];
   })();
   </script>

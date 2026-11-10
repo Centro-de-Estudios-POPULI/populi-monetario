@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Agregados Monetarios · Populi</title>
+  <title data-en="Monetary Aggregates · Populi">Agregados Monetarios · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -14,12 +14,12 @@
 <body>
   <div class="wrap">
     <div class="sec-hd">
-      <div class="sec-title"><span class="accent-bar"></span>Agregados Monetarios</div>
-      <div class="sec-sub">Tasa de crecimiento interanual (12 meses) de M1, M2, M3 y M4</div>
+      <div class="sec-title" data-en='<span class="accent-bar"></span>Monetary Aggregates'><span class="accent-bar"></span>Agregados Monetarios</div>
+      <div class="sec-sub" data-en="Year-on-year (12-month) growth rate of M1, M2, M3 and M4">Tasa de crecimiento interanual (12 meses) de M1, M2, M3 y M4</div>
     </div>
 
     <div class="hz-bar">
-      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Range">Rango</span><div class="hz-grp" id="b-rango"></div></div>
     </div>
 
     <div class="kpi-grid" id="kpis"></div>
@@ -27,10 +27,10 @@
     <div class="main-grid">
       <div class="chart-card">
         <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
-        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando agregados monetarios…</span></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span data-en="Loading monetary aggregates…">Cargando agregados monetarios…</span></div></div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><span class="panel-hd-t">Lectura del indicador</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-hd"><span class="panel-hd-t" data-en="Reading the indicator">Lectura del indicador</span><span class="panel-hd-d" id="panel-fecha"></span></div>
         <div class="panel-body" id="panel"></div>
       </div>
     </div>
@@ -41,13 +41,13 @@
 
   <script>
   (function () {
-    var C = PM.C;
+    var C = PM.C, T = PM.t;   // T('castellano', 'inglés'): con ?lang=en el gráfico sale en inglés
     // En tema oscuro M2 (petróleo) sube a menta y M1 (granate) a rojo: los dos quedan bajo 3:1 contra la tarjeta (validado).
     var SERIES = [
-      { k: 'm4', nombre: 'M4', largo: 'M4 (liquidez total)', color: C.oro, ancho: 2.5 },
+      { k: 'm4', nombre: 'M4', largo: T('M4 (liquidez total)', 'M4 (total liquidity)'), color: C.oro, ancho: 2.5 },
       { k: 'm3', nombre: 'M3', largo: 'M3', color: C.turquesa, ancho: 1.75 },
       { k: 'm2', nombre: 'M2', largo: 'M2', color: { claro: C.petroleo, oscuro: C.menta }, ancho: 1.75 },
-      { k: 'm1', nombre: 'M1', largo: 'M1 (medio circulante)', color: { claro: C.granate, oscuro: C.rojo }, ancho: 2 }
+      { k: 'm1', nombre: 'M1', largo: T('M1 (medio circulante)', 'M1 (money in circulation)'), color: { claro: C.granate, oscuro: C.rojo }, ancho: 2 }
     ];
     var estado = { rango: 'desde2010', idx: null };
     // Las cuatro tasas se mueven casi juntas y se enredaban: por defecto, dinero en sentido estricto
@@ -72,12 +72,12 @@
       });
     }
     // Para el lector de un monitor monetario, una expansión alta de la liquidez es una señal de alerta
-    function nivel(v) { return v > 10 ? ['Expansión alta', 'malo'] : v > 0 ? ['Crecimiento moderado', 'neutro'] : ['Contracción', 'neutro']; }
+    function nivel(v) { return v > 10 ? [T('Expansión alta', 'High expansion'), 'malo'] : v > 0 ? [T('Crecimiento moderado', 'Moderate growth'), 'neutro'] : [T('Contracción', 'Contraction'), 'neutro']; }
 
     PM.cargar(['agregados_monetarios.json']).then(function (r) {
       DATA = r[0]; crecimiento();
       K = G.map(function (x) { return x.date; }); estado.idx = G.length - 1;
-      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+      PM.botonera(document.getElementById('b-rango'), [['5a', T('5 años', '5 years')], ['desde2010', T('Desde 2010', 'Since 2010')], ['desde2000', T('Desde 2000', 'Since 2000')], ['todo', T('Todo', 'All')]],
         estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
       PM.pastillas(document.getElementById('pastillas'),
         SERIES.map(function (s) { return { k: s.k, nombre: s.nombre, color: s.color, forma: 'linea' }; }),
@@ -90,14 +90,16 @@
       panel(estado.idx);
       PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
       PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
-      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(DATA.metadata.ultimo_dato);
+      document.getElementById('fuente').innerHTML = T(
+        'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ',
+        'Source: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Analysis: Centro de Estudios POPULI · Data as of: ') + PM.fecha(DATA.metadata.ultimo_dato);
     }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
     function cifras() {
       var u = G[G.length - 1];
       document.getElementById('kpis').innerHTML = SERIES.map(function (s) {
         var nv = nivel(u[s.k]);
-        return PM.kpi({ color: s.color, rotulo: 'Crec. ' + s.nombre + ' (12 m)', valor: PM.pct(u[s.k], 1, true), delta: nv[0], tono: nv[1],
+        return PM.kpi({ color: s.color, rotulo: T('Crec. ' + s.nombre + ' (12 m)', s.nombre + ' growth (12 mo)'), valor: PM.pct(u[s.k], 1, true), delta: nv[0], tono: nv[1],
           serie: PM.ultimos(G.map(function (x) { return x[s.k]; }), 24) });
       }).join('');
     }
@@ -138,22 +140,36 @@
       if (i == null || !G || !G[i]) return;
       estado.idx = i;
       var d = G[i], g = d.m4, txt;
-      if (g > 20) txt = 'M4 crece <strong>' + PM.pct(g, 1) + '</strong>: <strong>expansión acelerada</strong> de la liquidez, muy por encima del crecimiento económico. Presión inflacionaria significativa.';
-      else if (g > 10) txt = 'M4 crece <strong>' + PM.pct(g, 1) + '</strong>, un ritmo <strong>elevado</strong>. La liquidez se expande más rápido que lo que absorbe la actividad económica.';
-      else if (g > 0) txt = 'M4 crece <strong>' + PM.pct(g, 1) + '</strong>, un ritmo <strong>moderado</strong>, potencialmente consistente con el crecimiento nominal de la economía.';
-      else txt = 'M4 se <strong>contrae ' + PM.pct(Math.abs(g), 1) + '</strong>. La liquidez disminuye: restricción monetaria o caída de depósitos.';
+      if (g > 20) txt = T('M4 crece <strong>' + PM.pct(g, 1) + '</strong>: <strong>expansión acelerada</strong> de la liquidez, muy por encima del crecimiento económico. Presión inflacionaria significativa.',
+        'M4 grows <strong>' + PM.pct(g, 1) + '</strong>: <strong>accelerated expansion</strong> of liquidity, well above economic growth. Significant inflationary pressure.');
+      else if (g > 10) txt = T('M4 crece <strong>' + PM.pct(g, 1) + '</strong>, un ritmo <strong>elevado</strong>. La liquidez se expande más rápido que lo que absorbe la actividad económica.',
+        'M4 grows <strong>' + PM.pct(g, 1) + '</strong>, a <strong>high</strong> pace. Liquidity expands faster than economic activity absorbs.');
+      else if (g > 0) txt = T('M4 crece <strong>' + PM.pct(g, 1) + '</strong>, un ritmo <strong>moderado</strong>, potencialmente consistente con el crecimiento nominal de la economía.',
+        'M4 grows <strong>' + PM.pct(g, 1) + '</strong>, a <strong>moderate</strong> pace, potentially consistent with the nominal growth of the economy.');
+      else txt = T('M4 se <strong>contrae ' + PM.pct(Math.abs(g), 1) + '</strong>. La liquidez disminuye: restricción monetaria o caída de depósitos.',
+        'M4 <strong>contracts ' + PM.pct(Math.abs(g), 1) + '</strong>. Liquidity declines: monetary tightening or a fall in deposits.');
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML = SERIES.map(function (s) {
-        return PM.pb(s.color, s.largo, PM.pct(d[s.k], 1, true), 'Crecimiento interanual (12 meses)');
+        return PM.pb(s.color, s.largo, PM.pct(d[s.k], 1, true), T('Crecimiento interanual (12 meses)', 'Year-on-year growth (12 months)'));
       }).join('') + PM.ctx(txt);
     }
 
     var PREGUNTAS = [
-      ['¿Qué son los agregados monetarios?', 'Los <strong>agregados monetarios</strong> miden la cantidad total de dinero en la economía: <strong>M1</strong> = billetes + depósitos a la vista; <strong>M2</strong> = M1 + caja de ahorro en MN; <strong>M3</strong> = M2 + plazo fijo en MN; <strong>M4</strong> = M3 + depósitos en ME. La tasa de crecimiento muestra cuánto aumenta la liquidez.'],
-      ['¿Por qué importa el crecimiento?', 'Si los agregados crecen más rápido que el PIB nominal, el exceso de liquidez genera presión inflacionaria. Tasas superiores al 15-20% son señal de expansión monetaria agresiva.'],
-      ['M1 vs. M4: señal de confianza', 'Cuando M1 crece más rápido que M4, la gente prefiere liquidez inmediata (señal de incertidumbre). Cuando M4 crece más, los depósitos a plazo y en ME aumentan (mayor confianza o dolarización).'],
-      ['Teoría cuantitativa: de la base a los precios', 'Según la <strong>teoría cuantitativa del dinero</strong> (MV = PY), los agregados monetarios están directamente relacionados con el nivel de precios. <strong>M2</strong> muestra de forma más precisa la oferta monetaria en manos del público: dinero que puede ejercer presión sobre los precios. Las decisiones del BCB solo tienen efecto <strong>indirecto</strong> en M2, M3 y M4, a diferencia de la base monetaria.'],
-      ['M3 y M4: profundización financiera', '<strong>M3</strong> amplía M2 al incluir depósitos a plazo y otros instrumentos del sector privado no financiero: es un indicador más completo de los recursos disponibles en el sistema. <strong>M4</strong> es el agregado más amplio e incluye activos financieros altamente líquidos fuera del sistema bancario tradicional. Refleja la totalidad del dinero que podría influir en la actividad económica y los precios.']
+      [T('¿Qué son los agregados monetarios?', 'What are monetary aggregates?'), T(
+        'Los <strong>agregados monetarios</strong> miden la cantidad total de dinero en la economía: <strong>M1</strong> = billetes + depósitos a la vista; <strong>M2</strong> = M1 + caja de ahorro en MN; <strong>M3</strong> = M2 + plazo fijo en MN; <strong>M4</strong> = M3 + depósitos en ME. La tasa de crecimiento muestra cuánto aumenta la liquidez.',
+        '<strong>Monetary aggregates</strong> measure the total amount of money in the economy: <strong>M1</strong> = banknotes + demand deposits; <strong>M2</strong> = M1 + savings deposits in local currency; <strong>M3</strong> = M2 + time deposits in local currency; <strong>M4</strong> = M3 + deposits in foreign currency. The growth rate shows how much liquidity increases.')],
+      [T('¿Por qué importa el crecimiento?', 'Why does growth matter?'), T(
+        'Si los agregados crecen más rápido que el PIB nominal, el exceso de liquidez genera presión inflacionaria. Tasas superiores al 15-20% son señal de expansión monetaria agresiva.',
+        'If the aggregates grow faster than nominal GDP, the excess liquidity generates inflationary pressure. Rates above 15-20% are a sign of aggressive monetary expansion.')],
+      [T('M1 vs. M4: señal de confianza', 'M1 vs. M4: a sign of confidence'), T(
+        'Cuando M1 crece más rápido que M4, la gente prefiere liquidez inmediata (señal de incertidumbre). Cuando M4 crece más, los depósitos a plazo y en ME aumentan (mayor confianza o dolarización).',
+        'When M1 grows faster than M4, people prefer immediate liquidity (a sign of uncertainty). When M4 grows more, time deposits and foreign-currency deposits increase (greater confidence or dollarization).')],
+      [T('Teoría cuantitativa: de la base a los precios', 'Quantity theory: from the base to prices'), T(
+        'Según la <strong>teoría cuantitativa del dinero</strong> (MV = PY), los agregados monetarios están directamente relacionados con el nivel de precios. <strong>M2</strong> muestra de forma más precisa la oferta monetaria en manos del público: dinero que puede ejercer presión sobre los precios. Las decisiones del BCB solo tienen efecto <strong>indirecto</strong> en M2, M3 y M4, a diferencia de la base monetaria.',
+        'According to the <strong>quantity theory of money</strong> (MV = PY), monetary aggregates are directly related to the price level. <strong>M2</strong> shows more precisely the money supply in the hands of the public: money that can put pressure on prices. The decisions of the BCB have only an <strong>indirect</strong> effect on M2, M3 and M4, unlike the monetary base.')],
+      [T('M3 y M4: profundización financiera', 'M3 and M4: financial deepening'), T(
+        '<strong>M3</strong> amplía M2 al incluir depósitos a plazo y otros instrumentos del sector privado no financiero: es un indicador más completo de los recursos disponibles en el sistema. <strong>M4</strong> es el agregado más amplio e incluye activos financieros altamente líquidos fuera del sistema bancario tradicional. Refleja la totalidad del dinero que podría influir en la actividad económica y los precios.',
+        '<strong>M3</strong> broadens M2 by including time deposits and other instruments of the non-financial private sector: it is a more complete indicator of the resources available in the system. <strong>M4</strong> is the broadest aggregate and includes highly liquid financial assets outside the traditional banking system. It reflects the whole of the money that could influence economic activity and prices.')]
     ];
   })();
   </script>

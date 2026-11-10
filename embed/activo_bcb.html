@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Activo del Banco Central · Populi</title>
+  <title data-en="Central Bank Assets · Populi">Activo del Banco Central · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -14,12 +14,12 @@
 <body>
   <div class="wrap">
     <div class="sec-hd">
-      <div class="sec-title"><span class="accent-bar"></span>Activo del Banco Central</div>
-      <div class="sec-sub">Composición del activo: reservas internacionales, otros activos externos, crédito al sector público y al sistema financiero, en millones de Bs</div>
+      <div class="sec-title" data-en='<span class="accent-bar"></span>Central Bank Assets'><span class="accent-bar"></span>Activo del Banco Central</div>
+      <div class="sec-sub" data-en="Composition of assets: international reserves, other external assets, credit to the public sector and to the financial system, in millions of Bs">Composición del activo: reservas internacionales, otros activos externos, crédito al sector público y al sistema financiero, en millones de Bs</div>
     </div>
 
     <div class="hz-bar">
-      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Range">Rango</span><div class="hz-grp" id="b-rango"></div></div>
     </div>
 
     <div class="kpi-grid" id="kpis"></div>
@@ -27,10 +27,10 @@
     <div class="main-grid">
       <div class="chart-card">
         <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
-        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando el activo del BCB…</span></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span data-en="Loading the assets of the BCB…">Cargando el activo del BCB…</span></div></div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><span class="panel-hd-t">Composición del activo</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-hd"><span class="panel-hd-t" data-en="Composition of assets">Composición del activo</span><span class="panel-hd-d" id="panel-fecha"></span></div>
         <div class="panel-body" id="panel"></div>
       </div>
     </div>
@@ -41,23 +41,23 @@
 
   <script>
   (function () {
-    var C = PM.C;
+    var C = PM.C, T = PM.t;   // T('castellano', 'inglés'): con ?lang=en el gráfico sale en inglés
     // Orden de apilado (regla 7 de la marca): el crédito al sector público —la tesis, en rojo— apoyado
     // en la base; encima las reservas y el crédito al sistema financiero, y arriba lo residual en grises.
     // En tema oscuro el petróleo sube a menta y los grises toman su paso oscuro; validado en los dos temas.
     var COMP = [
-      { k: 'credito_sp', nombre: 'Créd. sector público', color: C.rojo },
-      { k: 'rib', nombre: 'Reservas (RIB)', color: C.turquesa },
-      { k: 'credito_sf', nombre: 'Créd. sist. financiero', color: { claro: C.petroleo, oscuro: C.menta } },
+      { k: 'credito_sp', nombre: T('Créd. sector público', 'Public sector credit'), color: C.rojo },
+      { k: 'rib', nombre: T('Reservas (RIB)', 'Reserves (GIR)'), color: C.turquesa },
+      { k: 'credito_sf', nombre: T('Créd. sist. financiero', 'Fin. system credit'), color: { claro: C.petroleo, oscuro: C.menta } },
       // Otros activos externos = aportes a organismos internacionales + otros activos externos de
       // mediano y largo plazo: las dos partidas externas que no son reservas (columnas vecinas del cuadro).
-      { k: 'otros_ext_tot', nombre: 'Otros act. externos', color: { claro: C.gris, oscuro: '#6E7A7D' } },
-      { k: 'otras_ctas', nombre: 'Otras cuentas', color: { claro: C.tenue, oscuro: '#3A4549' } }
+      { k: 'otros_ext_tot', nombre: T('Otros act. externos', 'Other ext. assets'), color: { claro: C.gris, oscuro: '#6E7A7D' } },
+      { k: 'otras_ctas', nombre: T('Otras cuentas', 'Other accounts'), color: { claro: C.tenue, oscuro: '#3A4549' } }
     ];
     var col = function (k) { return COMP.filter(function (c) { return c.k === k; })[0].color; };
     var PANEL = [
-      ['rib', 'Reservas internacionales brutas'], ['credito_sp', 'Crédito al sector público'], ['credito_sf', 'Crédito al sist. financiero'],
-      ['otros_ext_tot', 'Otros activos externos'], ['otras_ctas', 'Otras cuentas del activo']
+      ['rib', T('Reservas internacionales brutas', 'Gross international reserves')], ['credito_sp', T('Crédito al sector público', 'Credit to the public sector')], ['credito_sf', T('Crédito al sist. financiero', 'Credit to the fin. system')],
+      ['otros_ext_tot', T('Otros activos externos', 'Other external assets')], ['otras_ctas', T('Otras cuentas del activo', 'Other asset accounts')]
     ];
     var estado = { rango: 'desde2010', idx: null };
     var activas = new Set(COMP.map(function (c) { return c.k; }));
@@ -71,7 +71,8 @@
       if (!a || a >= 1 || !(anio <= ((M && M.hasta_en_bolivianos) || 0))) return PM.auto(v || 0);
       return PM.num(v, Math.min(6, Math.ceil(-Math.log10(a)) + 3));
     };
-    var bs = function (v, fecha) { return monto(v, fecha) + ' MM Bs'; };
+    // en inglés, «M» y la moneda adelante, como PM.mm: «Bs 271,152 M» (el signo antes de la moneda: «−Bs 12.3 M»)
+    var bs = function (v, fecha) { return PM.en ? monto(v, fecha).replace(/^(−?)/, '$1Bs ') + ' M' : monto(v, fecha) + ' MM Bs'; };
     var parte = function (v, t) { return t > 0 ? v / t * 100 : 0; };
     // En el panel el porcentaje va en la misma línea del valor: con seis partidas, una línea más por
     // ítem dejaba la conclusión fuera de la vista.
@@ -84,7 +85,7 @@
       // Las seis partidas del balance suman el total (lo comprueba el scraper mes a mes)
       S.forEach(function (x) { x.otros_ext_tot = (x.aportes_oi || 0) + (x.otros_ext || 0); });
       K = S.map(function (x) { return x.date; });
-      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+      PM.botonera(document.getElementById('b-rango'), [['5a', T('5 años', '5 years')], ['desde2010', T('Desde 2010', 'Since 2010')], ['desde2000', T('Desde 2000', 'Since 2000')], ['todo', T('Todo', 'All')]],
         estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
       PM.pastillas(document.getElementById('pastillas'),
         COMP.map(function (c) { return { k: c.k, nombre: c.nombre, color: c.color, forma: 'area' }; }),
@@ -97,7 +98,9 @@
       panel(estado.idx);
       PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
       PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
-      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(M.ultimo_dato);
+      document.getElementById('fuente').innerHTML = T(
+        'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ',
+        'Source: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Analysis: Centro de Estudios POPULI · Data as of: ') + PM.fecha(M.ultimo_dato);
     }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
     function cifras() {
@@ -105,10 +108,10 @@
       // minilíneas: los últimos 24 meses del mismo saldo que muestra la cifra
       var serie = function (k) { return PM.ultimos(S.map(function (x) { return x[k]; }), 24); };
       document.getElementById('kpis').innerHTML =
-        PM.kpi({ color: C.tinta, rotulo: 'Total activo', valor: bs(t), delta: '= Total pasivo', tono: 'neutro', serie: serie('total_activo') }) +
-        PM.kpi({ color: col('rib'), rotulo: 'Reservas (RIB)', valor: bs(u.rib), delta: PM.pct(pRib, 1) + ' del activo', tono: pRib < 20 ? 'malo' : 'neutro', serie: serie('rib') }) +
-        PM.kpi({ color: col('credito_sp'), rotulo: 'Créd. sector público', valor: bs(u.credito_sp), delta: PM.pct(pSp, 1) + ' del activo', tono: pSp > 60 ? 'malo' : 'neutro', serie: serie('credito_sp') }) +
-        PM.kpi({ color: col('credito_sf'), rotulo: 'Créd. sist. financiero', valor: bs(u.credito_sf), delta: 'Bancos + entidades', tono: 'neutro', serie: serie('credito_sf') });
+        PM.kpi({ color: C.tinta, rotulo: T('Total activo', 'Total assets'), valor: bs(t), delta: T('= Total pasivo', '= Total liabilities'), tono: 'neutro', serie: serie('total_activo') }) +
+        PM.kpi({ color: col('rib'), rotulo: T('Reservas (RIB)', 'Reserves (GIR)'), valor: bs(u.rib), delta: PM.pct(pRib, 1) + T(' del activo', ' of assets'), tono: pRib < 20 ? 'malo' : 'neutro', serie: serie('rib') }) +
+        PM.kpi({ color: col('credito_sp'), rotulo: T('Créd. sector público', 'Public sector credit'), valor: bs(u.credito_sp), delta: PM.pct(pSp, 1) + T(' del activo', ' of assets'), tono: pSp > 60 ? 'malo' : 'neutro', serie: serie('credito_sp') }) +
+        PM.kpi({ color: col('credito_sf'), rotulo: T('Créd. sist. financiero', 'Fin. system credit'), valor: bs(u.credito_sf), delta: T('Bancos + entidades', 'Banks + institutions'), tono: 'neutro', serie: serie('credito_sf') });
     }
 
     function opciones() {
@@ -132,19 +135,19 @@
       return {
         grid: PM.grid(),
         xAxis: PM.ejeTiempo(KV, el, { boundaryGap: true }),
-        yAxis: PM.ejeY({ unidad: 'MM Bs' }),
+        yAxis: PM.ejeY({ unidad: T('MM Bs', 'Bs M') }),
         tooltip: PM.tooltip(function (ps) {
           if (!ps.length) return '';
           var i = ps[0].dataIndex, x = V[i], t = x.total_activo || 0;
           panel(si + i);
-          var h = PM.ttTitulo(PM.fecha(KV[i]), 'Millones de Bs · % del activo');
+          var h = PM.ttTitulo(PM.fecha(KV[i]), T('Millones de Bs · % del activo', 'Millions of Bs · % of assets'));
           ps.slice().reverse().forEach(function (p) {
             var c = COMP.filter(function (q) { return q.nombre === p.seriesName; })[0];
             if (!c) return;
             var v = x[c.k] || 0;
             h += PM.ttFila(c.color, c.nombre, monto(v, KV[i]) + '<span style="color:rgba(255,255,255,.5);font-weight:500;margin-left:8px">' + PM.pct(parte(v, t), 1) + '</span>', 'area');
           });
-          return h + PM.ttTotal('Total del activo', monto(t, KV[i]));
+          return h + PM.ttTotal(T('Total del activo', 'Total assets'), monto(t, KV[i]));
         }, { axisPointer: PM.sombraEje() }),
         series: series
       };
@@ -155,26 +158,46 @@
       estado.idx = i;
       var d = S[i], t = d.total_activo || 0, p = function (k) { return parte(d[k] || 0, t); };
       var sp = p('credito_sp'), rib = p('rib'), txt;
-      if (sp > 70) txt = 'El crédito al sector público representa <strong>' + PM.pct(sp, 1) + '</strong> del activo: <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>' + PM.pct(rib, 1) + '</strong>. El balance del BCB está altamente deteriorado.';
-      else if (sp > 50) txt = 'Crédito al SPNF en <strong>' + PM.pct(sp, 1) + '</strong> del activo, por encima de las reservas (' + PM.pct(rib, 1) + '). <strong>Señal de deterioro</strong> en la calidad del balance del BCB.';
-      else if (rib > 50) txt = 'Las reservas representan <strong>' + PM.pct(rib, 1) + '</strong> del activo: balance <strong>saludable</strong>, con buen respaldo externo.';
-      else txt = 'Balance del BCB con reservas en <strong>' + PM.pct(rib, 1) + '</strong> y crédito al SPNF en <strong>' + PM.pct(sp, 1) + '</strong>. Estructura equilibrada.';
+      if (sp > 70) txt = T('El crédito al sector público representa <strong>' + PM.pct(sp, 1) + '</strong> del activo: <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>' + PM.pct(rib, 1) + '</strong>. El balance del BCB está altamente deteriorado.',
+        'Credit to the public sector accounts for <strong>' + PM.pct(sp, 1) + '</strong> of assets: <strong>extreme fiscal dominance</strong>. Reserves barely cover <strong>' + PM.pct(rib, 1) + '</strong>. The balance sheet of the BCB is highly deteriorated.');
+      else if (sp > 50) txt = T('Crédito al SPNF en <strong>' + PM.pct(sp, 1) + '</strong> del activo, por encima de las reservas (' + PM.pct(rib, 1) + '). <strong>Señal de deterioro</strong> en la calidad del balance del BCB.',
+        'Credit to the NFPS at <strong>' + PM.pct(sp, 1) + '</strong> of assets, above reserves (' + PM.pct(rib, 1) + '). <strong>A sign of deterioration</strong> in the quality of the balance sheet of the BCB.');
+      else if (rib > 50) txt = T('Las reservas representan <strong>' + PM.pct(rib, 1) + '</strong> del activo: balance <strong>saludable</strong>, con buen respaldo externo.',
+        'Reserves account for <strong>' + PM.pct(rib, 1) + '</strong> of assets: a <strong>healthy</strong> balance sheet, with good external backing.');
+      else txt = T('Balance del BCB con reservas en <strong>' + PM.pct(rib, 1) + '</strong> y crédito al SPNF en <strong>' + PM.pct(sp, 1) + '</strong>. Estructura equilibrada.',
+        'Balance sheet of the BCB with reserves at <strong>' + PM.pct(rib, 1) + '</strong> and credit to the NFPS at <strong>' + PM.pct(sp, 1) + '</strong>. A balanced structure.');
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML = PANEL.map(function (x) {
-        var desc = x[0] === 'otros_ext_tot' ? 'Aportes a organismos internacionales ' + monto(d.aportes_oi || 0, d.date) +
-          ' · otros de mediano y largo plazo ' + monto(d.otros_ext || 0, d.date) : null;
-        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0, d.date), p(x[0]), 'del activo'), desc);
+        var desc = x[0] === 'otros_ext_tot' ? T('Aportes a organismos internacionales ' + monto(d.aportes_oi || 0, d.date) +
+          ' · otros de mediano y largo plazo ' + monto(d.otros_ext || 0, d.date),
+          'Contributions to international organizations ' + monto(d.aportes_oi || 0, d.date) +
+          ' · other medium- and long-term ' + monto(d.otros_ext || 0, d.date)) : null;
+        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0, d.date), p(x[0]), T('del activo', 'of assets')), desc);
       }).join('') + PM.ctx(txt);
     }
 
     var PREGUNTAS = [
-      ['¿Qué muestra el activo del BCB?', 'El activo del banco central muestra <strong>en qué invierte</strong> los recursos: reservas internacionales (respaldo externo), crédito al gobierno (financiamiento fiscal) y crédito al sistema financiero. La composición revela la salud del balance.'],
-      ['Reservas vs. crédito al gobierno', 'Un banco central sano tiene una alta proporción de <strong>reservas internacionales</strong> (activos de calidad). Cuando el <strong>crédito al sector público</strong> domina el activo, significa que el banco central financia al gobierno en lugar de mantener respaldo externo: señal de <strong>dominancia fiscal</strong>.'],
-      ['Deterioro del balance', 'Si el crédito al SPNF crece mientras las RIB caen, el BCB está <strong>sustituyendo activos de calidad</strong> (divisas) por crédito al gobierno (activo de menor calidad). Este deterioro compromete la capacidad de defender el tipo de cambio.'],
-      ['Activos buenos vs. malos', 'Un activo es <strong>«bueno»</strong> si proporciona solvencia y liquidez inmediata (reservas en divisas, oro monetario). Un activo es <strong>«malo»</strong> si es ilíquido, riesgoso o de dudoso valor (créditos irrecuperables al gobierno o empresas públicas deficitarias). La proporción entre ambos determina la solidez real del banco central.'],
-      ['¿Cómo se agrupan las partidas?', 'El gráfico apila <strong>todas las partidas</strong> del balance que publica el BCB, así que la altura de cada barra es el activo total: reservas internacionales brutas, crédito al sector público, crédito al sistema financiero, <strong>otros activos externos</strong> (aportes a organismos internacionales y otros activos externos de mediano y largo plazo) y otras cuentas del activo. Antes de publicar se comprueba, mes a mes desde 1977, que la suma cierre con el total del cuadro.'],
-      ['Las cifras hasta 1984', 'El BCB publica este cuadro en miles de bolivianos, pero su nota al pie aclara que <strong>hasta 1984 está expresado en bolivianos</strong>. Aquí todo va en millones de bolivianos actuales, y la reforma monetaria de 1987 cambió <strong>un boliviano por un millón de pesos bolivianos</strong>: por eso, en millones, el balance de esos años da cifras tan chicas. La composición en porcentaje no cambia.'],
-      ['Dominancia fiscal', 'La <strong>dominancia fiscal</strong> ocurre cuando la política fiscal (decisiones de gasto e ingresos del gobierno) impone restricciones sobre la política monetaria, limitando la capacidad del BCB para controlar la inflación. Se manifiesta cuando el crédito al sector público domina el activo, convirtiendo al banco central en financiador del Estado en lugar de garante de la estabilidad monetaria.']
+      [T('¿Qué muestra el activo del BCB?', 'What do the assets of the BCB show?'), T(
+        'El activo del banco central muestra <strong>en qué invierte</strong> los recursos: reservas internacionales (respaldo externo), crédito al gobierno (financiamiento fiscal) y crédito al sistema financiero. La composición revela la salud del balance.',
+        'The assets of the central bank show <strong>where it invests</strong> its resources: international reserves (external backing), credit to the government (fiscal financing) and credit to the financial system. The composition reveals the health of the balance sheet.')],
+      [T('Reservas vs. crédito al gobierno', 'Reserves vs. credit to the government'), T(
+        'Un banco central sano tiene una alta proporción de <strong>reservas internacionales</strong> (activos de calidad). Cuando el <strong>crédito al sector público</strong> domina el activo, significa que el banco central financia al gobierno en lugar de mantener respaldo externo: señal de <strong>dominancia fiscal</strong>.',
+        'A sound central bank has a high share of <strong>international reserves</strong> (quality assets). When <strong>credit to the public sector</strong> dominates assets, it means that the central bank finances the government instead of maintaining external backing: a sign of <strong>fiscal dominance</strong>.')],
+      [T('Deterioro del balance', 'Deterioration of the balance sheet'), T(
+        'Si el crédito al SPNF crece mientras las RIB caen, el BCB está <strong>sustituyendo activos de calidad</strong> (divisas) por crédito al gobierno (activo de menor calidad). Este deterioro compromete la capacidad de defender el tipo de cambio.',
+        'If credit to the NFPS grows while GIR fall, the BCB is <strong>replacing quality assets</strong> (foreign exchange) with credit to the government (a lower-quality asset). This deterioration compromises the capacity to defend the exchange rate.')],
+      [T('Activos buenos vs. malos', 'Good vs. bad assets'), T(
+        'Un activo es <strong>«bueno»</strong> si proporciona solvencia y liquidez inmediata (reservas en divisas, oro monetario). Un activo es <strong>«malo»</strong> si es ilíquido, riesgoso o de dudoso valor (créditos irrecuperables al gobierno o empresas públicas deficitarias). La proporción entre ambos determina la solidez real del banco central.',
+        'An asset is <strong>“good”</strong> if it provides solvency and immediate liquidity (foreign exchange reserves, monetary gold). An asset is <strong>“bad”</strong> if it is illiquid, risky or of doubtful value (unrecoverable loans to the government or to loss-making public enterprises). The proportion between the two determines the real soundness of the central bank.')],
+      [T('¿Cómo se agrupan las partidas?', 'How are the items grouped?'), T(
+        'El gráfico apila <strong>todas las partidas</strong> del balance que publica el BCB, así que la altura de cada barra es el activo total: reservas internacionales brutas, crédito al sector público, crédito al sistema financiero, <strong>otros activos externos</strong> (aportes a organismos internacionales y otros activos externos de mediano y largo plazo) y otras cuentas del activo. Antes de publicar se comprueba, mes a mes desde 1977, que la suma cierre con el total del cuadro.',
+        'The chart stacks <strong>all the items</strong> of the balance sheet published by the BCB, so the height of each bar is total assets: gross international reserves, credit to the public sector, credit to the financial system, <strong>other external assets</strong> (contributions to international organizations and other medium- and long-term external assets) and other asset accounts. Before publishing, it is checked, month by month since 1977, that the sum matches the total of the table.')],
+      [T('Las cifras hasta 1984', 'The figures up to 1984'), T(
+        'El BCB publica este cuadro en miles de bolivianos, pero su nota al pie aclara que <strong>hasta 1984 está expresado en bolivianos</strong>. Aquí todo va en millones de bolivianos actuales, y la reforma monetaria de 1987 cambió <strong>un boliviano por un millón de pesos bolivianos</strong>: por eso, en millones, el balance de esos años da cifras tan chicas. La composición en porcentaje no cambia.',
+        'The BCB publishes this table in thousands of bolivianos, but its footnote clarifies that <strong>up to 1984 it is expressed in bolivianos</strong>. Here everything is in millions of current bolivianos, and the monetary reform of 1987 exchanged <strong>one boliviano for one million pesos bolivianos</strong>: that is why, in millions, the balance sheet of those years gives such small figures. The composition in percentage terms does not change.')],
+      [T('Dominancia fiscal', 'Fiscal dominance'), T(
+        'La <strong>dominancia fiscal</strong> ocurre cuando la política fiscal (decisiones de gasto e ingresos del gobierno) impone restricciones sobre la política monetaria, limitando la capacidad del BCB para controlar la inflación. Se manifiesta cuando el crédito al sector público domina el activo, convirtiendo al banco central en financiador del Estado en lugar de garante de la estabilidad monetaria.',
+        '<strong>Fiscal dominance</strong> occurs when fiscal policy (the spending and revenue decisions of the government) imposes constraints on monetary policy, limiting the capacity of the BCB to control inflation. It shows up when credit to the public sector dominates assets, turning the central bank into a financier of the State instead of a guarantor of monetary stability.')]
     ];
   })();
   </script>

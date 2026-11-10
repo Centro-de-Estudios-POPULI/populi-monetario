@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Emisión Monetaria · Populi</title>
+  <title data-en="Money Issuance · Populi">Emisión Monetaria · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -14,13 +14,13 @@
 <body>
   <div class="wrap">
     <div class="sec-hd">
-      <div class="sec-title"><span class="accent-bar"></span>Emisión Monetaria</div>
-      <div class="sec-sub">Destino del medio circulante: billetes en poder del público y caja del sistema financiero</div>
+      <div class="sec-title" data-en='<span class="accent-bar"></span>Money Issuance'><span class="accent-bar"></span>Emisión Monetaria</div>
+      <div class="sec-sub" data-en="Destination of the money in circulation: banknotes held by the public and vault cash of the financial system">Destino del medio circulante: billetes en poder del público y caja del sistema financiero</div>
     </div>
 
     <div class="hz-bar">
-      <div class="hz-item"><span class="hz-lbl">Escala</span><div class="hz-grp" id="b-escala"></div></div>
-      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Scale">Escala</span><div class="hz-grp" id="b-escala"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Range">Rango</span><div class="hz-grp" id="b-rango"></div></div>
     </div>
 
     <div class="kpi-grid" id="kpis"></div>
@@ -28,13 +28,13 @@
     <div class="main-grid">
       <div class="chart-card">
         <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
-        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando datos de emisión monetaria…</span></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span data-en="Loading money issuance data…">Cargando datos de emisión monetaria…</span></div></div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><span class="panel-hd-t">Lectura del indicador</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-hd"><span class="panel-hd-t" data-en="Reading the indicator">Lectura del indicador</span><span class="panel-hd-d" id="panel-fecha"></span></div>
         <div class="panel-body" id="panel"></div>
         <div class="panel-ft">
-          <a href="../index.html" target="_blank" rel="noopener" class="amp">
+          <a href="../index.html" target="_blank" rel="noopener" class="amp" data-en='<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg> Expand analysis'>
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
             Ampliar análisis
           </a>
@@ -48,12 +48,12 @@
 
   <script>
   (function () {
-    var C = PM.C;
+    var C = PM.C, T = PM.t;   // T('castellano', 'inglés'): con ?lang=en el gráfico sale en inglés
     // En tema oscuro los billetes (petróleo) suben a menta: el petróleo queda bajo 3:1 contra la tarjeta (validado).
     var SERIES = [
-      { k: 'emision', nombre: 'Emisión', color: C.oro, ancho: 2.5, forma: 'linea' },
-      { k: 'billetes', nombre: 'Billetes y monedas', color: { claro: C.petroleo, oscuro: C.menta }, ancho: 1.75, forma: 'linea' },
-      { k: 'caja_sf', nombre: 'Caja sist. financiero', color: C.turquesa, ancho: 1.75, forma: 'punteada' }
+      { k: 'emision', nombre: T('Emisión', 'Issuance'), color: C.oro, ancho: 2.5, forma: 'linea' },
+      { k: 'billetes', nombre: T('Billetes y monedas', 'Banknotes and coins'), color: { claro: C.petroleo, oscuro: C.menta }, ancho: 1.75, forma: 'linea' },
+      { k: 'caja_sf', nombre: T('Caja sist. financiero', 'Fin. system vault cash'), color: C.turquesa, ancho: 1.75, forma: 'punteada' }
     ];
     var COL = { emision: SERIES[0].color, billetes: SERIES[1].color, caja_sf: SERIES[2].color };
     var estado = { escala: 'lineal', rango: 'desde2010', idx: null };
@@ -66,9 +66,9 @@
     PM.cargar(['emision_monetaria.json']).then(function (r) {
       S = r[0].series; M = r[0].metadata; estado.idx = S.length - 1;
       K = S.map(function (x) { return x.date; });
-      PM.botonera(document.getElementById('b-escala'), [['lineal', 'Lineal'], ['log', 'Logarítmica']],
+      PM.botonera(document.getElementById('b-escala'), [['lineal', T('Lineal', 'Linear')], ['log', T('Logarítmica', 'Logarithmic')]],
         estado.escala, function (v) { estado.escala = v; grafico.redibujar(); });
-      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+      PM.botonera(document.getElementById('b-rango'), [['5a', T('5 años', '5 years')], ['desde2010', T('Desde 2010', 'Since 2010')], ['desde2000', T('Desde 2000', 'Since 2000')], ['todo', T('Todo', 'All')]],
         estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
       PM.pastillas(document.getElementById('pastillas'),
         SERIES.map(function (s) { return { k: s.k, nombre: s.nombre, color: s.color, forma: s.forma }; }),
@@ -81,7 +81,9 @@
       panel(estado.idx);
       PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
       PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
-      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(M.ultimo_dato);
+      document.getElementById('fuente').innerHTML = T(
+        'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ',
+        'Source: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Analysis: Centro de Estudios POPULI · Data as of: ') + PM.fecha(M.ultimo_dato);
     }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
     function cifras() {
@@ -92,11 +94,11 @@
       var serie = function (f) { return PM.ultimos(S.map(f), 24); };
       var var12 = S.map(function (x) { var b = hace(x.date, 12); return b && b.emision && x.emision != null ? (x.emision / b.emision - 1) * 100 : null; });
       document.getElementById('kpis').innerHTML =
-        PM.kpi({ color: COL.emision, rotulo: 'Emisión total', valor: bs(u.emision), delta: PM.flecha(vMes) + ' ' + PM.pct(Math.abs(vMes), 1) + ' mensual', tono: 'neutro', serie: serie(function (x) { return x.emision; }) }) +
-        PM.kpi({ color: COL.billetes, rotulo: 'Billetes y monedas', valor: bs(u.billetes), delta: PM.pct(u.billetes / u.emision * 100, 1) + ' de la emisión', tono: 'neutro', serie: serie(function (x) { return x.billetes; }) }) +
-        PM.kpi({ color: COL.caja_sf, rotulo: 'Caja sist. financiero', valor: bs(u.caja_sf), delta: PM.pct(u.caja_sf / u.emision * 100, 1) + ' de la emisión', tono: 'neutro', serie: serie(function (x) { return x.caja_sf; }) }) +
-        PM.kpi({ color: v12 > 0 ? C.rojo : C.turquesa, rotulo: 'Var. 12 meses', valor: PM.pct(v12, 1, true),
-          delta: v12 > 10 ? 'Expansión acelerada' : v12 > 0 ? 'Expansión moderada' : 'Contracción', tono: t12, serie: PM.ultimos(var12, 24) });
+        PM.kpi({ color: COL.emision, rotulo: T('Emisión total', 'Total issuance'), valor: bs(u.emision), delta: PM.flecha(vMes) + ' ' + PM.pct(Math.abs(vMes), 1) + T(' mensual', ' monthly'), tono: 'neutro', serie: serie(function (x) { return x.emision; }) }) +
+        PM.kpi({ color: COL.billetes, rotulo: T('Billetes y monedas', 'Banknotes and coins'), valor: bs(u.billetes), delta: PM.pct(u.billetes / u.emision * 100, 1) + T(' de la emisión', ' of issuance'), tono: 'neutro', serie: serie(function (x) { return x.billetes; }) }) +
+        PM.kpi({ color: COL.caja_sf, rotulo: T('Caja sist. financiero', 'Fin. system vault cash'), valor: bs(u.caja_sf), delta: PM.pct(u.caja_sf / u.emision * 100, 1) + T(' de la emisión', ' of issuance'), tono: 'neutro', serie: serie(function (x) { return x.caja_sf; }) }) +
+        PM.kpi({ color: v12 > 0 ? C.rojo : C.turquesa, rotulo: T('Var. 12 meses', '12-month change'), valor: PM.pct(v12, 1, true),
+          delta: v12 > 10 ? T('Expansión acelerada', 'Accelerated expansion') : v12 > 0 ? T('Expansión moderada', 'Moderate expansion') : T('Contracción', 'Contraction'), tono: t12, serie: PM.ultimos(var12, 24) });
     }
 
     function opciones() {
@@ -117,7 +119,7 @@
       return {
         grid: PM.grid(),
         xAxis: PM.ejeTiempo(KV, el),
-        yAxis: PM.ejeY({ unidad: 'MM Bs', extra: { type: log ? 'log' : 'value', logBase: 10 } }),
+        yAxis: PM.ejeY({ unidad: T('MM Bs', 'Bs M'), extra: { type: log ? 'log' : 'value', logBase: 10 } }),
         tooltip: PM.tooltip(function (ps) {
           if (!ps.length) return '';
           var i = ps[0].dataIndex;
@@ -149,28 +151,48 @@
       var mes = PM.fecha(d.date);
       var vMes = a ? (d.emision / a.emision - 1) * 100 : 0, v12 = a12 ? (d.emision / a12.emision - 1) * 100 : null;
       var txt;
-      if (v12 == null) txt = 'Sin el dato del mismo mes del año anterior: la serie es anual antes de diciembre de 1988.';
-      else if (v12 > 25) txt = 'Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual: <strong>expansión monetaria acelerada</strong>. A esta tasa, la emisión se duplica cada ' + PM.num(70 / v12, 1) + ' años. Presión inflacionaria significativa, con retardos de 12 a 18 meses.';
-      else if (v12 > 15) txt = 'Expansión interanual de <strong>' + PM.pct(v12, 1) + '</strong>, un ritmo <strong>elevado</strong> que supera el crecimiento nominal de la economía. Señal de financiamiento monetario del déficit.';
-      else if (v12 > 5) txt = 'Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual, un ritmo <strong>moderado</strong>, compatible con la expansión económica si el PIB nominal crece a tasas similares.';
-      else if (v12 > 0) txt = 'Crecimiento bajo, de <strong>' + PM.pct(v12, 1) + '</strong>. Política monetaria <strong>restrictiva</strong> o contracción de la demanda de dinero.';
-      else txt = 'La emisión se <strong>contrajo ' + PM.pct(Math.abs(v12), 1) + '</strong> interanual. Señal de restricción monetaria severa o destrucción de base monetaria.';
+      if (v12 == null) txt = T('Sin el dato del mismo mes del año anterior: la serie es anual antes de diciembre de 1988.',
+        'No data for the same month of the previous year: the series is annual before December 1988.');
+      else if (v12 > 25) txt = T('Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual: <strong>expansión monetaria acelerada</strong>. A esta tasa, la emisión se duplica cada ' + PM.num(70 / v12, 1) + ' años. Presión inflacionaria significativa, con retardos de 12 a 18 meses.',
+        'Year-on-year growth of <strong>' + PM.pct(v12, 1) + '</strong>: <strong>accelerated monetary expansion</strong>. At this rate, issuance doubles every ' + PM.num(70 / v12, 1) + ' years. Significant inflationary pressure, with lags of 12 to 18 months.');
+      else if (v12 > 15) txt = T('Expansión interanual de <strong>' + PM.pct(v12, 1) + '</strong>, un ritmo <strong>elevado</strong> que supera el crecimiento nominal de la economía. Señal de financiamiento monetario del déficit.',
+        'Year-on-year expansion of <strong>' + PM.pct(v12, 1) + '</strong>, a <strong>high</strong> pace that exceeds the nominal growth of the economy. A sign of monetary financing of the deficit.');
+      else if (v12 > 5) txt = T('Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual, un ritmo <strong>moderado</strong>, compatible con la expansión económica si el PIB nominal crece a tasas similares.',
+        'Year-on-year growth of <strong>' + PM.pct(v12, 1) + '</strong>, a <strong>moderate</strong> pace, compatible with economic expansion if nominal GDP grows at similar rates.');
+      else if (v12 > 0) txt = T('Crecimiento bajo, de <strong>' + PM.pct(v12, 1) + '</strong>. Política monetaria <strong>restrictiva</strong> o contracción de la demanda de dinero.',
+        'Low growth, of <strong>' + PM.pct(v12, 1) + '</strong>. <strong>Restrictive</strong> monetary policy or a contraction in the demand for money.');
+      else txt = T('La emisión se <strong>contrajo ' + PM.pct(Math.abs(v12), 1) + '</strong> interanual. Señal de restricción monetaria severa o destrucción de base monetaria.',
+        'Issuance <strong>contracted ' + PM.pct(Math.abs(v12), 1) + '</strong> year-on-year. A sign of severe monetary tightening or destruction of the monetary base.');
       document.getElementById('panel-fecha').textContent = mes;
       document.getElementById('panel').innerHTML =
-        PM.pb(COL.emision, 'Emisión total', bs(d.emision),
+        PM.pb(COL.emision, T('Emisión total', 'Total issuance'), bs(d.emision), T(
           'En <strong>' + mes + '</strong>' + (a ? ', ' + (vMes >= 0 ? 'subiendo' : 'bajando') + ' <strong>' + PM.pct(Math.abs(vMes), 1) + '</strong> respecto al mes anterior' : '') +
-          '. Variación en 12 meses: <strong>' + (v12 == null ? 'sin dato' : PM.pct(v12, 1)) + '</strong>.') +
-        PM.pb(COL.billetes, 'Billetes y monedas', bs(d.billetes), 'Efectivo en manos del público: <strong>' + PM.pct(d.billetes / d.emision * 100, 1) + '</strong> de la emisión total.') +
-        PM.pb(COL.caja_sf, 'Caja sist. financiero', bs(d.caja_sf), 'Reservas de efectivo en los bancos: <strong>' + PM.pct(d.caja_sf / d.emision * 100, 1) + '</strong> de la emisión.') +
+          '. Variación en 12 meses: <strong>' + (v12 == null ? 'sin dato' : PM.pct(v12, 1)) + '</strong>.',
+          'In <strong>' + mes + '</strong>' + (a ? ', ' + (vMes >= 0 ? 'up' : 'down') + ' <strong>' + PM.pct(Math.abs(vMes), 1) + '</strong> from the previous month' : '') +
+          '. 12-month change: <strong>' + (v12 == null ? 'no data' : PM.pct(v12, 1)) + '</strong>.')) +
+        PM.pb(COL.billetes, T('Billetes y monedas', 'Banknotes and coins'), bs(d.billetes), T('Efectivo en manos del público: <strong>' + PM.pct(d.billetes / d.emision * 100, 1) + '</strong> de la emisión total.',
+          'Cash in the hands of the public: <strong>' + PM.pct(d.billetes / d.emision * 100, 1) + '</strong> of total issuance.')) +
+        PM.pb(COL.caja_sf, T('Caja sist. financiero', 'Fin. system vault cash'), bs(d.caja_sf), T('Reservas de efectivo en los bancos: <strong>' + PM.pct(d.caja_sf / d.emision * 100, 1) + '</strong> de la emisión.',
+          'Cash reserves in the banks: <strong>' + PM.pct(d.caja_sf / d.emision * 100, 1) + '</strong> of issuance.')) +
         PM.ctx(txt);
     }
 
     var PREGUNTAS = [
-      ['¿Qué es la emisión monetaria?', 'La <strong>emisión monetaria</strong> es la cantidad total de dinero que el Banco Central ha puesto en circulación. Se divide en <strong>billetes y monedas en poder del público</strong> (el efectivo que usa la gente) y <strong>caja del sistema financiero</strong> (reservas de efectivo en los bancos).'],
-      ['¿Por qué escala logarítmica?', 'La emisión creció de ~400 MM Bs en 1987 a más de 100.000 MM Bs. En escala lineal, los primeros 20 años parecen planos. La <strong>escala logarítmica</strong> muestra las tasas de crecimiento proporcional: una pendiente constante equivale a un crecimiento porcentual constante. Permite ver aceleraciones y desaceleraciones en cualquier época.'],
-      ['Emisión e inflación', 'La teoría monetaria establece que un crecimiento sostenido de la emisión por encima del crecimiento real de la economía genera inflación, con <strong>retardos de 12 a 18 meses</strong>. Cuando la emisión crece al 20% y el PIB al 2%, la diferencia presiona los precios.'],
-      ['Teoría cuantitativa del dinero', 'La <strong>teoría cuantitativa</strong> establece una relación proporcional entre la cantidad de dinero en circulación y el nivel de precios (<strong>MV = PY</strong>). Un aumento en la oferta monetaria genera, <em>ceteris paribus</em>, un incremento en la inflación. De manera inversa, una reducción en el crecimiento del dinero tiende a desacelerar los precios, fenómeno conocido como <strong>desinflación</strong>.'],
-      ['La base monetaria como instrumento', 'La base monetaria es el <strong>agregado más restringido</strong> y el que tiene relación más directa con las decisiones de política monetaria. Es el instrumento principal mediante el cual las autoridades monetarias influyen en la oferta de dinero. A diferencia de M2 o M4, sobre los que el BCB solo tiene influencia indirecta, la base monetaria responde directamente a operaciones del banco central.']
+      [T('¿Qué es la emisión monetaria?', 'What is money issuance?'), T(
+        'La <strong>emisión monetaria</strong> es la cantidad total de dinero que el Banco Central ha puesto en circulación. Se divide en <strong>billetes y monedas en poder del público</strong> (el efectivo que usa la gente) y <strong>caja del sistema financiero</strong> (reservas de efectivo en los bancos).',
+        '<strong>Money issuance</strong> is the total amount of money that the Central Bank has put into circulation. It is divided into <strong>banknotes and coins held by the public</strong> (the cash that people use) and <strong>vault cash of the financial system</strong> (cash reserves in the banks).')],
+      [T('¿Por qué escala logarítmica?', 'Why a logarithmic scale?'), T(
+        'La emisión creció de ~400 MM Bs en 1987 a más de 100.000 MM Bs. En escala lineal, los primeros 20 años parecen planos. La <strong>escala logarítmica</strong> muestra las tasas de crecimiento proporcional: una pendiente constante equivale a un crecimiento porcentual constante. Permite ver aceleraciones y desaceleraciones en cualquier época.',
+        'Issuance grew from ~Bs 400 M in 1987 to more than Bs 100,000 M. On a linear scale, the first 20 years look flat. The <strong>logarithmic scale</strong> shows proportional growth rates: a constant slope is equivalent to constant percentage growth. It makes it possible to see accelerations and decelerations in any period.')],
+      [T('Emisión e inflación', 'Issuance and inflation'), T(
+        'La teoría monetaria establece que un crecimiento sostenido de la emisión por encima del crecimiento real de la economía genera inflación, con <strong>retardos de 12 a 18 meses</strong>. Cuando la emisión crece al 20% y el PIB al 2%, la diferencia presiona los precios.',
+        'Monetary theory holds that sustained growth of issuance above the real growth of the economy generates inflation, with <strong>lags of 12 to 18 months</strong>. When issuance grows at 20% and GDP at 2%, the difference puts pressure on prices.')],
+      [T('Teoría cuantitativa del dinero', 'The quantity theory of money'), T(
+        'La <strong>teoría cuantitativa</strong> establece una relación proporcional entre la cantidad de dinero en circulación y el nivel de precios (<strong>MV = PY</strong>). Un aumento en la oferta monetaria genera, <em>ceteris paribus</em>, un incremento en la inflación. De manera inversa, una reducción en el crecimiento del dinero tiende a desacelerar los precios, fenómeno conocido como <strong>desinflación</strong>.',
+        'The <strong>quantity theory</strong> establishes a proportional relationship between the amount of money in circulation and the price level (<strong>MV = PY</strong>). An increase in the money supply generates, <em>ceteris paribus</em>, a rise in inflation. Conversely, a reduction in the growth of money tends to slow prices down, a phenomenon known as <strong>disinflation</strong>.')],
+      [T('La base monetaria como instrumento', 'The monetary base as an instrument'), T(
+        'La base monetaria es el <strong>agregado más restringido</strong> y el que tiene relación más directa con las decisiones de política monetaria. Es el instrumento principal mediante el cual las autoridades monetarias influyen en la oferta de dinero. A diferencia de M2 o M4, sobre los que el BCB solo tiene influencia indirecta, la base monetaria responde directamente a operaciones del banco central.',
+        'The monetary base is the <strong>narrowest aggregate</strong> and the one most directly related to monetary policy decisions. It is the main instrument through which the monetary authorities influence the money supply. Unlike M2 or M4, over which the BCB has only indirect influence, the monetary base responds directly to central bank operations.')]
     ];
   })();
   </script>

@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pasivo del Banco Central · Populi</title>
+  <title data-en="Central Bank Liabilities · Populi">Pasivo del Banco Central · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -14,12 +14,12 @@
 <body>
   <div class="wrap">
     <div class="sec-hd">
-      <div class="sec-title"><span class="accent-bar"></span>Pasivo del Banco Central</div>
-      <div class="sec-sub">Obligaciones del BCB: emisión, depósitos bancarios y del sector público, pasivos externos, capital y otras cuentas, en millones de Bs</div>
+      <div class="sec-title" data-en='<span class="accent-bar"></span>Central Bank Liabilities'><span class="accent-bar"></span>Pasivo del Banco Central</div>
+      <div class="sec-sub" data-en="Obligations of the BCB: issuance, bank and public sector deposits, external liabilities, capital and other accounts, in millions of Bs">Obligaciones del BCB: emisión, depósitos bancarios y del sector público, pasivos externos, capital y otras cuentas, en millones de Bs</div>
     </div>
 
     <div class="hz-bar">
-      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Range">Rango</span><div class="hz-grp" id="b-rango"></div></div>
     </div>
 
     <div class="kpi-grid" id="kpis"></div>
@@ -27,10 +27,10 @@
     <div class="main-grid">
       <div class="chart-card">
         <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
-        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando el pasivo del BCB…</span></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span data-en="Loading the liabilities of the BCB…">Cargando el pasivo del BCB…</span></div></div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><span class="panel-hd-t">Composición del pasivo</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-hd"><span class="panel-hd-t" data-en="Composition of liabilities">Composición del pasivo</span><span class="panel-hd-d" id="panel-fecha"></span></div>
         <div class="panel-body" id="panel"></div>
       </div>
     </div>
@@ -41,7 +41,7 @@
 
   <script>
   (function () {
-    var C = PM.C;
+    var C = PM.C, T = PM.t;   // T('castellano', 'inglés'): con ?lang=en el gráfico sale en inglés
     // Orden de apilado (regla 7 de la marca): el rojo apoyado en la base, después la rampa hacia
     // los fríos y arriba las partidas residuales en grises. En tema oscuro el petróleo sube a menta
     // (bajo 3:1 contra la tarjeta) y los grises toman su paso oscuro; validado en los dos temas.
@@ -51,19 +51,19 @@
     // (certificados de devolución de depósitos, 1994-2010) sólo aparece si el rango lo incluye. Paleta
     // validada en claro y oscuro (pares vecinos: daltonismo y visión normal).
     var COMP = [
-      { k: 'emision', nombre: 'Emisión', color: C.rojo },
-      { k: 'dep_bancarios', nombre: 'Dep. bancarios', color: C.oro },
-      { k: 'dep_sp_total', nombre: 'Dep. sector público', color: C.turquesa },
-      { k: 'pas_ext', nombre: 'Pasivos externos', color: { claro: C.petroleo, oscuro: C.menta } },
+      { k: 'emision', nombre: T('Emisión', 'Issuance'), color: C.rojo },
+      { k: 'dep_bancarios', nombre: T('Dep. bancarios', 'Bank deposits'), color: C.oro },
+      { k: 'dep_sp_total', nombre: T('Dep. sector público', 'Public sector dep.'), color: C.turquesa },
+      { k: 'pas_ext', nombre: T('Pasivos externos', 'External liabilities'), color: { claro: C.petroleo, oscuro: C.menta } },
       { k: 'cdd', nombre: 'CDD', color: C.naranja },
-      { k: 'capital', nombre: 'Capital y reservas', color: { claro: C.gris, oscuro: '#6E7A7D' } },
-      { k: 'otras_ctas', nombre: 'Otras cuentas', color: { claro: C.tenue, oscuro: '#3A4549' } }
+      { k: 'capital', nombre: T('Capital y reservas', 'Capital and reserves'), color: { claro: C.gris, oscuro: '#6E7A7D' } },
+      { k: 'otras_ctas', nombre: T('Otras cuentas', 'Other accounts'), color: { claro: C.tenue, oscuro: '#3A4549' } }
     ];
     var col = function (k) { return COMP.filter(function (c) { return c.k === k; })[0].color; };
     // El panel conserva su orden de lectura: de la partida mayor a las residuales
     var PANEL = [
-      ['emision', 'Emisión'], ['dep_bancarios', 'Depósitos bancarios'], ['dep_sp_total', 'Depósitos del sector público'],
-      ['pas_ext', 'Pasivos externos'], ['capital', 'Capital y reservas'], ['otras_ctas', 'Otras cuentas del pasivo'], ['cdd', 'CDD']
+      ['emision', T('Emisión', 'Issuance')], ['dep_bancarios', T('Depósitos bancarios', 'Bank deposits')], ['dep_sp_total', T('Depósitos del sector público', 'Public sector deposits')],
+      ['pas_ext', T('Pasivos externos', 'External liabilities')], ['capital', T('Capital y reservas', 'Capital and reserves')], ['otras_ctas', T('Otras cuentas del pasivo', 'Other liability accounts')], ['cdd', 'CDD']
     ];
     var estado = { rango: 'desde2010', idx: null };
     var activas = new Set(COMP.map(function (c) { return c.k; }));
@@ -77,7 +77,8 @@
       if (!a || a >= 1 || !(anio <= ((M && M.hasta_en_bolivianos) || 0))) return PM.auto(v || 0);
       return PM.num(v, Math.min(6, Math.ceil(-Math.log10(a)) + 3));
     };
-    var bs = function (v, fecha) { return monto(v, fecha) + ' MM Bs'; };
+    // en inglés, «M» y la moneda adelante, como PM.mm: «Bs 106,848 M» (el signo antes de la moneda: «−Bs 12.3 M»)
+    var bs = function (v, fecha) { return PM.en ? monto(v, fecha).replace(/^(−?)/, '$1Bs ') + ' M' : monto(v, fecha) + ' MM Bs'; };
     // Total del pasivo = total del activo (columna «TOTAL ACTIVO Y PASIVO» del cuadro). Las siete
     // series del gráfico lo suman exacto: el scraper comprueba la identidad mes a mes.
     var total = function (d) {
@@ -95,7 +96,7 @@
       S = r[0].series; M = r[0].metadata; estado.idx = S.length - 1;
       S.forEach(function (x) { x.pas_ext = (x.oblig_ext_cp || 0) + (x.oblig_ext_mlp || 0) + (x.dep_oi || 0); });
       K = S.map(function (x) { return x.date; });
-      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+      PM.botonera(document.getElementById('b-rango'), [['5a', T('5 años', '5 years')], ['desde2010', T('Desde 2010', 'Since 2010')], ['desde2000', T('Desde 2000', 'Since 2000')], ['todo', T('Todo', 'All')]],
         estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
       PM.pastillas(document.getElementById('pastillas'),
         COMP.map(function (c) { return { k: c.k, nombre: c.nombre, color: c.color, forma: 'area' }; }),
@@ -108,7 +109,9 @@
       panel(estado.idx);
       PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
       PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
-      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(M.ultimo_dato);
+      document.getElementById('fuente').innerHTML = T(
+        'Fuente: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Elaboración: Centro de Estudios POPULI · Datos al: ',
+        'Source: <a href="https://www.bcb.gob.bo/?q=content/sector-monetario" target="_blank" rel="noopener">BCB</a> · Analysis: Centro de Estudios POPULI · Data as of: ') + PM.fecha(M.ultimo_dato);
     }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
     function cifras() {
@@ -116,10 +119,10 @@
       // minilíneas: los últimos 24 meses del mismo saldo que muestra la cifra
       var serie = function (k) { return PM.ultimos(S.map(function (x) { return x[k]; }), 24); };
       document.getElementById('kpis').innerHTML =
-        PM.kpi({ color: col('emision'), rotulo: 'Emisión', valor: bs(u.emision), delta: PM.pct(parte(u.emision, t), 1) + ' del pasivo', tono: 'neutro', serie: serie('emision') }) +
-        PM.kpi({ color: col('dep_bancarios'), rotulo: 'Dep. bancarios', valor: bs(u.dep_bancarios), delta: PM.pct(parte(u.dep_bancarios, t), 1) + ' del pasivo', tono: 'neutro', serie: serie('dep_bancarios') }) +
-        PM.kpi({ color: col('dep_sp_total'), rotulo: 'Dep. sector público', valor: bs(u.dep_sp_total), delta: PM.pct(parte(u.dep_sp_total, t), 1) + ' del pasivo', tono: 'neutro', serie: serie('dep_sp_total') }) +
-        PM.kpi({ color: col('pas_ext'), rotulo: 'Pasivos externos', valor: bs(u.pas_ext), delta: PM.pct(parte(u.pas_ext, t), 1) + ' del pasivo', tono: 'neutro', serie: serie('pas_ext') });
+        PM.kpi({ color: col('emision'), rotulo: T('Emisión', 'Issuance'), valor: bs(u.emision), delta: PM.pct(parte(u.emision, t), 1) + T(' del pasivo', ' of liabilities'), tono: 'neutro', serie: serie('emision') }) +
+        PM.kpi({ color: col('dep_bancarios'), rotulo: T('Dep. bancarios', 'Bank deposits'), valor: bs(u.dep_bancarios), delta: PM.pct(parte(u.dep_bancarios, t), 1) + T(' del pasivo', ' of liabilities'), tono: 'neutro', serie: serie('dep_bancarios') }) +
+        PM.kpi({ color: col('dep_sp_total'), rotulo: T('Dep. sector público', 'Public sector dep.'), valor: bs(u.dep_sp_total), delta: PM.pct(parte(u.dep_sp_total, t), 1) + T(' del pasivo', ' of liabilities'), tono: 'neutro', serie: serie('dep_sp_total') }) +
+        PM.kpi({ color: col('pas_ext'), rotulo: T('Pasivos externos', 'External liabilities'), valor: bs(u.pas_ext), delta: PM.pct(parte(u.pas_ext, t), 1) + T(' del pasivo', ' of liabilities'), tono: 'neutro', serie: serie('pas_ext') });
     }
 
     function opciones() {
@@ -160,12 +163,12 @@
       return {
         grid: PM.grid(),
         xAxis: PM.ejeTiempo(KV, el, { boundaryGap: true }),
-        yAxis: PM.ejeY({ unidad: 'MM Bs', extra: { min: piso } }),
+        yAxis: PM.ejeY({ unidad: T('MM Bs', 'Bs M'), extra: { min: piso } }),
         tooltip: PM.tooltip(function (ps) {
           if (!ps.length) return '';
           var i = ps[0].dataIndex, x = V[i], t = total(x);
           panel(si + i);
-          var h = PM.ttTitulo(PM.fecha(KV[i]), 'Millones de Bs · % del pasivo');
+          var h = PM.ttTitulo(PM.fecha(KV[i]), T('Millones de Bs · % del pasivo', 'Millions of Bs · % of liabilities'));
           ps.slice().reverse().forEach(function (p) {
             var c = COMP.filter(function (q) { return q.nombre === p.seriesName; })[0];
             if (!c) return;
@@ -173,7 +176,7 @@
             if (c.k === 'cdd' && Math.abs(v) < 0.0005) return;
             h += PM.ttFila(c.color, c.nombre, monto(v, KV[i]) + '<span style="color:rgba(255,255,255,.5);font-weight:500;margin-left:8px">' + PM.pct(parte(v, t), 1) + '</span>', 'area');
           });
-          return h + PM.ttTotal('Total del pasivo', monto(t, KV[i]));
+          return h + PM.ttTotal(T('Total del pasivo', 'Total liabilities'), monto(t, KV[i]));
         }, { axisPointer: PM.sombraEje() }),
         series: series
       };
@@ -184,29 +187,49 @@
       estado.idx = i;
       var d = S[i], t = total(d), p = function (k) { return parte(d[k] || 0, t); };
       var txt = p('emision') > 50
-        ? 'La emisión representa <strong>' + PM.pct(p('emision'), 1) + '</strong> del pasivo: estructura <strong>concentrada</strong> en billetes. Los depósitos bancarios y del sector público complementan.'
-        : 'Estructura del pasivo con la emisión en <strong>' + PM.pct(p('emision'), 1) + '</strong> y los depósitos bancarios en <strong>' + PM.pct(p('dep_bancarios'), 1) + '</strong>. Los depósitos del sector público (<strong>' + PM.pct(p('dep_sp_total'), 1) + '</strong>) reflejan la posición fiscal del gobierno en el BCB.';
+        ? T('La emisión representa <strong>' + PM.pct(p('emision'), 1) + '</strong> del pasivo: estructura <strong>concentrada</strong> en billetes. Los depósitos bancarios y del sector público complementan.',
+          'Issuance accounts for <strong>' + PM.pct(p('emision'), 1) + '</strong> of liabilities: a structure <strong>concentrated</strong> in banknotes. Bank and public sector deposits complement it.')
+        : T('Estructura del pasivo con la emisión en <strong>' + PM.pct(p('emision'), 1) + '</strong> y los depósitos bancarios en <strong>' + PM.pct(p('dep_bancarios'), 1) + '</strong>. Los depósitos del sector público (<strong>' + PM.pct(p('dep_sp_total'), 1) + '</strong>) reflejan la posición fiscal del gobierno en el BCB.',
+          'Liability structure with issuance at <strong>' + PM.pct(p('emision'), 1) + '</strong> and bank deposits at <strong>' + PM.pct(p('dep_bancarios'), 1) + '</strong>. Public sector deposits (<strong>' + PM.pct(p('dep_sp_total'), 1) + '</strong>) reflect the fiscal position of the government at the BCB.');
       var pe = p('pas_ext');
-      if (pe >= 1) txt += ' Los <strong>pasivos externos</strong> suman ' + bs(d.pas_ext, d.date) + ' (<strong>' + PM.pct(pe, 1) + '</strong> del pasivo)' +
-        ((d.oblig_ext_mlp || 0) > 0.9 * d.pas_ext ? ', casi todos obligaciones de mediano y largo plazo.' : '.');
+      if (pe >= 1) txt += T(' Los <strong>pasivos externos</strong> suman ' + bs(d.pas_ext, d.date) + ' (<strong>' + PM.pct(pe, 1) + '</strong> del pasivo)' +
+        ((d.oblig_ext_mlp || 0) > 0.9 * d.pas_ext ? ', casi todos obligaciones de mediano y largo plazo.' : '.'),
+        ' <strong>External liabilities</strong> total ' + bs(d.pas_ext, d.date) + ' (<strong>' + PM.pct(pe, 1) + '</strong> of liabilities)' +
+        ((d.oblig_ext_mlp || 0) > 0.9 * d.pas_ext ? ', almost all of them medium- and long-term obligations.' : '.'));
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML = PANEL.map(function (x) {
         if (x[0] === 'cdd' && Math.abs(d.cdd || 0) < 0.0005) return '';
-        var desc = x[0] === 'pas_ext' ? 'Obligaciones de corto plazo ' + monto(d.oblig_ext_cp || 0, d.date) + ' · de mediano y largo plazo ' +
-          monto(d.oblig_ext_mlp || 0, d.date) + ' · depósitos de organismos internacionales ' + monto(d.dep_oi || 0, d.date)
-          : x[0] === 'cdd' ? 'Certificados de devolución de depósitos, emitidos tras la liquidación de bancos' : null;
-        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0, d.date), p(x[0]), 'del pasivo'), desc);
+        var desc = x[0] === 'pas_ext' ? T('Obligaciones de corto plazo ' + monto(d.oblig_ext_cp || 0, d.date) + ' · de mediano y largo plazo ' +
+          monto(d.oblig_ext_mlp || 0, d.date) + ' · depósitos de organismos internacionales ' + monto(d.dep_oi || 0, d.date),
+          'Short-term obligations ' + monto(d.oblig_ext_cp || 0, d.date) + ' · medium- and long-term ' +
+          monto(d.oblig_ext_mlp || 0, d.date) + ' · deposits of international organizations ' + monto(d.dep_oi || 0, d.date))
+          : x[0] === 'cdd' ? T('Certificados de devolución de depósitos, emitidos tras la liquidación de bancos', 'Deposit refund certificates, issued after the liquidation of banks') : null;
+        return PM.pb(col(x[0]), x[1], conParte(bs(d[x[0]] || 0, d.date), p(x[0]), T('del pasivo', 'of liabilities')), desc);
       }).join('') + PM.ctx(txt);
     }
 
     var PREGUNTAS = [
-      ['¿Qué es el pasivo del BCB?', 'El pasivo del banco central muestra <strong>de dónde proviene el dinero</strong>: la emisión (billetes), los depósitos que bancos y el gobierno mantienen en el BCB, y las obligaciones con el exterior. Pasivo total = activo total.'],
-      ['Emisión vs. depósitos', 'La <strong>emisión</strong> es el componente más visible: los billetes y monedas en circulación. Los <strong>depósitos bancarios</strong> son las reservas obligatorias (encaje) y voluntarias que los bancos mantienen en el BCB. Ambos forman la <strong>base monetaria</strong>.'],
-      ['Depósitos del sector público', 'Cuando el gobierno deposita ingresos en el BCB (impuestos, regalías), esos depósitos <strong>contraen la base monetaria</strong>. Cuando los retira para gastar, la <strong>expanden</strong>. Es un canal directo de transmisión fiscal-monetaria.'],
-      ['Acreedores del banco central', 'La composición del pasivo muestra <strong>quiénes son los mayores acreedores del BCB</strong>: el público (vía emisión de billetes), el sector financiero (depósitos de encaje), el sector público (depósitos del gobierno) y organismos internacionales (obligaciones externas). Entender quién tiene derechos sobre los pasivos del BCB revela las presiones y restricciones de la política monetaria.'],
-      ['¿Cómo se agrupan las partidas?', 'El gráfico apila <strong>todas las partidas</strong> del balance que publica el BCB, así que la altura de cada barra es el pasivo total, igual al activo total: emisión, depósitos bancarios, depósitos del sector público, <strong>pasivos externos</strong> (obligaciones con el exterior de corto y de mediano y largo plazo, y depósitos de organismos internacionales), capital y reservas, otras cuentas del pasivo y, entre 1994 y 2010, los <strong>CDD</strong> (certificados de devolución de depósitos emitidos tras la liquidación de bancos). Antes de publicar se comprueba, mes a mes desde 1977, que la suma cierre con el total del cuadro.'],
-      ['Las cifras hasta 1984', 'El BCB publica este cuadro en miles de bolivianos, pero su nota al pie aclara que <strong>hasta 1984 está expresado en bolivianos</strong>. Aquí todo va en millones de bolivianos actuales, y la reforma monetaria de 1987 cambió <strong>un boliviano por un millón de pesos bolivianos</strong>: por eso, en millones, el balance de esos años da cifras tan chicas. La composición en porcentaje no cambia.'],
-      ['Pasivo y calidad del dinero', 'Desde la <strong>teoría cualitativa del dinero</strong>, la composición del pasivo refleja la calidad de la moneda. Un pasivo dominado por emisión sin respaldo en reservas indica un banco central que financia al gobierno imprimiendo dinero. La relación <strong>emisión/pasivo total</strong> es un indicador clave de la presión inflacionaria latente en la economía.']
+      [T('¿Qué es el pasivo del BCB?', 'What are the liabilities of the BCB?'), T(
+        'El pasivo del banco central muestra <strong>de dónde proviene el dinero</strong>: la emisión (billetes), los depósitos que bancos y el gobierno mantienen en el BCB, y las obligaciones con el exterior. Pasivo total = activo total.',
+        'The liabilities of the central bank show <strong>where the money comes from</strong>: issuance (banknotes), the deposits that banks and the government hold at the BCB, and obligations to the rest of the world. Total liabilities = total assets.')],
+      [T('Emisión vs. depósitos', 'Issuance vs. deposits'), T(
+        'La <strong>emisión</strong> es el componente más visible: los billetes y monedas en circulación. Los <strong>depósitos bancarios</strong> son las reservas obligatorias (encaje) y voluntarias que los bancos mantienen en el BCB. Ambos forman la <strong>base monetaria</strong>.',
+        '<strong>Issuance</strong> is the most visible component: the banknotes and coins in circulation. <strong>Bank deposits</strong> are the required reserves (reserve requirement) and voluntary reserves that banks hold at the BCB. Together they make up the <strong>monetary base</strong>.')],
+      [T('Depósitos del sector público', 'Public sector deposits'), T(
+        'Cuando el gobierno deposita ingresos en el BCB (impuestos, regalías), esos depósitos <strong>contraen la base monetaria</strong>. Cuando los retira para gastar, la <strong>expanden</strong>. Es un canal directo de transmisión fiscal-monetaria.',
+        'When the government deposits revenue at the BCB (taxes, royalties), those deposits <strong>contract the monetary base</strong>. When it withdraws them to spend, they <strong>expand</strong> it. It is a direct channel of fiscal-monetary transmission.')],
+      [T('Acreedores del banco central', 'Creditors of the central bank'), T(
+        'La composición del pasivo muestra <strong>quiénes son los mayores acreedores del BCB</strong>: el público (vía emisión de billetes), el sector financiero (depósitos de encaje), el sector público (depósitos del gobierno) y organismos internacionales (obligaciones externas). Entender quién tiene derechos sobre los pasivos del BCB revela las presiones y restricciones de la política monetaria.',
+        'The composition of liabilities shows <strong>who the largest creditors of the BCB are</strong>: the public (through the issuance of banknotes), the financial sector (reserve requirement deposits), the public sector (government deposits) and international organizations (external obligations). Understanding who holds claims on the liabilities of the BCB reveals the pressures and constraints of monetary policy.')],
+      [T('¿Cómo se agrupan las partidas?', 'How are the items grouped?'), T(
+        'El gráfico apila <strong>todas las partidas</strong> del balance que publica el BCB, así que la altura de cada barra es el pasivo total, igual al activo total: emisión, depósitos bancarios, depósitos del sector público, <strong>pasivos externos</strong> (obligaciones con el exterior de corto y de mediano y largo plazo, y depósitos de organismos internacionales), capital y reservas, otras cuentas del pasivo y, entre 1994 y 2010, los <strong>CDD</strong> (certificados de devolución de depósitos emitidos tras la liquidación de bancos). Antes de publicar se comprueba, mes a mes desde 1977, que la suma cierre con el total del cuadro.',
+        'The chart stacks <strong>all the items</strong> of the balance sheet published by the BCB, so the height of each bar is total liabilities, equal to total assets: issuance, bank deposits, public sector deposits, <strong>external liabilities</strong> (short-term and medium- and long-term obligations to the rest of the world, and deposits of international organizations), capital and reserves, other liability accounts and, between 1994 and 2010, the <strong>CDD</strong> (deposit refund certificates issued after the liquidation of banks). Before publishing, it is checked, month by month since 1977, that the sum matches the total of the table.')],
+      [T('Las cifras hasta 1984', 'The figures up to 1984'), T(
+        'El BCB publica este cuadro en miles de bolivianos, pero su nota al pie aclara que <strong>hasta 1984 está expresado en bolivianos</strong>. Aquí todo va en millones de bolivianos actuales, y la reforma monetaria de 1987 cambió <strong>un boliviano por un millón de pesos bolivianos</strong>: por eso, en millones, el balance de esos años da cifras tan chicas. La composición en porcentaje no cambia.',
+        'The BCB publishes this table in thousands of bolivianos, but its footnote clarifies that <strong>up to 1984 it is expressed in bolivianos</strong>. Here everything is in millions of current bolivianos, and the monetary reform of 1987 exchanged <strong>one boliviano for one million pesos bolivianos</strong>: that is why, in millions, the balance sheet of those years gives such small figures. The composition in percentage terms does not change.')],
+      [T('Pasivo y calidad del dinero', 'Liabilities and the quality of money'), T(
+        'Desde la <strong>teoría cualitativa del dinero</strong>, la composición del pasivo refleja la calidad de la moneda. Un pasivo dominado por emisión sin respaldo en reservas indica un banco central que financia al gobierno imprimiendo dinero. La relación <strong>emisión/pasivo total</strong> es un indicador clave de la presión inflacionaria latente en la economía.',
+        'From the standpoint of the <strong>quality theory of money</strong>, the composition of liabilities reflects the quality of the currency. Liabilities dominated by issuance without backing in reserves indicate a central bank that finances the government by printing money. The <strong>issuance/total liabilities</strong> ratio is a key indicator of the latent inflationary pressure in the economy.')]
     ];
   })();
   </script>

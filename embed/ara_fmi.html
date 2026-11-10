@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Suficiencia de Reservas (ARA-FMI) · Populi</title>
+  <title data-en="Reserve Adequacy (ARA-IMF) · Populi">Suficiencia de Reservas (ARA-FMI) · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -23,7 +23,7 @@
 <body>
   <div class="wrap">
     <div class="sec-hd">
-      <div class="sec-title"><span class="accent-bar"></span>Suficiencia de Reservas (ARA-FMI)</div>
+      <div class="sec-title" data-en='<span class="accent-bar"></span>Reserve Adequacy (ARA-IMF)'><span class="accent-bar"></span>Suficiencia de Reservas (ARA-FMI)</div>
       <div class="sec-sub" id="sub"></div>
     </div>
 
@@ -32,10 +32,10 @@
     <div class="main-grid">
       <div class="chart-card">
         <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
-        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando indicadores ARA-FMI…</span></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span data-en="Loading ARA-IMF indicators…">Cargando indicadores ARA-FMI…</span></div></div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><span class="panel-hd-t">Bolivia — Diagnóstico ARA</span><span class="panel-hd-d">Último dato disponible</span></div>
+        <div class="panel-hd"><span class="panel-hd-t" data-en="Bolivia — ARA Diagnosis">Bolivia — Diagnóstico ARA</span><span class="panel-hd-d" data-en="Latest available data">Último dato disponible</span></div>
         <div class="panel-body" id="panel"></div>
       </div>
     </div>
@@ -46,12 +46,13 @@
 
   <script>
   (function () {
-    PM.leyendaResto = 'Otros países';   // en la imagen descargada, el contexto gris va en una sola entrada
-    var C = PM.C;
+    PM.leyendaResto = PM.t('Otros países', 'Other countries');   // en la imagen descargada, el contexto gris va en una sola entrada
+    var C = PM.C, T = PM.t;   // T('castellano', 'inglés'): con ?lang=en el gráfico sale en inglés
     var IND = ['Reserves_ARA', 'Reserves_M2', 'Reserves_STD', 'Reserves_M'];
-    var CORTO_IND = { Reserves_ARA: 'ARA general', Reserves_M2: 'Reservas/M2', Reserves_STD: 'Reservas/Deuda CP', Reserves_M: 'Meses de importación' };
+    var CORTO_IND = { Reserves_ARA: T('ARA general', 'Overall ARA'), Reserves_M2: T('Reservas/M2', 'Reserves/M2'), Reserves_STD: T('Reservas/Deuda CP', 'Reserves/ST debt'), Reserves_M: T('Meses de importación', 'Months of imports') };
     var COL_IND = { Reserves_ARA: C.rojoClaro, Reserves_M2: { claro: C.petroleo, oscuro: C.menta }, Reserves_STD: C.oro, Reserves_M: C.turquesa };
-    var NOMBRE = { Bolivia: 'Bolivia', Chile: 'Chile', Peru: 'Perú', Colombia: 'Colombia', Brazil: 'Brasil', Paraguay: 'Paraguay', Argentina: 'Argentina', Uruguay: 'Uruguay', Ecuador: 'Ecuador' };
+    // Los países vienen del FMI con su nombre en inglés (la clave): en inglés se muestra ese nombre original.
+    var NOMBRE = { Bolivia: 'Bolivia', Chile: 'Chile', Peru: T('Perú', 'Peru'), Colombia: 'Colombia', Brazil: T('Brasil', 'Brazil'), Paraguay: 'Paraguay', Argentina: 'Argentina', Uruguay: 'Uruguay', Ecuador: 'Ecuador' };
     var CORTO = { Bolivia: 'BOL', Chile: 'CHL', Peru: 'PER', Colombia: 'COL', Brazil: 'BRA', Paraguay: 'PRY', Argentina: 'ARG', Uruguay: 'URY', Ecuador: 'ECU' };
     // Modo Foco de la marca: Bolivia en rojo (trazo grueso, último valor rotulado), el resto en gris
     // tenue, el umbral en pizarra. Al pasar el cursor sobre la línea de un país, las demás se atenúan.
@@ -59,12 +60,13 @@
     var CONTEXTO = { claro: '#C9CDCE', oscuro: '#3A4549' };       // líneas de contexto
     var CTX_TIP = { claro: '#C9CDCE', oscuro: '#8A9699' };        // su clave sobre el tooltip oscuro
     var CTX_PILL = { claro: '#8A9699', oscuro: '#6E7A7D' };       // su pastilla (el tenue no se distingue encendido de apagado)
-    var DIAG = { Reserves_ARA: 'compuesto (ARA)', Reserves_M2: 'de reservas sobre M2', Reserves_STD: 'de deuda de corto plazo', Reserves_M: 'de meses de importación' };
+    // En inglés el calificativo va ANTES de «indicator» («Only the short-term debt indicator…»): ver el diagnóstico del panel.
+    var DIAG = { Reserves_ARA: T('compuesto (ARA)', 'composite (ARA)'), Reserves_M2: T('de reservas sobre M2', 'reserves-to-M2'), Reserves_STD: T('de deuda de corto plazo', 'short-term debt'), Reserves_M: T('de meses de importación', 'months-of-imports') };
     var estado = { ind: 'Reserves_ARA' };
     var activos = new Set(['Bolivia', 'Chile', 'Peru', 'Colombia', 'Argentina']);
     var DATA, grafico;
 
-    function umbral(k) { return PM.tick(DATA.indicators[k].threshold) + (k === 'Reserves_M' ? ' meses' : 'x'); }
+    function umbral(k) { return PM.tick(DATA.indicators[k].threshold) + (k === 'Reserves_M' ? T(' meses', ' months') : 'x'); }
     // serie anual de Bolivia de un indicador, año por año (un año sin dato corta la minilínea)
     function serieBolivia(k) {
       var s = DATA.series[k].Bolivia || [], porAnio = {}, a0 = Infinity, a1 = -Infinity, out = [];
@@ -77,7 +79,8 @@
     PM.cargar(['ara_fmi.json']).then(function (r) {
       DATA = r[0];
       var m = DATA.metadata;
-      document.getElementById('sub').textContent = 'Assessing Reserve Adequacy — Comparativa regional · ' + m.primer_dato + '–' + m.ultimo_dato;
+      document.getElementById('sub').textContent = T('Assessing Reserve Adequacy — Comparativa regional · ' + m.primer_dato + '–' + m.ultimo_dato,
+        'Assessing Reserve Adequacy — Regional comparison · ' + m.primer_dato + '–' + m.ultimo_dato);
       cifras();
       pastillas();
       var el = document.getElementById('chart');
@@ -86,7 +89,9 @@
       panel();
       PM.alCambiarTema(function () { cifras(); pintarPastillas(); panel(); });
       PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
-      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.imf.org/external/datamapper/datasets/ARA" target="_blank" rel="noopener">FMI — Assessing Reserve Adequacy (ARA)</a> · Elaboración: Centro de Estudios POPULI';
+      document.getElementById('fuente').innerHTML = T(
+        'Fuente: <a href="https://www.imf.org/external/datamapper/datasets/ARA" target="_blank" rel="noopener">FMI — Assessing Reserve Adequacy (ARA)</a> · Elaboración: Centro de Estudios POPULI',
+        'Source: <a href="https://www.imf.org/external/datamapper/datasets/ARA" target="_blank" rel="noopener">IMF — Assessing Reserve Adequacy (ARA)</a> · Analysis: Centro de Estudios POPULI');
     }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
     function cifras() {
@@ -96,8 +101,9 @@
         return '<div class="kpi' + (sel ? ' sel' : '') + '" data-ind="' + k + '" role="button" tabindex="0" aria-pressed="' + sel + '" style="--kc:' + PM.col(COL_IND[k]) + '">' +
           '<div class="kpi-lbl">' + CORTO_IND[k] + '</div>' +
           '<div class="kpi-val" style="color:' + PM.tx(COL_IND[k]) + '">' + PM.num(val, 2) + '</div>' +
-          '<div class="kpi-d ' + (ok ? 'bueno' : 'malo') + '">' + (ok ? '✓ Adecuado' : '▼ Insuficiente') + '</div>' +
-          '<div class="kpi-thr">Umbral ' + (k === 'Reserves_M2' ? '0,2 (20%)' : umbral(k)) + ' · dato ' + (bv ? bv.year : '—') + '</div>' +
+          '<div class="kpi-d ' + (ok ? 'bueno' : 'malo') + '">' + (ok ? T('✓ Adecuado', '✓ Adequate') : T('▼ Insuficiente', '▼ Insufficient')) + '</div>' +
+          '<div class="kpi-thr">' + T('Umbral ' + (k === 'Reserves_M2' ? '0,2 (20%)' : umbral(k)) + ' · dato ' + (bv ? bv.year : '—'),
+            'Threshold ' + (k === 'Reserves_M2' ? '0.2 (20%)' : umbral(k)) + ' · ' + (bv ? bv.year : '—') + ' data') + '</div>' +
           PM.mini(serieBolivia(k), COL_IND[k]) + '</div>';
       }).join('');
       el.querySelectorAll('.kpi').forEach(function (e) {
@@ -177,7 +183,7 @@
           o.markPoint = mp;
           o.markLine = { silent: true, symbol: 'none', animation: false, data: [{ yAxis: meta.threshold }],
             lineStyle: { color: PM.var('--pizarra'), width: 1.25, type: 'dashed' },
-            label: { show: true, position: 'insideStartTop', formatter: 'Umbral ' + umbral(k), color: PM.var('--pizarra'),
+            label: { show: true, position: 'insideStartTop', formatter: T('Umbral ' + umbral(k), 'Threshold ' + umbral(k)), color: PM.var('--pizarra'),
               fontFamily: PM.mono(), fontSize: 10, fontWeight: 600, textBorderColor: PM.var('--card') || '#fff', textBorderWidth: 3 } };   // halo: las líneas de contexto no lo tapan
         }
         return o;
@@ -198,7 +204,7 @@
           v.sort(function (a, b) { return b.value - a.value; });
           var h = PM.ttTitulo(ps[0].axisValue);
           v.forEach(function (p) { h += PM.ttFila(p.seriesName === 'Bolivia' ? FOCO : CTX_TIP, p.seriesName, PM.num(p.value, 2), 'linea'); });
-          return h + PM.ttPie('Umbral: ' + umbral(k));
+          return h + PM.ttPie(T('Umbral: ' + umbral(k), 'Threshold: ' + umbral(k)));
         }),
         series: series
       };
@@ -213,37 +219,64 @@
         var serie = DATA.series[k].Bolivia || [], pico = null;
         serie.forEach(function (p) { if (!pico || p.value > pico.value) pico = p; });
         var desc = '';
-        if (k === 'Reserves_ARA') desc = val < thr ? 'Bolivia no alcanza el nivel de reservas adecuado según la métrica compuesta del FMI. Esto implica vulnerabilidad ante choques externos.' : 'Reservas adecuadas según el indicador compuesto del FMI.';
-        else if (k === 'Reserves_M2') desc = val < thr ? 'Solo el ' + PM.pct(val * 100, 1) + ' del dinero amplio está respaldado por reservas. Muy por debajo del mínimo recomendado de 20%, lo que limita la capacidad de defender el tipo de cambio.' : 'Respaldo adecuado del dinero amplio con reservas internacionales.';
-        else if (k === 'Reserves_STD') desc = val < thr ? 'Las reservas no cubren la totalidad de la deuda externa de corto plazo, lo que viola la regla de Guidotti.' : 'Las reservas cubren la deuda externa de corto plazo, en cumplimiento de la regla de Guidotti-Greenspan.';
-        else desc = val < thr ? 'Con ' + PM.num(val, 1) + ' meses de cobertura, Bolivia está por debajo del nivel prudente de 3 meses. El margen para financiar importaciones con reservas es muy limitado.' : 'Cobertura de importaciones por encima del nivel prudente de 3 meses.';
+        if (k === 'Reserves_ARA') desc = val < thr
+          ? T('Bolivia no alcanza el nivel de reservas adecuado según la métrica compuesta del FMI. Esto implica vulnerabilidad ante choques externos.',
+            'Bolivia does not reach the adequate level of reserves according to the composite metric of the IMF. This implies vulnerability to external shocks.')
+          : T('Reservas adecuadas según el indicador compuesto del FMI.', 'Adequate reserves according to the composite indicator of the IMF.');
+        else if (k === 'Reserves_M2') desc = val < thr
+          ? T('Solo el ' + PM.pct(val * 100, 1) + ' del dinero amplio está respaldado por reservas. Muy por debajo del mínimo recomendado de 20%, lo que limita la capacidad de defender el tipo de cambio.',
+            'Only ' + PM.pct(val * 100, 1) + ' of broad money is backed by reserves. Well below the recommended minimum of 20%, which limits the capacity to defend the exchange rate.')
+          : T('Respaldo adecuado del dinero amplio con reservas internacionales.', 'Adequate backing of broad money with international reserves.');
+        else if (k === 'Reserves_STD') desc = val < thr
+          ? T('Las reservas no cubren la totalidad de la deuda externa de corto plazo, lo que viola la regla de Guidotti.',
+            'Reserves do not cover the whole of the short-term external debt, which violates the Guidotti rule.')
+          : T('Las reservas cubren la deuda externa de corto plazo, en cumplimiento de la regla de Guidotti-Greenspan.',
+            'Reserves cover the short-term external debt, in compliance with the Guidotti-Greenspan rule.');
+        else desc = val < thr
+          ? T('Con ' + PM.num(val, 1) + ' meses de cobertura, Bolivia está por debajo del nivel prudente de 3 meses. El margen para financiar importaciones con reservas es muy limitado.',
+            'With ' + PM.num(val, 1) + ' months of coverage, Bolivia is below the prudent level of 3 months. The room to finance imports with reserves is very limited.')
+          : T('Cobertura de importaciones por encima del nivel prudente de 3 meses.', 'Import coverage above the prudent level of 3 months.');
         html += '<div class="pb"><div class="pb-lbl" style="color:' + PM.tx(color) + ';background:' + PM.rgba(color, PM.dk() ? 0.16 : 0.08) + ';border-left-color:' + PM.col(color) + '">' + CORTO_IND[k] + '</div>' +
           '<div class="pb-val" style="color:' + PM.tx(color) + '">' + PM.num(val, 2) + '<span class="umbral"> / ' + umbral(k) + ' (' + yr + ')</span></div>' +
           '<p class="pb-desc">' + desc + '</p>' +
-          (pico ? PM.ctx('<strong>Máximo: ' + PM.num(pico.value, 2) + ' (' + pico.year + ')</strong>') : '') + '</div>';
+          (pico ? PM.ctx(T('<strong>Máximo: ' + PM.num(pico.value, 2) + ' (' + pico.year + ')</strong>', '<strong>Peak: ' + PM.num(pico.value, 2) + ' (' + pico.year + ')</strong>')) : '') + '</div>';
       });
       // Diagnóstico: el conteo sale de los datos, no del texto
       var picoAra = null;
       (DATA.series.Reserves_ARA.Bolivia || []).forEach(function (p) { if (!picoAra || p.value > picoAra.value) picoAra = p; });
-      var diag = 'Bolivia presenta insuficiencia de reservas en <strong>' + malos + ' de ' + IND.length + ' indicadores ARA</strong>.' +
-        (picoAra ? ' La tendencia descendente desde ' + picoAra.year + ' refleja el agotamiento del modelo de financiamiento con reservas del banco central.' : '');
+      var diag = T('Bolivia presenta insuficiencia de reservas en <strong>' + malos + ' de ' + IND.length + ' indicadores ARA</strong>.' +
+        (picoAra ? ' La tendencia descendente desde ' + picoAra.year + ' refleja el agotamiento del modelo de financiamiento con reservas del banco central.' : ''),
+        'Bolivia shows insufficient reserves in <strong>' + malos + ' of ' + IND.length + ' ARA indicators</strong>.' +
+        (picoAra ? ' The downward trend since ' + picoAra.year + ' reflects the exhaustion of the model of financing with central bank reserves.' : ''));
       if (buenos.length === 1) {
         var k1 = buenos[0], s1 = DATA.series[k1].Bolivia || [], u1 = ultimo(k1), previo = null;
         s1.forEach(function (p) { if (p.year === u1.year - 1) previo = p; });
-        diag += ' Solo el indicador ' + DIAG[k1] + (previo && previo.value < DATA.indicators[k1].threshold
-          ? ' se recuperó por encima del umbral en ' + u1.year + '.' : ' se mantiene por encima del umbral (' + u1.year + ').');
+        diag += T(' Solo el indicador ' + DIAG[k1] + (previo && previo.value < DATA.indicators[k1].threshold
+          ? ' se recuperó por encima del umbral en ' + u1.year + '.' : ' se mantiene por encima del umbral (' + u1.year + ').'),
+          ' Only the ' + DIAG[k1] + ' indicator' + (previo && previo.value < DATA.indicators[k1].threshold
+          ? ' recovered above the threshold in ' + u1.year + '.' : ' remains above the threshold (' + u1.year + ').'));
       }
-      html += '<div class="pb"><div class="pb-lbl" style="color:' + PM.tx(C.rojo) + ';background:' + PM.rgba(C.rojo, PM.dk() ? 0.16 : 0.08) + ';border-left-color:' + C.rojo + '">Diagnóstico</div>' +
+      html += '<div class="pb"><div class="pb-lbl" style="color:' + PM.tx(C.rojo) + ';background:' + PM.rgba(C.rojo, PM.dk() ? 0.16 : 0.08) + ';border-left-color:' + C.rojo + '">' + T('Diagnóstico', 'Diagnosis') + '</div>' +
         '<p class="pb-desc" style="margin-top:4px">' + diag + '</p></div>';
       document.getElementById('panel').innerHTML = html;
     }
 
     var PREGUNTAS = [
-      ['Metodología ARA del FMI', 'La métrica <strong>Assessing Reserve Adequacy</strong> (ARA) del FMI es un indicador compuesto que pondera cuatro fuentes de riesgo: exportaciones, dinero amplio (M2), deuda externa de corto plazo y otros pasivos. Un valor <strong>≥ 1</strong> indica reservas adecuadas para enfrentar choques externos sin necesidad de ajustes abruptos en la política cambiaria o comercial.'],
-      ['Reservas / M2 (dinero amplio)', 'Mide qué proporción de los depósitos y billetes en circulación está respaldada por reservas internacionales. El estándar mínimo del FMI es <strong>20% (0,2)</strong>. Cuando este ratio cae, el banco central pierde capacidad para defender la paridad cambiaria ante corridas bancarias o fuga de capitales, porque M2 mide el dinero que podría convertirse rápidamente en demanda de dólares.'],
-      ['Regla de Guidotti: reservas / deuda CP', 'La <strong>regla de Guidotti-Greenspan</strong> establece que las reservas deben cubrir al menos el 100% de la deuda externa de corto plazo (vencimientos ≤ 1 año). Un ratio <strong>≥ 1</strong> significa que el país puede pagar todos sus compromisos externos inmediatos sin recurrir a nuevos préstamos. Bolivia recuperó este umbral en 2025 tras caer por debajo en 2024.'],
-      ['Meses de importación', 'Métrica clásica de cobertura: cuántos meses de importaciones puede financiar el país solo con reservas. El nivel <strong>prudente es ≥ 3 meses</strong>. Bolivia pasó de más de 15 meses de cobertura en 2012-2015 a apenas 2 meses en 2024, reflejo del agotamiento de las reservas líquidas frente a una economía que sigue importando a ritmo elevado.'],
-      ['Bolivia en contexto regional', 'Bolivia y Argentina son los dos países de Sudamérica con los indicadores ARA más deteriorados. Mientras Perú, Colombia y Paraguay mantienen ratios por encima de los umbrales recomendados, Bolivia enfrenta una situación crítica en 3 de los 4 indicadores. La pérdida de reservas refleja años de déficits gemelos (fiscal y externo) financiados con activos del banco central.']
+      [T('Metodología ARA del FMI', 'The ARA methodology of the IMF'), T(
+        'La métrica <strong>Assessing Reserve Adequacy</strong> (ARA) del FMI es un indicador compuesto que pondera cuatro fuentes de riesgo: exportaciones, dinero amplio (M2), deuda externa de corto plazo y otros pasivos. Un valor <strong>≥ 1</strong> indica reservas adecuadas para enfrentar choques externos sin necesidad de ajustes abruptos en la política cambiaria o comercial.',
+        'The <strong>Assessing Reserve Adequacy</strong> (ARA) metric of the IMF is a composite indicator that weights four sources of risk: exports, broad money (M2), short-term external debt and other liabilities. A value <strong>≥ 1</strong> indicates reserves adequate to face external shocks without the need for abrupt adjustments in exchange-rate or trade policy.')],
+      [T('Reservas / M2 (dinero amplio)', 'Reserves / M2 (broad money)'), T(
+        'Mide qué proporción de los depósitos y billetes en circulación está respaldada por reservas internacionales. El estándar mínimo del FMI es <strong>20% (0,2)</strong>. Cuando este ratio cae, el banco central pierde capacidad para defender la paridad cambiaria ante corridas bancarias o fuga de capitales, porque M2 mide el dinero que podría convertirse rápidamente en demanda de dólares.',
+        'It measures what share of the deposits and banknotes in circulation is backed by international reserves. The minimum standard of the IMF is <strong>20% (0.2)</strong>. When this ratio falls, the central bank loses capacity to defend the exchange-rate parity in the face of bank runs or capital flight, because M2 measures the money that could quickly turn into demand for dollars.')],
+      [T('Regla de Guidotti: reservas / deuda CP', 'The Guidotti rule: reserves / ST debt'), T(
+        'La <strong>regla de Guidotti-Greenspan</strong> establece que las reservas deben cubrir al menos el 100% de la deuda externa de corto plazo (vencimientos ≤ 1 año). Un ratio <strong>≥ 1</strong> significa que el país puede pagar todos sus compromisos externos inmediatos sin recurrir a nuevos préstamos. Bolivia recuperó este umbral en 2025 tras caer por debajo en 2024.',
+        'The <strong>Guidotti-Greenspan rule</strong> states that reserves must cover at least 100% of short-term external debt (maturities ≤ 1 year). A ratio <strong>≥ 1</strong> means that the country can pay all its immediate external commitments without resorting to new loans. Bolivia regained this threshold in 2025 after falling below it in 2024.')],
+      [T('Meses de importación', 'Months of imports'), T(
+        'Métrica clásica de cobertura: cuántos meses de importaciones puede financiar el país solo con reservas. El nivel <strong>prudente es ≥ 3 meses</strong>. Bolivia pasó de más de 15 meses de cobertura en 2012-2015 a apenas 2 meses en 2024, reflejo del agotamiento de las reservas líquidas frente a una economía que sigue importando a ritmo elevado.',
+        'A classic coverage metric: how many months of imports the country can finance with reserves alone. The <strong>prudent level is ≥ 3 months</strong>. Bolivia went from more than 15 months of coverage in 2012-2015 to barely 2 months in 2024, a reflection of the depletion of liquid reserves in the face of an economy that keeps importing at a high pace.')],
+      [T('Bolivia en contexto regional', 'Bolivia in regional context'), T(
+        'Bolivia y Argentina son los dos países de Sudamérica con los indicadores ARA más deteriorados. Mientras Perú, Colombia y Paraguay mantienen ratios por encima de los umbrales recomendados, Bolivia enfrenta una situación crítica en 3 de los 4 indicadores. La pérdida de reservas refleja años de déficits gemelos (fiscal y externo) financiados con activos del banco central.',
+        'Bolivia and Argentina are the two countries in South America with the most deteriorated ARA indicators. While Peru, Colombia and Paraguay keep ratios above the recommended thresholds, Bolivia faces a critical situation in 3 of the 4 indicators. The loss of reserves reflects years of twin deficits (fiscal and external) financed with central bank assets.')]
     ];
   })();
   </script>
