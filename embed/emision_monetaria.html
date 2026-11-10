@@ -15,7 +15,7 @@
   <div class="wrap">
     <div class="sec-hd">
       <div class="sec-title" data-en='<span class="accent-bar"></span>Money Issuance'><span class="accent-bar"></span>Emisión Monetaria</div>
-      <div class="sec-sub" data-en="Destination of the money in circulation: banknotes held by the public and vault cash of the financial system">Destino del medio circulante: billetes en poder del público y caja del sistema financiero</div>
+      <div class="sec-sub" data-en="Destination of issuance: banknotes held by the public and vault cash of the financial system">Destino de la emisión: billetes en poder del público y caja del sistema financiero</div>
     </div>
 
     <div class="hz-bar">
@@ -151,8 +151,8 @@
       var mes = PM.fecha(d.date);
       var vMes = a ? (d.emision / a.emision - 1) * 100 : 0, v12 = a12 ? (d.emision / a12.emision - 1) * 100 : null;
       var txt;
-      if (v12 == null) txt = T('Sin el dato del mismo mes del año anterior: la serie es anual antes de diciembre de 1988.',
-        'No data for the same month of the previous year: the series is annual before December 1988.');
+      if (v12 == null) txt = T('Sin el dato del mismo mes del año anterior: la serie es anual hasta diciembre de 1988.',
+        'No data for the same month of the previous year: the series is annual up to December 1988.');
       else if (v12 > 25) txt = T('Crecimiento de <strong>' + PM.pct(v12, 1) + '</strong> interanual: <strong>expansión monetaria acelerada</strong>. A esta tasa, la emisión se duplica cada ' + PM.num(70 / v12, 1) + ' años. Presión inflacionaria significativa, con retardos de 12 a 18 meses.',
         'Year-on-year growth of <strong>' + PM.pct(v12, 1) + '</strong>: <strong>accelerated monetary expansion</strong>. At this rate, issuance doubles every ' + PM.num(70 / v12, 1) + ' years. Significant inflationary pressure, with lags of 12 to 18 months.');
       else if (v12 > 15) txt = T('Expansión interanual de <strong>' + PM.pct(v12, 1) + '</strong>, un ritmo <strong>elevado</strong> que supera el crecimiento nominal de la economía. Señal de financiamiento monetario del déficit.',

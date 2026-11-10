@@ -159,8 +159,11 @@
         '<strong>' + PM.pct(d.total_pct, 1) + '</strong> of assets is credit to the government. <strong>Clear fiscal dominance</strong>: monetary policy depends on the financing needs of the State.');
       else if (d.total_pct > 0) txt = T('Crédito neto al SPNF en <strong>' + PM.pct(d.total_pct, 1) + '</strong> del activo. Nivel <strong>moderado</strong> de monetización, con reservas en <strong>' + PM.pct(d.rib_pct, 1) + '</strong>.',
         'Net credit to the NFPS at <strong>' + PM.pct(d.total_pct, 1) + '</strong> of assets. A <strong>moderate</strong> level of monetization, with reserves at <strong>' + PM.pct(d.rib_pct, 1) + '</strong>.');
-      else txt = T('Crédito neto <strong>negativo (' + PM.pct(d.total_pct, 1) + ')</strong>: el gobierno tiene más depósitos que préstamos en el BCB, es decir, es <strong>acreedor neto</strong> del banco central. Situación posterior a las reformas estructurales de 1985, cuando el Estado mantenía superávits y depósitos que excedían su endeudamiento con el BCB.',
-        'Net credit is <strong>negative (' + PM.pct(d.total_pct, 1) + ')</strong>: the government has more deposits than loans at the BCB, that is, it is a <strong>net creditor</strong> of the central bank. A situation that followed the structural reforms of 1985, when the State maintained surpluses and deposits that exceeded its debt to the BCB.');
+      else if (d.total_pct < 0) txt = T('Crédito neto <strong>negativo (' + PM.pct(d.total_pct, 1) + ')</strong>: el sector público tiene en el BCB más depósitos que deuda, es decir, es <strong>acreedor neto</strong> del banco central.',
+        'Net credit is <strong>negative (' + PM.pct(d.total_pct, 1) + ')</strong>: the public sector has more deposits than debt at the BCB, that is, it is a <strong>net creditor</strong> of the central bank.');
+      // el cero (la razón se redondea a un decimal: en feb-1989 el crédito neto era de 1,5 MM Bs) no es «negativo»
+      else txt = T('Crédito neto <strong>prácticamente nulo (' + PM.pct(d.total_pct, 1) + ')</strong>: el sector público tiene en el BCB tantos depósitos como deuda.',
+        'Net credit is <strong>practically nil (' + PM.pct(d.total_pct, 1) + ')</strong>: the public sector has as much in deposits as in debt at the BCB.');
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML =
         PM.pb(COL.total_pct, T('Créd. neto SPNF / Activo', 'Net NFPS credit / Assets'), PM.pct(d.total_pct, 1),

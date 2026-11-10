@@ -160,12 +160,12 @@
       var sp = p('credito_sp'), rib = p('rib'), txt;
       if (sp > 70) txt = T('El crédito al sector público representa <strong>' + PM.pct(sp, 1) + '</strong> del activo: <strong>dominancia fiscal extrema</strong>. Las reservas apenas cubren <strong>' + PM.pct(rib, 1) + '</strong>. El balance del BCB está altamente deteriorado.',
         'Credit to the public sector accounts for <strong>' + PM.pct(sp, 1) + '</strong> of assets: <strong>extreme fiscal dominance</strong>. Reserves barely cover <strong>' + PM.pct(rib, 1) + '</strong>. The balance sheet of the BCB is highly deteriorated.');
-      else if (sp > 50) txt = T('Crédito al SPNF en <strong>' + PM.pct(sp, 1) + '</strong> del activo, por encima de las reservas (' + PM.pct(rib, 1) + '). <strong>Señal de deterioro</strong> en la calidad del balance del BCB.',
-        'Credit to the NFPS at <strong>' + PM.pct(sp, 1) + '</strong> of assets, above reserves (' + PM.pct(rib, 1) + '). <strong>A sign of deterioration</strong> in the quality of the balance sheet of the BCB.');
+      else if (sp > 50) txt = T('Crédito al sector público en <strong>' + PM.pct(sp, 1) + '</strong> del activo, por encima de las reservas (' + PM.pct(rib, 1) + '). <strong>Señal de deterioro</strong> en la calidad del balance del BCB.',
+        'Credit to the public sector at <strong>' + PM.pct(sp, 1) + '</strong> of assets, above reserves (' + PM.pct(rib, 1) + '). <strong>A sign of deterioration</strong> in the quality of the balance sheet of the BCB.');
       else if (rib > 50) txt = T('Las reservas representan <strong>' + PM.pct(rib, 1) + '</strong> del activo: balance <strong>saludable</strong>, con buen respaldo externo.',
         'Reserves account for <strong>' + PM.pct(rib, 1) + '</strong> of assets: a <strong>healthy</strong> balance sheet, with good external backing.');
-      else txt = T('Balance del BCB con reservas en <strong>' + PM.pct(rib, 1) + '</strong> y crédito al SPNF en <strong>' + PM.pct(sp, 1) + '</strong>. Estructura equilibrada.',
-        'Balance sheet of the BCB with reserves at <strong>' + PM.pct(rib, 1) + '</strong> and credit to the NFPS at <strong>' + PM.pct(sp, 1) + '</strong>. A balanced structure.');
+      else txt = T('Balance del BCB con reservas en <strong>' + PM.pct(rib, 1) + '</strong> y crédito al sector público en <strong>' + PM.pct(sp, 1) + '</strong>. Estructura equilibrada.',
+        'Balance sheet of the BCB with reserves at <strong>' + PM.pct(rib, 1) + '</strong> and credit to the public sector at <strong>' + PM.pct(sp, 1) + '</strong>. A balanced structure.');
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML = PANEL.map(function (x) {
         var desc = x[0] === 'otros_ext_tot' ? T('Aportes a organismos internacionales ' + monto(d.aportes_oi || 0, d.date) +
@@ -184,8 +184,8 @@
         'Un banco central sano tiene una alta proporción de <strong>reservas internacionales</strong> (activos de calidad). Cuando el <strong>crédito al sector público</strong> domina el activo, significa que el banco central financia al gobierno en lugar de mantener respaldo externo: señal de <strong>dominancia fiscal</strong>.',
         'A sound central bank has a high share of <strong>international reserves</strong> (quality assets). When <strong>credit to the public sector</strong> dominates assets, it means that the central bank finances the government instead of maintaining external backing: a sign of <strong>fiscal dominance</strong>.')],
       [T('Deterioro del balance', 'Deterioration of the balance sheet'), T(
-        'Si el crédito al SPNF crece mientras las RIB caen, el BCB está <strong>sustituyendo activos de calidad</strong> (divisas) por crédito al gobierno (activo de menor calidad). Este deterioro compromete la capacidad de defender el tipo de cambio.',
-        'If credit to the NFPS grows while GIR fall, the BCB is <strong>replacing quality assets</strong> (foreign exchange) with credit to the government (a lower-quality asset). This deterioration compromises the capacity to defend the exchange rate.')],
+        'Si el crédito al sector público crece mientras las RIB caen, el BCB está <strong>sustituyendo activos de calidad</strong> (divisas) por crédito al gobierno (activo de menor calidad). Este deterioro compromete la capacidad de defender el tipo de cambio.',
+        'If credit to the public sector grows while GIR fall, the BCB is <strong>replacing quality assets</strong> (foreign exchange) with credit to the government (a lower-quality asset). This deterioration compromises the capacity to defend the exchange rate.')],
       [T('Activos buenos vs. malos', 'Good vs. bad assets'), T(
         'Un activo es <strong>«bueno»</strong> si proporciona solvencia y liquidez inmediata (reservas en divisas, oro monetario). Un activo es <strong>«malo»</strong> si es ilíquido, riesgoso o de dudoso valor (créditos irrecuperables al gobierno o empresas públicas deficitarias). La proporción entre ambos determina la solidez real del banco central.',
         'An asset is <strong>“good”</strong> if it provides solvency and immediate liquidity (foreign exchange reserves, monetary gold). An asset is <strong>“bad”</strong> if it is illiquid, risky or of doubtful value (unrecoverable loans to the government or to loss-making public enterprises). The proportion between the two determines the real soundness of the central bank.')],

@@ -88,7 +88,7 @@
       grafico = PM.montar(el, opciones);
       panel();
       PM.alCambiarTema(function () { cifras(); pintarPastillas(); panel(); });
-      PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
+      PM.preguntas(document.getElementById('preguntas'), preguntas());
       document.getElementById('fuente').innerHTML = T(
         'Fuente: <a href="https://www.imf.org/external/datamapper/datasets/ARA" target="_blank" rel="noopener">FMI — Assessing Reserve Adequacy (ARA)</a> · Elaboración: Centro de Estudios POPULI',
         'Source: <a href="https://www.imf.org/external/datamapper/datasets/ARA" target="_blank" rel="noopener">IMF — Assessing Reserve Adequacy (ARA)</a> · Analysis: Centro de Estudios POPULI');
@@ -228,10 +228,10 @@
             'Only ' + PM.pct(val * 100, 1) + ' of broad money is backed by reserves. Well below the recommended minimum of 20%, which limits the capacity to defend the exchange rate.')
           : T('Respaldo adecuado del dinero amplio con reservas internacionales.', 'Adequate backing of broad money with international reserves.');
         else if (k === 'Reserves_STD') desc = val < thr
-          ? T('Las reservas no cubren la totalidad de la deuda externa de corto plazo, lo que viola la regla de Guidotti.',
-            'Reserves do not cover the whole of the short-term external debt, which violates the Guidotti rule.')
-          : T('Las reservas cubren la deuda externa de corto plazo, en cumplimiento de la regla de Guidotti-Greenspan.',
-            'Reserves cover the short-term external debt, in compliance with the Guidotti-Greenspan rule.');
+          ? T('Las reservas no cubren la totalidad de la deuda externa de corto plazo, lo que viola la regla de Greenspan-Guidotti.',
+            'Reserves do not cover the whole of the short-term external debt, which violates the Greenspan-Guidotti rule.')
+          : T('Las reservas cubren la deuda externa de corto plazo, en cumplimiento de la regla de Greenspan-Guidotti.',
+            'Reserves cover the short-term external debt, in compliance with the Greenspan-Guidotti rule.');
         else desc = val < thr
           ? T('Con ' + PM.num(val, 1) + ' meses de cobertura, Bolivia está por debajo del nivel prudente de 3 meses. El margen para financiar importaciones con reservas es muy limitado.',
             'With ' + PM.num(val, 1) + ' months of coverage, Bolivia is below the prudent level of 3 months. The room to finance imports with reserves is very limited.')
@@ -261,23 +261,62 @@
       document.getElementById('panel').innerHTML = html;
     }
 
-    var PREGUNTAS = [
+    // Las preguntas se arman con el dato ya cargado: lo que dicen de Bolivia y de la región (qué umbrales se
+    // incumplen, desde cuándo y con qué cifra) sale del JSON, como en el panel. Escrito a mano quedaba viejo.
+    function preguntas() {
+      var deBolivia = function (k, anio) { var v = null; (DATA.series[k].Bolivia || []).forEach(function (p) { if (p.year === anio) v = p.value; }); return v; };
+      // cuántos de los cuatro umbrales incumple un país con el último dato de cada indicador (Bolivia: el del panel)
+      var incumple = function (c) {
+        var n = 0;
+        IND.forEach(function (k) {
+          var u = c === 'Bolivia' ? ultimo(k) : null;
+          if (!u) (DATA.series[k][c] || []).forEach(function (p) { if (!u || p.year > u.year) u = p; });
+          if (u && u.value != null && u.value < DATA.indicators[k].threshold) n++;
+        });
+        return n;
+      };
+      // Regla de Greenspan-Guidotti: Bolivia frente al umbral con su último dato y los dos años anteriores
+      var g = ultimo('Reserves_STD'), tG = DATA.indicators.Reserves_STD.threshold, fG = '';
+      if (g) {
+        var g1 = deBolivia('Reserves_STD', g.year - 1), g2 = deBolivia('Reserves_STD', g.year - 2);
+        if (g.value < tG) fG = T(' Bolivia está por debajo de este umbral (' + g.year + ').', ' Bolivia is below this threshold (' + g.year + ').');
+        else if (g1 == null || g1 >= tG) fG = T(' Bolivia cumple este umbral (' + g.year + ').', ' Bolivia meets this threshold (' + g.year + ').');
+        else if (g2 != null && g2 >= tG) fG = T(' Bolivia recuperó este umbral en ' + g.year + ' tras caer por debajo en ' + (g.year - 1) + '.',
+          ' Bolivia regained this threshold in ' + g.year + ' after falling below it in ' + (g.year - 1) + '.');
+        else fG = T(' Bolivia recuperó este umbral en ' + g.year + '.', ' Bolivia regained this threshold in ' + g.year + '.');
+      }
+      // Meses de importación: el máximo de 2012-2015 (los años de más reservas) contra el último dato
+      var mi = ultimo('Reserves_M'), tM = DATA.indicators.Reserves_M.threshold, tope = null, fM = '';
+      (DATA.series.Reserves_M.Bolivia || []).forEach(function (p) { if (p.year >= 2012 && p.year <= 2015 && (tope == null || p.value > tope)) tope = p.value; });
+      if (mi && tope != null) fM = T(' Bolivia pasó de hasta ' + PM.num(tope, 1) + ' meses de cobertura en 2012-2015 a ' + (mi.value < tM ? 'apenas ' : '') + PM.num(mi.value, 1) + ' meses en ' + mi.year + ', reflejo del agotamiento de las reservas líquidas frente a una economía que sigue importando a ritmo elevado.',
+        ' Bolivia went from as much as ' + PM.num(tope, 1) + ' months of coverage in 2012-2015 to ' + (mi.value < tM ? 'barely ' : '') + PM.num(mi.value, 1) + ' months in ' + mi.year + ', a reflection of the depletion of liquid reserves in the face of an economy that keeps importing at a high pace.');
+      // Región: los países que incumplen 3 o más de los 4 umbrales con su último dato
+      var peores = DATA.metadata.paises.filter(function (c) { return incumple(c) >= 3; }).map(function (c) { return NOMBRE[c] || c; });
+      var lista = function (y) { return peores.slice(0, -1).join(', ') + y + peores[peores.length - 1]; };
+      var anioR = DATA.metadata.ultimo_dato, fR = '';
+      if (peores.length === 1) fR = T(peores[0] + ' es el país de Sudamérica con los indicadores ARA más deteriorados (' + anioR + '). ',
+        peores[0] + ' is the country in South America with the most deteriorated ARA indicators (' + anioR + '). ');
+      else if (peores.length > 1) fR = T(lista(' y ') + ' son los países de Sudamérica con los indicadores ARA más deteriorados (' + anioR + '). ',
+        lista(' and ') + ' are the countries in South America with the most deteriorated ARA indicators (' + anioR + '). ');
+      var malosB = incumple('Bolivia');
+      return [
       [T('Metodología ARA del FMI', 'The ARA methodology of the IMF'), T(
         'La métrica <strong>Assessing Reserve Adequacy</strong> (ARA) del FMI es un indicador compuesto que pondera cuatro fuentes de riesgo: exportaciones, dinero amplio (M2), deuda externa de corto plazo y otros pasivos. Un valor <strong>≥ 1</strong> indica reservas adecuadas para enfrentar choques externos sin necesidad de ajustes abruptos en la política cambiaria o comercial.',
         'The <strong>Assessing Reserve Adequacy</strong> (ARA) metric of the IMF is a composite indicator that weights four sources of risk: exports, broad money (M2), short-term external debt and other liabilities. A value <strong>≥ 1</strong> indicates reserves adequate to face external shocks without the need for abrupt adjustments in exchange-rate or trade policy.')],
       [T('Reservas / M2 (dinero amplio)', 'Reserves / M2 (broad money)'), T(
         'Mide qué proporción de los depósitos y billetes en circulación está respaldada por reservas internacionales. El estándar mínimo del FMI es <strong>20% (0,2)</strong>. Cuando este ratio cae, el banco central pierde capacidad para defender la paridad cambiaria ante corridas bancarias o fuga de capitales, porque M2 mide el dinero que podría convertirse rápidamente en demanda de dólares.',
         'It measures what share of the deposits and banknotes in circulation is backed by international reserves. The minimum standard of the IMF is <strong>20% (0.2)</strong>. When this ratio falls, the central bank loses capacity to defend the exchange-rate parity in the face of bank runs or capital flight, because M2 measures the money that could quickly turn into demand for dollars.')],
-      [T('Regla de Guidotti: reservas / deuda CP', 'The Guidotti rule: reserves / ST debt'), T(
-        'La <strong>regla de Guidotti-Greenspan</strong> establece que las reservas deben cubrir al menos el 100% de la deuda externa de corto plazo (vencimientos ≤ 1 año). Un ratio <strong>≥ 1</strong> significa que el país puede pagar todos sus compromisos externos inmediatos sin recurrir a nuevos préstamos. Bolivia recuperó este umbral en 2025 tras caer por debajo en 2024.',
-        'The <strong>Guidotti-Greenspan rule</strong> states that reserves must cover at least 100% of short-term external debt (maturities ≤ 1 year). A ratio <strong>≥ 1</strong> means that the country can pay all its immediate external commitments without resorting to new loans. Bolivia regained this threshold in 2025 after falling below it in 2024.')],
+      [T('Regla de Greenspan-Guidotti: reservas / deuda CP', 'The Greenspan-Guidotti rule: reserves / ST debt'), T(
+        'La <strong>regla de Greenspan-Guidotti</strong> establece que las reservas deben cubrir al menos el 100% de la deuda externa de corto plazo (vencimientos ≤ 1 año). Un ratio <strong>≥ 1</strong> significa que el país puede pagar todos sus compromisos externos inmediatos sin recurrir a nuevos préstamos.',
+        'The <strong>Greenspan-Guidotti rule</strong> states that reserves must cover at least 100% of short-term external debt (maturities ≤ 1 year). A ratio <strong>≥ 1</strong> means that the country can pay all its immediate external commitments without resorting to new loans.') + fG],
       [T('Meses de importación', 'Months of imports'), T(
-        'Métrica clásica de cobertura: cuántos meses de importaciones puede financiar el país solo con reservas. El nivel <strong>prudente es ≥ 3 meses</strong>. Bolivia pasó de más de 15 meses de cobertura en 2012-2015 a apenas 2 meses en 2024, reflejo del agotamiento de las reservas líquidas frente a una economía que sigue importando a ritmo elevado.',
-        'A classic coverage metric: how many months of imports the country can finance with reserves alone. The <strong>prudent level is ≥ 3 months</strong>. Bolivia went from more than 15 months of coverage in 2012-2015 to barely 2 months in 2024, a reflection of the depletion of liquid reserves in the face of an economy that keeps importing at a high pace.')],
-      [T('Bolivia en contexto regional', 'Bolivia in regional context'), T(
-        'Bolivia y Argentina son los dos países de Sudamérica con los indicadores ARA más deteriorados. Mientras Perú, Colombia y Paraguay mantienen ratios por encima de los umbrales recomendados, Bolivia enfrenta una situación crítica en 3 de los 4 indicadores. La pérdida de reservas refleja años de déficits gemelos (fiscal y externo) financiados con activos del banco central.',
-        'Bolivia and Argentina are the two countries in South America with the most deteriorated ARA indicators. While Peru, Colombia and Paraguay keep ratios above the recommended thresholds, Bolivia faces a critical situation in 3 of the 4 indicators. The loss of reserves reflects years of twin deficits (fiscal and external) financed with central bank assets.')]
-    ];
+        'Métrica clásica de cobertura: cuántos meses de importaciones puede financiar el país solo con reservas. El nivel <strong>prudente es ≥ 3 meses</strong>.',
+        'A classic coverage metric: how many months of imports the country can finance with reserves alone. The <strong>prudent level is ≥ 3 months</strong>.') + fM],
+      [T('Bolivia en contexto regional', 'Bolivia in regional context'), fR + T(
+        'Mientras Perú, Colombia y Paraguay mantienen ratios por encima de los umbrales recomendados, Bolivia enfrenta una situación crítica en ' + malosB + ' de los ' + IND.length + ' indicadores. La pérdida de reservas refleja años de déficits gemelos (fiscal y externo) financiados con activos del banco central.',
+        'While Peru, Colombia and Paraguay keep ratios above the recommended thresholds, Bolivia faces a critical situation in ' + malosB + ' of the ' + IND.length + ' indicators. The loss of reserves reflects years of twin deficits (fiscal and external) financed with central bank assets.')]
+      ];
+    }
   })();
   </script>
 </body>
