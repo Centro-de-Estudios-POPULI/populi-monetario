@@ -10,9 +10,9 @@
     "primer_dato": "1987-12",
     "observaciones": 460,
     "observaciones_mensuales": 455,
-    "ultimo_rin": 4097.33,
-    "ultimo_rib": 4097.33,
-    "var_12m_rin_pct": 20.1
+    "ultimo_rin": 4068.47,
+    "ultimo_rib": 4068.47,
+    "var_12m_rin_pct": 26.1
   },
   "series": [
     {
@@ -4148,12 +4148,12 @@
     },
     {
       "date": "2026-10-S5",
-      "rib": 4097.33,
-      "rin": 4097.33,
-      "oro": 3135.8,
-      "divisas": 896.64,
-      "deg": 29.5,
-      "fmi": 35.39
+      "rib": 4068.47,
+      "rin": 4068.47,
+      "oro": 3148.47,
+      "divisas": 855.12,
+      "deg": 29.51,
+      "fmi": 35.37
     }
   ]
 }

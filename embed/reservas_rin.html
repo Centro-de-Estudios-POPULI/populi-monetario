@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Reservas Internacionales · Populi</title>
+  <title data-en="International Reserves · Populi">Reservas Internacionales · Populi</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;1,400&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet" />
@@ -14,13 +14,13 @@
 <body>
   <div class="wrap">
     <div class="sec-hd">
-      <div class="sec-title"><span class="accent-bar"></span>Reservas Internacionales</div>
-      <div class="sec-sub">Reservas Internacionales Netas y su composición, en millones de USD</div>
+      <div class="sec-title" data-en='<span class="accent-bar"></span>International Reserves'><span class="accent-bar"></span>Reservas Internacionales</div>
+      <div class="sec-sub" data-en="Net International Reserves and their composition, in millions of USD">Reservas Internacionales Netas y su composición, en millones de USD</div>
     </div>
 
     <div class="hz-bar">
-      <div class="hz-item"><span class="hz-lbl">Rango</span><div class="hz-grp" id="b-rango"></div></div>
-      <div class="hz-item"><span class="hz-lbl">Medida</span><div class="hz-grp" id="b-medida"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Range">Rango</span><div class="hz-grp" id="b-rango"></div></div>
+      <div class="hz-item"><span class="hz-lbl" data-en="Measure">Medida</span><div class="hz-grp" id="b-medida"></div></div>
     </div>
 
     <div class="kpi-grid" id="kpis"></div>
@@ -28,10 +28,10 @@
     <div class="main-grid">
       <div class="chart-card">
         <div class="chart-ctrl"><div class="tog-grp" id="pastillas"></div></div>
-        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span>Cargando reservas internacionales…</span></div></div>
+        <div class="grafico" id="chart"><div class="loading"><div class="spinner"></div><span data-en="Loading international reserves…">Cargando reservas internacionales…</span></div></div>
       </div>
       <div class="panel">
-        <div class="panel-hd"><span class="panel-hd-t">Composición de reservas</span><span class="panel-hd-d" id="panel-fecha"></span></div>
+        <div class="panel-hd"><span class="panel-hd-t" data-en="Composition of reserves">Composición de reservas</span><span class="panel-hd-d" id="panel-fecha"></span></div>
         <div class="panel-body" id="panel"></div>
       </div>
     </div>
@@ -42,20 +42,25 @@
 
   <script>
   (function () {
-    var C = PM.C;
-    // Componentes que se apilan y suman exactamente la RIN (identidad del BCB: RIB = RIN = oro + divisas + DEG + FMI).
+    var C = PM.C, T = PM.t;   // T('castellano', 'inglés'): con ?lang=en el gráfico sale en inglés
+    // Componentes que se apilan. Para el BCB, RIB = oro + divisas + DEG + posición FMI, y RIN = RIB − obligaciones de
+    // reservas. Medido contra la serie (09-nov-2026): desde dic 2024 la suma, la RIB y la RIN coinciden; entre dic 2012 y
+    // nov 2024 la suma es la RIB y la RIN es menor; antes de dic 2012 los cuatro componentes ni siquiera llegan a la RIB.
+    // Por eso los totales del tooltip y del panel son los OFICIALES del dato (rin, rib), nunca la suma de lo apilado.
     // En tema oscuro el petróleo y el granate quedan bajo 3:1 contra la tarjeta: suben a menta y rojo (validado).
     var COMP = [
-      { k: 'oro', nombre: 'Oro', color: C.oro },
-      { k: 'divisas', nombre: 'Divisas', color: { claro: C.petroleo, oscuro: C.menta } },
-      { k: 'deg', nombre: 'DEG', color: { claro: C.granate, oscuro: C.rojo } },
-      { k: 'fmi', nombre: 'Pos. FMI', color: { claro: C.gris, oscuro: '#6E7A7D' } }
+      { k: 'oro', nombre: T('Oro', 'Gold'), color: C.oro },
+      { k: 'divisas', nombre: T('Divisas', 'Foreign exchange'), color: { claro: C.petroleo, oscuro: C.menta } },
+      { k: 'deg', nombre: T('DEG', 'SDR'), color: { claro: C.granate, oscuro: C.rojo } },
+      { k: 'fmi', nombre: T('Pos. FMI', 'IMF position'), color: { claro: C.gris, oscuro: '#6E7A7D' } }
     ];
     var RIN = C.turquesa;
     var estado = { rango: 'desde2010', medida: 'abs', idx: null };
     var activas = new Set(COMP.map(function (c) { return c.k; }));
     var S, G, M, K, si = 0, grafico;
     var mm = function (v) { return PM.mm(v); };
+    // ¿RIB y RIN son la misma cifra? (con el redondeo del BCB difieren en décimas aunque las obligaciones sean cero)
+    var mismas = function (a, b) { return Math.abs(a - b) <= Math.max(1, Math.abs(a) * 0.001); };
 
     PM.cargar(['reservas_rin.json']).then(function (r) {
       S = r[0].series; M = r[0].metadata;
@@ -66,9 +71,9 @@
       G = (semanal(ult) && ult.date.slice(0, 7) > mens[mens.length - 1].date) ? mens.concat([ult]) : mens;
       K = G.map(function (x) { return x.date; });
       estado.idx = G.length - 1;
-      PM.botonera(document.getElementById('b-rango'), [['5a', '5 años'], ['desde2010', 'Desde 2010'], ['desde2000', 'Desde 2000'], ['todo', 'Todo']],
+      PM.botonera(document.getElementById('b-rango'), [['5a', T('5 años', '5 years')], ['desde2010', T('Desde 2010', 'Since 2010')], ['desde2000', T('Desde 2000', 'Since 2000')], ['todo', T('Todo', 'All')]],
         estado.rango, function (v) { estado.rango = v; grafico.redibujar(); });
-      PM.botonera(document.getElementById('b-medida'), [['abs', 'MM USD'], ['pct', '% de las RIN']],
+      PM.botonera(document.getElementById('b-medida'), [['abs', T('MM USD', 'USD M')], ['pct', T('% de las RIN', '% of NIR')]],
         estado.medida, function (v) { estado.medida = v; grafico.redibujar(); });
       PM.pastillas(document.getElementById('pastillas'),
         COMP.map(function (c) { return { k: c.k, nombre: c.nombre, color: c.color, forma: 'area' }; }),
@@ -81,7 +86,9 @@
       panel(estado.idx);
       PM.alCambiarTema(function () { cifras(); panel(estado.idx); });
       PM.preguntas(document.getElementById('preguntas'), PREGUNTAS);
-      document.getElementById('fuente').innerHTML = 'Fuente: <a href="https://www.bcb.gob.bo/?q=estad-sticas-semanales" target="_blank" rel="noopener">BCB — Estadísticas Semanales</a> · Elaboración: Centro de Estudios POPULI · Datos al: ' + PM.fecha(M.ultimo_dato);
+      document.getElementById('fuente').innerHTML = T(
+        'Fuente: <a href="https://www.bcb.gob.bo/?q=estad-sticas-semanales" target="_blank" rel="noopener">BCB — Estadísticas Semanales</a> · Elaboración: Centro de Estudios POPULI · Datos al: ',
+        'Source: <a href="https://www.bcb.gob.bo/?q=estad-sticas-semanales" target="_blank" rel="noopener">BCB — Weekly Statistics</a> · Analysis: Centro de Estudios POPULI · Data as of: ') + PM.fecha(M.ultimo_dato);
     }).catch(function (e) { console.error(e); PM.error(document.getElementById('chart')); });
 
     function cifras() {
@@ -89,10 +96,10 @@
       // minilíneas: los últimos 24 meses de cada cifra (serie mensual + el mes en curso)
       var serie = function (f) { return PM.ultimos(G.map(f), 24); };
       document.getElementById('kpis').innerHTML =
-        PM.kpi({ color: RIN, rotulo: 'RIN (netas)', valor: mm(rin), delta: PM.flecha(v12) + ' ' + PM.pct(Math.abs(v12), 1) + ' en 12 meses', tono: v12 >= 0 ? 'bueno' : 'malo', serie: serie(function (x) { return x.rin; }) }) +
-        PM.kpi({ color: C.oro, rotulo: 'Oro', valor: mm(oro), delta: PM.pct(rin ? oro / rin * 100 : null, 1) + ' de las RIN', tono: 'neutro', serie: serie(function (x) { return x.oro; }) }) +
-        PM.kpi({ color: COMP[1].color, rotulo: 'Divisas', valor: mm(div), delta: div < 500 ? 'Nivel crítico' : 'Operativo', tono: div < 500 ? 'malo' : 'neutro', serie: serie(function (x) { return x.divisas; }) }) +
-        PM.kpi({ color: COMP[2].color, rotulo: 'DEG + FMI', valor: mm((u.deg || 0) + (u.fmi || 0)), delta: 'Posiciones multilaterales', tono: 'neutro', serie: serie(function (x) { return (x.deg || 0) + (x.fmi || 0); }) });
+        PM.kpi({ color: RIN, rotulo: T('RIN (netas)', 'NIR (net)'), valor: mm(rin), delta: PM.flecha(v12) + ' ' + PM.pct(Math.abs(v12), 1) + T(' en 12 meses', ' in 12 months'), tono: v12 >= 0 ? 'bueno' : 'malo', serie: serie(function (x) { return x.rin; }) }) +
+        PM.kpi({ color: C.oro, rotulo: T('Oro', 'Gold'), valor: mm(oro), delta: PM.pct(rin ? oro / rin * 100 : null, 1) + T(' de las RIN', ' of NIR'), tono: 'neutro', serie: serie(function (x) { return x.oro; }) }) +
+        PM.kpi({ color: COMP[1].color, rotulo: T('Divisas', 'Foreign exchange'), valor: mm(div), delta: div < 200 ? T('Nivel crítico', 'Critical level') : div < 500 ? T('Nivel bajo', 'Low level') : T('Operativo', 'Operational'), tono: div < 500 ? 'malo' : 'neutro', serie: serie(function (x) { return x.divisas; }) }) +
+        PM.kpi({ color: COMP[2].color, rotulo: T('DEG + FMI', 'SDR + IMF'), valor: mm((u.deg || 0) + (u.fmi || 0)), delta: T('Posiciones multilaterales', 'Multilateral positions'), tono: 'neutro', serie: serie(function (x) { return (x.deg || 0) + (x.fmi || 0); }) });
     }
 
     function opciones() {
@@ -124,18 +131,25 @@
         animationDuration: 450,
         grid: PM.grid(pct ? { top: 16 } : null),
         xAxis: PM.ejeTiempo(KV, el),
-        yAxis: PM.ejeY({ unidad: pct ? '' : 'MM USD', fmt: pct ? 'pct' : null, extra: { max: pct ? 100 : null } }),
+        yAxis: PM.ejeY({ unidad: pct ? '' : T('MM USD', 'USD M'), fmt: pct ? 'pct' : null, extra: { max: pct ? 100 : null } }),
         tooltip: PM.tooltip(function (ps) {
           if (!ps.length) return '';
           var i = ps[0].dataIndex;
           panel(si + i);
-          var h = PM.ttTitulo(PM.fecha(KV[i]));
+          var h = PM.ttTitulo(PM.fecha(KV[i])), dP = V[i];
           ps.slice().reverse().forEach(function (p) {
             if (p.value == null) return;
             var c = COMP.filter(function (x) { return x.nombre === p.seriesName; })[0];
+            // un componente sin dato (la posición con el FMI antes de 2001) se apila como 0, pero no se informa «$0,0»
+            if (dP[c.k] == null) return;
             h += PM.ttFila(c.color, p.seriesName, pct ? PM.pct(p.value, 1) : mm(p.value), 'area');
           });
-          if (tot[i] != null) h += PM.ttTotal('RIN total', mm(tot[i]));
+          // totales oficiales del dato: la RIN y, cuando difiere de ella (hasta nov 2024), también la RIB
+          if (dP.rin != null) {
+            var igual = dP.rib == null || mismas(dP.rib, dP.rin);
+            if (!igual) h += PM.ttTotal(T('RIB (brutas)', 'GIR (gross)'), mm(dP.rib));
+            h += PM.ttTotal(igual ? T('RIN total', 'Total NIR') : T('RIN (netas)', 'NIR (net)'), mm(dP.rin));
+          }
           return h;
         }),
         series: series
@@ -146,29 +160,52 @@
       if (i == null || !G || !G[i]) return;
       estado.idx = i;
       var d = G[i], rin = d.rin || 0, oro = d.oro || 0, div = d.divisas || 0, deg = d.deg || 0, fmi = d.fmi || 0;
-      var parte = function (v) { return rin > 0 ? PM.pct(v / rin * 100, 1) + ' de las RIN' : ''; };
-      var pOro = PM.pct(rin ? oro / rin * 100 : 0, 1), pDiv = PM.pct(rin ? div / rin * 100 : 0, 1);
+      // Las partes se miden sobre lo que componen: las reservas BRUTAS del dato. Cuando RIB = RIN (desde dic 2024) es
+      // «de las RIN», como siempre; antes, contra la RIN las partes sumaban más de 100% (y daban negativo en 1989).
+      var rib = d.rib != null ? d.rib : rin, brutas = !mismas(rib, rin), deQue = brutas ? T(' de las RIB', ' of GIR') : T(' de las RIN', ' of NIR');
+      var parte = function (v) { return rib > 0 ? PM.pct(v / rib * 100, 1) + deQue : ''; };
+      var pOro = PM.pct(rib ? oro / rib * 100 : 0, 1), pDiv = PM.pct(rib ? div / rib * 100 : 0, 1);
       var txt;
-      if (div < 200) txt = 'Divisas líquidas en <strong>' + mm(div) + '</strong>: nivel <strong>crítico</strong>. El BCB tiene muy limitada capacidad de intervención cambiaria. El oro (' + pOro + ' de las RIN) no es fácilmente convertible a corto plazo.';
-      else if (div < 500) txt = 'Divisas en <strong>' + mm(div) + '</strong>: nivel <strong>bajo</strong>. La mayor parte de las RIN es oro (<strong>' + pOro + '</strong>), que requiere operaciones de mercado para convertirse en liquidez.';
-      else if (rin < 5000) txt = 'RIN en <strong>' + mm(rin) + '</strong>. Nivel <strong>moderado</strong>, con diversificación entre oro (' + pOro + ') y divisas (' + pDiv + ').';
-      else txt = 'RIN en <strong>' + mm(rin) + '</strong>: nivel <strong>holgado</strong>. Buen respaldo para la estabilidad cambiaria.';
+      if (div < 200) txt = T(
+        'Divisas líquidas en <strong>' + mm(div) + '</strong>: nivel <strong>crítico</strong>. El BCB tiene muy limitada capacidad de intervención cambiaria. El oro (' + pOro + deQue + ') no es fácilmente convertible a corto plazo.',
+        'Liquid foreign exchange at <strong>' + mm(div) + '</strong>: a <strong>critical</strong> level. The BCB has very limited capacity to intervene in the foreign exchange market. Gold (' + pOro + deQue + ') cannot be readily converted in the short term.');
+      else if (div < 500) txt = T(
+        'Divisas en <strong>' + mm(div) + '</strong>: nivel <strong>bajo</strong>. La mayor parte de las ' + (brutas ? 'RIB' : 'RIN') + ' es oro (<strong>' + pOro + '</strong>), que requiere operaciones de mercado para convertirse en liquidez.',
+        'Foreign exchange at <strong>' + mm(div) + '</strong>: a <strong>low</strong> level. Most of the ' + (brutas ? 'GIR' : 'NIR') + ' is gold (<strong>' + pOro + '</strong>), which requires market operations to be turned into liquidity.');
+      else if (rin < 5000) txt = T(
+        'RIN en <strong>' + mm(rin) + '</strong>. Nivel <strong>moderado</strong>, con diversificación entre oro (' + pOro + ') y divisas (' + pDiv + ').',
+        'NIR at <strong>' + mm(rin) + '</strong>. A <strong>moderate</strong> level, diversified between gold (' + pOro + ') and foreign exchange (' + pDiv + ').');
+      else txt = T(
+        'RIN en <strong>' + mm(rin) + '</strong>: nivel <strong>holgado</strong>. Buen respaldo para la estabilidad cambiaria.',
+        'NIR at <strong>' + mm(rin) + '</strong>: a <strong>comfortable</strong> level. Solid backing for exchange-rate stability.');
       document.getElementById('panel-fecha').textContent = PM.fecha(d.date);
       document.getElementById('panel').innerHTML =
-        PM.pb(RIN, 'RIN (netas)', mm(rin)) +
-        PM.pb(C.oro, 'Oro', mm(oro), parte(oro)) +
-        PM.pb(COMP[1].color, 'Divisas líquidas', mm(div), parte(div)) +
-        PM.pb(COMP[2].color, 'DEG', mm(deg), parte(deg)) +
-        PM.pb(COMP[3].color, 'Posición FMI', mm(fmi), parte(fmi)) +
+        PM.pb(RIN, T('RIN (netas)', 'NIR (net)'), mm(rin)) +
+        (brutas ? PM.pb(C.pizarra, T('RIB (brutas)', 'GIR (gross)'), mm(rib), T('Antes de restar las obligaciones de reservas', 'Before subtracting reserve liabilities')) : '') +
+        PM.pb(C.oro, T('Oro', 'Gold'), mm(oro), parte(oro)) +
+        PM.pb(COMP[1].color, T('Divisas líquidas', 'Liquid foreign exchange'), mm(div), parte(div)) +
+        // sin dato en la fuente va la raya, no «$0,0» (PM.mm(null) → «—»)
+        PM.pb(COMP[2].color, T('DEG', 'SDR'), mm(d.deg), d.deg == null ? '' : parte(deg)) +
+        PM.pb(COMP[3].color, T('Posición FMI', 'IMF position'), mm(d.fmi), d.fmi == null ? '' : parte(fmi)) +
         PM.ctx(txt);
     }
 
     var PREGUNTAS = [
-      ['¿Qué son las RIN?', 'Las <strong>Reservas Internacionales Netas</strong> son los activos externos del banco central menos sus pasivos de corto plazo con el exterior. Son el respaldo en divisas de la moneda nacional y la primera línea de defensa ante crisis de balanza de pagos.'],
-      ['Composición: oro vs. divisas', 'El <strong>oro</strong> es un activo de reserva que se revaloriza con el mercado internacional, pero tiene menor liquidez que las <strong>divisas</strong> (dólares, euros). Bolivia ha incrementado sus reservas de oro, pero las divisas líquidas son las que se usan para intervenir en el mercado cambiario.'],
-      ['¿Cuánto es suficiente?', 'El FMI recomienda que las reservas cubran al menos <strong>3 meses de importaciones</strong> o el 20% de M2. Bolivia importa ~$10.000 MM al año, por lo que necesita ~$2.500 MM como mínimo. Otro criterio es la regla de Guidotti: cubrir la deuda externa de corto plazo al 100%.'],
-      ['Teoría cualitativa del dinero', 'La <strong>teoría cualitativa</strong> sostiene que la estabilidad monetaria depende no solo de la cantidad de dinero, sino de su <strong>calidad</strong>. La primera dimensión de la calidad es el <strong>respaldo</strong>: en economías con monedas no centrales, la cantidad de reservas internacionales es crucial para dar respaldo a la moneda nacional. Sin respaldo suficiente, la confianza en el dinero se deteriora.'],
-      ['Indicador ARA del FMI', 'El FMI subraya la importancia de reservas adecuadas para mitigar crisis de balanza de pagos. Tres métricas clave: <strong>reservas/M2</strong> (estándar mínimo: 0,5), <strong>reservas/meses de importación</strong> (nivel prudente: 3 meses) y <strong>reservas/deuda externa de corto plazo</strong> (criterio aceptable: al menos 1). Bolivia enfrenta desafíos en las tres métricas.']
+      [T('¿Qué son las RIN?', 'What are NIR?'), T(
+        'Las <strong>Reservas Internacionales Netas</strong> son los activos externos del banco central menos sus pasivos de corto plazo con el exterior. Son el respaldo en divisas de la moneda nacional y la primera línea de defensa ante crisis de balanza de pagos.',
+        '<strong>Net International Reserves</strong> are the external assets of the central bank minus its short-term liabilities to the rest of the world. They are the foreign exchange backing of the national currency and the first line of defense against balance-of-payments crises.')],
+      [T('Composición: oro vs. divisas', 'Composition: gold vs. foreign exchange'), T(
+        'El <strong>oro</strong> es un activo de reserva que se revaloriza con el mercado internacional, pero tiene menor liquidez que las <strong>divisas</strong> (dólares, euros). El valor del oro en las reservas de Bolivia ha subido con su precio, aunque en toneladas el BCB tiene hoy poco más de la mitad que en 2022; las divisas líquidas son las que se usan para intervenir en el mercado cambiario.',
+        '<strong>Gold</strong> is a reserve asset that is revalued with the international market, but it is less liquid than <strong>foreign exchange</strong> (dollars, euros). The value of the gold in the reserves of Bolivia has risen with its price, although in tonnes the BCB now holds just over half of what it held in 2022; liquid foreign exchange is what is used to intervene in the currency market.')],
+      [T('¿Cuánto es suficiente?', 'How much is enough?'), T(
+        'El FMI recomienda que las reservas cubran al menos <strong>3 meses de importaciones</strong> o el 20% de M2. Bolivia importa ~$10.000 MM al año, por lo que necesita ~$2.500 MM como mínimo. Otro criterio es la regla de Guidotti: cubrir la deuda externa de corto plazo al 100%.',
+        'The IMF recommends that reserves cover at least <strong>3 months of imports</strong> or 20% of M2. Bolivia imports ~$10,000 M a year, so it needs at least ~$2,500 M. Another criterion is the Guidotti rule: covering 100% of short-term external debt.')],
+      [T('Teoría cualitativa del dinero', 'The quality theory of money'), T(
+        'La <strong>teoría cualitativa</strong> sostiene que la estabilidad monetaria depende no solo de la cantidad de dinero, sino de su <strong>calidad</strong>. La primera dimensión de la calidad es el <strong>respaldo</strong>: en economías con monedas no centrales, la cantidad de reservas internacionales es crucial para dar respaldo a la moneda nacional. Sin respaldo suficiente, la confianza en el dinero se deteriora.',
+        'The <strong>quality theory</strong> holds that monetary stability depends not only on the quantity of money but also on its <strong>quality</strong>. The first dimension of quality is <strong>backing</strong>: in economies with non-core currencies, the amount of international reserves is crucial to back the national currency. Without sufficient backing, confidence in money deteriorates.')],
+      [T('Indicador ARA del FMI', 'The IMF ARA metric'), T(
+        'El FMI subraya la importancia de reservas adecuadas para mitigar crisis de balanza de pagos. Tres métricas clave: <strong>reservas/M2</strong> (estándar mínimo: 0,2), <strong>reservas/meses de importación</strong> (nivel prudente: 3 meses) y <strong>reservas/deuda externa de corto plazo</strong> (criterio aceptable: al menos 1). Bolivia no alcanza los dos primeros umbrales y sí el tercero (el detalle está en la sección ARA-FMI).',
+        'The IMF stresses the importance of adequate reserves to mitigate balance-of-payments crises. Three key metrics: <strong>reserves/M2</strong> (minimum standard: 0.2), <strong>reserves/months of imports</strong> (prudent level: 3 months) and <strong>reserves/short-term external debt</strong> (acceptable criterion: at least 1). Bolivia falls short of the first two thresholds and meets the third (see the ARA-IMF section for details).')]
     ];
   })();
   </script>

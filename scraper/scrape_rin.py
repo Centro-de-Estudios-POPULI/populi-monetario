@@ -155,6 +155,19 @@ def download():
                 sys.exit(1)
 
 
+def _rotulo_semana(sem, dia) -> str:
+    """«AAAA-MM-Sn» del dato de una semana, según el día al que corresponde.
+
+    La semana pertenece al mes de su primer día. Si cruza de mes (lunes 28-sep a viernes
+    2-oct), sus días del mes nuevo son la semana 1 de ese mes: así la rotula después el
+    propio BCB cuando cierra el mes («Semana 1», 2-oct-2026).
+    """
+    anio, mes, num = sem["anio"], sem["mes"], sem["num"]
+    if dia is not None and (dia.year, dia.month) != (anio, mes):
+        anio, mes, num = dia.year, dia.month, 1
+    return f"{anio}-{mes:02d}-S{num}"
+
+
 def parse():
     wb = openpyxl.load_workbook(str(XLSX_PATH), data_only=True)
     ws = wb[wb.sheetnames[0]]
@@ -164,15 +177,17 @@ def parse():
 
     series = []
     last_month_date = None
+    semana = None      # la semana que se está leyendo y la posición de su dato en `series`
 
     for c in range(5, ws.max_column + 1):
         date_val = ws.cell(3, c).value
-        if date_val is None:
-            continue
+        dia = ws.cell(4, c).value            # el día del dato, debajo del encabezado
+        dia = dia if isinstance(dia, datetime.datetime) else None
 
         if isinstance(date_val, datetime.datetime):
             date_str = date_val.strftime("%Y-%m")
             last_month_date = date_val
+            semana = None
         elif isinstance(date_val, str) and "semana" in date_val.lower():
             if last_month_date is None:
                 continue
@@ -181,12 +196,26 @@ def parse():
             if next_m > 12:
                 next_m = 1
                 next_y += 1
-            # El número es el que sigue a «Semana»: el BCB le cuelga llamadas de
-            # nota («Semana 5/1», 10-oct-2026) y juntar todos los dígitos daba «S51».
+            # El número es el que sigue a «Semana»: el BCB escribe «Semana 5/1» en la
+            # que cruza de mes (10-oct-2026) y juntar todos los dígitos daba «S51».
             m_sem = re.search(r"semana\s*(\d+)", date_val, re.IGNORECASE)
-            week_num = int(m_sem.group(1)) if m_sem else 1
-            date_str = f"{next_y}-{next_m:02d}-S{week_num}"
+            # El mes sale del día del dato; sin día, es el que sigue al último cierre mensual.
+            semana = {
+                "anio": dia.year if dia else next_y,
+                "mes": dia.month if dia else next_m,
+                "num": int(m_sem.group(1)) if m_sem else 1,
+                "pos": None,
+            }
+            date_str = _rotulo_semana(semana, dia)
+        elif date_val is None and semana is not None and dia is not None:
+            # La semana en curso viene DÍA POR DÍA bajo un solo encabezado combinado
+            # («Semana 5» sobre lunes 26 … viernes 30-oct-2026). El dato de la semana es el
+            # del último día publicado, como en las semanas cerradas, que el BCB deja en su
+            # viernes. Hasta el 09-nov-2026 se leía sólo la primera columna: se publicaba el
+            # lunes como «último dato» (4.097,33 en vez de los 4.068,47 del viernes 30).
+            date_str = _rotulo_semana(semana, dia)
         else:
+            semana = None                    # una columna sin encabezado ni día cierra la semana
             continue
 
         row_data = {}
@@ -204,7 +233,12 @@ def parse():
 
         entry = {"date": date_str}
         entry.update(row_data)
-        series.append(entry)
+        if semana is not None and semana["pos"] is not None:
+            series[semana["pos"]] = entry        # un día más de la misma semana: reemplaza al anterior
+        else:
+            series.append(entry)
+            if semana is not None:
+                semana["pos"] = len(series) - 1
 
     # Los embeds sólo entienden «AAAA-MM» y «AAAA-MM-S1..5»: un rótulo distinto
     # tumba el gráfico entero («No se pudieron cargar los datos»). Abortamos antes
@@ -212,12 +246,15 @@ def parse():
     raros = [s["date"] for s in series if not re.fullmatch(r"\d{4}-\d{2}(-S[1-5])?", s["date"])]
     if raros:
         raise ValueError(f"Rótulos de período no reconocidos: {raros}. Revisar la cabecera del Excel del BCB.")
+    fechas = [s["date"] for s in series]
+    repetidos = sorted({d for d in fechas if fechas.count(d) > 1})
+    if repetidos:
+        raise ValueError(f"Períodos repetidos: {repetidos}. Revisar la cabecera del Excel del BCB.")
 
     monthly = [s for s in series if "-S" not in s["date"]]
     weekly = [s for s in series if "-S" in s["date"]]
 
     last = monthly[-1] if monthly else series[-1]
-    prev_12 = monthly[-13] if len(monthly) >= 13 else monthly[0]
 
     # Validación de coherencia: RIB ≈ Oro + Divisas + DEG + Posición FMI.
     # Si las filas quedaran mal mapeadas (el BCB volvió a mover el Excel), la
@@ -240,6 +277,13 @@ def parse():
 
     latest_point = weekly[-1] if weekly else last
 
+    # La variación a 12 meses es la del dato que se muestra (`ultimo_rin`), contra el cierre
+    # del MISMO MES del año anterior, buscado por fecha. Antes comparaba los dos últimos
+    # cierres mensuales entre sí: el gráfico mostraba la RIN de la última semana de octubre
+    # junto a la variación de septiembre contra septiembre.
+    anio_ant = f"{int(latest_point['date'][:4]) - 1}{latest_point['date'][4:7]}"
+    prev_12 = next((s for s in monthly if s["date"] == anio_ant), None)
+
     metadata = {
         "titulo": "Reservas Internacionales",
         "subtitulo": "Reservas Internacionales Netas y Brutas del BCB (en millones de USD)",
@@ -253,7 +297,7 @@ def parse():
         "observaciones_mensuales": len(monthly),
         "ultimo_rin": latest_point.get("rin"),
         "ultimo_rib": latest_point.get("rib"),
-        "var_12m_rin_pct": safe_var(last.get("rin"), prev_12.get("rin")),
+        "var_12m_rin_pct": safe_var(latest_point.get("rin"), prev_12.get("rin") if prev_12 else None),
     }
 
     return {"metadata": metadata, "series": series}
